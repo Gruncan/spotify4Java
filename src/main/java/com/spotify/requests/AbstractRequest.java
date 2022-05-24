@@ -25,7 +25,9 @@ public abstract class AbstractRequest implements IRequest {
 
 
     protected final JsonObject requestGet(String url) {
+        // Initialisation of http get request
         HttpGet httpGet = new HttpGet(BASE_URL + url);
+        // setting headers using the token
         httpGet.setHeader("Authorization", "Bearer " + this.token);
         httpGet.setHeader("Content-Type", "application/json");
 
@@ -34,9 +36,11 @@ public abstract class AbstractRequest implements IRequest {
             HttpResponse response = httpClient.execute(httpGet);
             StatusLine statusLine = response.getStatusLine();
             if (statusLine.getStatusCode() == 200) {
+                // if good request then process body and return json
                 HttpEntity entity = response.getEntity();
                 String s = this.processBody(entity);
                 return new JsonObject(s);
+                // handle other requests, taken from docs
             } else if (statusLine.getStatusCode() == 401) {
                 System.out.println("Bad or expired token. This can happen if the user revoked a token or the access token has expired. You should re-authenticate the user.");
             } else if (statusLine.getStatusCode() == 403) {
@@ -57,6 +61,7 @@ public abstract class AbstractRequest implements IRequest {
 
 
     private String processBody(HttpEntity entity) throws IOException {
+        // reads in body of the request converting it to string
         if (entity != null) {
             try (InputStream inputStream = entity.getContent()) {
                 Scanner scanner = new Scanner(inputStream).useDelimiter("\\A");
