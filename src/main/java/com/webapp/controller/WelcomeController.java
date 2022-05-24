@@ -32,7 +32,6 @@ public class WelcomeController {
     private static final String CLIENT_SECRET = "381ccdf476ac4584b0d936663d5c2232";
     private static final String REDIRECT_URL = "http://127.0.0.1:8888/redirect/";
 
-    private static final String REDIRECT_URL_2 = "http://127.0.0.1:8888/redirectagain/";
 
 
     @GetMapping("/")
@@ -54,12 +53,12 @@ public class WelcomeController {
     }
 
     @GetMapping("/redirect/")
-    public void redirect(@RequestParam String code, @RequestParam String state) throws URISyntaxException {
+    public String redirect(@RequestParam String code, @RequestParam String state) throws URISyntaxException {
         System.out.println("In get redirect");
         System.out.println("code: " + code);
 
         fetchAccessToken(code);
-
+        return "RedirectPage";
 
     }
 
