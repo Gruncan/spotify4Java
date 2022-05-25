@@ -1,6 +1,7 @@
 package com.spotify.requests;
 
 import com.spotify.json.JsonObject;
+import com.spotify.requests.util.ParameterPair;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -10,7 +11,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 
 /**
@@ -21,9 +24,9 @@ public abstract class AbstractRequest implements IRequest {
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
     private final static HttpClient httpClient = HttpClientBuilder.create().build();
-    protected final String token;
+    private final String token;
     private final Map<String, RequestQuery<?>> queries;
-    private final List<String> restrictedQueryTypes;
+    private final Map<String, Class<?>> restrictedQueryTypes;
 
     /**
      * @param token The token of the spotify API session
@@ -31,16 +34,18 @@ public abstract class AbstractRequest implements IRequest {
     public AbstractRequest(String token) {
         this.token = token;
         this.queries = new HashMap<>();
-        this.restrictedQueryTypes = new ArrayList<>();
+        this.restrictedQueryTypes = new HashMap<>();
     }
 
     /**
      * @param token  The token of the spotify API session
      * @param params The parameter keys that are allowed on the specific request
      */
-    public AbstractRequest(String token, String... params) {
+    public AbstractRequest(String token, ParameterPair... entries) {
         this(token);
-        this.restrictedQueryTypes.addAll(Arrays.asList(params));
+        for (ParameterPair entry : entries) {
+            this.restrictedQueryTypes.put(entry.getKey(), entry.getClassType());
+        }
     }
 
     /**
@@ -118,7 +123,12 @@ public abstract class AbstractRequest implements IRequest {
      * @param query The {@code RequestQuery} to be added as the uri parameter
      */
     public void addQuery(RequestQuery<?> query) {
-        if (this.restrictedQueryTypes.contains(query.getKey()))
+
+        if (this.restrictedQueryTypes.containsKey(query.getKey())
+                && this.restrictedQueryTypes.get(query.getKey()).equals(query.getQueryType())) {
             this.queries.put(query.getKey(), query);
+        }
+
+
     }
 }

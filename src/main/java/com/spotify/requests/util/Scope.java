@@ -1,4 +1,4 @@
-package com.spotify.util;
+package com.spotify.requests.util;
 
 import com.spotify.requests.IRequest;
 import com.spotify.requests.users.CurrentUserProfileGet;

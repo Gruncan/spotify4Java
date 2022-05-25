@@ -37,7 +37,6 @@ public class RequestQuery<T> {
         return this.key;
     }
 
-    @Deprecated
     public Class<?> getQueryType() {
         return this.value.getClass();
     }

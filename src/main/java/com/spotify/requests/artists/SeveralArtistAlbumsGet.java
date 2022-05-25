@@ -3,6 +3,7 @@ package com.spotify.requests.artists;
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
+import com.spotify.requests.util.ParameterPair;
 import com.spotify.util.Util;
 
 
@@ -22,7 +23,7 @@ public class SeveralArtistAlbumsGet extends AbstractRequest {
      * @param artists The array of artist's ids to get
      */
     public SeveralArtistAlbumsGet(String token, String... artists) {
-        super(token, "ids");
+        super(token, new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(artists, ",")));
     }
 

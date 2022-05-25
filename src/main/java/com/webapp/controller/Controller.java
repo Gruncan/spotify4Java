@@ -4,7 +4,7 @@ import com.github.openjson.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
 import com.spotify.requests.albums.AlbumGet;
-import com.spotify.util.Market;
+import com.spotify.requests.util.Market;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

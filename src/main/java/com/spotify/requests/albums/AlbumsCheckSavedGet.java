@@ -3,6 +3,7 @@ package com.spotify.requests.albums;
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
+import com.spotify.requests.util.ParameterPair;
 import com.spotify.util.Util;
 
 
@@ -20,7 +21,7 @@ public class AlbumsCheckSavedGet extends AbstractRequest {
      * @param albums The array of albums to be checked
      */
     public AlbumsCheckSavedGet(String token, String... albums) {
-        super(token, "ids");
+        super(token, new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
     }
 

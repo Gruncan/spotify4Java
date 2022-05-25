@@ -2,6 +2,8 @@ package com.spotify.requests.albums;
 
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.util.Market;
+import com.spotify.requests.util.ParameterPairBuilder;
 
 
 /**
@@ -18,7 +20,8 @@ public class AlbumTracksGet extends AbstractRequest {
      * @param id    The id of the album to be queried
      */
     public AlbumTracksGet(String token, String id) {
-        super(token, "limit", "market", "offset");
+        super(token, new ParameterPairBuilder().addKeys("limit", "market", "offset")
+                .addClasses(int.class, Market.class, int.class).build());
         this.id = id;
     }
 

@@ -1,6 +1,6 @@
 package com.spotify;
 
-import com.spotify.util.Scope;
+import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIBuilder;

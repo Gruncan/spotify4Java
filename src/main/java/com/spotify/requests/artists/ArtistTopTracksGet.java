@@ -2,6 +2,8 @@ package com.spotify.requests.artists;
 
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.util.Market;
+import com.spotify.requests.util.ParameterPair;
 
 /**
  * Get Spotify catalog information about an artist's top tracks by country.
@@ -18,7 +20,7 @@ public class ArtistTopTracksGet extends AbstractRequest {
      * @param id    The id of the artist to be queried
      */
     public ArtistTopTracksGet(String token, String id) {
-        super(token, "markets");
+        super(token, new ParameterPair("markets", Market.class));
         this.id = id;
     }
 

@@ -2,6 +2,8 @@ package com.spotify.requests.albums;
 
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.util.Market;
+import com.spotify.requests.util.ParameterPairBuilder;
 
 
 /**
@@ -16,7 +18,8 @@ public class AlbumsSavedMeGet extends AbstractRequest {
      * @param token The token of the related spotify api session
      */
     public AlbumsSavedMeGet(String token) {
-        super(token, "limit", "market", "offset");
+        super(token, new ParameterPairBuilder().addKeys("limit", "market", "offset")
+                .addClasses(int.class, Market.class, int.class).build());
     }
 
     @Override

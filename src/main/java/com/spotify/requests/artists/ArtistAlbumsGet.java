@@ -2,6 +2,9 @@ package com.spotify.requests.artists;
 
 import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.util.Group;
+import com.spotify.requests.util.Market;
+import com.spotify.requests.util.ParameterPairBuilder;
 
 
 /**
@@ -20,7 +23,9 @@ public class ArtistAlbumsGet extends AbstractRequest {
      * @param id    The id of the artist to be queried
      */
     public ArtistAlbumsGet(String token, String id) {
-        super(token, "include_groups", "limit", "market", "offset");
+
+        super(token, new ParameterPairBuilder().addKeys("include_groups", "limit", "market", "offset")
+                .addClasses(Group[].class, int.class, Market.class, int.class).build());
         this.id = id;
     }
 

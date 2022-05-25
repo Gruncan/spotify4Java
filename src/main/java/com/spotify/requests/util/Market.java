@@ -1,4 +1,4 @@
-package com.spotify.util;
+package com.spotify.requests.util;
 
 /**
  * Represents the available query market codes according to
