@@ -14,9 +14,8 @@ public class MultipleAlbumsGet extends AbstractRequest {
 
 
     public MultipleAlbumsGet(String token, String... albums) {
-        super(token);
+        super(token, "market", "ids");
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
-        super.addRestrictionQueryType("market");
 
     }
 

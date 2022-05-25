@@ -12,8 +12,7 @@ public class AlbumsSavedMeGet extends AbstractRequest {
 
 
     public AlbumsSavedMeGet(String token) {
-        super(token);
-        super.addRestrictionQueryType("limit", "market", "offset");
+        super(token, "limit", "market", "offset");
     }
 
     @Override

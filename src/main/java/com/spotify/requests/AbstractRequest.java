@@ -28,6 +28,11 @@ public abstract class AbstractRequest implements IRequest {
         this.restrictedQueryTypes = new ArrayList<>();
     }
 
+    public AbstractRequest(String token, String... params) {
+        this(token);
+        this.restrictedQueryTypes.addAll(Arrays.asList(params));
+    }
+
 
     protected final JsonObject requestGet(String url) {
         // Initialisation of http get request

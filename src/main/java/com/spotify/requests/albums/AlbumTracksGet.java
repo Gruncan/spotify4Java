@@ -12,9 +12,8 @@ public class AlbumTracksGet extends AbstractRequest {
 
 
     public AlbumTracksGet(String token, String id) {
-        super(token);
+        super(token, "limit", "market", "offset");
         this.id = id;
-        super.addRestrictionQueryType("limit", "market", "offset");
     }
 
     @Override

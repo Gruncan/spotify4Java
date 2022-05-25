@@ -11,9 +11,8 @@ public class AlbumGet extends AbstractRequest {
 
 
     public AlbumGet(String token, String id) {
-        super(token);
+        super(token, "markets");
         this.id = id;
-        super.addRestrictionQueryType("market");
     }
 
 

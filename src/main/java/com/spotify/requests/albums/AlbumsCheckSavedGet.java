@@ -13,7 +13,7 @@ public class AlbumsCheckSavedGet extends AbstractRequest {
 
 
     public AlbumsCheckSavedGet(String token, String... albums) {
-        super(token);
+        super(token, "ids");
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
     }
 
