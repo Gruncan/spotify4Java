@@ -8,6 +8,8 @@ public enum Market {
 
     /*** Afghanistan */
     AF("Afghanistan"),
+    /*** Åland Islands */
+    AX("Åland Islands"),
     /*** Albania */
     AL("Albania"),
     /*** Algeria */
@@ -20,6 +22,10 @@ public enum Market {
     AI("Anguilla"),
     /*** Antarctica */
     AQ("Antarctica"),
+    /*** Antigua and Barbuda */
+    AG("Antigua and Barbuda"),
+    /*** American Samoa */
+    AS("American Samoa"),
     /*** Argentina */
     AR("Argentina"),
     /*** Armenia */
@@ -52,12 +58,26 @@ public enum Market {
     BM("Bermuda"),
     /*** Bhutan */
     BT("Bhutan"),
+    /*** Bolivia, Plurinational State of*/
+    BO("Bolivia, Plurinational State of"),
+    /*** Bonaire, Sint Eustatius and Saba */
+    BQ("Bonaire, Sint Eustatius and Saba"),
+    /*** Bosnia and Herzegovina */
+    BA("Bosnia and Herzegovina"),
     /*** Botswana */
     BW("Botswana"),
+    /*** Bouvet Island */
+    BV("Bouvet Island"),
     /*** Brazil */
     BR("Brazil"),
+    /*** British Indian Ocean Territory */
+    IO("British Indian Ocean Territory"),
+    /*** British Indian Ocean Territory */
+    BN("Brunei Darussalam"),
     /*** Bulgaria */
     BG("Bulgaria"),
+    /*** Burkina Faso */
+    BF("Burkina Faso"),
     /*** Burundi */
     BI("Burundi"),
     /*** Cambodia */
@@ -66,46 +86,84 @@ public enum Market {
     CM("Cameroon"),
     /*** Canada */
     CA("Canada"),
+    /*** Cape Verde */
+    CV("Cape Verde"),
+    /*** Cayman Islands */
+    KY("Cayman Islands"),
+    /*** Central African Republic */
+    CF("Central African Republic"),
     /*** Chad */
     TD("Chad"),
     /*** Chile */
     CL("Chile"),
     /*** China */
     CN("China"),
+    /*** Christmas Island */
+    CX("Christmas Island"),
+    /*** Cocos (Keeling) Islands */
+    CC("Cocos (Keeling) Islands"),
     /*** Colombia */
     CO("Colombia"),
     /*** Comoros */
     KM("Comoros"),
     /*** Congo */
     CG("Congo"),
+    /*** Congo, the Democratic Republic of the */
+    CD("Congo, the Democratic Republic of the"),
+    /*** Cook Islands */
+    CK("Cook Islands"),
+    /*** Costa Rica */
+    CR("Costa Rica"),
+    /*** Côte d'Ivoire */
+    CI("Côte d'Ivoire"),
     /*** Croatia */
     HR("Croatia"),
     /*** Cuba */
     CU("Cuba"),
+    /*** Curaçao */
+    CW("Curaçao"),
     /*** Cyprus */
     CY("Cyprus"),
+    /*** Czech Republic */
+    CZ("Czech Republic"),
     /*** Denmark */
     DK("Denmark"),
     /*** Djibouti */
     DJ("Djibouti"),
     /*** Dominica */
     DM("Dominica"),
+    /*** Dominican Republic */
+    DO("Dominican Republic"),
     /*** Ecuador */
     EC("Ecuador"),
     /*** Egypt */
     EG("Egypt"),
+    /*** El Salvador */
+    SV("El Salvador"),
+    /*** Equatorial Guinea */
+    GQ("Equatorial Guinea"),
     /*** Eritrea */
     ER("Eritrea"),
     /*** Estonia */
     EE("Estonia"),
     /*** Ethiopia */
     ET("Ethiopia"),
+    /*** Falkland Islands (Malvinas) */
+    FK("Falkland Islands (Malvinas)"),
+    /*** Faroe Islands */
+    FO("Faroe Islands"),
     /*** Fiji */
     FJ("Fiji"),
     /*** Finland */
     FI("Finland"),
     /*** France */
     FR("France"),
+    /*** French Guiana */
+    GF("French Guiana"),
+    /*** French Polynesia" */
+    PF("French Polynesia"),
+    /*** French Southern Territories */
+    TF("French Southern Territories"),
     /*** Gabon */
     GA("Gabon"),
     /*** Gambia */
@@ -134,10 +192,16 @@ public enum Market {
     GG("Guernsey"),
     /*** Guinea */
     GN("Guinea"),
+    /*** Guinea-Bissau */
+    GW("Guinea-Bissau"),
     /*** Guyana */
     GY("Guyana"),
     /*** Haiti */
     HT("Haiti"),
+    /*** Heard Island and McDonald Islands */
+    HM("Heard Island and McDonald Islands"),
+    /*** Holy See (Vatican City State) */
+    VA("Holy See (Vatican City State)"),
     /*** Honduras */
     HN("Honduras"),
     /*** Hungary */
@@ -148,10 +212,14 @@ public enum Market {
     IN("India"),
     /*** Indonesia */
     ID("Indonesia"),
+    /*** Iran, Islamic Republic of */
+    IR("Iran, Islamic Republic of"),
     /*** Iraq */
     IQ("Iraq"),
     /*** Ireland */
     IE("Ireland"),
+    /*** Isle of Man */
+    IM("Isle of Man"),
     /*** Israel */
     IL("Israel"),
     /*** Italy */
@@ -170,10 +238,16 @@ public enum Market {
     KE("Kenya"),
     /*** Kiribati */
     KI("Kiribati"),
+    /*** Korea, Democratic People's Republic of */
+    KP("Korea, Democratic People's Republic of"),
+    /*** Korea, Republic of */
+    KR("Korea, Republic of"),
     /*** Kuwait */
     KW("Kuwait"),
     /*** Kyrgyzstan */
     KG("Kyrgyzstan"),
+    /*** Lao People's Democratic Republic */
+    LA("Lao People's Democratic Republic"),
     /*** Latvia */
     LV("Latvia"),
     /*** Lebanon */
@@ -192,6 +266,8 @@ public enum Market {
     LU("Luxembourg"),
     /*** Macao */
     MO("Macao"),
+    /*** Macedonia, the Former Yugoslav Republic of */
+    MK("Macedonia, the Former Yugoslav Republic of"),
     /*** Madagascar */
     MG("Madagascar"),
     /*** Malawi */
@@ -204,6 +280,8 @@ public enum Market {
     ML("Mali"),
     /*** Malta */
     MT("Malta"),
+    /*** Malta */
+    MH("Marshall Islands"),
     /*** Martinique */
     MQ("Martinique"),
     /*** Mauritania */
@@ -214,6 +292,10 @@ public enum Market {
     YT("Mayotte"),
     /*** Mexico */
     MX("Mexico"),
+    /*** Micronesia, Federated States of */
+    FM("Micronesia, Federated States of"),
+    /*** Moldova, Republic of */
+    MD("Moldova, Republic of"),
     /*** Monaco */
     MC("Monaco"),
     /*** Mongolia */
@@ -236,6 +318,10 @@ public enum Market {
     NP("Nepal"),
     /*** Netherlands */
     NL("Netherlands"),
+    /*** New Caledonia */
+    NC("New Caledonia"),
+    /*** New Zealand */
+    NZ("New Zealand"),
     /*** Nicaragua */
     NI("Nicaragua"),
     /*** Niger */
@@ -244,6 +330,10 @@ public enum Market {
     NG("Nigeria"),
     /*** Niue */
     NU("Niue"),
+    /*** Norfolk Island */
+    NF("Norfolk Island"),
+    /*** Northern Mariana Islands */
+    MP("Northern Mariana Islands"),
     /*** Norway */
     NO("Norway"),
     /*** Oman */
@@ -252,8 +342,12 @@ public enum Market {
     PK("Pakistan"),
     /*** Palau */
     PW("Palau"),
+    /*** Palestine, State of */
+    PS("Palestine, State of"),
     /*** Panama */
     PA("Panama"),
+    /*** Papua New Guinea */
+    PG("Papua New Guinea"),
     /*** Paraguay */
     PY("Paraguay"),
     /*** Peru */
@@ -266,52 +360,106 @@ public enum Market {
     PL("Poland"),
     /*** Portugal */
     PT("Portugal"),
+    /*** Puerto Rico */
+    PR("Puerto Rico"),
     /*** Qatar */
     QA("Qatar"),
+    /*** Réunion */
+    RE("Réunion"),
     /*** Romania */
     RO("Romania"),
+    /*** Russian Federation */
+    RU("Russian Federation"),
     /*** Rwanda */
     RW("Rwanda"),
+    /*** Saint Barthélemy */
+    BL("Saint Barthélemy"),
+    /*** Saint Helena, Ascension and Tristan da Cunha */
+    SH("Saint Helena, Ascension and Tristan da Cunha"),
+    /*** Saint Kitts and Nevis */
+    KN("Saint Kitts and Nevis"),
+    /*** Saint Lucia */
+    LC("Saint Lucia"),
+    /*** Saint Martin (French part) */
+    MF("Saint Martin (French part)"),
+    /*** Saint Pierre and Miquelon */
+    PM("Saint Pierre and Miquelon"),
+    /*** Saint Vincent and the Grenadines */
+    VC("Saint Vincent and the Grenadines"),
     /*** Samoa */
     WS("Samoa"),
+    /*** San Marino */
+    SM("San Marino"),
+    /*** Sao Tome and Principe */
+    ST("Sao Tome and Principe"),
+    /*** Saudi Arabia */
+    SA("Saudi Arabia"),
     /*** Senegal */
     SN("Senegal"),
     /*** Serbia */
     RS("Serbia"),
     /*** Seychelles */
     SC("Seychelles"),
+    /*** Sierra Leone */
+    SL("Sierra Leone"),
     /*** Singapore */
     SG("Singapore"),
+    /*** Sint Maarten (Dutch part) */
+    SX("Sint Maarten (Dutch part)"),
     /*** Slovakia */
     SK("Slovakia"),
     /*** Slovenia */
     SI("Slovenia"),
+    /*** Solomon Islands */
+    SB("Solomon Islands"),
     /*** Somalia */
     SO("Somalia"),
+    /*** South Africa */
+    ZA("South Africa"),
+    /*** South Georgia and the South Sandwich Islands */
+    GS("South Georgia and the South Sandwich Islands"),
+    /*** South Sudan */
+    SS("South Sudan"),
     /*** Spain */
     ES("Spain"),
+    /*** Sri Lanka */
+    LK("Sri Lanka"),
     /*** Sudan */
     SD("Sudan"),
     /*** Suriname */
     SR("Suriname"),
+    /*** Svalbard and Jan Mayen */
+    SJ("Svalbard and Jan Mayen"),
     /*** Swaziland */
     SZ("Swaziland"),
     /*** Sweden */
     SE("Sweden"),
     /*** Switzerland */
     CH("Switzerland"),
+    /*** Syrian Arab Republic */
+    SY("Syrian Arab Republic"),
+    /*** Taiwan, Province of China */
+    TW("Taiwan, Province of China"),
     /*** Tajikistan */
     TJ("Tajikistan"),
+    /*** Tanzania, United Republic of */
+    TZ("Tanzania, United Republic of"),
     /*** Thailand */
     TH("Thailand"),
+    /*** Timor-Leste */
+    TL("Timor-Leste"),
     /*** Togo */
     TG("Togo"),
+    /*** Trinidad and Tobago */
+    TT("Trinidad and Tobago"),
     /*** Tokelau */
     TK("Tokelau"),
     /*** Tonga */
     TO("Tonga"),
     /*** Tunisia */
     TN("Tunisia"),
+    /*** Turks and Caicos Islands */
+    TC("Turks and Caicos Islands"),
     /*** Turkey */
     TR("Turkey"),
     /*** Turkmenistan */
@@ -322,12 +470,32 @@ public enum Market {
     UG("Uganda"),
     /*** Ukraine */
     UA("Ukraine"),
+    /*** United Arab Emirates */
+    AE("United Arab Emirates"),
+    /*** United Kingdom */
+    GB("United Kingdom"),
+    /*** United States */
+    US("United States"),
+    /*** United States Minor Outlying Islands */
+    UM("United States Minor Outlying Islands"),
     /*** Uruguay */
     UY("Uruguay"),
     /*** Uzbekistan */
     UZ("Uzbekistan"),
     /*** Vanuatu */
     VU("Vanuatu"),
+    /*** Venezuela, Bolivarian Republic of */
+    VE("Venezuela, Bolivarian Republic of"),
+    /*** Viet Nam */
+    VN("Viet Nam"),
+    /*** Virgin Islands, British" */
+    VG("Virgin Islands, British"),
+    /*** Virgin Islands, U.S. */
+    VI("Virgin Islands, U.S."),
+    /*** Wallis and Futuna */
+    WF("Wallis and Futuna"),
+    /*** Western Sahara */
+    EH("Western Sahara"),
     /*** Yemen */
     YE("Yemen"),
     /*** Zambia */
