@@ -1,255 +1,338 @@
 package com.spotify.util;
 
+/**
+ * Represents the available query market codes according to
+ * <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO_3166-1_alpha-2</a>
+ */
 public enum Market {
 
+    /*** Afghanistan */
     AF("Afghanistan"),
-    AX("Åland Islands"),
+    /*** Albania */
     AL("Albania"),
+    /*** Algeria */
     DZ("Algeria"),
-    AS("American Samoa"),
+    /*** Andorra */
     AD("Andorra"),
+    /*** Angola */
     AO("Angola"),
+    /*** Anguilla */
     AI("Anguilla"),
+    /*** Antarctica */
     AQ("Antarctica"),
-    AG("Antigua and Barbuda"),
+    /*** Argentina */
     AR("Argentina"),
+    /*** Armenia */
     AM("Armenia"),
+    /*** Aruba */
     AW("Aruba"),
+    /*** Australia */
     AU("Australia"),
+    /*** Austria */
     AT("Austria"),
+    /*** Azerbaijan */
     AZ("Azerbaijan"),
+    /*** Bahamas */
     BS("Bahamas"),
+    /*** Bahrain */
     BH("Bahrain"),
+    /*** Bangladesh */
     BD("Bangladesh"),
+    /*** Barbados */
     BB("Barbados"),
+    /*** Belarus */
     BY("Belarus"),
+    /*** Belgium */
     BE("Belgium"),
+    /*** Belize */
     BZ("Belize"),
+    /*** Benin */
     BJ("Benin"),
+    /*** Bermuda */
     BM("Bermuda"),
+    /*** Bhutan */
     BT("Bhutan"),
-    BO("Bolivia, Plurinational State of"),
-    BQ("Bonaire, Sint Eustatius and Saba"),
-    BA("Bosnia and Herzegovina"),
+    /*** Botswana */
     BW("Botswana"),
-    BV("Bouvet Island"),
+    /*** Brazil */
     BR("Brazil"),
-    IO("British Indian Ocean Territory"),
-    BN("Brunei Darussalam"),
+    /*** Bulgaria */
     BG("Bulgaria"),
-    BF("Burkina Faso"),
+    /*** Burundi */
     BI("Burundi"),
+    /*** Cambodia */
     KH("Cambodia"),
+    /*** Cameroon */
     CM("Cameroon"),
+    /*** Canada */
     CA("Canada"),
-    CV("Cape Verde"),
-    KY("Cayman Islands"),
-    CF("Central African Republic"),
+    /*** Chad */
     TD("Chad"),
+    /*** Chile */
     CL("Chile"),
+    /*** China */
     CN("China"),
-    CX("Christmas Island"),
-    CC("Cocos (Keeling) Islands"),
+    /*** Colombia */
     CO("Colombia"),
+    /*** Comoros */
     KM("Comoros"),
+    /*** Congo */
     CG("Congo"),
-    CD("Congo, the Democratic Republic of the"),
-    CK("Cook Islands"),
-    CR("Costa Rica"),
-    CI("Côte d'Ivoire"),
+    /*** Croatia */
     HR("Croatia"),
+    /*** Cuba */
     CU("Cuba"),
-    CW("Curaçao"),
+    /*** Cyprus */
     CY("Cyprus"),
-    CZ("Czech Republic"),
+    /*** Denmark */
     DK("Denmark"),
+    /*** Djibouti */
     DJ("Djibouti"),
+    /*** Dominica */
     DM("Dominica"),
-    DO("Dominican Republic"),
+    /*** Ecuador */
     EC("Ecuador"),
+    /*** Egypt */
     EG("Egypt"),
-    SV("El Salvador"),
-    GQ("Equatorial Guinea"),
+    /*** Eritrea */
     ER("Eritrea"),
+    /*** Estonia */
     EE("Estonia"),
+    /*** Ethiopia */
     ET("Ethiopia"),
-    FK("Falkland Islands (Malvinas)"),
-    FO("Faroe Islands"),
+    /*** Fiji */
     FJ("Fiji"),
+    /*** Finland */
     FI("Finland"),
+    /*** France */
     FR("France"),
-    GF("French Guiana"),
-    PF("French Polynesia"),
-    TF("French Southern Territories"),
+    /*** Gabon */
     GA("Gabon"),
+    /*** Gambia */
     GM("Gambia"),
+    /*** Georgia */
     GE("Georgia"),
+    /*** Germany */
     DE("Germany"),
+    /*** Ghana */
     GH("Ghana"),
+    /*** Gibraltar */
     GI("Gibraltar"),
+    /*** Greece */
     GR("Greece"),
+    /*** Greenland */
     GL("Greenland"),
+    /*** Grenada */
     GD("Grenada"),
+    /*** Guadeloupe */
     GP("Guadeloupe"),
+    /*** Guam */
     GU("Guam"),
+    /*** Guatemala */
     GT("Guatemala"),
+    /*** Guernsey */
     GG("Guernsey"),
+    /*** Guinea */
     GN("Guinea"),
-    GW("Guinea-Bissau"),
+    /*** Guyana */
     GY("Guyana"),
+    /*** Haiti */
     HT("Haiti"),
-    HM("Heard Island and McDonald Islands"),
-    VA("Holy See (Vatican City State)"),
+    /*** Honduras */
     HN("Honduras"),
-    HK("Hong Kong"),
+    /*** Hungary */
     HU("Hungary"),
+    /*** Iceland */
     IS("Iceland"),
+    /*** India */
     IN("India"),
+    /*** Indonesia */
     ID("Indonesia"),
-    IR("Iran, Islamic Republic of"),
+    /*** Iraq */
     IQ("Iraq"),
+    /*** Ireland */
     IE("Ireland"),
-    IM("Isle of Man"),
+    /*** Israel */
     IL("Israel"),
+    /*** Italy */
     IT("Italy"),
+    /*** Jamaica */
     JM("Jamaica"),
+    /*** Japan */
     JP("Japan"),
+    /*** Jersey */
     JE("Jersey"),
+    /*** Jordan */
     JO("Jordan"),
+    /*** Kazakhstan */
     KZ("Kazakhstan"),
+    /*** Kenya */
     KE("Kenya"),
+    /*** Kiribati */
     KI("Kiribati"),
-    KP("Korea, Democratic People's Republic of"),
-    KR("Korea, Republic of"),
+    /*** Kuwait */
     KW("Kuwait"),
+    /*** Kyrgyzstan */
     KG("Kyrgyzstan"),
-    LA("Lao People's Democratic Republic"),
+    /*** Latvia */
     LV("Latvia"),
+    /*** Lebanon */
     LB("Lebanon"),
+    /*** Lesotho */
     LS("Lesotho"),
+    /*** Liberia */
     LR("Liberia"),
+    /*** Libya */
     LY("Libya"),
+    /*** Liechtenstein */
     LI("Liechtenstein"),
+    /*** Lithuania */
     LT("Lithuania"),
+    /*** Luxembourg */
     LU("Luxembourg"),
+    /*** Macao */
     MO("Macao"),
-    MK("Macedonia, the Former Yugoslav Republic of"),
+    /*** Madagascar */
     MG("Madagascar"),
+    /*** Malawi */
     MW("Malawi"),
+    /*** Malaysia */
     MY("Malaysia"),
+    /*** Maldives */
     MV("Maldives"),
+    /*** Mali */
     ML("Mali"),
+    /*** Malta */
     MT("Malta"),
-    MH("Marshall Islands"),
+    /*** Martinique */
     MQ("Martinique"),
+    /*** Mauritania */
     MR("Mauritania"),
+    /*** Mauritius */
     MU("Mauritius"),
+    /*** Mayotte */
     YT("Mayotte"),
+    /*** Mexico */
     MX("Mexico"),
-    FM("Micronesia, Federated States of"),
-    MD("Moldova, Republic of"),
+    /*** Monaco */
     MC("Monaco"),
+    /*** Mongolia */
     MN("Mongolia"),
+    /*** Montenegro */
     ME("Montenegro"),
+    /*** Montserrat */
     MS("Montserrat"),
+    /*** Morocco */
     MA("Morocco"),
+    /*** Mozambique */
     MZ("Mozambique"),
+    /*** Myanmar */
     MM("Myanmar"),
+    /*** Namibia */
     NA("Namibia"),
+    /*** Nauru */
     NR("Nauru"),
+    /*** Nepal */
     NP("Nepal"),
+    /*** Netherlands */
     NL("Netherlands"),
-    NC("New Caledonia"),
-    NZ("New Zealand"),
+    /*** Nicaragua */
     NI("Nicaragua"),
+    /*** Niger */
     NE("Niger"),
+    /*** Nigeria */
     NG("Nigeria"),
+    /*** Niue */
     NU("Niue"),
-    NF("Norfolk Island"),
-    MP("Northern Mariana Islands"),
+    /*** Norway */
     NO("Norway"),
+    /*** Oman */
     OM("Oman"),
+    /*** Pakistan */
     PK("Pakistan"),
+    /*** Palau */
     PW("Palau"),
-    PS("Palestine, State of"),
+    /*** Panama */
     PA("Panama"),
-    PG("Papua New Guinea"),
+    /*** Paraguay */
     PY("Paraguay"),
+    /*** Peru */
     PE("Peru"),
+    /*** Philippines */
     PH("Philippines"),
+    /*** Pitcairn */
     PN("Pitcairn"),
+    /*** Poland */
     PL("Poland"),
+    /*** Portugal */
     PT("Portugal"),
-    PR("Puerto Rico"),
+    /*** Qatar */
     QA("Qatar"),
-    RE("Réunion"),
+    /*** Romania */
     RO("Romania"),
-    RU("Russian Federation"),
+    /*** Rwanda */
     RW("Rwanda"),
-    BL("Saint Barthélemy"),
-    SH("Saint Helena, Ascension and Tristan da Cunha"),
-    KN("Saint Kitts and Nevis"),
-    LC("Saint Lucia"),
-    MF("Saint Martin (French part)"),
-    PM("Saint Pierre and Miquelon"),
-    VC("Saint Vincent and the Grenadines"),
+    /*** Samoa */
     WS("Samoa"),
-    SM("San Marino"),
-    ST("Sao Tome and Principe"),
-    SA("Saudi Arabia"),
+    /*** Senegal */
     SN("Senegal"),
+    /*** Serbia */
     RS("Serbia"),
+    /*** Seychelles */
     SC("Seychelles"),
-    SL("Sierra Leone"),
+    /*** Singapore */
     SG("Singapore"),
-    SX("Sint Maarten (Dutch part)"),
+    /*** Slovakia */
     SK("Slovakia"),
+    /*** Slovenia */
     SI("Slovenia"),
-    SB("Solomon Islands"),
+    /*** Somalia */
     SO("Somalia"),
-    ZA("South Africa"),
-    GS("South Georgia and the South Sandwich Islands"),
-    SS("South Sudan"),
+    /*** Spain */
     ES("Spain"),
-    LK("Sri Lanka"),
+    /*** Sudan */
     SD("Sudan"),
+    /*** Suriname */
     SR("Suriname"),
-    SJ("Svalbard and Jan Mayen"),
+    /*** Swaziland */
     SZ("Swaziland"),
+    /*** Sweden */
     SE("Sweden"),
+    /*** Switzerland */
     CH("Switzerland"),
-    SY("Syrian Arab Republic"),
-    TW("Taiwan, Province of China"),
+    /*** Tajikistan */
     TJ("Tajikistan"),
-    TZ("Tanzania, United Republic of"),
+    /*** Thailand */
     TH("Thailand"),
-    TL("Timor-Leste"),
+    /*** Togo */
     TG("Togo"),
+    /*** Tokelau */
     TK("Tokelau"),
+    /*** Tonga */
     TO("Tonga"),
-    TT("Trinidad and Tobago"),
+    /*** Tunisia */
     TN("Tunisia"),
+    /*** Turkey */
     TR("Turkey"),
+    /*** Turkmenistan */
     TM("Turkmenistan"),
-    TC("Turks and Caicos Islands"),
+    /*** Tuvalu */
     TV("Tuvalu"),
+    /*** Uganda */
     UG("Uganda"),
+    /*** Ukraine */
     UA("Ukraine"),
-    AE("United Arab Emirates"),
-    GB("United Kingdom"),
-    US("United States"),
-    UM("United States Minor Outlying Islands"),
+    /*** Uruguay */
     UY("Uruguay"),
+    /*** Uzbekistan */
     UZ("Uzbekistan"),
+    /*** Vanuatu */
     VU("Vanuatu"),
-    VE("Venezuela, Bolivarian Republic of"),
-    VN("Viet Nam"),
-    VG("Virgin Islands, British"),
-    VI("Virgin Islands, U.S."),
-    WF("Wallis and Futuna"),
-    EH("Western Sahara"),
+    /*** Yemen */
     YE("Yemen"),
+    /*** Zambia */
     ZM("Zambia"),
+    /*** Zimbabwe */
     ZW("Zimbabwe");
 
 
@@ -264,5 +347,13 @@ public enum Market {
         return this.name();
     }
 
+    /**
+     * Gets the proper full name of the two character code.
+     *
+     * @return {@code String} of the proper full name
+     */
+    public String getProperName() {
+        return this.name;
+    }
 
 }

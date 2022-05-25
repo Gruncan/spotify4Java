@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
+
+/**
+ * The base of the API requests
+ */
 public abstract class AbstractRequest implements IRequest {
 
 
@@ -21,19 +25,30 @@ public abstract class AbstractRequest implements IRequest {
     private final Map<String, RequestQuery<?>> queries;
     private final List<String> restrictedQueryTypes;
 
-
+    /**
+     * @param token The token of the spotify API session
+     */
     public AbstractRequest(String token) {
         this.token = token;
         this.queries = new HashMap<>();
         this.restrictedQueryTypes = new ArrayList<>();
     }
 
+    /**
+     * @param token  The token of the spotify API session
+     * @param params The parameter keys that are allowed on the specific request
+     */
     public AbstractRequest(String token, String... params) {
         this(token);
         this.restrictedQueryTypes.addAll(Arrays.asList(params));
     }
 
-
+    /**
+     * Basic HTTP GET request on a given URL with parameters specified
+     *
+     * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
+     * @return The raw json response from the request
+     */
     protected final JsonObject requestGet(String url) {
         // Initialisation of http get request
 //        System.out.println(BASE_URL + url);
@@ -97,14 +112,13 @@ public abstract class AbstractRequest implements IRequest {
             return null;
     }
 
+    /**
+     * Adds a query key value to given request proved it is allowed.
+     *
+     * @param query The {@code RequestQuery} to be added as the uri parameter
+     */
     public void addQuery(RequestQuery<?> query) {
         if (this.restrictedQueryTypes.contains(query.getKey()))
             this.queries.put(query.getKey(), query);
-
     }
-
-    protected final void addRestrictionQueryType(String... keys) {
-        this.restrictedQueryTypes.addAll(Arrays.asList(keys));
-    }
-
 }

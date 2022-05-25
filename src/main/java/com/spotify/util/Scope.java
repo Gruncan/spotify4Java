@@ -3,6 +3,10 @@ package com.spotify.util;
 import com.spotify.requests.IRequest;
 import com.spotify.requests.users.CurrentUserProfileGet;
 
+
+/**
+ * The possible scope values of the authentication of the spotify app
+ */
 public enum Scope {
 
 
@@ -30,24 +34,38 @@ public enum Scope {
     private final String scope;
     private final Class<? extends IRequest>[] requestClasses;
 
-
+    /**
+     * @param scope The key query parameter of the related scope
+     */
     Scope(String scope) {
         this.scope = scope;
         this.requestClasses = null;
     }
 
+    /**
+     * @param scope The key query parameter of the related scope
+     * @param cls   The array of request classes that this scope gives access to
+     */
     Scope(String scope, Class<? extends IRequest>... cls) {
         this.scope = scope;
         this.requestClasses = cls;
     }
 
-
+    /**
+     * Gets the key query parameter of the related scope
+     *
+     * @return {@code String} of the key query parameter
+     */
     public String getScopeString() {
         return this.scope;
     }
 
-
+    /**
+     * Gets the classes that are related to the specific scope
+     *
+     * @return {@code Class<? extends IRequest>[]} an array of classes
+     */
     public Class<? extends IRequest>[] getRequestClasses() {
-        return requestClasses;
+        return this.requestClasses;
     }
 }

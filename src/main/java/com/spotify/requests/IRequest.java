@@ -4,8 +4,11 @@ import com.spotify.json.JsonObject;
 
 public interface IRequest {
 
-
-        JsonObject execute();
-
+    /**
+     * Executes the request to spotify
+     *
+     * @return {@code JsonObject} the raw json response
+     */
+    JsonObject execute();
 
 }
