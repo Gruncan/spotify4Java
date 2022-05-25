@@ -91,7 +91,7 @@ public class SpotifyClientBuilder {
     }
 
 
-    private class SpotifyClientImp extends SpotifyClient {
+    private static class SpotifyClientImp extends SpotifyClient {
 
 
         private final String authUrl;

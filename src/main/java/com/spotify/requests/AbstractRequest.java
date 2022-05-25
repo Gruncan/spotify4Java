@@ -38,8 +38,8 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     /**
-     * @param token  The token of the spotify API session
-     * @param params The parameter keys that are allowed on the specific request
+     * @param token   The token of the spotify API session
+     * @param entries The parameter keys that are allowed on the specific request
      */
     public AbstractRequest(String token, ParameterPair... entries) {
         this(token);
@@ -67,7 +67,7 @@ public abstract class AbstractRequest implements IRequest {
             }
             getUrl.deleteCharAt(getUrl.length() - 1);
         }
-
+        System.out.println(getUrl);
         HttpGet httpGet = new HttpGet(getUrl.toString());
         // setting headers using the token
         httpGet.setHeader("Authorization", "Bearer " + this.token);
@@ -78,10 +78,10 @@ public abstract class AbstractRequest implements IRequest {
             HttpResponse response = httpClient.execute(httpGet);
             System.out.println(response);
             StatusLine statusLine = response.getStatusLine();
+            HttpEntity entity = response.getEntity();
+            String s = this.processBody(entity);
             if (statusLine.getStatusCode() == 200) {
                 // if good request then process body and return json
-                HttpEntity entity = response.getEntity();
-                String s = this.processBody(entity);
                 return new JsonObject(s);
                 // handle other requests, taken from docs
             } else if (statusLine.getStatusCode() == 401) {
@@ -90,11 +90,14 @@ public abstract class AbstractRequest implements IRequest {
                 System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...). Unfortunately, re-authenticating the user won't help here.");
             } else if (statusLine.getStatusCode() == 429) {
                 System.out.println("The app has exceeded its rate limits.");
-            } else if (statusLine.getStatusCode() == 404) {
+            } else if (statusLine.getStatusCode() == 400) {
                 System.out.println("Bad request.");
+            } else if (statusLine.getStatusCode() == 404) {
+                System.out.println("Unknown request");
             } else {
                 System.out.printf("Unknown fail cause, status code: %s.%n", statusLine.getStatusCode());
             }
+            System.out.println(s);
             return null;
 
 
@@ -117,6 +120,7 @@ public abstract class AbstractRequest implements IRequest {
             return null;
     }
 
+
     /**
      * Adds a query key value to given request proved it is allowed.
      *
@@ -128,7 +132,5 @@ public abstract class AbstractRequest implements IRequest {
                 && this.restrictedQueryTypes.get(query.getKey()).equals(query.getQueryType())) {
             this.queries.put(query.getKey(), query);
         }
-
-
     }
 }

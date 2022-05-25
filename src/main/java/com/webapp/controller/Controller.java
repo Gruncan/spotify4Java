@@ -3,7 +3,7 @@ package com.webapp.controller;
 import com.github.openjson.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
-import com.spotify.requests.albums.AlbumGet;
+import com.spotify.requests.search.SearchGet;
 import com.spotify.requests.util.Market;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -106,9 +106,10 @@ public class Controller {
 
 
                         // calling abstracted request to get specific data using the token supplied
-                        AbstractRequest request = new AlbumGet(token, "3ttPsHix6tJ7mqV8BcwOFp");
-                        request.addQuery(new RequestQuery<>("market", Market.US));
-                        request.addQuery(new RequestQuery<>("test", 5));
+                        AbstractRequest request = new SearchGet(token);
+                        request.addQuery(new RequestQuery<>("q", "artist:Queen"));
+                        request.addQuery(new RequestQuery<>("type", "artist"));
+                        request.addQuery(new RequestQuery<>("market", Market.GB));
                         System.out.println(request.execute().toString());
 
                     } catch (IOException e) {
