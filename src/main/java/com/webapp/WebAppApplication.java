@@ -8,10 +8,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class TestWebAppApplication {
+public class WebAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestWebAppApplication.class, args);
+        SpringApplication.run(WebAppApplication.class, args);
     }
 
     @Bean

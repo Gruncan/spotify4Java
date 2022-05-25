@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Redirect page</h1>
-
+<a href="/spot/">Reload</a>
 
 </body>
 

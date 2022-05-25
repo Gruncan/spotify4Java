@@ -10,7 +10,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class AbstractRequest implements IRequest {
 
@@ -18,15 +18,32 @@ public abstract class AbstractRequest implements IRequest {
     private final static String BASE_URL = "https://api.spotify.com/v1/";
     private final static HttpClient httpClient = HttpClientBuilder.create().build();
     protected final String token;
+    private final Map<String, RequestQuery<?>> queries;
+    private final List<String> restrictedQueryTypes;
+
 
     public AbstractRequest(String token) {
         this.token = token;
+        this.queries = new HashMap<>();
+        this.restrictedQueryTypes = new ArrayList<>();
     }
 
 
     protected final JsonObject requestGet(String url) {
         // Initialisation of http get request
-        HttpGet httpGet = new HttpGet(BASE_URL + url);
+//        System.out.println(BASE_URL + url);
+
+        StringBuilder getUrl = new StringBuilder(BASE_URL + url);
+
+        if (!this.queries.isEmpty()) {
+            getUrl.append("?");
+            for (RequestQuery<?> query : this.queries.values()) {
+                getUrl.append(query.getPair()).append("&");
+            }
+            getUrl.deleteCharAt(getUrl.length() - 1);
+        }
+
+        HttpGet httpGet = new HttpGet(getUrl.toString());
         // setting headers using the token
         httpGet.setHeader("Authorization", "Bearer " + this.token);
         httpGet.setHeader("Content-Type", "application/json");
@@ -34,6 +51,7 @@ public abstract class AbstractRequest implements IRequest {
 
         try {
             HttpResponse response = httpClient.execute(httpGet);
+            System.out.println(response);
             StatusLine statusLine = response.getStatusLine();
             if (statusLine.getStatusCode() == 200) {
                 // if good request then process body and return json
@@ -47,6 +65,8 @@ public abstract class AbstractRequest implements IRequest {
                 System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...). Unfortunately, re-authenticating the user won't help here.");
             } else if (statusLine.getStatusCode() == 429) {
                 System.out.println("The app has exceeded its rate limits.");
+            } else if (statusLine.getStatusCode() == 404) {
+                System.out.println("Bad request.");
             } else {
                 System.out.printf("Unknown fail cause, status code: %s.%n", statusLine.getStatusCode());
             }
@@ -72,5 +92,14 @@ public abstract class AbstractRequest implements IRequest {
             return null;
     }
 
+    public void addQuery(RequestQuery<?> query) {
+        if (this.restrictedQueryTypes.contains(query.getKey()))
+            this.queries.put(query.getKey(), query);
+
+    }
+
+    protected final void addRestrictionQueryType(String... keys) {
+        this.restrictedQueryTypes.addAll(Arrays.asList(keys));
+    }
 
 }
