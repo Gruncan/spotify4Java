@@ -1,8 +1,14 @@
 package com.webapp.controller;
 
 import com.github.openjson.JSONObject;
+import com.spotify.SpotifyClient;
+import com.spotify.SpotifyClientBuilder;
+import com.spotify.json.JsonObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.RequestQuery;
 import com.spotify.requests.users.UserTopItemsGet;
+import com.spotify.requests.util.Scope;
+import com.spotify.requests.util.TimeRange;
 import com.spotify.requests.util.Type;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,6 +39,12 @@ public class Controller {
     private static final String CLIENT_SECRET = "381ccdf476ac4584b0d936663d5c2232";
     private static final String REDIRECT_URL = "http://127.0.0.1:8888/redirect/";
 
+    private final SpotifyClientBuilder scb;
+
+
+    public Controller() {
+        this.scb = new SpotifyClientBuilder(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL).setResponseType("code").addScope(Scope.USER_READ_PRIVATE, Scope.USER_READ_EMAIL, Scope.USER_LIBRARY_READ, Scope.USER_TOP_READ);
+    }
 
     @GetMapping("/")
     public String welcome() {
@@ -42,25 +54,26 @@ public class Controller {
     @GetMapping(value = "/spot/")
     public void spot(HttpServletResponse httpServletResponse) {
         // after going to "/spot/" redirects to spotify login
-        String url_auth =
-                "https://accounts.spotify.com/authorize?"
-                        + "client_id=" + CLIENT_ID + "&"
-                        + "response_type=code&"
-                        + "redirect_uri=" + REDIRECT_URL + "&"
-                        + "scope=user-read-private%20user-read-email%20user-library-read%20&"
-                        + "state=34fFs29kd09";
+        String url_auth = scb.buildAuthUrl();
         httpServletResponse.setHeader("Location", url_auth);
         httpServletResponse.setStatus(302);
     }
 
     @GetMapping("/redirect/")
     // Might just be indexed not by name?
-    public String redirect(@RequestParam String code, @RequestParam String state) throws URISyntaxException {
+    public String redirect(@RequestParam String code) {
         // the redirect url after the user has logged in, returning the code to be used to get access and refresh tokens
-        System.out.println("In get redirect");
-        System.out.println("code: " + code);
+        SpotifyClient spotifyClient = scb.build(code);
 
-        this.fetchAccessToken(code);
+        AbstractRequest request = new UserTopItemsGet(Type.ARTISTS);
+        request.addQuery(new RequestQuery<>("limit", 1));
+        request.addQuery(new RequestQuery<>("time_range", TimeRange.LONG_TERM));
+
+
+        JsonObject jsonObject = spotifyClient.executeRequest(request);
+        System.out.println(jsonObject);
+
+
         return "RedirectPage";
 
     }
@@ -99,14 +112,13 @@ public class Controller {
                     try (InputStream instream = entity.getContent()) {
                         Scanner scanner = new Scanner(instream).useDelimiter("\\A");
                         String result = scanner.hasNext() ? scanner.next() : "";
-                        System.out.println(result);
+                        System.out.printf("Result: %s%n", result);
                         JSONObject jsonObject = new JSONObject(result);
                         String token = jsonObject.get("access_token").toString();
 
 
                         // calling abstracted request to get specific data using the token supplied
-                        AbstractRequest request = new UserTopItemsGet(token, Type.ARTISTS);
-                        System.out.println(request.execute().toString());
+
 
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -121,12 +133,5 @@ public class Controller {
         }
     }
 
-
-
-    @GetMapping("/redirectagain")
-    public String redirectAgain() {
-        System.out.println("In redirect again");
-        return "RedirectPage";
-    }
 
 }

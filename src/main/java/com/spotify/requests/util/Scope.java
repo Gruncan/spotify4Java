@@ -3,6 +3,8 @@ package com.spotify.requests.util;
 import com.spotify.requests.IRequest;
 import com.spotify.requests.users.CurrentUserProfileGet;
 
+import java.util.List;
+
 
 /**
  * The possible scope values of the authentication of the spotify app
@@ -68,4 +70,15 @@ public enum Scope {
     public Class<? extends IRequest>[] getRequestClasses() {
         return this.requestClasses;
     }
+
+
+    public static String[] convertToStringArray(List<Scope> scopes) {
+        String[] strings = new String[scopes.size()];
+        for (int i = 0; i < strings.length; i++) {
+            strings[i] = scopes.get(i).getScopeString();
+        }
+        return strings;
+    }
+
+
 }

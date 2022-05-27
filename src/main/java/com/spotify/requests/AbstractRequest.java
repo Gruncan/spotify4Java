@@ -122,7 +122,8 @@ public abstract class AbstractRequest implements IRequest {
      * @param query The {@code RequestQuery} to be added as the uri parameter
      */
     public void addQuery(RequestQuery<?> query) {
-
+        System.out.println(query.getQueryType());
+        System.out.println(this.restrictedQueryTypes.get(query.getKey()));
         if (this.restrictedQueryTypes.containsKey(query.getKey())
                 && this.restrictedQueryTypes.get(query.getKey()).equals(query.getQueryType())) {
             this.queries.put(query.getKey(), query);
