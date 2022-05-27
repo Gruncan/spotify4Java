@@ -2,9 +2,8 @@ package com.webapp.controller;
 
 import com.github.openjson.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.RequestQuery;
-import com.spotify.requests.search.SearchGet;
-import com.spotify.requests.util.Market;
+import com.spotify.requests.users.UserTopItemsGet;
+import com.spotify.requests.util.Type;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -48,7 +47,7 @@ public class Controller {
                         + "client_id=" + CLIENT_ID + "&"
                         + "response_type=code&"
                         + "redirect_uri=" + REDIRECT_URL + "&"
-                        + "scope=user-read-private%20user-read-email%20user-library-read&"
+                        + "scope=user-read-private%20user-read-email%20user-library-read%20&"
                         + "state=34fFs29kd09";
         httpServletResponse.setHeader("Location", url_auth);
         httpServletResponse.setStatus(302);
@@ -106,10 +105,7 @@ public class Controller {
 
 
                         // calling abstracted request to get specific data using the token supplied
-                        AbstractRequest request = new SearchGet(token);
-                        request.addQuery(new RequestQuery<>("q", "artist:Queen"));
-                        request.addQuery(new RequestQuery<>("type", "artist"));
-                        request.addQuery(new RequestQuery<>("market", Market.GB));
+                        AbstractRequest request = new UserTopItemsGet(token, Type.ARTISTS);
                         System.out.println(request.execute().toString());
 
                     } catch (IOException e) {

@@ -19,7 +19,7 @@ public class SeveralAlbumsGet extends AbstractRequest {
 
     /**
      * @param token  The token of the related spotify api session
-     * @param albums The array of albums to get
+     * @param albums The array of albums to query
      */
     public SeveralAlbumsGet(String token, String... albums) {
         super(token, new ParameterPairBuilder().addKeys("market", "ids")
