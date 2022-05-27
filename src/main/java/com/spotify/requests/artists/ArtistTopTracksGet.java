@@ -16,16 +16,15 @@ public class ArtistTopTracksGet extends AbstractRequest {
     private final String id;
 
     /**
-     * @param token The token of the related spotify api session
-     * @param id    The id of the artist to be queried
+     * @param id The id of the artist to be queried
      */
-    public ArtistTopTracksGet(String token, String id) {
-        super(token, new ParameterPair("markets", Market.class));
+    public ArtistTopTracksGet(String id) {
+        super(new ParameterPair("markets", Market.class));
         this.id = id;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{id}", this.id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{id}", this.id));
     }
 }

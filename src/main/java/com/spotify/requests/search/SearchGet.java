@@ -10,9 +10,8 @@ public class SearchGet extends AbstractRequest {
     private final static String URL = "search/";
 
 
-    public SearchGet(String token) {
-
-        super(token, new ParameterPairBuilder()
+    public SearchGet() {
+        super(new ParameterPairBuilder()
                 .addKeys("q", "type", "include_external", "limit", "market", "offset")
                 .addClasses(String.class, String.class, String.class, int.class, Market.class, int.class)
                 .build());
@@ -20,7 +19,7 @@ public class SearchGet extends AbstractRequest {
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

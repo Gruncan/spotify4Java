@@ -17,16 +17,15 @@ public class AlbumsCheckSavedGet extends AbstractRequest {
     private final static String URL = "me/albums/contains/";
 
     /**
-     * @param token  The token of the related spotify api session
      * @param albums The array of albums to be checked
      */
-    public AlbumsCheckSavedGet(String token, String... albums) {
-        super(token, new ParameterPair("ids", String.class));
+    public AlbumsCheckSavedGet(String... albums) {
+        super(new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

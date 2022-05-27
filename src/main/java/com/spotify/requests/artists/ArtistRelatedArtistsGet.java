@@ -19,13 +19,13 @@ public class ArtistRelatedArtistsGet extends AbstractRequest {
      * @param token The token of the related spotify api session
      * @param id    The id of the artist to be queried
      */
-    public ArtistRelatedArtistsGet(String token, String id) {
-        super(token);
+    public ArtistRelatedArtistsGet(String id) {
+        super();
         this.id = id;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{id}", this.id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{id}", this.id));
     }
 }

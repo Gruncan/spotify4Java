@@ -18,11 +18,10 @@ public class SeveralAlbumsGet extends AbstractRequest {
     private final static String URL = "albums/";
 
     /**
-     * @param token  The token of the related spotify api session
      * @param albums The array of albums to query
      */
-    public SeveralAlbumsGet(String token, String... albums) {
-        super(token, new ParameterPairBuilder().addKeys("market", "ids")
+    public SeveralAlbumsGet(String... albums) {
+        super(new ParameterPairBuilder().addKeys("market", "ids")
                 .addClasses(Market.class, String.class).build());
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
 
@@ -30,8 +29,8 @@ public class SeveralAlbumsGet extends AbstractRequest {
 
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 
 }

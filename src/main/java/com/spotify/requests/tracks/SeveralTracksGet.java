@@ -19,17 +19,16 @@ public class SeveralTracksGet extends AbstractRequest {
 
 
     /**
-     * @param token  The token of the related spotify api session
      * @param tracks The array of tracks to get
      */
-    public SeveralTracksGet(String token, String... tracks) {
-        super(token, new ParameterPairBuilder().addKeys("ids", "market").addClasses(String.class, Market.class).build());
+    public SeveralTracksGet(String... tracks) {
+        super(new ParameterPairBuilder().addKeys("ids", "market").addClasses(String.class, Market.class).build());
         super.addQuery(new RequestQuery<>("ids", Util.join(tracks, ",")));
 
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

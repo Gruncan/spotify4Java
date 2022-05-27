@@ -19,14 +19,13 @@ public class TrackRecommendationGet extends AbstractRequest {
     private final static String URL = "recommendations/";
 
     /**
-     * @param token       The token of the related spotify api session
      * @param seedArtists The array of seed artists (up to 5) to generate a recommendation
      * @param seedGenres  The array of seed genres (up to 5) to generate a recommendation
      * @param seedTracks  The array of seed tracks (up to 5) to generate a recommendation
      */
-    public TrackRecommendationGet(String token, String[] seedArtists, String[] seedGenres, String[] seedTracks) {
+    public TrackRecommendationGet(String[] seedArtists, String[] seedGenres, String[] seedTracks) {
 
-        super(token, new ParameterPairBuilder().addKeys("seed_artists", "seed_genres", "seed_tracks", "limit", "market",
+        super(new ParameterPairBuilder().addKeys("seed_artists", "seed_genres", "seed_tracks", "limit", "market",
                         "max_acousticness", "max_danceability", "max_duration_ms", "max_energy", "max_instrumentalness",
                         "max_key", "max_liveness", "max_loudness", "max_mode", "max_popularity", "max_speechiness",
                         "max_tempo", "max_time_signature", "max_valence", "min_acousticness", "min_danceability",
@@ -49,7 +48,7 @@ public class TrackRecommendationGet extends AbstractRequest {
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

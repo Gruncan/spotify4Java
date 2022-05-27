@@ -17,16 +17,15 @@ public class TrackUserSavedGet extends AbstractRequest {
 
 
     /**
-     * @param token  The token of the related spotify api session
      * @param tracks The array of tracks to query
      */
-    public TrackUserSavedGet(String token, String... tracks) {
-        super(token, new ParameterPair("ids", String.class));
+    public TrackUserSavedGet(String... tracks) {
+        super(new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(tracks, ",")));
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

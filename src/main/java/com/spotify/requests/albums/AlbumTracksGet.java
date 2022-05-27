@@ -16,17 +16,16 @@ public class AlbumTracksGet extends AbstractRequest {
     private final String id;
 
     /**
-     * @param token The token of the related spotify api session
-     * @param id    The id of the album to be queried
+     * @param id The id of the album to be queried
      */
-    public AlbumTracksGet(String token, String id) {
-        super(token, new ParameterPairBuilder().addKeys("limit", "market", "offset")
+    public AlbumTracksGet(String id) {
+        super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
                 .addClasses(int.class, Market.class, int.class).build());
         this.id = id;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{id}", this.id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{id}", this.id));
     }
 }

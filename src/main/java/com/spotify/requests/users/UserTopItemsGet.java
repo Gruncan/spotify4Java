@@ -17,17 +17,16 @@ public class UserTopItemsGet extends AbstractRequest {
 
 
     /**
-     * @param token The token of the related spotify api session
-     * @param type  the type to queries user's top items
+     * @param type the type to queries user's top items
      */
-    public UserTopItemsGet(String token, Type type) {
-        super(token, new ParameterPairBuilder().addKeys("limit", "offset", "time_range")
+    public UserTopItemsGet(Type type) {
+        super(new ParameterPairBuilder().addKeys("limit", "offset", "time_range")
                 .addClasses(int.class, int.class, TimeRange.class).build());
         this.type = type;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{type}", this.type.toString()));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{type}", this.type.toString()));
     }
 }

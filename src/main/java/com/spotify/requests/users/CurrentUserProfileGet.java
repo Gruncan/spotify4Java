@@ -11,18 +11,17 @@ import com.spotify.requests.AbstractRequest;
 public class CurrentUserProfileGet extends AbstractRequest {
 
 
-    private final static String url = "me/";
+    private final static String URL = "me/";
 
     /**
      * @param token The token of the related spotify api session
      */
-    public CurrentUserProfileGet(String token) {
-        super(token);
+    public CurrentUserProfileGet() {
+        super();
     }
 
     @Override
-    public JsonObject execute() {
-        JsonObject jsonObject = super.requestGet(url);
-        return jsonObject;
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

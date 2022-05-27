@@ -24,25 +24,20 @@ public abstract class AbstractRequest implements IRequest {
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
     private final static HttpClient httpClient = HttpClientBuilder.create().build();
-    private final String token;
     private final Map<String, RequestQuery<?>> queries;
     private final Map<String, Class<?>> restrictedQueryTypes;
 
-    /**
-     * @param token The token of the spotify API session
-     */
-    public AbstractRequest(String token) {
-        this.token = token;
+
+    public AbstractRequest() {
         this.queries = new HashMap<>();
         this.restrictedQueryTypes = new HashMap<>();
     }
 
     /**
-     * @param token   The token of the spotify API session
      * @param entries The parameter keys that are allowed on the specific request
      */
-    public AbstractRequest(String token, ParameterPair... entries) {
-        this(token);
+    public AbstractRequest(ParameterPair... entries) {
+        this();
         for (ParameterPair entry : entries) {
             this.restrictedQueryTypes.put(entry.getKey(), entry.getClassType());
         }
@@ -54,7 +49,7 @@ public abstract class AbstractRequest implements IRequest {
      * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
      * @return The raw json response from the request
      */
-    protected final JsonObject requestGet(String url) {
+    protected final JsonObject requestGet(String token, String url) {
         // Initialisation of http get request
 //        System.out.println(BASE_URL + url);
 
@@ -70,7 +65,7 @@ public abstract class AbstractRequest implements IRequest {
         System.out.println(getUrl);
         HttpGet httpGet = new HttpGet(getUrl.toString());
         // setting headers using the token
-        httpGet.setHeader("Authorization", "Bearer " + this.token);
+        httpGet.setHeader("Authorization", "Bearer " + token);
         httpGet.setHeader("Content-Type", "application/json");
 
 

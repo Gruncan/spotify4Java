@@ -15,16 +15,13 @@ public class FollowedArtists extends AbstractRequest {
     private final static String URL = "me/following/";
 
 
-    /**
-     * @param token The token of the related spotify api session
-     */
-    public FollowedArtists(String token) {
-        super(token, new ParameterPairBuilder().addKeys("type", "after", "limit")
+    public FollowedArtists() {
+        super(new ParameterPairBuilder().addKeys("type", "after", "limit")
                 .addClasses(Type.class, String.class, int.class).build());
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

@@ -14,16 +14,14 @@ public class AlbumsSavedMeGet extends AbstractRequest {
 
     private final static String URL = "me/albums/";
 
-    /**
-     * @param token The token of the related spotify api session
-     */
-    public AlbumsSavedMeGet(String token) {
-        super(token, new ParameterPairBuilder().addKeys("limit", "market", "offset")
+
+    public AlbumsSavedMeGet() {
+        super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
                 .addClasses(int.class, Market.class, int.class).build());
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }

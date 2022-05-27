@@ -18,16 +18,15 @@ public class TrackGet extends AbstractRequest {
 
 
     /**
-     * @param token The token of the related spotify api session
-     * @param id    The id of the track to be queried
+     * @param id The id of the track to be queried
      */
-    public TrackGet(String token, String id) {
-        super(token, new ParameterPair("market", Market.class));
+    public TrackGet(String id) {
+        super(new ParameterPair("market", Market.class));
         this.id = id;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{id}", this.id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{id}", this.id));
     }
 }

@@ -9,6 +9,6 @@ public interface IRequest {
      *
      * @return {@code JsonObject} the raw json response
      */
-    JsonObject execute();
+    JsonObject execute(String token);
 
 }

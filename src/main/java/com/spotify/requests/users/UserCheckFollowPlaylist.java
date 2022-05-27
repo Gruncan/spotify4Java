@@ -15,22 +15,21 @@ public class UserCheckFollowPlaylist extends AbstractRequest {
 
     private final static String URL = "playlist/{playlist_id}/followers/contains";
 
-    private final String playlist_id;
+    private final String playlistId;
 
 
     /**
-     * @param token       The token of the related spotify api session
-     * @param playlist_id The id of the playlist to be queried
-     * @param ids         The array of ids to check to see if they follow the playlist
+     * @param playlistID The id of the playlist to be queried
+     * @param ids        The array of ids to check to see if they follow the playlist
      */
-    public UserCheckFollowPlaylist(String token, String playlist_id, String... ids) {
-        super(token, new ParameterPair("ids", String.class));
+    public UserCheckFollowPlaylist(String playlistID, String... ids) {
+        super(new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(ids, ",")));
-        this.playlist_id = playlist_id;
+        this.playlistId = playlistID;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{playlist_id}", this.playlist_id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{playlist_id}", this.playlistId));
     }
 }

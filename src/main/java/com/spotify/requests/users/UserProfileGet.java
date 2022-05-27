@@ -11,19 +11,19 @@ import com.spotify.requests.AbstractRequest;
 public class UserProfileGet extends AbstractRequest {
 
     private final static String URL = "users/{user_id}";
-    private final String user_id;
+    private final String userID;
 
     /**
-     * @param token   The token of the related spotify api session
-     * @param user_id The id of the user to be queried
+     * @param token  The token of the related spotify api session
+     * @param userId The id of the user to be queried
      */
-    public UserProfileGet(String token, String user_id) {
-        super(token);
-        this.user_id = user_id;
+    public UserProfileGet(String userId) {
+        super();
+        this.userID = userId;
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL.replace("{user_id}", this.user_id));
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL.replace("{user_id}", this.userID));
     }
 }

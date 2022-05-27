@@ -15,17 +15,16 @@ public class UserCheckFollowsArtistUser extends AbstractRequest {
     private final static String URL = "me/following/contains";
 
     /**
-     * @param token The token of the related spotify api session
-     * @param ids   The array of id of the artist or users to be queried
+     * @param ids The array of id of the artist or users to be queried
      */
-    public UserCheckFollowsArtistUser(String token, String... ids) {
-        super(token, new ParameterPairBuilder().addKeys("ids", "type")
+    public UserCheckFollowsArtistUser(String... ids) {
+        super(new ParameterPairBuilder().addKeys("ids", "type")
                 .addClasses(String.class, String.class).build());
         super.addQuery(new RequestQuery<>("ids", Util.join(ids, ",")));
     }
 
     @Override
-    public JsonObject execute() {
-        return super.requestGet(URL);
+    public JsonObject execute(String token) {
+        return super.requestGet(token, URL);
     }
 }
