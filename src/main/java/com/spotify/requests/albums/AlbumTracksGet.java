@@ -1,6 +1,6 @@
 package com.spotify.requests.albums;
 
-import com.spotify.json.JsonObject;
+import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
@@ -25,7 +25,7 @@ public class AlbumTracksGet extends AbstractRequest {
     }
 
     @Override
-    public JsonObject execute(String token) {
+    public JSONObject execute(String token) {
         return super.requestGet(token, URL.replace("{id}", this.id));
     }
 }

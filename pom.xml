@@ -54,11 +54,7 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.json/json -->
-        <dependency>
-            <groupId>com.github.openjson</groupId>
-            <artifactId>openjson</artifactId>
-            <version>1.0.12</version>
-        </dependency>
+
 
     </dependencies>
 

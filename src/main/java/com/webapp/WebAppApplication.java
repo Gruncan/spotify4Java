@@ -18,7 +18,7 @@ public class WebAppApplication {
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 
-            System.out.println("Commandline runner");
+            System.out.println("Running");
 //            System.out.println("Let's inspect the beans provided by Spring Boot:");
 //
 //            String[] beanNames = ctx.getBeanDefinitionNames();

@@ -1,7 +1,6 @@
 package com.spotify;
 
-import com.github.openjson.JSONObject;
-import com.spotify.json.JsonObject;
+import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
@@ -122,8 +121,8 @@ public class SpotifyClientBuilder {
                     try (InputStream instream = entity.getContent()) {
                         Scanner scanner = new Scanner(instream).useDelimiter("\\A");
                         String result = scanner.hasNext() ? scanner.next() : "";
-                        JSONObject jsonObject = new JSONObject(result);
-                        String token = jsonObject.get("access_token").toString();
+                        JSONObject jsonobject = new JSONObject(result);
+                        String token = jsonobject.get("access_token").toString();
                         return new SpotifyClientImp(token);
                     }
                 }
@@ -147,7 +146,7 @@ public class SpotifyClientBuilder {
 
 
         @Override
-        public JsonObject executeRequest(AbstractRequest abstractRequest) {
+        public JSONObject executeRequest(AbstractRequest abstractRequest) {
             return abstractRequest.execute(this.accessToken);
         }
     }

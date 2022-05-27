@@ -1,6 +1,6 @@
 package com.spotify.requests;
 
-import com.spotify.json.JsonObject;
+import com.spotify.json.JSONObject;
 import com.spotify.requests.util.ParameterPair;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -49,7 +49,7 @@ public abstract class AbstractRequest implements IRequest {
      * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
      * @return The raw json response from the request
      */
-    protected final JsonObject requestGet(String token, String url) {
+    protected final JSONObject requestGet(String token, String url) {
         // Initialisation of http get request
 //        System.out.println(BASE_URL + url);
 
@@ -77,7 +77,7 @@ public abstract class AbstractRequest implements IRequest {
             String s = this.processBody(entity);
             if (statusLine.getStatusCode() == 200) {
                 // if good request then process body and return json
-                return new JsonObject(s);
+                return new JSONObject(s);
                 // handle other requests, taken from docs
             } else if (statusLine.getStatusCode() == 401) {
                 System.out.println("Bad or expired token. This can happen if the user revoked a token or the access token has expired. You should re-authenticate the user.");
@@ -122,8 +122,6 @@ public abstract class AbstractRequest implements IRequest {
      * @param query The {@code RequestQuery} to be added as the uri parameter
      */
     public void addQuery(RequestQuery<?> query) {
-        System.out.println(query.getQueryType());
-        System.out.println(this.restrictedQueryTypes.get(query.getKey()));
         if (this.restrictedQueryTypes.containsKey(query.getKey())
                 && this.restrictedQueryTypes.get(query.getKey()).equals(query.getQueryType())) {
             this.queries.put(query.getKey(), query);

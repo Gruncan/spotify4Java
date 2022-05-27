@@ -1,6 +1,6 @@
 package com.spotify.requests.artists;
 
-import com.spotify.json.JsonObject;
+import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
 import com.spotify.requests.util.ParameterPair;
@@ -26,7 +26,7 @@ public class SeveralArtistAlbumsGet extends AbstractRequest {
     }
 
     @Override
-    public JsonObject execute(String token) {
+    public JSONObject execute(String token) {
         return super.requestGet(token, URL);
     }
 }

@@ -1,6 +1,6 @@
 package com.spotify.requests.search;
 
-import com.spotify.json.JsonObject;
+import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
@@ -19,7 +19,7 @@ public class SearchGet extends AbstractRequest {
     }
 
     @Override
-    public JsonObject execute(String token) {
+    public JSONObject execute(String token) {
         return super.requestGet(token, URL);
     }
 }
