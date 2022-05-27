@@ -9,12 +9,12 @@ l = ["seed_artists", "seed_genres", "seed_tracks", "limit", "market",
      "target_loudness", "target_mode", "target_popularity", "target_speechiness", "target_tempo",
      "target_time_signature", "target_valence"]
 
-b = """String.class, String.class, String.class, int.class, Market.class, float.class, float.class,
-                        int.class, float.class, float.class, int.class, float.class, float.class, int.class, int.class,
-                        float.class, float.class, int.class, float.class, float.class, float.class, int.class, float.class,
-                        float.class, int.class, float.class, float.class, int.class, int.class, float.class, float.class,
-                        int.class, float.class, float.class, float.class, int.class, float.class, float.class, int.class,
-                        float.class, float.class, int.class, int.class, float.class, float.class, int.class, float.class"""
+b = """String.class, String.class, String.class, Integer.class, Market.class, Float.class, Float.class,
+                        Integer.class, Float.class, Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class,
+                        Float.class, Float.class, Integer.class, Float.class, Float.class, Float.class, Integer.class, Float.class,
+                        Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class, Float.class, Float.class,
+                        Integer.class, Float.class, Float.class, Float.class, Integer.class, Float.class, Float.class, Integer.class,
+                        Float.class, Float.class, Integer.class, Integer.class, Float.class, Float.class, Integer.class, Float.class"""
 b = b.split(",")
 
 print(len(b) == len(l))

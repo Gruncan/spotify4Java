@@ -17,7 +17,7 @@ public class TracksSavedMeGet extends AbstractRequest {
 
     public TracksSavedMeGet() {
         super(new ParameterPairBuilder()
-                .addKeys("limit", "market", "offset").addClasses(int.class, Market.class, int.class).build());
+                .addKeys("limit", "market", "offset").addClasses(Integer.class, Market.class, Integer.class).build());
 
     }
 

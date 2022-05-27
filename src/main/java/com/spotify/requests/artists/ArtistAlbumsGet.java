@@ -24,7 +24,7 @@ public class ArtistAlbumsGet extends AbstractRequest {
     public ArtistAlbumsGet(String id) {
 
         super(new ParameterPairBuilder().addKeys("include_groups", "limit", "market", "offset")
-                .addClasses(Group[].class, int.class, Market.class, int.class).build());
+                .addClasses(Group[].class, Integer.class, Market.class, Integer.class).build());
         this.id = id;
     }
 

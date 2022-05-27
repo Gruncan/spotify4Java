@@ -17,7 +17,7 @@ public class AlbumsSavedMeGet extends AbstractRequest {
 
     public AlbumsSavedMeGet() {
         super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
-                .addClasses(int.class, Market.class, int.class).build());
+                .addClasses(Integer.class, Market.class, Integer.class).build());
     }
 
     @Override

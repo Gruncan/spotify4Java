@@ -13,7 +13,7 @@ public class SearchGet extends AbstractRequest {
     public SearchGet() {
         super(new ParameterPairBuilder()
                 .addKeys("q", "type", "include_external", "limit", "market", "offset")
-                .addClasses(String.class, String.class, String.class, int.class, Market.class, int.class)
+                .addClasses(String.class, String.class, String.class, Integer.class, Market.class, Integer.class)
                 .build());
 
     }

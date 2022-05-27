@@ -21,7 +21,7 @@ public class UserTopItemsGet extends AbstractRequest {
      */
     public UserTopItemsGet(Type type) {
         super(new ParameterPairBuilder().addKeys("limit", "offset", "time_range")
-                .addClasses(int.class, int.class, TimeRange.class).build());
+                .addClasses(Integer.class, Integer.class, TimeRange.class).build());
         this.type = type;
     }
 

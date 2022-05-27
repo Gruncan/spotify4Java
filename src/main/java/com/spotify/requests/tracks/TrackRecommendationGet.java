@@ -35,12 +35,12 @@ public class TrackRecommendationGet extends AbstractRequest {
                         "target_duration_ms", "target_energy", "target_instrumentalness", "target_key", "target_liveness",
                         "target_loudness", "target_mode", "target_popularity", "target_speechiness", "target_tempo",
                         "target_time_signature", "target_valence")
-                .addClasses(String.class, String.class, String.class, int.class, Market.class, float.class, float.class,
-                        int.class, float.class, float.class, int.class, float.class, float.class, int.class, int.class,
-                        float.class, float.class, int.class, float.class, float.class, float.class, int.class, float.class,
-                        float.class, int.class, float.class, float.class, int.class, int.class, float.class, float.class,
-                        int.class, float.class, float.class, float.class, int.class, float.class, float.class, int.class,
-                        float.class, float.class, int.class, int.class, float.class, float.class, int.class, float.class)
+                .addClasses(String.class, String.class, String.class, Integer.class, Market.class, Float.class, Float.class,
+                        Integer.class, Float.class, Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class,
+                        Float.class, Float.class, Integer.class, Float.class, Float.class, Float.class, Integer.class, Float.class,
+                        Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class, Float.class, Float.class,
+                        Integer.class, Float.class, Float.class, Float.class, Integer.class, Float.class, Float.class, Integer.class,
+                        Float.class, Float.class, Integer.class, Integer.class, Float.class, Float.class, Integer.class, Float.class)
                 .build());
         super.addQuery(new RequestQuery<>("seed_artists", Util.join(seedArtists, ",")));
         super.addQuery(new RequestQuery<>("seed_genres", Util.join(seedGenres, ",")));

@@ -20,7 +20,7 @@ public class AlbumTracksGet extends AbstractRequest {
      */
     public AlbumTracksGet(String id) {
         super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
-                .addClasses(int.class, Market.class, int.class).build());
+                .addClasses(Integer.class, Market.class, Integer.class).build());
         this.id = id;
     }
 

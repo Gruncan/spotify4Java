@@ -17,7 +17,7 @@ public class FollowedArtists extends AbstractRequest {
 
     public FollowedArtists() {
         super(new ParameterPairBuilder().addKeys("type", "after", "limit")
-                .addClasses(Type.class, String.class, int.class).build());
+                .addClasses(Type.class, String.class, Integer.class).build());
     }
 
     @Override
