@@ -3,6 +3,8 @@ package com.spotify.objects.track;
 import com.spotify.objects.ISerializable;
 import com.spotify.requests.util.Market;
 
+import java.util.Arrays;
+
 public class Track implements ISerializable {
 
 
@@ -29,14 +31,14 @@ public class Track implements ISerializable {
     private final TrackAlbum album;
     private final TrackArtist[] artists;
 
-    private final TrackAudioFeatures audioFeatures;
-    private final TrackAudioAnalysis audioAnalysis;
+    private TrackAudioFeatures audioFeatures;
+    private TrackAudioAnalysis audioAnalysis;
 
 
     public Track(TrackAlbum album, TrackArtist[] artists, Market[] availableMarkets, int discNumber, int durationMs,
                  boolean explicit, Object externalIds, Object externalUrls, String href, String id, boolean isPlayable,
                  Object linkedFrom, Object restrictions, String name, int popularity, String previewUrl, int trackNumber,
-                 String type, String url, boolean isLocal, TrackAudioAnalysis audioAnalysis, TrackAudioFeatures audioFeatures) {
+                 String type, String url, boolean isLocal) {
         this.album = album;
         this.artists = artists;
         this.availableMarkets = availableMarkets;
@@ -57,8 +59,42 @@ public class Track implements ISerializable {
         this.type = type;
         this.url = url;
         this.isLocal = isLocal;
-        this.audioAnalysis = audioAnalysis;
-        this.audioFeatures = audioFeatures;
 
+    }
+
+
+    public void setAudioAnalysis(TrackAudioAnalysis audioAnalysis) {
+        this.audioAnalysis = audioAnalysis;
+    }
+
+    public void setAudioFeatures(TrackAudioFeatures audioFeatures) {
+        this.audioFeatures = audioFeatures;
+    }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "availableMarkets=" + Arrays.toString(availableMarkets) +
+                ", discNumber=" + discNumber +
+                ", durationMs=" + durationMs +
+                ", explicit=" + explicit +
+                ", externalIds=" + externalIds +
+                ", externalUrls=" + externalUrls +
+                ", href='" + href + '\'' +
+                ", id='" + id + '\'' +
+                ", isPlayable=" + isPlayable +
+                ", linkedFrom=" + linkedFrom +
+                ", restrictions=" + restrictions +
+                ", name='" + name + '\'' +
+                ", popularity=" + popularity +
+                ", previewUrl='" + previewUrl + '\'' +
+                ", trackNumber=" + trackNumber +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", isLocal=" + isLocal +
+                ", album=" + album +
+                ", artists=" + Arrays.toString(artists) +
+                ", audioFeatures=" + audioFeatures +
+                '}';
     }
 }

@@ -2,6 +2,8 @@ package com.spotify.objects.track;
 
 import com.spotify.objects.SpotifyImage;
 
+import java.util.Arrays;
+
 public class TrackArtist {
 
 
@@ -17,7 +19,7 @@ public class TrackArtist {
     private final String uri;
 
 
-    public TrackArtist(Object externalUrls, int followers, String[] genres, String href, String id, SpotifyImage[] images, String name, int popularity, String type, String uri) {
+    public TrackArtist(String externalUrls, int followers, String[] genres, String href, String id, SpotifyImage[] images, String name, int popularity, String type, String uri) {
         this.externalUrls = externalUrls;
         this.followers = followers;
         this.genres = genres;
@@ -28,5 +30,22 @@ public class TrackArtist {
         this.popularity = popularity;
         this.type = type;
         this.uri = uri;
+    }
+
+
+    @Override
+    public String toString() {
+        return "TrackArtist{" +
+                "externalUrls=" + externalUrls +
+                ", followers=" + followers +
+                ", genres=" + Arrays.toString(genres) +
+                ", href='" + href + '\'' +
+                ", id='" + id + '\'' +
+                ", images=" + Arrays.toString(images) +
+                ", name='" + name + '\'' +
+                ", popularity=" + popularity +
+                ", type='" + type + '\'' +
+                ", uri='" + uri + '\'' +
+                '}';
     }
 }

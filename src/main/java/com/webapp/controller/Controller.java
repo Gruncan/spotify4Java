@@ -5,9 +5,13 @@ import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
 import com.spotify.json.JSONObject;
 import com.spotify.objects.SerializeObject;
+import com.spotify.objects.track.Track;
 import com.spotify.objects.track.TrackAudioAnalysis;
+import com.spotify.objects.track.TrackAudioFeatures;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.tracks.TrackAudioAnalysisGet;
+import com.spotify.requests.tracks.TrackAudioFeaturesGet;
+import com.spotify.requests.tracks.TrackGet;
 import com.spotify.requests.util.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,11 +50,23 @@ public class Controller {
     public String redirect(@RequestParam String code) {
         SpotifyClient spotifyClient = scb.build(code);
 
-        AbstractRequest request = new TrackAudioAnalysisGet("254bXAqt3zP6P50BdQvEsq");
-        JSONObject jsonobject = spotifyClient.executeRequest(request);
+        AbstractRequest analysisRequest = new TrackAudioAnalysisGet("254bXAqt3zP6P50BdQvEsq");
+        AbstractRequest featuresRequest = new TrackAudioFeaturesGet("254bXAqt3zP6P50BdQvEsq");
+        AbstractRequest trackRequest = new TrackGet("254bXAqt3zP6P50BdQvEsq");
 
-        TrackAudioAnalysis trackAudioAnalysis = new SerializeObject().serializeTrackAudioAnalysis(jsonobject);
-        System.out.println(trackAudioAnalysis);
+        JSONObject jsonAnalysis = spotifyClient.executeRequest(analysisRequest);
+        JSONObject jsonFeatures = spotifyClient.executeRequest(featuresRequest);
+        JSONObject jsonTrack = spotifyClient.executeRequest(trackRequest);
+
+        SerializeObject so = new SerializeObject();
+
+        TrackAudioAnalysis trackAudioAnalysis = so.serializeTrackAudioAnalysis(jsonAnalysis);
+        TrackAudioFeatures trackAudioFeatures = so.serializeTrackAudioFeatures(jsonFeatures);
+        Track track = so.serializeTrack(jsonTrack);
+        track.setAudioAnalysis(trackAudioAnalysis);
+        track.setAudioFeatures(trackAudioFeatures);
+
+        System.out.println(track);
 
         return "RedirectPage";
 

@@ -501,7 +501,11 @@ public enum Market {
     /*** Zambia */
     ZM("Zambia"),
     /*** Zimbabwe */
-    ZW("Zimbabwe");
+    ZW("Zimbabwe"),
+    /*** Hong Kong */
+    HK("Hong Kong"),
+    /***  European Commission*/
+    XK("European Commission");
 
 
     private final String name;

@@ -3,6 +3,8 @@ package com.spotify.objects.track;
 import com.spotify.objects.SpotifyImage;
 import com.spotify.requests.util.Market;
 
+import java.util.Arrays;
+
 public class TrackAlbum {
 
 
@@ -20,12 +22,12 @@ public class TrackAlbum {
     private final String type;
     private final String uri;
     private final String albumGroup;
-    private final Object[] artists;
+    private final TrackAlbumArtist[] artists;
 
 
     public TrackAlbum(String albumType, int totalTracks, Market[] availableMarkets, Object externalUrls, String herf,
                       String id, SpotifyImage[] images, String name, String releaseDate, String releaseDatePrecision,
-                      Object restrictions, String type, String uri, String albumGroup, Object[] artists) {
+                      Object restrictions, String type, String uri, String albumGroup, TrackAlbumArtist[] artists) {
         this.albumType = albumType;
         this.totalTracks = totalTracks;
         this.availableMarkets = availableMarkets;
@@ -41,5 +43,27 @@ public class TrackAlbum {
         this.uri = uri;
         this.albumGroup = albumGroup;
         this.artists = artists;
+    }
+
+
+    @Override
+    public String toString() {
+        return "TrackAlbum{" +
+                "albumType='" + albumType + '\'' +
+                ", totalTracks=" + totalTracks +
+                ", availableMarkets=" + Arrays.toString(availableMarkets) +
+                ", externalUrls=" + externalUrls +
+                ", herf='" + herf + '\'' +
+                ", id='" + id + '\'' +
+                ", images=" + Arrays.toString(images) +
+                ", name='" + name + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", releaseDatePrecision='" + releaseDatePrecision + '\'' +
+                ", restrictions=" + restrictions +
+                ", type='" + type + '\'' +
+                ", uri='" + uri + '\'' +
+                ", albumGroup='" + albumGroup + '\'' +
+                ", artists=" + Arrays.toString(artists) +
+                '}';
     }
 }
