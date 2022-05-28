@@ -4,12 +4,11 @@ package com.webapp.controller;
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
 import com.spotify.json.JSONObject;
+import com.spotify.objects.SerializeObject;
+import com.spotify.objects.track.TrackAudioAnalysis;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.RequestQuery;
-import com.spotify.requests.users.UserTopItemsGet;
+import com.spotify.requests.tracks.TrackAudioAnalysisGet;
 import com.spotify.requests.util.Scope;
-import com.spotify.requests.util.TimeRange;
-import com.spotify.requests.util.Type;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,14 +46,11 @@ public class Controller {
     public String redirect(@RequestParam String code) {
         SpotifyClient spotifyClient = scb.build(code);
 
-        AbstractRequest request = new UserTopItemsGet(Type.ARTISTS);
-        request.addQuery(new RequestQuery<>("limit", 1));
-        request.addQuery(new RequestQuery<>("time_range", TimeRange.LONG_TERM));
-
-
+        AbstractRequest request = new TrackAudioAnalysisGet("254bXAqt3zP6P50BdQvEsq");
         JSONObject jsonobject = spotifyClient.executeRequest(request);
-        System.out.println(jsonobject.toString(2));
 
+        TrackAudioAnalysis trackAudioAnalysis = new SerializeObject().serializeTrackAudioAnalysis(jsonobject);
+        System.out.println(trackAudioAnalysis);
 
         return "RedirectPage";
 
