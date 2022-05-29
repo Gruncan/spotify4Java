@@ -57,6 +57,8 @@ public class Controller {
         JSONObject jsonAnalysis = spotifyClient.executeRequest(analysisRequest);
         JSONObject jsonFeatures = spotifyClient.executeRequest(featuresRequest);
         JSONObject jsonTrack = spotifyClient.executeRequest(trackRequest);
+        // handle null values being returns if time limit expired or request was invalid
+
 
         SerializeObject so = new SerializeObject();
 

@@ -33,6 +33,10 @@ public class SpotifyClientBuilder {
     private String state;
     private boolean showDialog;
 
+    private long timeWhenRefresh;
+    private String refreshToken;
+    private String encoding;
+
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
         this.clientID = clientID;
         this.clientSecret = clientSecret;
@@ -41,6 +45,8 @@ public class SpotifyClientBuilder {
         this.responseType = "code";
         this.state = null;
         this.showDialog = false;
+        this.timeWhenRefresh = -1;
+        this.refreshToken = null;
     }
 
     public SpotifyClientBuilder addScope(Scope... scope) {
@@ -97,7 +103,52 @@ public class SpotifyClientBuilder {
         parameters.add(new BasicNameValuePair("code", code));
         parameters.add(new BasicNameValuePair("redirect_uri", this.redirectUri));
 
+        this.encoding = new String(Base64.getEncoder().encode((this.clientID + ":" + this.clientSecret)
+                .getBytes(StandardCharsets.UTF_8)));
 
+        HttpEntity entity = this.sendPostTokenRequest(parameters);
+        if (entity != null) {
+            return this.getSpotifyClient(entity);
+        } else {
+            return null;
+        }
+    }
+
+
+    public SpotifyClient refreshToken() {
+        if (this.refreshToken == null) {
+            System.out.println("Refresh token not set, call build first");
+            return null;
+        }
+        List<NameValuePair> parameters = new ArrayList<>();
+        parameters.add(new BasicNameValuePair("grant_type", "refresh_token"));
+        parameters.add(new BasicNameValuePair("refresh_token", this.refreshToken));
+
+        HttpEntity entity = this.sendPostTokenRequest(parameters);
+
+        if (entity != null) {
+            return this.getSpotifyClient(entity);
+        } else {
+            return null;
+        }
+    }
+
+    private SpotifyClient getSpotifyClient(HttpEntity entity) {
+        try (InputStream instream = entity.getContent()) {
+            Scanner scanner = new Scanner(instream).useDelimiter("\\A");
+            String result = scanner.hasNext() ? scanner.next() : "";
+            JSONObject jsonobject = new JSONObject(result);
+            String token = jsonobject.getString("access_token");
+            int expiresIn = jsonobject.getInt("expires_in");
+            this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
+            this.refreshToken = jsonobject.getString("refresh_token");
+            return new SpotifyClientImp(token);
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+    private HttpEntity sendPostTokenRequest(List<NameValuePair> parameters) {
         try {
             URIBuilder uriBuilder = new URIBuilder(TOKEN_URL);
             uriBuilder.addParameters(parameters);
@@ -107,26 +158,13 @@ public class SpotifyClientBuilder {
 
             HttpPost httppost = new HttpPost(uriBuilder.build());
             httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
-            httppost.setHeader("Authorization", "Basic " +
-                    new String(Base64.getEncoder().encode((this.clientID + ":" + this.clientSecret)
-                            .getBytes(StandardCharsets.UTF_8))));
+
+
+            httppost.setHeader("Authorization", "Basic " + this.encoding);
 
             HttpResponse response = httpClient.execute(httppost);
+            return response.getEntity();
 
-            HttpEntity entity = response.getEntity();
-
-            if (response.getStatusLine().getStatusCode() == 200) { // ok request
-                if (entity != null) {
-                    // reading the body
-                    try (InputStream instream = entity.getContent()) {
-                        Scanner scanner = new Scanner(instream).useDelimiter("\\A");
-                        String result = scanner.hasNext() ? scanner.next() : "";
-                        JSONObject jsonobject = new JSONObject(result);
-                        String token = jsonobject.get("access_token").toString();
-                        return new SpotifyClientImp(token);
-                    }
-                }
-            }
 
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
