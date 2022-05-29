@@ -610,9 +610,10 @@ public class JSONObject {
      */
     public Object get(String name) throws JSONException {
         Object result = nameValuePairs.get(name);
-        if (result == null) {
-            throw new JSONException("No value for " + name);
-        }
+//        if (result == null) {
+//            //throw new JSONException("No value for " + name);
+//            return null;
+//        }
         return result;
     }
 
@@ -639,9 +640,10 @@ public class JSONObject {
     public boolean getBoolean(String name) throws JSONException {
         Object object = get(name);
         Boolean result = JSON.toBoolean(object);
-        if (result == null) {
-            throw JSON.typeMismatch(name, object, "boolean");
-        }
+//        if (result == null) {
+//            throw JSON.typeMismatch(name, object, "boolean");
+//        }
+        if (result == null) return false;
         return result;
     }
 
@@ -682,9 +684,9 @@ public class JSONObject {
     public double getDouble(String name) throws JSONException {
         Object object = get(name);
         Double result = JSON.toDouble(object);
-        if (result == null) {
-            throw JSON.typeMismatch(name, object, "double");
-        }
+//        if (result == null) {
+//            throw JSON.typeMismatch(name, object, "double");
+//        }
         return result;
     }
 
@@ -725,9 +727,9 @@ public class JSONObject {
     public int getInt(String name) throws JSONException {
         Object object = get(name);
         Integer result = JSON.toInteger(object);
-        if (result == null) {
-            throw JSON.typeMismatch(name, object, "int");
-        }
+//        if (result == null) {
+//            throw JSON.typeMismatch(name, object, "int");
+//        }
         return result;
     }
 
@@ -772,9 +774,9 @@ public class JSONObject {
     public long getLong(String name) throws JSONException {
         Object object = get(name);
         Long result = JSON.toLong(object);
-        if (result == null) {
-            throw JSON.typeMismatch(name, object, "long");
-        }
+//        if (result == null) {
+//            throw JSON.typeMismatch(name, object, "long");
+//        }
         return result;
     }
 
@@ -817,9 +819,9 @@ public class JSONObject {
     public String getString(String name) throws JSONException {
         Object object = get(name);
         String result = JSON.toString(object);
-        if (result == null) {
-            throw JSON.typeMismatch(name, object, "String");
-        }
+//        if (result == null) {
+//            throw JSON.typeMismatch(name, object, "String");
+//        }
         return result;
     }
 
@@ -862,7 +864,8 @@ public class JSONObject {
         if (object instanceof JSONArray) {
             return (JSONArray) object;
         } else {
-            throw JSON.typeMismatch(name, object, "JSONArray");
+            return null;
+            //throw JSON.typeMismatch(name, object, "JSONArray");
         }
     }
 
@@ -892,7 +895,8 @@ public class JSONObject {
         if (object instanceof JSONObject) {
             return (JSONObject) object;
         } else {
-            throw JSON.typeMismatch(name, object, "JSONObject");
+            return null;
+            //throw JSON.typeMismatch(name, object, "JSONObject");
         }
     }
 

@@ -267,4 +267,29 @@ public class TrackAudioFeatures {
     public float getValence() {
         return valence;
     }
+
+
+    @Override
+    public String toString() {
+        return "TrackAudioFeatures{" +
+                "acousticness=" + acousticness +
+                ", analysisUrl='" + analysisUrl + '\'' +
+                ", danceability=" + danceability +
+                ", durationMs=" + durationMs +
+                ", energy=" + energy +
+                ", id='" + id + '\'' +
+                ", instrumentalness=" + instrumentalness +
+                ", key=" + key +
+                ", liveness=" + liveness +
+                ", loudness=" + loudness +
+                ", mode=" + mode +
+                ", speechiness=" + speechiness +
+                ", tempo=" + tempo +
+                ", timeSignature=" + timeSignature +
+                ", trackHref='" + trackHref + '\'' +
+                ", type='" + type + '\'' +
+                ", uri='" + uri + '\'' +
+                ", valence=" + valence +
+                '}';
+    }
 }

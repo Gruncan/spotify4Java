@@ -74,27 +74,28 @@ public class Track implements ISerializable {
     @Override
     public String toString() {
         return "Track{" +
-                "availableMarkets=" + Arrays.toString(availableMarkets) +
-                ", discNumber=" + discNumber +
-                ", durationMs=" + durationMs +
-                ", explicit=" + explicit +
-                ", externalIds=" + externalIds +
-                ", externalUrls=" + externalUrls +
-                ", href='" + href + '\'' +
-                ", id='" + id + '\'' +
-                ", isPlayable=" + isPlayable +
-                ", linkedFrom=" + linkedFrom +
-                ", restrictions=" + restrictions +
-                ", name='" + name + '\'' +
-                ", popularity=" + popularity +
-                ", previewUrl='" + previewUrl + '\'' +
-                ", trackNumber=" + trackNumber +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", isLocal=" + isLocal +
-                ", album=" + album +
-                ", artists=" + Arrays.toString(artists) +
-                ", audioFeatures=" + audioFeatures +
+                "\navailableMarkets=" + Arrays.toString(availableMarkets) +
+                ", \ndiscNumber=" + discNumber +
+                ", \ndurationMs=" + durationMs +
+                ", \nexplicit=" + explicit +
+                ", \nexternalIds=" + externalIds +
+                ", \nexternalUrls=" + externalUrls +
+                ", \nhref='" + href + '\'' +
+                ", \nid='" + id + '\'' +
+                ", \nisPlayable=" + isPlayable +
+                ", \nlinkedFrom=" + linkedFrom +
+                ", \nrestrictions=" + restrictions +
+                ", \nname='" + name + '\'' +
+                ", \npopularity=" + popularity +
+                ", \npreviewUrl='" + previewUrl + '\'' +
+                ", \ntrackNumber=" + trackNumber +
+                ", \ntype='" + type + '\'' +
+                ", \nurl='" + url + '\'' +
+                ", \nisLocal=" + isLocal +
+                ", \nalbum=" + album +
+                ", \nartists=" + Arrays.toString(artists) +
+                ", \naudioFeatures=" + audioFeatures.toString() +
+                ", \naudioAnalysis=" + audioAnalysis.getMeta() + " plus more." +
                 '}';
     }
 }

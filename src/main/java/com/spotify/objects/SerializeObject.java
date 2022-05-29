@@ -1,6 +1,7 @@
 package com.spotify.objects;
 
 import com.spotify.json.JSONArray;
+import com.spotify.json.JSONException;
 import com.spotify.json.JSONObject;
 import com.spotify.objects.track.*;
 import com.spotify.objects.user.SpotifyUser;
@@ -33,7 +34,6 @@ public class SerializeObject {
                 json.getString("href"), json.getString("id"), spotifyImages, json.getString("product"),
                 json.getString("uri"));
     }
-
 
     public TrackAudioAnalysis serializeTrackAudioAnalysis(JSONObject json) {
         TrackAudioAnalysis.Meta meta = this.serializeTrackAudioMeta(json.getJSONObject("meta"));
@@ -140,7 +140,6 @@ public class SerializeObject {
         );
     }
 
-
     public Track serializeTrack(JSONObject json) {
         TrackAlbum trackAlbum = this.serializeTrackAlbum(json.getJSONObject("album"));
         TrackArtist[] trackArtists = this.serializeTrackArtists(json.getJSONArray("artists"));
@@ -155,35 +154,37 @@ public class SerializeObject {
 
     }
 
-
     private TrackAlbum serializeTrackAlbum(JSONObject json) {
         return new TrackAlbum(json.getString("album_type"), json.getInt("total_tracks"),
                 this.fromJsonToMarketArray(json.getJSONArray("available_markets")),
                 json.getJSONObject("external_urls").getString("spotify"), json.getString("href"),
                 json.getString("id"), this.fromJsonToImageArray(json.getJSONArray("images")),
                 json.getString("name"), json.getString("release_date"), json.getString("release_date_precision"),
-                null, json.getString("type"),
-                json.getString("uri"), json.getString("album_group"),
+                this.getOptionalResponse(this.getJsonOptionalResponse(json, "restrictions"), "reason"), json.getString("type"),
+                json.getString("uri"), this.getOptionalResponse(json, "album_group"),
                 this.fromJsonToAlbumArtistArray(json.getJSONArray("artists"))
         );
     }
 
     private TrackArtist[] serializeTrackArtists(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         TrackArtist[] trackArtists = new TrackArtist[jsonArray.length()];
         for (int i = 0; i < trackArtists.length; i++) {
             JSONObject json = jsonArray.getJSONObject(i);
-            trackArtists[i] = new TrackArtist(json.getJSONObject("external_url").getString("spotify"),
-                    json.getJSONObject("followers").getInt("total"),
+            JSONObject followerObject = json.getJSONObject("followers");
+            int total = followerObject != null ? followerObject.getInt("total") : -1;
+            trackArtists[i] = new TrackArtist(this.getOptionalResponse(json.getJSONObject("external_url"), "spotify"),
+                    followerObject == null ? -1 : followerObject.getInt("total"),
                     this.fromJsonToStringArray(json.getJSONArray("genres")), json.getString("href"),
                     json.getString("id"), this.fromJsonToImageArray(json.getJSONArray("images")),
-                    json.getString("name"), json.getInt("popularity"), json.getString("type"),
+                    json.getString("name"), json.has("popularity") ? json.getInt("popularity") : -1, json.getString("type"),
                     json.getString("uri"));
         }
         return trackArtists;
     }
 
-
     private String[] fromJsonToStringArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         String[] strings = new String[jsonArray.length()];
         for (int i = 0; i < strings.length; i++) {
             strings[i] = jsonArray.getString(i);
@@ -192,6 +193,7 @@ public class SerializeObject {
     }
 
     private TrackAlbumArtist[] fromJsonToAlbumArtistArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         TrackAlbumArtist[] trackAlbumArtists = new TrackAlbumArtist[jsonArray.length()];
         for (int i = 0; i < trackAlbumArtists.length; i++) {
             JSONObject json = jsonArray.getJSONObject(i);
@@ -203,6 +205,7 @@ public class SerializeObject {
     }
 
     private SpotifyImage[] fromJsonToImageArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         SpotifyImage[] spotifyImages = new SpotifyImage[jsonArray.length()];
         for (int i = 0; i < spotifyImages.length; i++) {
             spotifyImages[i] = new SpotifyImage(jsonArray.getJSONObject(i).getString("url"));
@@ -210,8 +213,8 @@ public class SerializeObject {
         return spotifyImages;
     }
 
-
     private Market[] fromJsonToMarketArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         Market[] markets = new Market[jsonArray.length()];
         for (int i = 0; i < markets.length; i++) {
             markets[i] = Market.valueOf(jsonArray.getString(i));
@@ -219,8 +222,8 @@ public class SerializeObject {
         return markets;
     }
 
-
     private float[] fromJsonToFloatArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
         float[] floats = new float[jsonArray.length()];
         for (int i = 0; i < floats.length; i++) {
             floats[i] = (float) jsonArray.getDouble(i);
@@ -228,7 +231,22 @@ public class SerializeObject {
         return floats;
     }
 
+    private String getOptionalResponse(JSONObject json, String key) {
+        if (json == null) return null;
+        try {
+            return json.getString(key);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
 
-
+    private JSONObject getJsonOptionalResponse(JSONObject json, String key) {
+        if (json == null) return null;
+        try {
+            return json.getJSONObject(key);
+        } catch (JSONException e) {
+            return null;
+        }
+    }
 
 }
