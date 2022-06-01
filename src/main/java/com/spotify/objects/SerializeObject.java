@@ -7,6 +7,9 @@ import com.spotify.objects.track.*;
 import com.spotify.objects.user.SpotifyUser;
 import com.spotify.requests.util.Market;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SerializeObject {
 
 
@@ -20,7 +23,6 @@ public class SerializeObject {
 
         JSONObject followersObject = json.getJSONObject("followers");
         int followers = followersObject.getInt("total");
-
 
         JSONArray images = json.getJSONArray("images");
 
@@ -140,18 +142,13 @@ public class SerializeObject {
         );
     }
 
-    public Track serializeTrack(JSONObject json) {
-        TrackAlbum trackAlbum = this.serializeTrackAlbum(json.getJSONObject("album"));
-        TrackArtist[] trackArtists = this.serializeTrackArtists(json.getJSONArray("artists"));
-        Market[] markets = this.fromJsonToMarketArray(json.getJSONArray("available_markets"));
-
-        return new Track(trackAlbum, trackArtists, markets, json.getInt("disc_number"), json.getInt("duration_ms"),
-                json.getBoolean("explicit"), null, json.getJSONObject("external_urls").getString("spotify"),
-                json.getString("href"), json.getString("id"), json.getBoolean("is_playable"), null, null,
-                json.getString("name"), json.getInt("popularity"), json.getString("preview_url"), json.getInt("track_number"),
-                json.getString("type"), json.getString("uri"), json.getBoolean("is_local"));
-
-
+    private static <T> T[] fromJsonToArray(JSONArray jsonArray) {
+        if (jsonArray == null) return null;
+        List<T> array = new ArrayList<>(jsonArray.length());
+        for (int i = 0; i < jsonArray.length(); i++) {
+            array.add((T) jsonArray.get(i));
+        }
+        return array.toArray((T[]) new Object[]{});
     }
 
     private TrackAlbum serializeTrackAlbum(JSONObject json) {
@@ -229,6 +226,18 @@ public class SerializeObject {
             floats[i] = (float) jsonArray.getDouble(i);
         }
         return floats;
+    }
+
+    public Track serializeTrack(JSONObject json) {
+        TrackAlbum trackAlbum = this.serializeTrackAlbum(json.getJSONObject("album"));
+        TrackArtist[] trackArtists = this.serializeTrackArtists(json.getJSONArray("artists"));
+        Market[] markets = this.fromJsonToMarketArray(json.getJSONArray("available_markets"));
+        SerializeObject.fromJsonToArray(new JSONArray());
+        return new Track(trackAlbum, trackArtists, markets, json.getInt("disc_number"), json.getInt("duration_ms"),
+                json.getBoolean("explicit"), null, json.getJSONObject("external_urls").getString("spotify"),
+                json.getString("href"), json.getString("id"), json.getBoolean("is_playable"), null, null,
+                json.getString("name"), json.getInt("popularity"), json.getString("preview_url"), json.getInt("track_number"),
+                json.getString("type"), json.getString("uri"), json.getBoolean("is_local"));
     }
 
     private String getOptionalResponse(JSONObject json, String key) {
