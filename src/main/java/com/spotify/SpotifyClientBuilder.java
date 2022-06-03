@@ -37,6 +37,9 @@ public class SpotifyClientBuilder {
     private String refreshToken;
     private String encoding;
 
+    private SpotifyClient builtClient;
+
+
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
         this.clientID = clientID;
         this.clientSecret = clientSecret;
@@ -47,6 +50,7 @@ public class SpotifyClientBuilder {
         this.showDialog = false;
         this.timeWhenRefresh = -1;
         this.refreshToken = null;
+        this.builtClient = null;
     }
 
     public SpotifyClientBuilder addScope(Scope... scope) {
@@ -96,6 +100,10 @@ public class SpotifyClientBuilder {
         }
     }
 
+    public SpotifyClient getBuiltClient() {
+        return this.builtClient;
+    }
+
 
     public SpotifyClient build(String code) {
         List<NameValuePair> parameters = new ArrayList<>();
@@ -108,7 +116,8 @@ public class SpotifyClientBuilder {
 
         HttpEntity entity = this.sendPostTokenRequest(parameters);
         if (entity != null) {
-            return this.getSpotifyClient(entity);
+            this.builtClient = this.getSpotifyClient(entity);
+            return this.builtClient;
         } else {
             return null;
         }
@@ -127,7 +136,8 @@ public class SpotifyClientBuilder {
         HttpEntity entity = this.sendPostTokenRequest(parameters);
 
         if (entity != null) {
-            return this.getSpotifyClient(entity);
+            this.builtClient = this.getSpotifyClient(entity);
+            return this.builtClient;
         } else {
             return null;
         }
@@ -187,6 +197,8 @@ public class SpotifyClientBuilder {
         public JSONObject executeRequest(AbstractRequest abstractRequest) {
             return abstractRequest.execute(this.accessToken);
         }
+
+
     }
 
 

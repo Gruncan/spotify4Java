@@ -48,4 +48,44 @@ public class TrackArtist {
                 ", uri='" + uri + '\'' +
                 '}';
     }
+
+    public Object getExternalUrls() {
+        return externalUrls;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public String[] getGenres() {
+        return genres;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public SpotifyImage[] getImages() {
+        return images;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getUri() {
+        return uri;
+    }
 }

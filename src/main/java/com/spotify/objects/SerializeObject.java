@@ -3,6 +3,7 @@ package com.spotify.objects;
 import com.spotify.json.JSONArray;
 import com.spotify.json.JSONException;
 import com.spotify.json.JSONObject;
+import com.spotify.objects.search.SearchResult;
 import com.spotify.objects.track.*;
 import com.spotify.objects.user.SpotifyUser;
 import com.spotify.requests.util.Market;
@@ -256,6 +257,15 @@ public class SerializeObject {
         } catch (JSONException e) {
             return null;
         }
+    }
+
+
+    public SearchResult serializeSearchResult(JSONObject json) {
+        JSONObject jsonObject = json.getJSONObject("artists");
+        if (jsonObject == null) return null;
+
+        TrackArtist[] trackArtists = this.serializeTrackArtists(jsonObject.getJSONArray("items"));
+        return new SearchResult(trackArtists);
     }
 
 }
