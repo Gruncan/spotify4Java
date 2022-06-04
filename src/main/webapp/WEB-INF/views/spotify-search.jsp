@@ -40,6 +40,12 @@
                             </c:forEach>
                             ]
                             Followers: ${trackArtist.followers}
+
+                                <%--                            <jsp:useBean id="" type="java.util.ArrayList" scope="session" />--%>
+                                <%--                            <c:forEach items="${trackArtist.images}" var="images">--%>
+                                <%--                                <img src="${images.url}">--%>
+                                <%--                            </c:forEach>--%>
+
                         </li>
                     </c:forEach>
                 </ul>

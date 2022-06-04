@@ -1,6 +1,15 @@
 package com.spotify.objects;
 
-public record SpotifyImage(String url) {
+public class SpotifyImage {
 
 
+    private final String url;
+
+    public SpotifyImage(String url) {
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
 }
