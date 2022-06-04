@@ -59,8 +59,8 @@ public class Track implements ISerializable {
         this.type = type;
         this.url = url;
         this.isLocal = isLocal;
-
     }
+
 
 
     public void setAudioAnalysis(TrackAudioAnalysis audioAnalysis) {
@@ -97,5 +97,22 @@ public class Track implements ISerializable {
                 ", \naudioFeatures=" + audioFeatures.toString() +
                 ", \naudioAnalysis=" + audioAnalysis.getMeta() + " plus more." +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public TrackArtist[] getArtists() {
+        return artists;
+    }
+
+    public TrackAlbum getAlbum() {
+        return album;
     }
 }

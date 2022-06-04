@@ -31,13 +31,13 @@ public class SearchController {
         final RedirectView redirectView = new RedirectView("/search", true);
         SpotifyClient spotifyClient = com.webapp.controller.Controller.scb.getBuiltClient();
 
-        AbstractRequest searchRequest = new SearchGet(search.getValue(), "artist");
+        AbstractRequest searchRequest = new SearchGet(search.getValue(), "track,artist");
         JSONObject jsonObject = spotifyClient.executeRequest(searchRequest);
-        System.out.println(jsonObject.toString(4));
+        System.out.println(jsonObject.toString());
 
 
         SearchResult searchResult = new SerializeObject().serializeSearchResult(jsonObject);
-        redirectAttributes.addFlashAttribute("results", searchResult.getArtists());
+        redirectAttributes.addFlashAttribute("results", searchResult);
         redirectAttributes.addFlashAttribute("success", true);
         return redirectView;
 

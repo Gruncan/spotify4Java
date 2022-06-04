@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
@@ -31,23 +32,36 @@
         <c:choose>
             <c:when test="${success}">
                 <ul>
-                    <c:forEach items="${results}" var="trackArtist">
-                        <li>
-                                ${trackArtist.name} : "${trackArtist.id}"
-                            Genres[
-                            <c:forEach items="${trackArtist.genres}" var="genre">
-                                ${genre},
-                            </c:forEach>
-                            ]
-                            Followers: ${trackArtist.followers}
 
-                                <%--                            <jsp:useBean id="" type="java.util.ArrayList" scope="session" />--%>
-                                <%--                            <c:forEach items="${trackArtist.images}" var="images">--%>
-                                <%--                                <img src="${images.url}">--%>
-                                <%--                            </c:forEach>--%>
+                    <c:if test="${not empty fn:trim(results.artists)}">
+                        <h2>ARTIST</h2>
+                        <c:forEach items="${results.artists}" var="trackArtist">
+                            <li>
+                                <img src="${trackArtist.image.url}" alt="Image" width="100px" height="100px">
 
-                        </li>
-                    </c:forEach>
+                                    ${trackArtist.name} : "${trackArtist.id}"
+                                Genres[
+                                <c:forEach items="${trackArtist.genres}" var="genre">
+                                    ${genre},
+                                </c:forEach>
+                                ]
+                                Followers: ${trackArtist.followers}
+                            </li>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${not empty fn:trim(results.tracks)}">
+                        <h2>SONG</h2>
+                        <c:forEach items="${results.tracks}" var="track">
+                            <li>
+                                <img src="${track.album.image.url}" alt="Image" width="100px" height="100px">
+                                Name: ${track.name}, Id: ${track.id}, Artist: [
+                                <c:forEach items="${track.artists}" var="artist">
+                                    ${artist.name},
+                                </c:forEach>
+                                ]
+                            </li>
+                        </c:forEach>
+                    </c:if>
                 </ul>
             </c:when>
             <c:otherwise>

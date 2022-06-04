@@ -14,7 +14,7 @@ public class TrackAlbum {
     private final Object externalUrls;
     private final String herf;
     private final String id;
-    private final SpotifyImage[] images;
+    private final SpotifyImage image;
     private final String name;
     private final String releaseDate;
     private final String releaseDatePrecision;
@@ -26,7 +26,7 @@ public class TrackAlbum {
 
 
     public TrackAlbum(String albumType, int totalTracks, Market[] availableMarkets, Object externalUrls, String herf,
-                      String id, SpotifyImage[] images, String name, String releaseDate, String releaseDatePrecision,
+                      String id, SpotifyImage image, String name, String releaseDate, String releaseDatePrecision,
                       Object restrictions, String type, String uri, String albumGroup, TrackAlbumArtist[] artists) {
         this.albumType = albumType;
         this.totalTracks = totalTracks;
@@ -34,7 +34,7 @@ public class TrackAlbum {
         this.externalUrls = externalUrls;
         this.herf = herf;
         this.id = id;
-        this.images = images;
+        this.image = image;
         this.name = name;
         this.releaseDate = releaseDate;
         this.releaseDatePrecision = releaseDatePrecision;
@@ -55,7 +55,7 @@ public class TrackAlbum {
                 ", externalUrls=" + externalUrls +
                 ", herf='" + herf + '\'' +
                 ", id='" + id + '\'' +
-                ", images=" + Arrays.toString(images) +
+                ", images=" + image +
                 ", name='" + name + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
                 ", releaseDatePrecision='" + releaseDatePrecision + '\'' +
@@ -65,5 +65,9 @@ public class TrackAlbum {
                 ", albumGroup='" + albumGroup + '\'' +
                 ", artists=" + Arrays.toString(artists) +
                 '}';
+    }
+
+    public SpotifyImage getImage() {
+        return image;
     }
 }

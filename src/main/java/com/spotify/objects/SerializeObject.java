@@ -156,7 +156,7 @@ public class SerializeObject {
         return new TrackAlbum(json.getString("album_type"), json.getInt("total_tracks"),
                 this.fromJsonToMarketArray(json.getJSONArray("available_markets")),
                 json.getJSONObject("external_urls").getString("spotify"), json.getString("href"),
-                json.getString("id"), this.fromJsonToImageArray(json.getJSONArray("images")),
+                json.getString("id"), this.fromJsonToImage(json.getJSONArray("images")),
                 json.getString("name"), json.getString("release_date"), json.getString("release_date_precision"),
                 this.getOptionalResponse(this.getJsonOptionalResponse(json, "restrictions"), "reason"), json.getString("type"),
                 json.getString("uri"), this.getOptionalResponse(json, "album_group"),
@@ -174,12 +174,23 @@ public class SerializeObject {
             trackArtists[i] = new TrackArtist(this.getOptionalResponse(json.getJSONObject("external_url"), "spotify"),
                     followerObject == null ? -1 : followerObject.getInt("total"),
                     this.fromJsonToStringArray(json.getJSONArray("genres")), json.getString("href"),
-                    json.getString("id"), this.fromJsonToImageArray(json.getJSONArray("images")),
+                    json.getString("id"), this.fromJsonToImage(json.getJSONArray("images")),
                     json.getString("name"), json.has("popularity") ? json.getInt("popularity") : -1, json.getString("type"),
                     json.getString("uri"));
         }
         return trackArtists;
     }
+
+
+    private SpotifyImage fromJsonToImage(JSONArray jsonArray) {
+//        System.out.println(jsonArray== null ? null : jsonArray.toString(2));
+        if (jsonArray == null || jsonArray.length() == 0) {
+            // default image, artist has none
+            return new SpotifyImage("C:/Development/Java/API/spotstat/src/main/resources/static/images/defultImage.png");
+        }
+        return new SpotifyImage(jsonArray.getJSONObject(0).getString("url"));
+    }
+
 
     private String[] fromJsonToStringArray(JSONArray jsonArray) {
         if (jsonArray == null) return null;
@@ -205,7 +216,7 @@ public class SerializeObject {
     private SpotifyImage[] fromJsonToImageArray(JSONArray jsonArray) {
         if (jsonArray == null) return null;
         SpotifyImage[] spotifyImages = new SpotifyImage[jsonArray.length()];
-        for (int i = 0; i < spotifyImages.length; i++) {
+        for (int i = 0; i < Math.min(1, spotifyImages.length); i++) {
             spotifyImages[i] = new SpotifyImage(jsonArray.getJSONObject(i).getString("url"));
         }
         return spotifyImages;
@@ -233,12 +244,20 @@ public class SerializeObject {
         TrackAlbum trackAlbum = this.serializeTrackAlbum(json.getJSONObject("album"));
         TrackArtist[] trackArtists = this.serializeTrackArtists(json.getJSONArray("artists"));
         Market[] markets = this.fromJsonToMarketArray(json.getJSONArray("available_markets"));
-        SerializeObject.fromJsonToArray(new JSONArray());
         return new Track(trackAlbum, trackArtists, markets, json.getInt("disc_number"), json.getInt("duration_ms"),
                 json.getBoolean("explicit"), null, json.getJSONObject("external_urls").getString("spotify"),
                 json.getString("href"), json.getString("id"), json.getBoolean("is_playable"), null, null,
                 json.getString("name"), json.getInt("popularity"), json.getString("preview_url"), json.getInt("track_number"),
                 json.getString("type"), json.getString("uri"), json.getBoolean("is_local"));
+    }
+
+    private Track[] serializeTracks(JSONArray json) {
+        Track[] tracks = new Track[json.length()];
+        for (int i = 0; i < tracks.length; i++) {
+            Track track = this.serializeTrack(json.getJSONObject(i));
+            tracks[i] = track;
+        }
+        return tracks;
     }
 
     private String getOptionalResponse(JSONObject json, String key) {
@@ -261,11 +280,14 @@ public class SerializeObject {
 
 
     public SearchResult serializeSearchResult(JSONObject json) {
-        JSONObject jsonObject = json.getJSONObject("artists");
-        if (jsonObject == null) return null;
+        JSONObject jsonArtists = json.getJSONObject("artists");
+        JSONObject jsonTracks = json.getJSONObject("tracks");
+        if (jsonArtists == null && jsonTracks == null) return null;
 
-        TrackArtist[] trackArtists = this.serializeTrackArtists(jsonObject.getJSONArray("items"));
-        return new SearchResult(trackArtists);
+
+        TrackArtist[] trackArtists = jsonArtists != null ? this.serializeTrackArtists(jsonArtists.getJSONArray("items")) : null;
+        Track[] tracks = jsonTracks != null ? this.serializeTracks(jsonTracks.getJSONArray("items")) : null;
+        return new SearchResult(trackArtists, tracks);
     }
 
 }
