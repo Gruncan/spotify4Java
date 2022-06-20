@@ -53,5 +53,11 @@ public class TrackAlgInfo {
         return this.score;
     }
 
-
+    @Override
+    public String toString() {
+        return "TrackAlgInfo{" +
+                "id='" + id + '\'' +
+                ", score=" + score +
+                '}';
+    }
 }
