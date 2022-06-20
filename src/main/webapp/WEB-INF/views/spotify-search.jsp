@@ -32,7 +32,19 @@
         <c:choose>
             <c:when test="${success}">
                 <ul>
-
+                    <c:if test="${not empty fn:trim(results.tracks)}">
+                        <h2>SONG</h2>
+                        <c:forEach items="${results.tracks}" var="track">
+                            <li>
+                                <img src="${track.album.image.url}" alt="Image" width="100px" height="100px">
+                                Name: ${track.name}, Id: "${track.id}", Artist: [
+                                <c:forEach items="${track.artists}" var="artist">
+                                    ${artist.name},
+                                </c:forEach>
+                                ]
+                            </li>
+                        </c:forEach>
+                    </c:if>
                     <c:if test="${not empty fn:trim(results.artists)}">
                         <h2>ARTIST</h2>
                         <c:forEach items="${results.artists}" var="trackArtist">
@@ -46,19 +58,6 @@
                                 </c:forEach>
                                 ]
                                 Followers: ${trackArtist.followers}
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                    <c:if test="${not empty fn:trim(results.tracks)}">
-                        <h2>SONG</h2>
-                        <c:forEach items="${results.tracks}" var="track">
-                            <li>
-                                <img src="${track.album.image.url}" alt="Image" width="100px" height="100px">
-                                Name: ${track.name}, Id: ${track.id}, Artist: [
-                                <c:forEach items="${track.artists}" var="artist">
-                                    ${artist.name},
-                                </c:forEach>
-                                ]
                             </li>
                         </c:forEach>
                     </c:if>

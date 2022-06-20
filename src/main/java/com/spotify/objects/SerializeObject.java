@@ -165,7 +165,7 @@ public class SerializeObject {
     }
 
     private TrackArtist[] serializeTrackArtists(JSONArray jsonArray) {
-        if (jsonArray == null) return null;
+        if (jsonArray == null || jsonArray.length() == 0) return null;
         TrackArtist[] trackArtists = new TrackArtist[jsonArray.length()];
         for (int i = 0; i < trackArtists.length; i++) {
             JSONObject json = jsonArray.getJSONObject(i);
@@ -252,6 +252,7 @@ public class SerializeObject {
     }
 
     private Track[] serializeTracks(JSONArray json) {
+        if (json == null || json.length() == 0) return null;
         Track[] tracks = new Track[json.length()];
         for (int i = 0; i < tracks.length; i++) {
             Track track = this.serializeTrack(json.getJSONObject(i));

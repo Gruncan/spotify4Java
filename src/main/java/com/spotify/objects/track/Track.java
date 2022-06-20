@@ -62,13 +62,16 @@ public class Track implements ISerializable {
     }
 
 
-
     public void setAudioAnalysis(TrackAudioAnalysis audioAnalysis) {
         this.audioAnalysis = audioAnalysis;
     }
 
     public void setAudioFeatures(TrackAudioFeatures audioFeatures) {
         this.audioFeatures = audioFeatures;
+    }
+
+    public TrackAudioFeatures getAudioFeatures() {
+        return audioFeatures;
     }
 
     @Override

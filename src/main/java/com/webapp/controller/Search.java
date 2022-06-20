@@ -6,7 +6,7 @@ public class Search {
 
 
     public String getValue() {
-        return value;
+        return this.value == null ? null : value.replace(" ", "%20");
     }
 
     public void setValue(String value) {

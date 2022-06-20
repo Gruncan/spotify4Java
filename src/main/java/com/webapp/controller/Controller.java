@@ -62,12 +62,11 @@ public class Controller {
 
 //        return "RedirectPage";
 
-        httpServletResponse.setHeader("Location", "http://127.0.0.1:8888/search/");
+        httpServletResponse.setHeader("Location", "http://127.0.0.1:8888/recalg/");
         httpServletResponse.setStatus(302);
 
 
     }
-
 
 
 }
