@@ -1,13 +1,18 @@
 package com.spotify.objects.search;
 
-import com.spotify.objects.ISerializable;
+import com.spotify.objects.SpotifyField;
 import com.spotify.objects.track.Track;
 import com.spotify.objects.track.TrackArtist;
 
-public class SearchResult implements ISerializable {
+import java.io.Serializable;
 
 
+public class SearchResult implements Serializable {
+
+
+    @SpotifyField(value = "artists")
     public final TrackArtist[] artists;
+    @SpotifyField(value = "tracks")
     private final Track[] tracks;
 
 

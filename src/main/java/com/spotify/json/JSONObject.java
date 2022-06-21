@@ -724,7 +724,7 @@ public class JSONObject {
      * @throws JSONException if the mapping doesn't exist or cannot be coerced
      *                       to an int.
      */
-    public int getInt(String name) throws JSONException {
+    public Integer getInt(String name) throws JSONException {
         Object object = get(name);
         Integer result = JSON.toInteger(object);
 //        if (result == null) {

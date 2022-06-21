@@ -1,21 +1,34 @@
 package com.spotify.objects.user;
 
-import com.spotify.objects.ISerializable;
+import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
 
-public class SpotifyUser implements ISerializable {
+import java.io.Serializable;
+
+public class SpotifyUser implements Serializable {
 
 
+    @SpotifyField("country")
     private final String country;
+    @SpotifyField("display_name")
     private final String displayName;
+    @SpotifyField("email")
     private final String email;
+    //TODO sort this
     private final boolean[] explicitContent;
+    @SpotifyField("external_urls")
     private final String externalUrlsSpotify;
+    @SpotifyField(value = "followers", type = Integer.class)
     private final int followers;
+    @SpotifyField("href")
     private final String href;
+    @SpotifyField("id")
     private final String id;
+    @SpotifyField(value = "images", type = SpotifyImage.class, isArray = true)
     private final SpotifyImage[] images;
+    @SpotifyField("product")
     private final String product;
+    @SpotifyField("uri")
     private final String uri;
 
 

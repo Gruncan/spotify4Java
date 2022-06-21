@@ -1,6 +1,7 @@
 package com.spotify.requests.users;
 
 import com.spotify.json.JSONObject;
+import com.spotify.objects.user.SpotifyUser;
 import com.spotify.requests.AbstractRequest;
 
 
@@ -8,7 +9,7 @@ import com.spotify.requests.AbstractRequest;
  * Get detailed profile information about the current user (including the current user's username).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile">Spotify Docs</a>
  */
-public class CurrentUserProfileGet extends AbstractRequest {
+public class CurrentUserProfileGet extends AbstractRequest<SpotifyUser> {
 
 
     private final static String URL = "me/";
@@ -23,5 +24,11 @@ public class CurrentUserProfileGet extends AbstractRequest {
     @Override
     public JSONObject execute(String token) {
         return super.requestGet(token, URL);
+    }
+
+    @Override
+    public SpotifyUser serialize(JSONObject json) {
+
+        return this.serializeHelper(SpotifyUser.class, json);
     }
 }

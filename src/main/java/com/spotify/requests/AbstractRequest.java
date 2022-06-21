@@ -1,6 +1,9 @@
 package com.spotify.requests;
 
+import com.spotify.json.JSONArray;
 import com.spotify.json.JSONObject;
+import com.spotify.objects.SpotifyField;
+import com.spotify.objects.SpotifyObject;
 import com.spotify.requests.util.ParameterPair;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -11,22 +14,23 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 
 /**
  * The base of the API requests
  */
-public abstract class AbstractRequest implements IRequest {
+public abstract class AbstractRequest<T extends Serializable> implements IRequest, Serialize<T>, Serializable {
 
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
     private final static HttpClient httpClient = HttpClientBuilder.create().build();
     private final Map<String, RequestQuery<?>> queries;
     private final Map<String, Class<?>> restrictedQueryTypes;
-
 
     public AbstractRequest() {
         this.queries = new HashMap<>();
@@ -126,5 +130,54 @@ public abstract class AbstractRequest implements IRequest {
                 && this.restrictedQueryTypes.get(query.getKey()).equals(query.getQueryType())) {
             this.queries.put(query.getKey(), query);
         }
+    }
+
+
+    protected <E extends Serializable> E serializeHelper(Class<E> cls, JSONObject json) {
+        List<? super Serializable> parameters = new ArrayList<>();
+
+        for (Field field : cls.getDeclaredFields()) {
+            SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
+            if (spotifyField == null) continue;
+
+            Class<? extends Serializable> type = (Class<? extends Serializable>) spotifyField.type();
+            String name = spotifyField.value();
+
+            if (type.equals(String.class)) {
+                parameters.add(json.getString(name));
+            } else if (type.equals(Integer.class)) {
+                parameters.add(json.getInt(name));
+            } else if (type.equals(Boolean.class)) {
+                json.getBoolean(name);
+            } else if (type.equals(Double.class)) {
+                json.getDouble(name);
+            } else {
+                SpotifyObject spotifyObject = type.getAnnotation(SpotifyObject.class);
+                if (spotifyObject == null) continue;
+                if (spotifyField.isArray()) {
+                    JSONArray jsonArray = json.getJSONArray(name);
+                    Object[] objects = new Object[jsonArray.length()];
+                    for (int i = 0; i < objects.length; i++) {
+                        this.serializeHelper(type, jsonArray.getJSONObject(i));
+                    }
+                    parameters.add(objects);
+                } else
+                    parameters.add(this.serializeHelper(type, json.getJSONObject(name)));
+            }
+        }
+        try {
+            Constructor<?> ctor = cls.getConstructor(cls);
+            return (E) ctor.newInstance(parameters.toArray());
+        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            return null;
+        }
+
+    }
+
+
+    @Override
+    public T serialize(JSONObject json) {
+        return null;
     }
 }
