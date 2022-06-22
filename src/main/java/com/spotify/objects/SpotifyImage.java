@@ -8,9 +8,9 @@ public class SpotifyImage implements Serializable {
 
     @SpotifyField(value = "url")
     private final String url;
-    @SpotifyField(value = "height", type = Integer.class)
+    @SpotifyField(value = "height", type = Integer.class, required = false)
     private final int height;
-    @SpotifyField(value = "width", type = Integer.class)
+    @SpotifyField(value = "width", type = Integer.class, required = false)
     private final int width;
 
     public SpotifyImage(String url) {
@@ -34,5 +34,14 @@ public class SpotifyImage implements Serializable {
 
     public int getWidth() {
         return this.width;
+    }
+
+    @Override
+    public String toString() {
+        return "SpotifyImage{" +
+                "url='" + url + '\'' +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }

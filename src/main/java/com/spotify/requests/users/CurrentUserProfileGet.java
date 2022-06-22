@@ -31,4 +31,5 @@ public class CurrentUserProfileGet extends AbstractRequest<SpotifyUser> {
 
         return this.serializeHelper(SpotifyUser.class, json);
     }
+
 }

@@ -33,7 +33,7 @@ public class SerializeObject {
             spotifyImages[i] = new SpotifyImage(jsonObject.getString("url") /*, jsonObject.getInt("height"), jsonObject.getInt("width")*/);
         }
 
-        return new SpotifyUser(json.getString("country"), json.getString("display_name"), json.getString("email"), expContentArr, externalUrlsSpotify, followers,
+        return new SpotifyUser(json.getString("country"), json.getString("display_name"), json.getString("email"), externalUrlsSpotify, followers,
                 json.getString("href"), json.getString("id"), spotifyImages, json.getString("product"),
                 json.getString("uri"));
     }

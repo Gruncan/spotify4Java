@@ -4,6 +4,7 @@ import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class SpotifyUser implements Serializable {
 
@@ -18,7 +19,7 @@ public class SpotifyUser implements Serializable {
     private final boolean[] explicitContent;
     @SpotifyField("external_urls")
     private final String externalUrlsSpotify;
-    @SpotifyField(value = "followers", type = Integer.class)
+    @SpotifyField(value = "total", type = Integer.class, path = {"followers"})
     private final int followers;
     @SpotifyField("href")
     private final String href;
@@ -32,13 +33,16 @@ public class SpotifyUser implements Serializable {
     private final String uri;
 
 
-    public SpotifyUser(String country, String displayName, String email, boolean[] explicitContent,
-                       String externalUrlsSpotify, int followers, String href, String id, SpotifyImage[] images,
+    /*"java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, " +
+            "java.lang.String, java.lang.String, [Lcom.spotify.objects.SpotifyImage;" +
+            ",java.lang.String, java.lang.String)"*/
+    public SpotifyUser(String country, String displayName, String email, String externalUrlsSpotify,
+                       Integer followers, String href, String id, SpotifyImage[] images,
                        String product, String uri) {
         this.country = country;
         this.displayName = displayName;
         this.email = email;
-        this.explicitContent = explicitContent;
+        this.explicitContent = null;
         this.externalUrlsSpotify = externalUrlsSpotify;
         this.followers = followers;
         this.href = href;
@@ -93,12 +97,21 @@ public class SpotifyUser implements Serializable {
         return uri;
     }
 
-
     @Override
     public String toString() {
-        return "This is the spotify user";
+        return "SpotifyUser{" +
+                "country='" + country + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", email='" + email + '\'' +
+                ", explicitContent=" + Arrays.toString(explicitContent) +
+                ", externalUrlsSpotify='" + externalUrlsSpotify + '\'' +
+                ", followers=" + followers +
+                ", href='" + href + '\'' +
+                ", id='" + id + '\'' +
+                ", images=" + Arrays.toString(images) +
+                ", product='" + product + '\'' +
+                ", uri='" + uri + '\'' +
+                '}';
     }
-
-
 }
 

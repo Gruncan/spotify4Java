@@ -12,5 +12,8 @@ public @interface SpotifyField {
 
     boolean isArray() default false;
 
+    boolean required() default true;
+
+    String[] path() default {};
 
 }
