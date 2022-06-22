@@ -159,18 +159,15 @@ public abstract class AbstractRequest<T extends Serializable> implements IReques
                     throw new SpotifySerializationException(String.format("No mapping found for spotify required field: %s. " +
                             "Java variable: %s", spotifyField.value(), field.getName()));
 
+                classes.add(type);
                 if (type.equals(String.class)) {
                     parameters.add(jsonPath.getString(name));
-                    classes.add(String.class);
                 } else if (type.equals(Integer.class)) {
                     parameters.add(jsonPath.getInt(name));
-                    classes.add(Integer.class);
                 } else if (type.equals(Boolean.class)) {
                     parameters.add(jsonPath.getBoolean(name));
-                    classes.add(Boolean.class);
                 } else if (type.equals(Double.class)) {
                     parameters.add(jsonPath.getDouble(name));
-                    classes.add(Double.class);
                 } else {
                     SpotifyObject spotifyObject = type.getAnnotation(SpotifyObject.class);
                     if (spotifyObject == null) continue;
@@ -180,10 +177,10 @@ public abstract class AbstractRequest<T extends Serializable> implements IReques
 
                         JSONArray jsonArray = jsonPath.getJSONArray(name);
                         parameters.add(this.createArray(type, jsonArray));
-                        classes.add(arrayType);
+                        // updates the last index with the correct type if its an array
+                        classes.set(classes.size() - 1, arrayType);
                     } else {
                         parameters.add(this.serializeHelper(type, jsonPath.getJSONObject(name)));
-                        classes.add(type);
                     }
                 }
             }

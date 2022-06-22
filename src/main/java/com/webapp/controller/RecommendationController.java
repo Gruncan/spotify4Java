@@ -2,6 +2,7 @@ package com.webapp.controller;
 
 import com.spotify.SpotifyClient;
 import com.spotify.json.JSONObject;
+import com.spotify.objects.user.SpotifyUser;
 import com.spotify.requests.users.CurrentUserProfileGet;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,10 @@ public class RecommendationController {
 
         CurrentUserProfileGet currentUserProfileGet = new CurrentUserProfileGet();
         JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
-        System.out.println(jsonObject);
+        SpotifyUser spotifyUser = currentUserProfileGet.serialize(jsonObject);
+        System.out.println(spotifyUser.toString());
+
+
 //        RecommendationAlgorithm recommendationAlgorithm = new RecommendationAlgorithm(spotifyClient);
 //        List<TrackAlgInfo> trackAlgInfoList = TrackAlgInfo.loadFromFile("data.csv");
 //        recommendationAlgorithm.loadTracks(trackAlgInfoList);
