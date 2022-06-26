@@ -1,10 +1,6 @@
 package com.spotify.requests;
 
-import com.spotify.exceptions.SpotifySerializationException;
-import com.spotify.json.JSONArray;
 import com.spotify.json.JSONObject;
-import com.spotify.objects.SpotifyField;
-import com.spotify.objects.SpotifyObject;
 import com.spotify.requests.util.ParameterPair;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -16,17 +12,16 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.lang.reflect.ParameterizedType;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 
 /**
  * The base of the API requests
  */
-public abstract class AbstractRequest<T extends Serializable> implements IRequest, Serialize<T>, Serializable {
+public abstract class AbstractRequest<T extends Serializable> extends SpotifySerializer implements IRequest, Serialize<T> {
 
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
@@ -108,7 +103,6 @@ public abstract class AbstractRequest<T extends Serializable> implements IReques
         }
     }
 
-
     private String processBody(HttpEntity entity) throws IOException {
         // reads in body of the request converting it to string
         if (entity != null) {
@@ -120,7 +114,6 @@ public abstract class AbstractRequest<T extends Serializable> implements IReques
         } else
             return null;
     }
-
 
     /**
      * Adds a query key value to given request proved it is allowed.
@@ -134,84 +127,14 @@ public abstract class AbstractRequest<T extends Serializable> implements IReques
         }
     }
 
-
-    protected <E extends Serializable> E serializeHelper(Class<E> cls, JSONObject json) {
-        try {
-            List<? super Serializable> parameters = new ArrayList<>();
-            List<Class<? extends Serializable>> classes = new ArrayList<>();
-
-            for (Field field : cls.getDeclaredFields()) {
-                SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
-                if (spotifyField == null) continue;
-
-                Class<? extends Serializable> type = (Class<? extends Serializable>) spotifyField.type();
-                String name = spotifyField.value();
-                JSONObject jsonPath = json;
-                if (spotifyField.path().length != 0) {
-                    for (String p : spotifyField.path()) {
-                        jsonPath = jsonPath.getJSONObject(p);
-                    }
-                }
-
-                if (!spotifyField.required() && jsonPath.isNull(name))
-                    continue;
-                else if (jsonPath.isNull(name))
-                    throw new SpotifySerializationException(String.format("No mapping found for spotify required field: %s. " +
-                            "Java variable: %s", spotifyField.value(), field.getName()));
-
-                classes.add(type);
-                if (type.equals(String.class)) {
-                    parameters.add(jsonPath.getString(name));
-                } else if (type.equals(Integer.class)) {
-                    parameters.add(jsonPath.getInt(name));
-                } else if (type.equals(Boolean.class)) {
-                    parameters.add(jsonPath.getBoolean(name));
-                } else if (type.equals(Double.class)) {
-                    parameters.add(jsonPath.getDouble(name));
-                } else {
-                    SpotifyObject spotifyObject = type.getAnnotation(SpotifyObject.class);
-                    if (spotifyObject == null) continue;
-                    if (spotifyField.isArray()) {
-
-                        Class<? extends Serializable> arrayType = (Class<? extends Serializable>) Array.newInstance(type, 0).getClass();
-
-                        JSONArray jsonArray = jsonPath.getJSONArray(name);
-                        parameters.add(this.createArray(type, jsonArray));
-                        // updates the last index with the correct type if its an array
-                        classes.set(classes.size() - 1, arrayType);
-                    } else {
-                        parameters.add(this.serializeHelper(type, jsonPath.getJSONObject(name)));
-                    }
-                }
-            }
-            Constructor<?> ctor = cls.getConstructor(this.fromListToClassArray(classes));
-            return (E) ctor.newInstance(parameters.toArray());
-        } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException | SpotifySerializationException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    private <F extends Serializable> F[] createArray(Class<F> cls, JSONArray jsonArray) {
-        F[] array = (F[]) Array.newInstance(cls, jsonArray.length());
-        for (int i = 0; i < array.length; i++) {
-            array[i] = this.serializeHelper(cls, jsonArray.getJSONObject(i));
-        }
-        return array;
-    }
-
-    private Class[] fromListToClassArray(List<Class<? extends Serializable>> list) {
-        Class[] classes = new Class[list.size()];
-        for (int i = 0; i < classes.length; i++) {
-            classes[i] = list.get(i);
-        }
-        return classes;
-    }
-
-
     @Override
     public T serialize(JSONObject json) {
-        return null;
+        Class<T> cls = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        if (cls.equals(String.class))
+            return (T) json.toString();
+        else if (cls.equals(JSONObject.class))
+            return (T) json;
+        else
+            return this.serializer(cls, json);
     }
 }

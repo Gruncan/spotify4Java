@@ -26,9 +26,5 @@ public class CurrentUserProfileGet extends AbstractRequest<SpotifyUser> {
         return super.requestGet(token, URL);
     }
 
-    @Override
-    public SpotifyUser serialize(JSONObject json) {
-        return this.serializeHelper(SpotifyUser.class, json);
-    }
 
 }
