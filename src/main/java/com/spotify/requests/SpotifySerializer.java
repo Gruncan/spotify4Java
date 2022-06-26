@@ -16,61 +16,74 @@ import java.util.List;
 
 public class SpotifySerializer {
 
+
     protected <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
         try {
+            // A list of parameters values to instantiate the json into an object
             List<? super Serializable> parameters = new ArrayList<>();
+            // A list of classes of the types of which each parameter is
             List<Class<? extends Serializable>> classes = new ArrayList<>();
 
             for (Field field : cls.getDeclaredFields()) {
                 SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
+                // if not field not annotated continue
                 if (spotifyField == null) continue;
 
 
                 Class<?> fieldRawType = field.getType();
                 Class<? extends Serializable> fieldType;
 
+                // Casting field class to correctly subclass java.io.Serializable
                 if (Serializable.class.isAssignableFrom(fieldRawType))
                     fieldType = (Class<? extends Serializable>) fieldRawType;
                 else
                     continue;
 
-                Class<? extends Serializable> type = (Class<? extends Serializable>) spotifyField.type();
                 String name = spotifyField.value();
-                JSONObject jsonPath = json;
 
+                // Get jsonobject if deeper in hierarchy
+                JSONObject jsonPath = json;
                 for (String p : spotifyField.path())
                     jsonPath = jsonPath.getJSONObject(p);
 
 
+                //if field is not present and is required throw error can't serialize
                 if (!spotifyField.required() && jsonPath.isNull(name))
                     continue;
                 else if (jsonPath.isNull(name))
                     throw new SpotifySerializationException(String.format("No mapping found for spotify required field: %s. " +
                             "Java variable: %s", spotifyField.value(), field.getName()));
 
+
                 classes.add(fieldType);
-                if (type.equals(String.class)) {
+                // 'primitive' serialization types
+                if (fieldType.equals(String.class)) {
                     parameters.add(jsonPath.getString(name));
-                } else if (type.equals(Integer.class)) {
+                } else if (fieldType.equals(Integer.class)) {
                     parameters.add(jsonPath.getInt(name));
-                } else if (type.equals(Boolean.class)) {
+                } else if (fieldType.equals(Boolean.class)) {
                     parameters.add(jsonPath.getBoolean(name));
-                } else if (type.equals(Double.class)) {
+                } else if (fieldType.equals(Double.class)) {
                     parameters.add(jsonPath.getDouble(name));
                 } else {
-                    if (!SpotifyObject.class.isAssignableFrom(type)) continue;
+                    Class<?> componentRawType = fieldType.getComponentType();
+
+                    // Checks the none 'primitive' type extends com.spotify.objects.SpotifyObject
+                    if (!SpotifyObject.class.isAssignableFrom(componentRawType)) continue;
 
                     if (fieldType.isArray()) {
+                        Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
 
                         JSONArray jsonArray = jsonPath.getJSONArray(name);
-                        parameters.add(this.createArray(type, jsonArray));
-                        // updates the last index with the correct type if its an array
-                        //classes.set(classes.size() - 1, arrayType);
+                        // Add array of componentType, seperate method to allow casting of generic type
+                        parameters.add(this.createArray(componentType, jsonArray));
                     } else {
-                        parameters.add(this.serializer(type, jsonPath.getJSONObject(name)));
+                        // Continuely serialize objects into 'primitive' types
+                        parameters.add(this.serializer(fieldType, jsonPath.getJSONObject(name)));
                     }
                 }
             }
+            // Convert list of class into array
             Constructor<?> ctor = cls.getConstructor(this.fromListToClassArray(classes));
             return (E) ctor.newInstance(parameters.toArray());
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
