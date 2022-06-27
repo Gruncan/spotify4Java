@@ -15,8 +15,6 @@ public class SerializeObject {
 
 
     public SpotifyUser serializeSpotifyUser(JSONObject json) {
-
-
         JSONObject explicitContent = json.getJSONObject("explicit_content");
         boolean[] expContentArr = new boolean[]{explicitContent.getBoolean("filter_enabled"), explicitContent.getBoolean("filter_locked")};
 

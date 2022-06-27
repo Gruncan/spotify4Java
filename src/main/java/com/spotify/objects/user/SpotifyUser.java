@@ -2,11 +2,11 @@ package com.spotify.objects.user;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyObject;
 
-import java.io.Serializable;
 import java.util.Arrays;
 
-public class SpotifyUser implements Serializable {
+public class SpotifyUser implements SpotifyObject {
 
 
     @SpotifyField("country")
@@ -20,7 +20,7 @@ public class SpotifyUser implements Serializable {
     @SpotifyField("external_urls")
     private final String externalUrlsSpotify;
     @SpotifyField(value = "total", type = Integer.class, path = {"followers"})
-    private final int followers;
+    private final Integer followers;
     @SpotifyField("href")
     private final String href;
     @SpotifyField("id")

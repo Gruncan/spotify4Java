@@ -1,5 +1,8 @@
 package com.spotify.objects.track;
 
+import com.spotify.objects.SpotifyField;
+import com.spotify.objects.SpotifyObject;
+
 import java.util.Arrays;
 
 public class TrackAudioAnalysis {
@@ -76,7 +79,7 @@ public class TrackAudioAnalysis {
      * @param inputProcess    The method used to read the track's audio data.
      */
     public record Meta(String analyzerVersion, String platform, String detailedStatus, int statusCode, int timestamp,
-                       float analysisTime, String inputProcess) {
+                       float analysisTime, String inputProcess) implements SpotifyObject {
         @Override
         public String toString() {
             return "Meta{" +
@@ -134,7 +137,7 @@ public class TrackAudioAnalysis {
                         int key, float keyConfidence, int mode, float modeConfidence, String codestring,
                         float codeVersion,
                         String echoprintstring, int echoprintVersion, String synchstring, float synchVersion,
-                        String rhythmstring, float rhythmVersion) {
+                        String rhythmstring, float rhythmVersion) implements SpotifyObject {
 
         @Override
         public String toString() {
@@ -176,7 +179,7 @@ public class TrackAudioAnalysis {
      * @param duration   The duration (in seconds) of the time interval.
      * @param confidence The confidence, from 0.0 to 1.0, of the reliability of the interval.
      */
-    public record Bar(float start, float duration, float confidence) implements AudioRecordArray {
+    public record Bar(float start, float duration, float confidence) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Bar{" +
@@ -195,7 +198,7 @@ public class TrackAudioAnalysis {
      * @param duration   The duration (in seconds) of the time interval.
      * @param confidence The confidence, from 0.0 to 1.0, of the reliability of the interval.
      */
-    public record Beat(float start, float duration, float confidence) implements AudioRecordArray {
+    public record Beat(float start, float duration, float confidence) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Beat{" +
@@ -238,7 +241,7 @@ public class TrackAudioAnalysis {
      */
     public record Section(float start, float duration, float confidence, float loudness, float tempo,
                           float tempoConfidence, int key, float keyConfidence, float mode, float modeConfidence,
-                          int timeSignature, float timeSignatureConfidence) implements AudioRecordArray {
+                          int timeSignature, float timeSignatureConfidence) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Section{" +
@@ -302,7 +305,7 @@ public class TrackAudioAnalysis {
      */
     public record Segment(float start, float duration, float confidence, float loudnessStart, float loudnessMax,
                           float loudnessMaxTime, float loudnessEnd, float[] pitches,
-                          float[] timbre) implements AudioRecordArray {
+                          float[] timbre) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Segment{" +
@@ -327,7 +330,9 @@ public class TrackAudioAnalysis {
      * @param duration   The duration (in seconds) of the time interval.
      * @param confidence The confidence, from 0.0 to 1.0, of the reliability of the interval.
      */
-    public record Tatum(float start, float duration, float confidence) implements AudioRecordArray {
+    public record Tatum(@SpotifyField(value = "start", type = Float.class) Float start,
+                        @SpotifyField(value = "duration", type = Float.class) Float duration,
+                        @SpotifyField(value = "confidence", type = Float.class) Float confidence) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Tatum{" +

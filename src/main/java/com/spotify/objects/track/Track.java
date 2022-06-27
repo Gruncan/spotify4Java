@@ -1,11 +1,10 @@
 package com.spotify.objects.track;
 
-import com.spotify.objects.ISerializable;
 import com.spotify.requests.util.Market;
 
 import java.util.Arrays;
 
-public class Track implements ISerializable {
+public class Track {
 
 
     private final Market[] availableMarkets;
@@ -109,7 +108,6 @@ public class Track implements ISerializable {
     public String getName() {
         return name;
     }
-
 
     public TrackArtist[] getArtists() {
         return artists;

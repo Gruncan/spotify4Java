@@ -1,9 +1,6 @@
 package com.spotify.objects;
 
-import java.io.Serializable;
-
-@SpotifyObject(name = "image")
-public class SpotifyImage implements Serializable {
+public class SpotifyImage implements SpotifyObject {
 
 
     @SpotifyField(value = "url")
