@@ -24,6 +24,9 @@ public class SpotifySerializer {
             // A list of classes of the types of which each parameter is
             List<Field> classes = new ArrayList<>();
 
+            Constructor<E> constructor = cls.getConstructor();
+            E e = constructor.newInstance();
+
             for (Field field : cls.getDeclaredFields()) {
                 SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
                 // if not field not annotated continue
@@ -55,16 +58,18 @@ public class SpotifySerializer {
                             "Java variable: %s", spotifyField.value(), field.getName()));
 
 
+                field.setAccessible(true);
+
                 classes.add(field);
                 // 'primitive' serialization types
                 if (fieldType.equals(String.class)) {
-                    parameters.add(jsonPath.getString(name));
+                    field.set(e, jsonPath.getString(name));
                 } else if (fieldType.equals(Integer.class)) {
-                    parameters.add(jsonPath.getInt(name));
+                    field.set(e, jsonPath.getInt(name));
                 } else if (fieldType.equals(Boolean.class)) {
-                    parameters.add(jsonPath.getBoolean(name));
+                    field.set(e, jsonPath.getBoolean(name));
                 } else if (fieldType.equals(Double.class)) {
-                    parameters.add(jsonPath.getDouble(name));
+                    field.set(e, jsonPath.getDouble(name));
                 } else {
                     Class<?> componentRawType = fieldType.getComponentType();
 
@@ -76,21 +81,12 @@ public class SpotifySerializer {
 
                         JSONArray jsonArray = jsonPath.getJSONArray(name);
                         // Add array of componentType, seperate method to allow casting of generic type
-                        parameters.add(this.createArray(componentType, jsonArray));
+                        field.set(e, this.createArray(componentType, jsonArray));
                     } else {
                         // Continuely serialize objects into 'primitive' types
-                        parameters.add(this.serializer(fieldType, jsonPath.getJSONObject(name)));
+                        field.set(e, this.serializer(fieldType, jsonPath.getJSONObject(name)));
                     }
                 }
-            }
-
-
-            Constructor<E> constructor = cls.getConstructor();
-            E e = constructor.newInstance();
-            for (int i = 0; i < classes.size(); i++) {
-                Field field = classes.get(i);
-                field.setAccessible(true);
-                field.set(e, parameters.get(i));
                 field.setAccessible(false);
             }
 
