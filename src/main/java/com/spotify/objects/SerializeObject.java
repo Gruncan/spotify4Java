@@ -30,12 +30,12 @@ public class SerializeObject {
         SpotifyImage[] spotifyImages = new SpotifyImage[images.length()];
         for (int i = 0; i < images.length(); i++) {
             JSONObject jsonObject = (JSONObject) images.get(i);
-            spotifyImages[i] = new SpotifyImage(jsonObject.getString("url") /*, jsonObject.getInt("height"), jsonObject.getInt("width")*/);
+//            spotifyImages[i] = new SpotifyImage(jsonObject.getString("url") /*, jsonObject.getInt("height"), jsonObject.getInt("width")*/);
         }
 
-        return new SpotifyUser(json.getString("country"), json.getString("display_name"), json.getString("email"), externalUrlsSpotify, followers,
-                json.getString("href"), json.getString("id"), spotifyImages, json.getString("product"),
-                json.getString("uri"));
+        return null;//new SpotifyUser(json.getString("country"), json.getString("display_name"), json.getString("email"), externalUrlsSpotify, followers,
+//                json.getString("href"), json.getString("id"), spotifyImages, json.getString("product"),
+//                json.getString("uri"));
     }
 
     public TrackAudioAnalysis serializeTrackAudioAnalysis(JSONObject json) {
@@ -186,9 +186,9 @@ public class SerializeObject {
 //        System.out.println(jsonArray== null ? null : jsonArray.toString(2));
         if (jsonArray == null || jsonArray.length() == 0) {
             // default image, artist has none
-            return new SpotifyImage("C:/Development/Java/API/spotstat/src/main/resources/static/images/defultImage.png");
+            //return new SpotifyImage("C:/Development/Java/API/spotstat/src/main/resources/static/images/defultImage.png");
         }
-        return new SpotifyImage(jsonArray.getJSONObject(0).getString("url"));
+        return null;//new SpotifyImage(jsonArray.getJSONObject(0).getString("url"));
     }
 
 
@@ -217,7 +217,7 @@ public class SerializeObject {
         if (jsonArray == null) return null;
         SpotifyImage[] spotifyImages = new SpotifyImage[jsonArray.length()];
         for (int i = 0; i < Math.min(1, spotifyImages.length); i++) {
-            spotifyImages[i] = new SpotifyImage(jsonArray.getJSONObject(i).getString("url"));
+            spotifyImages[i] = null;//new SpotifyImage(jsonArray.getJSONObject(i).getString("url"));
         }
         return spotifyImages;
     }

@@ -127,6 +127,7 @@ public abstract class AbstractRequest<T extends Serializable> extends SpotifySer
         }
     }
 
+
     @Override
     public T serialize(JSONObject json) {
         Class<T> cls = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];

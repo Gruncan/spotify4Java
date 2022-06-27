@@ -22,7 +22,7 @@ public class SpotifySerializer {
             // A list of parameters values to instantiate the json into an object
             List<? super Serializable> parameters = new ArrayList<>();
             // A list of classes of the types of which each parameter is
-            List<Class<? extends Serializable>> classes = new ArrayList<>();
+            List<Field> classes = new ArrayList<>();
 
             for (Field field : cls.getDeclaredFields()) {
                 SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
@@ -55,7 +55,7 @@ public class SpotifySerializer {
                             "Java variable: %s", spotifyField.value(), field.getName()));
 
 
-                classes.add(fieldType);
+                classes.add(field);
                 // 'primitive' serialization types
                 if (fieldType.equals(String.class)) {
                     parameters.add(jsonPath.getString(name));
@@ -83,9 +83,18 @@ public class SpotifySerializer {
                     }
                 }
             }
-            // Convert list of class into array
-            Constructor<?> ctor = cls.getConstructor(this.fromListToClassArray(classes));
-            return (E) ctor.newInstance(parameters.toArray());
+
+
+            Constructor<E> constructor = cls.getConstructor();
+            E e = constructor.newInstance();
+            for (int i = 0; i < classes.size(); i++) {
+                Field field = classes.get(i);
+                field.setAccessible(true);
+                field.set(e, parameters.get(i));
+                field.setAccessible(false);
+            }
+
+            return e;
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException | SpotifySerializationException e) {
             e.printStackTrace();
@@ -101,8 +110,8 @@ public class SpotifySerializer {
         return array;
     }
 
-    private Class[] fromListToClassArray(List<Class<? extends Serializable>> list) {
-        Class[] classes = new Class[list.size()];
+    private Class<?>[] fromListToClassArray(List<Class<? extends Serializable>> list) {
+        Class<?>[] classes = new Class[list.size()];
         for (int i = 0; i < classes.length; i++) {
             classes[i] = list.get(i);
         }

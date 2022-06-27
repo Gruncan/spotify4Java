@@ -10,47 +10,28 @@ public class SpotifyUser implements SpotifyObject {
 
 
     @SpotifyField("country")
-    private final String country;
+    private String country;
     @SpotifyField("display_name")
-    private final String displayName;
+    private String displayName;
     @SpotifyField("email")
-    private final String email;
+    private String email;
     //TODO sort this
-    private final boolean[] explicitContent;
+    private boolean[] explicitContent;
     @SpotifyField("external_urls")
-    private final String externalUrlsSpotify;
+    private String externalUrlsSpotify;
     @SpotifyField(value = "total", type = Integer.class, path = {"followers"})
-    private final Integer followers;
+    private Integer followers;
     @SpotifyField("href")
-    private final String href;
+    private String href;
     @SpotifyField("id")
-    private final String id;
+    private String id;
     @SpotifyField(value = "images", type = SpotifyImage.class, isArray = true)
-    private final SpotifyImage[] images;
+    private SpotifyImage[] images;
     @SpotifyField("product")
-    private final String product;
+    private String product;
     @SpotifyField("uri")
-    private final String uri;
+    private String uri;
 
-
-    /*"java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Integer, " +
-            "java.lang.String, java.lang.String, [Lcom.spotify.objects.SpotifyImage;" +
-            ",java.lang.String, java.lang.String)"*/
-    public SpotifyUser(String country, String displayName, String email, String externalUrlsSpotify,
-                       Integer followers, String href, String id, SpotifyImage[] images,
-                       String product, String uri) {
-        this.country = country;
-        this.displayName = displayName;
-        this.email = email;
-        this.explicitContent = null;
-        this.externalUrlsSpotify = externalUrlsSpotify;
-        this.followers = followers;
-        this.href = href;
-        this.id = id;
-        this.images = images;
-        this.product = product;
-        this.uri = uri;
-    }
 
 
     public String getCountry() {
