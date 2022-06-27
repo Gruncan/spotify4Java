@@ -11,7 +11,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpotifySerializer {
@@ -19,11 +18,6 @@ public class SpotifySerializer {
 
     protected <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
         try {
-            // A list of parameters values to instantiate the json into an object
-            List<? super Serializable> parameters = new ArrayList<>();
-            // A list of classes of the types of which each parameter is
-            List<Field> classes = new ArrayList<>();
-
             Constructor<E> constructor = cls.getConstructor();
             E e = constructor.newInstance();
 
@@ -60,8 +54,6 @@ public class SpotifySerializer {
 
                 field.setAccessible(true);
 
-                classes.add(field);
-                // 'primitive' serialization types
                 if (fieldType.equals(String.class)) {
                     field.set(e, jsonPath.getString(name));
                 } else if (fieldType.equals(Integer.class)) {
