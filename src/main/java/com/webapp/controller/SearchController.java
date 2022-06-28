@@ -2,8 +2,6 @@ package com.webapp.controller;
 
 import com.spotify.SpotifyClient;
 import com.spotify.json.JSONObject;
-import com.spotify.objects.SerializeObject;
-import com.spotify.objects.search.SearchResult;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.search.SearchGet;
 import org.springframework.stereotype.Controller;
@@ -36,9 +34,9 @@ public class SearchController {
         System.out.println(jsonObject.toString());
 
 
-        SearchResult searchResult = new SerializeObject().serializeSearchResult(jsonObject);
-        redirectAttributes.addFlashAttribute("results", searchResult);
-        redirectAttributes.addFlashAttribute("success", true);
+        //SearchResult searchResult = new SerializeObject().serializeSearchResult(jsonObject);
+        //redirectAttributes.addFlashAttribute("results", searchResult);
+        //redirectAttributes.addFlashAttribute("success", true);
         return redirectView;
 
     }

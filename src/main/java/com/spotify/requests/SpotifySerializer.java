@@ -3,6 +3,7 @@ package com.spotify.requests;
 import com.spotify.exceptions.SpotifySerializationException;
 import com.spotify.json.JSONArray;
 import com.spotify.json.JSONObject;
+import com.spotify.json.JsonGetter;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 
@@ -11,7 +12,6 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
 public class SpotifySerializer {
 
@@ -54,31 +54,18 @@ public class SpotifySerializer {
 
                 field.setAccessible(true);
 
-                if (fieldType.equals(String.class)) {
-                    field.set(e, jsonPath.getString(name));
-                } else if (fieldType.equals(Integer.class)) {
-                    field.set(e, jsonPath.getInt(name));
-                } else if (fieldType.equals(Boolean.class)) {
-                    field.set(e, jsonPath.getBoolean(name));
-                } else if (fieldType.equals(Double.class)) {
-                    field.set(e, jsonPath.getDouble(name));
-                } else {
+                if (fieldType.isArray()) {
                     Class<?> componentRawType = fieldType.getComponentType();
+                    Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
+                    if (!SpotifyObject.class.isAssignableFrom(componentType)) continue;
 
-                    // Checks the none 'primitive' type extends com.spotify.objects.SpotifyObject
-                    if (!SpotifyObject.class.isAssignableFrom(componentRawType)) continue;
+                    JSONArray jsonArray = jsonPath.getJSONArray(name);
+                    field.set(e, this.createArray(componentType, jsonArray));
+                } else {
 
-                    if (fieldType.isArray()) {
-                        Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
-
-                        JSONArray jsonArray = jsonPath.getJSONArray(name);
-                        // Add array of componentType, seperate method to allow casting of generic type
-                        field.set(e, this.createArray(componentType, jsonArray));
-                    } else {
-                        // Continuely serialize objects into 'primitive' types
-                        field.set(e, this.serializer(fieldType, jsonPath.getJSONObject(name)));
-                    }
+                    field.set(e, this.serializeField(fieldType, jsonPath, name, -1));
                 }
+
                 field.setAccessible(false);
             }
 
@@ -90,21 +77,20 @@ public class SpotifySerializer {
         }
     }
 
+    private <E extends Serializable> E serializeField(Class<E> componentType, JsonGetter jsonPath, String name, int index) {
+        if (!SpotifyObject.class.isAssignableFrom(componentType)) {
+            return jsonPath.get(componentType, name, index);
+        } else {
+            return this.serializer(componentType, jsonPath.get(JSONObject.class, name, index));
+        }
+    }
+
+
     private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) {
         E[] array = (E[]) Array.newInstance(cls, jsonArray.length());
         for (int i = 0; i < array.length; i++) {
-            array[i] = this.serializer(cls, jsonArray.getJSONObject(i));
+            array[i] = this.serializeField(cls, jsonArray, null, i);
         }
         return array;
     }
-
-    private Class<?>[] fromListToClassArray(List<Class<? extends Serializable>> list) {
-        Class<?>[] classes = new Class[list.size()];
-        for (int i = 0; i < classes.length; i++) {
-            classes[i] = list.get(i);
-        }
-        return classes;
-    }
-
-
 }

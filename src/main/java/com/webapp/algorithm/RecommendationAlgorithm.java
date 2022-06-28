@@ -34,15 +34,15 @@ public class RecommendationAlgorithm {
         for (TrackAlgInfo trackAlgInfo : trackInfo) {
             AbstractRequest getTrackData = new TrackGet(trackAlgInfo.getId());
             JSONObject trackJson = this.spotifyClient.executeRequest(getTrackData);
-            Track track = serializeObject.serializeTrack(trackJson);
+            //Track track = serializeObject.serializeTrack(trackJson);
 
             AbstractRequest getTrackFeatures = new TrackAudioFeaturesGet(trackAlgInfo.getId());
             JSONObject jsonFeatures = this.spotifyClient.executeRequest(getTrackFeatures);
-            TrackAudioFeatures trackAudioFeatures = serializeObject.serializeTrackAudioFeatures(jsonFeatures);
-            track.setAudioFeatures(trackAudioFeatures);
+            //TrackAudioFeatures trackAudioFeatures = serializeObject.serializeTrackAudioFeatures(jsonFeatures);
+            //track.setAudioFeatures(trackAudioFeatures);
 
 
-            this.tracks.put(trackAlgInfo.getId(), track);
+            //this.tracks.put(trackAlgInfo.getId(), track);
 
 
         }
