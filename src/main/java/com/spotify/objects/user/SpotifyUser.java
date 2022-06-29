@@ -19,13 +19,13 @@ public class SpotifyUser implements SpotifyObject {
     private boolean[] explicitContent;
     @SpotifyField("external_urls")
     private String externalUrlsSpotify;
-    @SpotifyField(value = "total", type = Integer.class, path = {"followers"})
+    @SpotifyField(value = "total", path = {"followers"})
     private Integer followers;
     @SpotifyField("href")
     private String href;
     @SpotifyField("id")
     private String id;
-    @SpotifyField(value = "images", type = SpotifyImage.class, isArray = true)
+    @SpotifyField(value = "images")
     private SpotifyImage[] images;
     @SpotifyField("product")
     private String product;

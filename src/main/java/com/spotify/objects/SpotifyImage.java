@@ -5,9 +5,9 @@ public class SpotifyImage implements SpotifyObject {
 
     @SpotifyField(value = "url")
     private String url;
-    @SpotifyField(value = "height", type = Integer.class, required = false)
+    @SpotifyField(value = "height", required = false)
     private int height;
-    @SpotifyField(value = "width", type = Integer.class, required = false)
+    @SpotifyField(value = "width", required = false)
     private int width;
 
 

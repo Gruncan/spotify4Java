@@ -1,37 +1,35 @@
 package com.spotify.objects.track;
 
+import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyObject;
 
 import java.util.Arrays;
 
 
-public class TrackArtist {
+public class TrackArtist implements SpotifyObject {
 
 
-    private final Object externalUrls;
-    private final int followers;
-    private final String[] genres;
-    private final String href;
-    private final String id;
-    private final SpotifyImage image;
-    private final String name;
-    private final int popularity;
-    private final String type;
-    private final String uri;
-
-
-    public TrackArtist(String externalUrls, int followers, String[] genres, String href, String id, SpotifyImage image, String name, int popularity, String type, String uri) {
-        this.externalUrls = externalUrls;
-        this.followers = followers;
-        this.genres = genres;
-        this.href = href;
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.popularity = popularity;
-        this.type = type;
-        this.uri = uri;
-    }
+    @SpotifyField(value = "spotify", path = {"external_urls"}, required = false)
+    private String externalUrls;
+    @SpotifyField(value = "followers", path = {"total"}, required = false)
+    private int followers;
+    @SpotifyField(value = "genres", required = false)
+    private String[] genres;
+    @SpotifyField(value = "href", required = false)
+    private String href;
+    @SpotifyField(value = "id", required = false)
+    private String id;
+    @SpotifyField(value = "images", required = false)
+    private SpotifyImage[] image;
+    @SpotifyField(value = "name", required = false)
+    private String name;
+    @SpotifyField(value = "popularity", required = false)
+    private int popularity;
+    @SpotifyField(value = "type", required = false)
+    private String type;
+    @SpotifyField(value = "uri", required = false)
+    private String uri;
 
 
     @Override
@@ -42,7 +40,7 @@ public class TrackArtist {
                 ", genres=" + Arrays.toString(genres) +
                 ", href='" + href + '\'' +
                 ", id='" + id + '\'' +
-                ", image=" + image +
+                ", images=" + Arrays.toString(image) +
                 ", name='" + name + '\'' +
                 ", popularity=" + popularity +
                 ", type='" + type + '\'' +
@@ -70,7 +68,7 @@ public class TrackArtist {
         return id;
     }
 
-    public SpotifyImage getImage() {
+    public SpotifyImage[] getImage() {
         return image;
     }
 
