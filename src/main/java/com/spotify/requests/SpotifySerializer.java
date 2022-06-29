@@ -3,7 +3,6 @@ package com.spotify.requests;
 import com.spotify.exceptions.SpotifySerializationException;
 import com.spotify.json.JSONArray;
 import com.spotify.json.JSONObject;
-import com.spotify.json.JsonGetter;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 
@@ -45,7 +44,7 @@ public class SpotifySerializer {
 
 
                 //if field is not present and is required throw error can't serialize
-                if (!spotifyField.required() && jsonPath.isNull(name))
+                if (!spotifyField.required() && (jsonPath == null || jsonPath.isNull(name)))
                     continue;
                 else if (jsonPath.isNull(name))
                     throw new SpotifySerializationException(String.format("No mapping found for spotify required field: %s. " +
@@ -62,35 +61,31 @@ public class SpotifySerializer {
                     JSONArray jsonArray = jsonPath.getJSONArray(name);
                     field.set(e, this.createArray(componentType, jsonArray));
                 } else {
-
-                    field.set(e, this.serializeField(fieldType, jsonPath, name, -1));
+                    field.set(e, this.serializeField(fieldType, jsonPath, name));
                 }
-
                 field.setAccessible(false);
             }
-
             return e;
+
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException | SpotifySerializationException e) {
-            e.printStackTrace();
+                 InvocationTargetException | SpotifySerializationException a) {
+            a.printStackTrace();
             return null;
         }
     }
 
-    private <E extends Serializable> E serializeField(Class<E> componentType, JsonGetter jsonPath, String name, int index) {
-        if (!SpotifyObject.class.isAssignableFrom(componentType)) {
-            return jsonPath.get(componentType, name, index);
-        } else {
-            return this.serializer(componentType, jsonPath.get(JSONObject.class, name, index));
-        }
+    private <E extends Serializable> E serializeField(Class<E> componentType, JSONObject jsonPath, String name) {
+        if (!SpotifyObject.class.isAssignableFrom(componentType))
+            return jsonPath.get(componentType, name);
+        else
+            return this.serializer(componentType, jsonPath.get(JSONObject.class, name));
     }
 
 
     private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) {
         E[] array = (E[]) Array.newInstance(cls, jsonArray.length());
-        for (int i = 0; i < array.length; i++) {
-            array[i] = this.serializeField(cls, jsonArray, null, i);
-        }
+        for (int i = 0; i < array.length; i++)
+            array[i] = this.serializeField(cls, jsonArray.getJSONObject(i), "value");
         return array;
     }
 }

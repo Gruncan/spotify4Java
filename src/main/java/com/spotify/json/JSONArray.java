@@ -47,26 +47,9 @@ import java.util.List;
  * <i>Effective Java</i> Item 17, "Design and Document or inheritance or else
  * prohibit it" for further information.
  */
-public class JSONArray implements Iterable<Object>, JsonGetter {
+public class JSONArray implements Iterable<Object> {
     private final List<Object> values;
 
-
-    @Override
-    public <E> E get(Class<E> cls, String name, int index) {
-        if (cls.equals(String.class)) {
-            return (E) this.getString(index);
-        } else if (cls.equals(Integer.class)) {
-            return (E) this.getInt(index);
-        } else if (cls.equals(Double.class)) {
-            return (E) this.getDouble(index);
-        } else if (cls.equals(Boolean.class)) {
-            return (E) this.getBoolean(index);
-        } else if (cls.equals(JSONObject.class)) {
-            return (E) this.getJSONObject(index);
-        } else {
-            return null;
-        }
-    }
 
     /**
      * Creates a {@code JSONArray} with no values.
@@ -648,7 +631,15 @@ public class JSONArray implements Iterable<Object>, JsonGetter {
     public JSONObject getJSONObject(int index) throws JSONException {
         Object object = get(index);
         if (object instanceof JSONObject) {
-            return (JSONObject) object;
+            return new JSONObject(String.format("{\"value\": %s}", object));
+        } else if (object instanceof String) {
+            return new JSONObject(String.format("{\"value\": \"%s\"}", object));
+        } else if (object instanceof Boolean) {
+            return new JSONObject(String.format("{\"value\": %b}", object));
+        } else if (object instanceof Double) {
+            return new JSONObject(String.format("{\"value\": %d}", object));
+        } else if (object instanceof Integer) {
+            return new JSONObject(String.format("{\"value\": %d}", object));
         } else {
             throw JSON.typeMismatch(index, object, "JSONObject");
         }

@@ -77,11 +77,10 @@ import java.util.*;
  * <i>Effective Java</i> Item 17, "Design and Document or inheritance or else
  * prohibit it" for further information.
  */
-public class JSONObject implements JsonGetter {
+public class JSONObject {
 
 
-    @Override
-    public <E> E get(Class<E> cls, String name, int index) {
+    public <E> E get(Class<E> cls, String name) {
         if (cls.equals(String.class)) {
             return (E) this.getString(name);
         } else if (cls.equals(Integer.class)) {
