@@ -14,7 +14,6 @@ class TrackArtistTest {
     public void serialize() {
         String testData = """
                 {
-
                     "external_urls":{
                         "spotify":"https://open.spotify.com/artist/1iNqsUDUraNWrj00bqssQG"
                     },
@@ -22,7 +21,8 @@ class TrackArtistTest {
                     "id":"1iNqsUDUraNWrj00bqssQG",
                     "name":"Dreamville",
                     "type":"artist",
-                    "uri":"spotify:artist:1iNqsUDUraNWrj00bqssQG"
+                    "uri":"spotify:artist:1iNqsUDUraNWrj00bqssQG",
+                    "popularity": 10
 
                 }""";
         JSONObject jsonObject = new JSONObject(testData);
@@ -30,7 +30,7 @@ class TrackArtistTest {
 
         assertNotNull(jsonObject);
         TrackArtist trackArtist = trackGet.serialize(jsonObject);
-        System.out.println(trackArtist.toString());
+        System.out.println(trackArtist);
 
         assertNotNull(trackArtist);
     }

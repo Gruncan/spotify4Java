@@ -631,6 +631,16 @@ public class JSONArray implements Iterable<Object> {
     public JSONObject getJSONObject(int index) throws JSONException {
         Object object = get(index);
         if (object instanceof JSONObject) {
+            return (JSONObject) object;
+        } else {
+            throw JSON.typeMismatch(index, object, "JSONObject");
+        }
+    }
+
+
+    public JSONObject getModifiedJSONObject(int index) throws JSONException {
+        Object object = get(index);
+        if (object instanceof JSONObject) {
             return new JSONObject(String.format("{\"value\": %s}", object));
         } else if (object instanceof String) {
             return new JSONObject(String.format("{\"value\": \"%s\"}", object));

@@ -2,33 +2,35 @@ package com.spotify.objects.track;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyNotRequired;
 import com.spotify.objects.SpotifyObject;
 
 import java.util.Arrays;
 
-
+@SpotifyNotRequired
 public class TrackArtist implements SpotifyObject {
 
 
-    @SpotifyField(value = "spotify", path = {"external_urls"}, required = false)
+    @SpotifyField(value = "spotify", path = {"external_urls"})
     private String externalUrls;
-    @SpotifyField(value = "followers", path = {"total"}, required = false)
+
+    @SpotifyField(value = "followers", path = {"total"})
     private int followers;
-    @SpotifyField(value = "genres", required = false)
+    @SpotifyField
     private String[] genres;
-    @SpotifyField(value = "href", required = false)
+    @SpotifyField
     private String href;
-    @SpotifyField(value = "id", required = false)
+    @SpotifyField
     private String id;
-    @SpotifyField(value = "images", required = false)
-    private SpotifyImage[] image;
-    @SpotifyField(value = "name", required = false)
+    @SpotifyField
+    private SpotifyImage[] images;
+    @SpotifyField
     private String name;
-    @SpotifyField(value = "popularity", required = false)
+    @SpotifyField
     private int popularity;
-    @SpotifyField(value = "type", required = false)
+    @SpotifyField
     private String type;
-    @SpotifyField(value = "uri", required = false)
+    @SpotifyField
     private String uri;
 
 
@@ -40,7 +42,7 @@ public class TrackArtist implements SpotifyObject {
                 ", genres=" + Arrays.toString(genres) +
                 ", href='" + href + '\'' +
                 ", id='" + id + '\'' +
-                ", images=" + Arrays.toString(image) +
+                ", images=" + Arrays.toString(images) +
                 ", name='" + name + '\'' +
                 ", popularity=" + popularity +
                 ", type='" + type + '\'' +
@@ -69,7 +71,7 @@ public class TrackArtist implements SpotifyObject {
     }
 
     public SpotifyImage[] getImage() {
-        return image;
+        return images;
     }
 
     public String getName() {
