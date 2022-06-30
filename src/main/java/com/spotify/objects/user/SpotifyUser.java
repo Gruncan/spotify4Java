@@ -2,14 +2,16 @@ package com.spotify.objects.user;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyNotRequired;
 import com.spotify.objects.SpotifyObject;
 
 import java.util.Arrays;
 
+@SpotifyNotRequired
 public class SpotifyUser implements SpotifyObject {
 
 
-    @SpotifyField("country")
+    @SpotifyField
     private String country;
     @SpotifyField("display_name")
     private String displayName;
@@ -17,21 +19,20 @@ public class SpotifyUser implements SpotifyObject {
     private String email;
     //TODO sort this
     private boolean[] explicitContent;
-    @SpotifyField("external_urls")
+    @SpotifyField(value = "spotify", path = {"external_urls"})
     private String externalUrlsSpotify;
     @SpotifyField(value = "total", path = {"followers"})
     private Integer followers;
-    @SpotifyField("href")
+    @SpotifyField
     private String href;
-    @SpotifyField("id")
+    @SpotifyField
     private String id;
-    @SpotifyField(value = "images")
+    @SpotifyField
     private SpotifyImage[] images;
-    @SpotifyField("product")
+    @SpotifyField
     private String product;
-    @SpotifyField("uri")
+    @SpotifyField
     private String uri;
-
 
 
     public String getCountry() {

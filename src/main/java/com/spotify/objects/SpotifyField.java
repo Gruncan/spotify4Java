@@ -6,9 +6,8 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SpotifyField {
 
-    String value();
-
-    boolean required() default true;
+    // Since default can't be null, setting it to " is illegal json, therefore won't ever occur
+    String value() default "\"";
 
     String[] path() default {};
 

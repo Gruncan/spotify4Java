@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         Boolean s = Boolean.TRUE;
-        JSONObject jsonObject = new JSONObject(String.format("{\"value\": %b}", s));
+        JSONObject jsonObject = new JSONObject(String.format("{\"%s\"}: true", "\""));
         System.out.println(jsonObject);
 //
 //        JSONObject json = new JSONObject("{\"array\":[\"test1\",\"test2\", \"test3\", \"test4\" ]}");

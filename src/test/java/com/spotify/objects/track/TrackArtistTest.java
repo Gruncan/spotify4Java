@@ -15,14 +15,8 @@ class TrackArtistTest {
         String testData = """
                 {
 
-                    "external_urls":{
-                        "spotify":"https://open.spotify.com/artist/1iNqsUDUraNWrj00bqssQG"
-                    },
-                    "href":"https://api.spotify.com/v1/artists/1iNqsUDUraNWrj00bqssQG",
-                    "id":"1iNqsUDUraNWrj00bqssQG",
-                    "name":"Dreamville",
-                    "type":"artist",
-                    "uri":"spotify:artist:1iNqsUDUraNWrj00bqssQG"
+                                
+                    "test": true
 
                 }""";
         JSONObject jsonObject = new JSONObject(testData);
@@ -30,7 +24,7 @@ class TrackArtistTest {
 
         assertNotNull(jsonObject);
         TrackArtist trackArtist = trackGet.serialize(jsonObject);
-        System.out.println(trackArtist.toString());
+        System.out.println(trackArtist);
 
         assertNotNull(trackArtist);
     }

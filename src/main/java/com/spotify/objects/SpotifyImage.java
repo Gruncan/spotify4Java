@@ -3,13 +3,16 @@ package com.spotify.objects;
 public class SpotifyImage implements SpotifyObject {
 
 
-    @SpotifyField(value = "url")
+    @SpotifyField
     private String url;
-    @SpotifyField(value = "height", required = false)
-    private int height;
-    @SpotifyField(value = "width", required = false)
-    private int width;
 
+    @SpotifyNotRequired
+    @SpotifyField
+    private int height;
+
+    @SpotifyNotRequired
+    @SpotifyField
+    private int width;
 
 
     public String getUrl() {
