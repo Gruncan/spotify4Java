@@ -40,7 +40,19 @@ public class SpotifySerializer {
                 Class<?> fieldRawType = field.getType();
                 Class<? extends Serializable> fieldType;
 
-                // Casting field class to correctly subclass java.io.Serializable
+
+                if (fieldRawType.isPrimitive()) {
+                    if (fieldRawType.equals(int.class))
+                        fieldRawType = Integer.class;
+                    else if (fieldRawType.equals(boolean.class))
+                        fieldRawType = Boolean.class;
+                    else if (fieldRawType.equals(double.class))
+                        fieldRawType = Double.class;
+                    else
+                        continue;
+                }
+
+
                 if (Serializable.class.isAssignableFrom(fieldRawType))
                     fieldType = (Class<? extends Serializable>) fieldRawType;
                 else

@@ -1,21 +1,22 @@
 package com.webapp.algorithm;
 
-import com.spotify.json.JSONObject;
+import java.lang.reflect.Field;
 
 public class Main {
 
 
-    public static void main(String[] args) {
+    private boolean test;
 
-        Boolean s = Boolean.TRUE;
-        JSONObject jsonObject = new JSONObject(String.format("{\"%s\"}: true", "\""));
-        System.out.println(jsonObject);
-//
-//        JSONObject json = new JSONObject("{\"array\":[\"test1\",\"test2\", \"test3\", \"test4\" ]}");
-//        JSONArray jsonArray = json.getJSONArray("array");
-//        for (int i=0; i<jsonArray.length(); i++){
-//            System.out.println(jsonArray.getJSONObject(i));
-//        }
+
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
+        Main main = new Main();
+        Field field = Main.class.getDeclaredField("test");
+        field.setAccessible(true);
+        Boolean b = Boolean.TRUE;
+        System.out.println(b.getClass());
+        field.set(main, b);
+
+        System.out.println(main.test);
 
 
     }

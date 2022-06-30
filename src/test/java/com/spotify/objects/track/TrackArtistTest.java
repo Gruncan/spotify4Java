@@ -14,9 +14,15 @@ class TrackArtistTest {
     public void serialize() {
         String testData = """
                 {
-
-                                
-                    "test": true
+                    "external_urls":{
+                        "spotify":"https://open.spotify.com/artist/1iNqsUDUraNWrj00bqssQG"
+                    },
+                    "href":"https://api.spotify.com/v1/artists/1iNqsUDUraNWrj00bqssQG",
+                    "id":"1iNqsUDUraNWrj00bqssQG",
+                    "name":"Dreamville",
+                    "type":"artist",
+                    "uri":"spotify:artist:1iNqsUDUraNWrj00bqssQG",
+                    "popularity": 10
 
                 }""";
         JSONObject jsonObject = new JSONObject(testData);

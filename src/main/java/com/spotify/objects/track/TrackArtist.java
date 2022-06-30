@@ -7,16 +7,15 @@ import com.spotify.objects.SpotifyObject;
 
 import java.util.Arrays;
 
-
+@SpotifyNotRequired
 public class TrackArtist implements SpotifyObject {
 
 
-    @SpotifyNotRequired
     @SpotifyField(value = "spotify", path = {"external_urls"})
     private String externalUrls;
 
     @SpotifyField(value = "followers", path = {"total"})
-    private Integer followers;
+    private int followers;
     @SpotifyField
     private String[] genres;
     @SpotifyField
@@ -28,7 +27,7 @@ public class TrackArtist implements SpotifyObject {
     @SpotifyField
     private String name;
     @SpotifyField
-    private Integer popularity;
+    private int popularity;
     @SpotifyField
     private String type;
     @SpotifyField
