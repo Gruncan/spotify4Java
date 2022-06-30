@@ -8,10 +8,6 @@ public @interface SpotifyField {
 
     String value();
 
-    Class<?> type() default String.class;
-
-    boolean isArray() default false;
-
     boolean required() default true;
 
     String[] path() default {};

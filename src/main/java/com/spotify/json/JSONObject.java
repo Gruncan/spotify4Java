@@ -78,6 +78,25 @@ import java.util.*;
  * prohibit it" for further information.
  */
 public class JSONObject {
+
+
+    public <E> E get(Class<E> cls, String name) {
+        if (cls.equals(String.class)) {
+            return (E) this.getString(name);
+        } else if (cls.equals(Integer.class)) {
+            return (E) this.getInt(name);
+        } else if (cls.equals(Double.class)) {
+            return (E) this.getDouble(name);
+        } else if (cls.equals(Boolean.class)) {
+            return (E) this.getBoolean(name);
+        } else if (cls.equals(JSONObject.class)) {
+            return (E) this.getJSONObject(name);
+        } else {
+            return null;
+        }
+    }
+
+
     /**
      * A sentinel value used to explicitly define a name with no value. Unlike
      * {@code null}, names with this value:
@@ -637,7 +656,7 @@ public class JSONObject {
      * @throws JSONException if the mapping doesn't exist or cannot be coerced
      *                       to a boolean.
      */
-    public boolean getBoolean(String name) throws JSONException {
+    public Boolean getBoolean(String name) throws JSONException {
         Object object = get(name);
         Boolean result = JSON.toBoolean(object);
 //        if (result == null) {
@@ -681,7 +700,7 @@ public class JSONObject {
      * @throws JSONException if the mapping doesn't exist or cannot be coerced
      *                       to a double.
      */
-    public double getDouble(String name) throws JSONException {
+    public Double getDouble(String name) throws JSONException {
         Object object = get(name);
         Double result = JSON.toDouble(object);
 //        if (result == null) {
@@ -816,6 +835,7 @@ public class JSONObject {
      * @return The value of the field.
      * @throws JSONException if no such mapping exists.
      */
+
     public String getString(String name) throws JSONException {
         Object object = get(name);
         String result = JSON.toString(object);

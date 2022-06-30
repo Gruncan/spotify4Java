@@ -330,9 +330,9 @@ public class TrackAudioAnalysis {
      * @param duration   The duration (in seconds) of the time interval.
      * @param confidence The confidence, from 0.0 to 1.0, of the reliability of the interval.
      */
-    public record Tatum(@SpotifyField(value = "start", type = Float.class) Float start,
-                        @SpotifyField(value = "duration", type = Float.class) Float duration,
-                        @SpotifyField(value = "confidence", type = Float.class) Float confidence) implements AudioRecordArray, SpotifyObject {
+    public record Tatum(@SpotifyField(value = "start") Float start,
+                        @SpotifyField(value = "duration") Float duration,
+                        @SpotifyField(value = "confidence") Float confidence) implements AudioRecordArray, SpotifyObject {
         @Override
         public String toString() {
             return "Tatum{" +

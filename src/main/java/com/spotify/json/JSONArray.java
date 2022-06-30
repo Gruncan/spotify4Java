@@ -50,6 +50,7 @@ import java.util.List;
 public class JSONArray implements Iterable<Object> {
     private final List<Object> values;
 
+
     /**
      * Creates a {@code JSONArray} with no values.
      */
@@ -389,12 +390,9 @@ public class JSONArray implements Iterable<Object> {
      * @throws JSONException if the value at {@code index} doesn't exist or
      *                       cannot be coerced to a boolean.
      */
-    public boolean getBoolean(int index) throws JSONException {
+    public Boolean getBoolean(int index) throws JSONException {
         Object object = get(index);
         Boolean result = JSON.toBoolean(object);
-        if (result == null) {
-            throw JSON.typeMismatch(index, object, "boolean");
-        }
         return result;
     }
 
@@ -432,7 +430,7 @@ public class JSONArray implements Iterable<Object> {
      * @throws JSONException if the value at {@code index} doesn't exist or
      *                       cannot be coerced to a double.
      */
-    public double getDouble(int index) throws JSONException {
+    public Double getDouble(int index) throws JSONException {
         Object object = get(index);
         Double result = JSON.toDouble(object);
         if (result == null) {
@@ -475,12 +473,9 @@ public class JSONArray implements Iterable<Object> {
      * @throws JSONException if the value at {@code index} doesn't exist or
      *                       cannot be coerced to a int.
      */
-    public int getInt(int index) throws JSONException {
+    public Integer getInt(int index) throws JSONException {
         Object object = get(index);
         Integer result = JSON.toInteger(object);
-        if (result == null) {
-            throw JSON.typeMismatch(index, object, "int");
-        }
         return result;
     }
 
@@ -636,7 +631,15 @@ public class JSONArray implements Iterable<Object> {
     public JSONObject getJSONObject(int index) throws JSONException {
         Object object = get(index);
         if (object instanceof JSONObject) {
-            return (JSONObject) object;
+            return new JSONObject(String.format("{\"value\": %s}", object));
+        } else if (object instanceof String) {
+            return new JSONObject(String.format("{\"value\": \"%s\"}", object));
+        } else if (object instanceof Boolean) {
+            return new JSONObject(String.format("{\"value\": %b}", object));
+        } else if (object instanceof Double) {
+            return new JSONObject(String.format("{\"value\": %d}", object));
+        } else if (object instanceof Integer) {
+            return new JSONObject(String.format("{\"value\": %d}", object));
         } else {
             throw JSON.typeMismatch(index, object, "JSONObject");
         }
