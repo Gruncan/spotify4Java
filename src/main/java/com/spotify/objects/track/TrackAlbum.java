@@ -1,73 +1,75 @@
 package com.spotify.objects.track;
 
-import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyField;
+import com.spotify.objects.SpotifyNotRequired;
+import com.spotify.objects.SpotifyObject;
+import com.spotify.requests.util.ExternalIds;
 import com.spotify.requests.util.Market;
 
-import java.util.Arrays;
-
-public class TrackAlbum {
+public class TrackAlbum implements SpotifyObject {
 
 
-    private final String albumType;
-    private final int totalTracks;
-    private final Market[] availableMarkets;
-    private final Object externalUrls;
-    private final String herf;
-    private final String id;
-    private final SpotifyImage image;
-    private final String name;
-    private final String releaseDate;
-    private final String releaseDatePrecision;
-    private final Object restrictions;
-    private final String type;
-    private final String uri;
-    private final String albumGroup;
-    private final TrackAlbumArtist[] artists;
+    @SpotifyField
+    private TrackAlbum album;
 
+    @SpotifyField
+    private TrackArtist[] artists;
 
-    public TrackAlbum(String albumType, int totalTracks, Market[] availableMarkets, Object externalUrls, String herf,
-                      String id, SpotifyImage image, String name, String releaseDate, String releaseDatePrecision,
-                      Object restrictions, String type, String uri, String albumGroup, TrackAlbumArtist[] artists) {
-        this.albumType = albumType;
-        this.totalTracks = totalTracks;
-        this.availableMarkets = availableMarkets;
-        this.externalUrls = externalUrls;
-        this.herf = herf;
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.releaseDate = releaseDate;
-        this.releaseDatePrecision = releaseDatePrecision;
-        this.restrictions = restrictions;
-        this.type = type;
-        this.uri = uri;
-        this.albumGroup = albumGroup;
-        this.artists = artists;
-    }
+    @SpotifyField("available_markets")
+    private Market[] availableMarkets;
 
+    @SpotifyField("disc_number")
+    private int discNumber;
 
-    @Override
-    public String toString() {
-        return "TrackAlbum{" +
-                "albumType='" + albumType + '\'' +
-                ", totalTracks=" + totalTracks +
-                ", availableMarkets=" + Arrays.toString(availableMarkets) +
-                ", externalUrls=" + externalUrls +
-                ", herf='" + herf + '\'' +
-                ", id='" + id + '\'' +
-                ", images=" + image +
-                ", name='" + name + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", releaseDatePrecision='" + releaseDatePrecision + '\'' +
-                ", restrictions=" + restrictions +
-                ", type='" + type + '\'' +
-                ", uri='" + uri + '\'' +
-                ", albumGroup='" + albumGroup + '\'' +
-                ", artists=" + Arrays.toString(artists) +
-                '}';
-    }
+    @SpotifyField("duration_ms")
+    private int durationMs;
 
-    public SpotifyImage getImage() {
-        return image;
-    }
+    @SpotifyField
+    private boolean explicit;
+
+    @SpotifyNotRequired
+    @SpotifyField("external_ids")
+    private ExternalIds externalIds;
+
+    @SpotifyNotRequired
+    @SpotifyField(value = "spotify", path = {"external_urls"})
+    private String externalUrlsSpotify;
+
+    @SpotifyField
+    private String href;
+
+    @SpotifyField
+    private String id;
+
+    @SpotifyField("is_playable")
+    private boolean isPlayable;
+
+    @SpotifyNotRequired
+    @SpotifyField("linked_from")
+    private Object todo;
+
+    @SpotifyNotRequired
+    @SpotifyField(value = "reason", path = {"restrictions"})
+    private String restriction;
+
+    @SpotifyField
+    private String name;
+
+    @SpotifyField
+    private int popularity;
+
+    @SpotifyField("preview_url")
+    private String previewUrl;
+
+    @SpotifyField("track_number")
+    private int trackNumber;
+
+    @SpotifyField
+    private String type;
+
+    @SpotifyField
+    private String uri;
+
+    @SpotifyField("is_local")
+    private boolean isLocal;
 }

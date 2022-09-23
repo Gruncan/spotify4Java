@@ -2,12 +2,15 @@ package com.spotify.httpserver;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
+import com.spotify.json.JSONObject;
+import com.spotify.requests.tracks.TrackGet;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.awt.*;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.util.HashMap;
@@ -30,9 +33,11 @@ public class RequestTester {
 
 
         spotifyClientBuilder = new SpotifyClientBuilder(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-        System.out.println(spotifyClientBuilder.buildAuthUrl());
+        //System.out.println(spotifyClientBuilder.buildAuthUrl());
         desktop.browse(new URI(spotifyClientBuilder.buildAuthUrl()));
         server.start();
+
+        System.out.println("Server started");
 
 
     }
@@ -41,15 +46,27 @@ public class RequestTester {
     private static class RedirectHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange e) throws IOException {
+            System.out.println("In handle");
             Map<String, String> requestParams = queryToMap(e.getRequestURI().getQuery());
             String code = requestParams.get("code");
             if (code == null) throw new IOException("IDEK");
 
             SpotifyClient spotifyClient = spotifyClientBuilder.build(code);
-            server.stop(0);
+            //server.stop(0);
+
+            TrackGet currentUserProfileGet = new TrackGet("2gtFMLjQpCTGekMi4oXZxN");
+            JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
+            System.out.println(jsonObject);
 
 
-            // execute request
+            String response = jsonObject.toString(4);
+            e.sendResponseHeaders(200, response.getBytes().length);
+            try (OutputStream os = e.getResponseBody()) {
+                os.write(response.getBytes());
+            } finally {
+                server.stop(5);
+            }
+
 
         }
 
