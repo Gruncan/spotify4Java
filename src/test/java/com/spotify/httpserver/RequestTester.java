@@ -4,6 +4,7 @@ import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.tracks.TrackGet;
+import com.spotify.util.Util;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -13,7 +14,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
 
 public class RequestTester {
@@ -33,7 +33,6 @@ public class RequestTester {
 
 
         spotifyClientBuilder = new SpotifyClientBuilder(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-        //System.out.println(spotifyClientBuilder.buildAuthUrl());
         desktop.browse(new URI(spotifyClientBuilder.buildAuthUrl()));
         server.start();
 
@@ -46,13 +45,12 @@ public class RequestTester {
     private static class RedirectHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange e) throws IOException {
-            System.out.println("In handle");
-            Map<String, String> requestParams = queryToMap(e.getRequestURI().getQuery());
+            System.out.println("In handler");
+            Map<String, String> requestParams = Util.queryToMap(e.getRequestURI().getQuery());
             String code = requestParams.get("code");
             if (code == null) throw new IOException("IDEK");
 
             SpotifyClient spotifyClient = spotifyClientBuilder.build(code);
-            //server.stop(0);
 
             TrackGet currentUserProfileGet = new TrackGet("2gtFMLjQpCTGekMi4oXZxN");
             JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
@@ -70,22 +68,6 @@ public class RequestTester {
 
         }
 
-
-        public Map<String, String> queryToMap(String query) {
-            if (query == null) {
-                return null;
-            }
-            Map<String, String> result = new HashMap<>();
-            for (String param : query.split("&")) {
-                String[] entry = param.split("=");
-                if (entry.length > 1) {
-                    result.put(entry[0], entry[1]);
-                } else {
-                    result.put(entry[0], "");
-                }
-            }
-            return result;
-        }
 
     }
 
