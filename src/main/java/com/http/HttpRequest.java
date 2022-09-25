@@ -55,9 +55,14 @@ public class HttpRequest {
             String params = Util.mapToQuery(this.query);
 
             URL url = new URL(this.URL + params);
-
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(this.TYPE.name());
+            int length = 0;
+            if (this.content != null) length = this.content.getBytes().length;
+
+            //con.setFixedLengthStreamingMode(length);
+            con.setChunkedStreamingMode(length);
+            con.setDoOutput(true);
 
             for (Map.Entry<String, String> pair : this.headers.entrySet()) {
                 String key = pair.getKey();
@@ -65,10 +70,8 @@ public class HttpRequest {
                 con.setRequestProperty(key, value);
             }
 
-
             if (TYPE == HttpMethod.POST && this.content != null) {
                 con.setDoOutput(true);
-
                 try (OutputStream os = con.getOutputStream()) {
                     byte[] input = this.content.getBytes(StandardCharsets.UTF_8);
                     os.write(input, 0, input.length);
@@ -84,6 +87,7 @@ public class HttpRequest {
 
             String content = new BufferedReader(new InputStreamReader(is))
                     .lines().collect(Collectors.joining("\n"));
+            System.out.println(content);
             return new HttpResponse(code, content, con.getResponseMessage());
 
         } catch (Exception e) {

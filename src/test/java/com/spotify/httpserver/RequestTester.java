@@ -24,15 +24,18 @@ public class RequestTester {
 
     private static SpotifyClientBuilder spotifyClientBuilder;
     private static HttpServer server;
+    private static boolean hasRequest = false;
 
 
     public static void main(String[] args) throws Exception {
+
         Desktop desktop = Desktop.getDesktop();
         server = HttpServer.create(new InetSocketAddress(8888), 0);
         server.createContext("/redirect/", new RedirectHandler());
 
 
         spotifyClientBuilder = new SpotifyClientBuilder(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+        System.out.println(spotifyClientBuilder.buildAuthUrl());
         desktop.browse(new URI(spotifyClientBuilder.buildAuthUrl()));
         server.start();
 
@@ -45,12 +48,21 @@ public class RequestTester {
     private static class RedirectHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange e) throws IOException {
-            System.out.println("In handler");
+            if (hasRequest) return;
+            hasRequest = true;
+            System.out.printf("%s%s-> (%s) Thread:%s%n",
+                    e.getRemoteAddress().toString(), e.getRequestURI().toString(), e.getRequestMethod(),
+                    Thread.currentThread());
+
             Map<String, String> requestParams = Util.queryToMap(e.getRequestURI().getQuery());
             String code = requestParams.get("code");
             if (code == null) throw new IOException("IDEK");
 
             SpotifyClient spotifyClient = spotifyClientBuilder.build(code);
+            System.out.println("Built client");
+
+
+//            String response = "Success";
 
             TrackGet currentUserProfileGet = new TrackGet("2gtFMLjQpCTGekMi4oXZxN");
             JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
