@@ -1,11 +1,4 @@
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<br>
 <style>
 input{
     width:25px;
@@ -17,6 +10,9 @@ input{
 font-size:25px;
 }
 </style>
+
+
+
 <div id="test">
     <input type="checkbox"> Create a list of object still needed to be created</input><br>
     <input type="checkbox"> Create a list of api request not mapped maybe none?</input><br>
