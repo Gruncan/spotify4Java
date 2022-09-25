@@ -130,7 +130,7 @@ public class SpotifyClientBuilder {
 
     private SpotifyClient getSpotifyClient(HttpResponse response) {
 
-        JSONObject jsonObject = new JSONObject(response.getMessage());
+        JSONObject jsonObject = new JSONObject(response.getContent());
         String token = jsonObject.getString("access_token");
         int expiresIn = jsonObject.getInt("expires_in");
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
@@ -144,7 +144,7 @@ public class SpotifyClientBuilder {
         httpRequest.addRequestQueries(queries);
 
         httpRequest.addRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpRequest.addRequestQuery("Authorization", "Basic " + this.encoding);
+        httpRequest.addRequestHeader("Authorization", "Basic " + this.encoding);
 
         return httpRequest.execute();
 

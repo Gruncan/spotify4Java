@@ -57,13 +57,13 @@ public class HttpRequest {
             URL url = new URL(this.URL + params);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(this.TYPE.name());
-            int length = 0;
-            if (this.content != null) length = this.content.getBytes().length;
+            if (this.TYPE == HttpMethod.POST) {
+                int length = 0;
+                if (this.content != null) length = this.content.getBytes().length;
 
-            //con.setFixedLengthStreamingMode(length);
-            con.setChunkedStreamingMode(length);
-            con.setDoOutput(true);
-
+                con.setFixedLengthStreamingMode(length);
+                con.setDoOutput(true);
+            }
             for (Map.Entry<String, String> pair : this.headers.entrySet()) {
                 String key = pair.getKey();
                 String value = pair.getValue();
@@ -87,7 +87,7 @@ public class HttpRequest {
 
             String content = new BufferedReader(new InputStreamReader(is))
                     .lines().collect(Collectors.joining("\n"));
-            System.out.println(content);
+            System.out.println("content " + content);
             return new HttpResponse(code, content, con.getResponseMessage());
 
         } catch (Exception e) {
@@ -95,6 +95,22 @@ public class HttpRequest {
             return null;
         }
 
+    }
+
+
+    @Override
+    public String toString() {
+        return String.format("%s %s\n\tQuery:%s\n\tHeaders: %s\n\tContent: %s", this.TYPE, this.URL,
+                this.mapToString(this.query), this.mapToString(this.headers), this.content);
+    }
+
+    private String mapToString(Map<String, String> map) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\t\t");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            sb.append(entry.getKey()).append(":").append(entry.getValue()).append("\n\t\t");
+        }
+        return sb.toString();
     }
 
 
