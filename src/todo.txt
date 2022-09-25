@@ -1,0 +1,8 @@
+Create a list of object still needed to be created
+Create a list of api request not mapped maybe none?
+Refactor project for as for spotify for java
+Create tests to run offline
+Implement list of api request
+Implement list of objects
+Replace spring with java.net framework
+Cut down dependencies

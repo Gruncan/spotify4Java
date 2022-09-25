@@ -27,7 +27,7 @@ public class SpotifySerializer {
 
             for (Field field : cls.getDeclaredFields()) {
                 SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
-                // if not field not annotated continue
+                // if not field not annotated ignore
                 if (spotifyField == null) continue;
 
                 SpotifyNotRequired spotifyNotRequired = field.getAnnotation(SpotifyNotRequired.class);

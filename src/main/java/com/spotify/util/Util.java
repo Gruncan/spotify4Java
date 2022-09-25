@@ -1,5 +1,8 @@
 package com.spotify.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Util {
 
 
@@ -14,7 +17,32 @@ public class Util {
     }
 
 
-    public static void main(String[] args) {
-
+    public static Map<String, String> queryToMap(String query) {
+        if (query == null) {
+            return null;
+        }
+        Map<String, String> result = new HashMap<>();
+        for (String param : query.split("&")) {
+            String[] entry = param.split("=");
+            if (entry.length > 1) {
+                result.put(entry[0], entry[1]);
+            } else {
+                result.put(entry[0], "");
+            }
+        }
+        return result;
     }
+
+    public static String mapToQuery(Map<String, String> map) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("?");
+        for (Map.Entry<String, String> pair : map.entrySet()) {
+            String key = pair.getKey();
+            String value = pair.getValue();
+            sb.append(key).append("=").append(value).append("&");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
 }

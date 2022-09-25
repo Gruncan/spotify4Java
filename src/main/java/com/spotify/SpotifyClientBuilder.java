@@ -1,21 +1,13 @@
 package com.spotify;
 
+import com.http.HttpMethod;
+import com.http.HttpRequest;
+import com.http.HttpResponse;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicNameValuePair;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -76,28 +68,19 @@ public class SpotifyClientBuilder {
 
 
     public String buildAuthUrl() {
+        Map<String, String> map = new HashMap<>() {{
+            put("client_id", clientID);
+            put("response_type", responseType);
+            put("redirect_uri", redirectUri);
+            put("scope", Util.join(Scope.convertToStringArray(scopeList), "%20"));
+            put("show_dialog", Boolean.toString(showDialog));
+        }};
 
-        try {
-            URIBuilder authUri = new URIBuilder(AUTH_URL);
-            List<NameValuePair> authParams = new ArrayList<>();
-            authParams.add(new BasicNameValuePair("client_id", this.clientID));
-            authParams.add(new BasicNameValuePair("response_type", this.responseType));
-            authParams.add(new BasicNameValuePair("redirect_uri", this.redirectUri));
-            String[] scopes = Scope.convertToStringArray(this.scopeList);
-            authParams.add(new BasicNameValuePair("scope", Util.join(scopes, "%20")));
-            authParams.add(new BasicNameValuePair("show_dialog", Boolean.toString(this.showDialog)));
+        if (state != null)
+            map.put("state", this.state);
 
-            if (state != null)
-                authParams.add(new BasicNameValuePair("state", this.state));
-
-            authUri.addParameters(authParams);
-
-            return authUri.build().toString();
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return null;
-        }
+        String query = Util.mapToQuery(map);
+        return AUTH_URL + query;
     }
 
     public SpotifyClient getBuiltClient() {
@@ -106,15 +89,16 @@ public class SpotifyClientBuilder {
 
 
     public SpotifyClient build(String code) {
-        List<NameValuePair> parameters = new ArrayList<>();
-        parameters.add(new BasicNameValuePair("grant_type", "authorization_code"));
-        parameters.add(new BasicNameValuePair("code", code));
-        parameters.add(new BasicNameValuePair("redirect_uri", this.redirectUri));
+        Map<String, String> queries = new HashMap<>() {{
+            put("grant_type", "authorization_code");
+            put("code", code);
+            put("redirect_uri", redirectUri);
+        }};
 
         this.encoding = new String(Base64.getEncoder().encode((this.clientID + ":" + this.clientSecret)
                 .getBytes(StandardCharsets.UTF_8)));
 
-        HttpEntity entity = this.sendPostTokenRequest(parameters);
+        HttpResponse entity = this.sendPostTokenRequest(queries);
         if (entity != null) {
             this.builtClient = this.getSpotifyClient(entity);
             return this.builtClient;
@@ -129,58 +113,42 @@ public class SpotifyClientBuilder {
             System.out.println("Refresh token not set, call build first");
             return null;
         }
-        List<NameValuePair> parameters = new ArrayList<>();
-        parameters.add(new BasicNameValuePair("grant_type", "refresh_token"));
-        parameters.add(new BasicNameValuePair("refresh_token", this.refreshToken));
+        Map<String, String> queries = new HashMap<>() {{
+            put("grant_type", "refresh_token");
+            put("refresh_token", refreshToken);
+        }};
 
-        HttpEntity entity = this.sendPostTokenRequest(parameters);
+        HttpResponse response = this.sendPostTokenRequest(queries);
 
-        if (entity != null) {
-            this.builtClient = this.getSpotifyClient(entity);
+        if (response != null) {
+            this.builtClient = this.getSpotifyClient(response);
             return this.builtClient;
         } else {
             return null;
         }
     }
 
-    private SpotifyClient getSpotifyClient(HttpEntity entity) {
-        try (InputStream instream = entity.getContent()) {
-            Scanner scanner = new Scanner(instream).useDelimiter("\\A");
-            String result = scanner.hasNext() ? scanner.next() : "";
-            JSONObject jsonobject = new JSONObject(result);
-            String token = jsonobject.getString("access_token");
-            int expiresIn = jsonobject.getInt("expires_in");
-            this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
-            this.refreshToken = jsonobject.getString("refresh_token");
-            return new SpotifyClientImp(token);
-        } catch (IOException e) {
-            return null;
-        }
+    private SpotifyClient getSpotifyClient(HttpResponse response) {
+
+        JSONObject jsonObject = new JSONObject(response.getContent());
+        String token = jsonObject.getString("access_token");
+        int expiresIn = jsonObject.getInt("expires_in");
+        this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
+        this.refreshToken = jsonObject.getString("refresh_token");
+        return new SpotifyClientImp(token);
+
     }
 
-    private HttpEntity sendPostTokenRequest(List<NameValuePair> parameters) {
-        try {
-            URIBuilder uriBuilder = new URIBuilder(TOKEN_URL);
-            uriBuilder.addParameters(parameters);
+    private HttpResponse sendPostTokenRequest(Map<String, String> queries) {
+        HttpRequest httpRequest = new HttpRequest(TOKEN_URL, HttpMethod.POST);
+        httpRequest.addRequestQueries(queries);
 
-            HttpClient httpClient = HttpClientBuilder.create().build();
+        httpRequest.addRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpRequest.addRequestHeader("Authorization", "Basic " + this.encoding);
 
-
-            HttpPost httppost = new HttpPost(uriBuilder.build());
-            httppost.setHeader("Content-type", "application/x-www-form-urlencoded");
+        return httpRequest.execute();
 
 
-            httppost.setHeader("Authorization", "Basic " + this.encoding);
-
-            HttpResponse response = httpClient.execute(httppost);
-            return response.getEntity();
-
-
-        } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
-
-        }
-        return null;
     }
 
 
