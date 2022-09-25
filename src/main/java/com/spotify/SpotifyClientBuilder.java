@@ -3,6 +3,7 @@ package com.spotify;
 import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
+import com.http.SpotifyHttpServerProvider;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Scope;
@@ -30,6 +31,7 @@ public class SpotifyClientBuilder {
     private String encoding;
 
     private SpotifyClient builtClient;
+    private SpotifyHttpServerProvider spotifyHttpServerProvider;
 
 
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
@@ -84,7 +86,15 @@ public class SpotifyClientBuilder {
     }
 
     public SpotifyClient getBuiltClient() {
-        return this.builtClient;
+        this.spotifyHttpServerProvider = new SpotifyHttpServerProvider(this);
+        this.spotifyHttpServerProvider.runServer();
+        try {
+            this.spotifyHttpServerProvider.getCountDownLatch().await();
+            return this.builtClient;
+        } catch (InterruptedException e) {
+            throw new RuntimeException();
+        }
+
     }
 
 
@@ -165,9 +175,5 @@ public class SpotifyClientBuilder {
         public JSONObject executeRequest(AbstractRequest abstractRequest) {
             return abstractRequest.execute(this.accessToken);
         }
-
-
     }
-
-
 }

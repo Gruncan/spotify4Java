@@ -87,7 +87,6 @@ public class HttpRequest {
 
             String content = new BufferedReader(new InputStreamReader(is))
                     .lines().collect(Collectors.joining("\n"));
-            System.out.println("content " + content);
             return new HttpResponse(code, content, con.getResponseMessage());
 
         } catch (Exception e) {
