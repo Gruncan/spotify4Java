@@ -5,7 +5,7 @@
 Spotify api wrapper for java.
 
 Written for enjoyment and a way to learn java concepts that I have rarely/never used.
-Demonstrated usage of OAuth 2.0 and java reflections, generics, networking.
+Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and concurrency.
 
 ## How it do
 
@@ -158,10 +158,12 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <br>
 
 ### <u>Future Plans</u>
-tbc
-- .
-- .
-- .
+- Implement the remainder of api request
+- Completely finish writing the spotify objects
+- Rewrite how requests classes are written (annotations)
+- Bring back Spring support for handling user authentication
+- Add more branches of api requests not just web api
+- Optimise multiple call different threads
 
 
 
