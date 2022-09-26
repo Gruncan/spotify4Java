@@ -16,7 +16,7 @@ import java.net.InetSocketAddress;
 import java.net.URI;
 import java.util.Map;
 
-public class RequestTester {
+public class SpotifyRequestTester {
 
     private static final String CLIENT_ID = "49d248093d8c41dd8b65aba37c5ef665";
     private static final String CLIENT_SECRET = "381ccdf476ac4584b0d936663d5c2232";
@@ -27,6 +27,8 @@ public class RequestTester {
 
 
     public static void main(String[] args) throws Exception {
+        // Tests the spotify authentication requests on custom http classes
+
 
         Desktop desktop = Desktop.getDesktop();
         server = HttpServer.create(new InetSocketAddress(8888), 0);

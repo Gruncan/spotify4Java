@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 public class ServerTest {
 
     public static void main(String[] args) throws IOException {
+        // Initialised the server to test http request functionality alongside server functionality
+
         HttpServer server = HttpServer.create(new InetSocketAddress(8889), 0);
         server.createContext("/test/", exchange -> {
             System.out.println("In handler");
