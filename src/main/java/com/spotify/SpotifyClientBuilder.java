@@ -9,6 +9,8 @@ import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -20,7 +22,8 @@ public class SpotifyClientBuilder {
 
     private final String clientID;
     private final String clientSecret;
-    private final String redirectUri;
+    private final String redirectUriString;
+    private final URL redirectUrl;
     private final List<Scope> scopeList;
     private String responseType;
     private String state;
@@ -38,7 +41,7 @@ public class SpotifyClientBuilder {
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
         this.clientID = clientID;
         this.clientSecret = clientSecret;
-        this.redirectUri = redirectUri;
+        this.redirectUriString = redirectUri;
         this.scopeList = new ArrayList<>();
         this.responseType = "code";
         this.state = null;
@@ -47,6 +50,17 @@ public class SpotifyClientBuilder {
         this.refreshToken = null;
         this.builtClient = null;
         this.printAccessToken = false;
+
+        try {
+            this.redirectUrl = new URL(redirectUri);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException();
+        }
+    }
+
+
+    public URL getRedirectUrl() {
+        return this.redirectUrl;
     }
 
     public SpotifyClientBuilder addScope(Scope... scope) {
@@ -79,7 +93,7 @@ public class SpotifyClientBuilder {
         Map<String, String> map = new HashMap<>() {{
             put("client_id", clientID);
             put("response_type", responseType);
-            put("redirect_uri", redirectUri);
+            put("redirect_uri", redirectUriString);
             put("scope", Util.join(Scope.convertToStringArray(scopeList), "%20"));
             put("show_dialog", Boolean.toString(showDialog));
         }};
@@ -108,7 +122,7 @@ public class SpotifyClientBuilder {
         Map<String, String> queries = new HashMap<>() {{
             put("grant_type", "authorization_code");
             put("code", code);
-            put("redirect_uri", redirectUri);
+            put("redirect_uri", redirectUriString);
         }};
 
         this.encoding = new String(Base64.getEncoder().encode((this.clientID + ":" + this.clientSecret)

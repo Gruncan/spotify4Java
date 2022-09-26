@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
@@ -28,11 +29,16 @@ public class SpotifyHttpServerProvider {
 
     public void runServer() {
         try {
+            URL url = this.spotifyClientBuilder.getRedirectUrl();
+
+            if (!url.getHost().equals("127.0.0.1"))
+                url = new URL("https://127.0.0.1:8888/redirect/");
+
 
             Desktop desktop = Desktop.getDesktop();
-            server = HttpServer.create(new InetSocketAddress(8888), 0);
+            server = HttpServer.create(new InetSocketAddress(url.getPort()), 0);
             this.countDownLatch = new CountDownLatch(1);
-            server.createContext("/redirect/", new RedirectHandler());
+            server.createContext(url.getPath(), new RedirectHandler());
 
             desktop.browse(new URI(spotifyClientBuilder.buildAuthUrl()));
             server.start();
