@@ -18,6 +18,9 @@ public class SpotifySerializer {
 
     protected <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
         try {
+            if (cls.isEnum()) {
+                return (E) this.handleEnum((Class<? extends Enum>) cls, json.getString("value"));
+            }
             Constructor<E> constructor = cls.getConstructor();
             E e = constructor.newInstance();
             SpotifyNotRequired notRequiredCls = cls.getAnnotation(SpotifyNotRequired.class);
@@ -104,7 +107,12 @@ public class SpotifySerializer {
         if (!SpotifyObject.class.isAssignableFrom(componentType))
             return jsonPath.get(componentType, name);
         else {
-            return this.serializer(componentType, jsonPath.get(JSONObject.class, name));
+            JSONObject jsonv = jsonPath.get(JSONObject.class, name);
+            if (jsonv == null) {
+                return this.serializer(componentType, jsonPath);
+            } else {
+                return this.serializer(componentType, jsonPath.get(JSONObject.class, name));
+            }
         }
     }
 
@@ -115,4 +123,9 @@ public class SpotifySerializer {
             array[i] = this.serializeField(cls, jsonArray.getModifiedJSONObject(i), "value");
         return array;
     }
+
+    private <T extends Enum<T>> T handleEnum(Class<T> cls, String value) {
+        return Enum.valueOf(cls, value);
+    }
+
 }

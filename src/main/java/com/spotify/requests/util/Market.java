@@ -1,10 +1,12 @@
 package com.spotify.requests.util;
 
+import com.spotify.objects.SpotifyObject;
+
 /**
  * Represents the available query market codes according to
  * <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO_3166-1_alpha-2</a>
  */
-public enum Market {
+public enum Market implements SpotifyObject {
 
     /*** Afghanistan */
     AF("Afghanistan"),

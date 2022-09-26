@@ -3,6 +3,7 @@ package com.spotify.objects.track;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyImage;
+import com.spotify.objects.SpotifyNotRequired;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.requests.util.Market;
 
@@ -38,6 +39,7 @@ public class TrackAlbumAlbum implements SpotifyObject {
     @SpotifyField("release_date_precision")
     private String release_date_precision;
 
+    @SpotifyNotRequired
     @SpotifyField(value = "reason", path = {"restrictions"})
     private String restriction;
 
@@ -47,6 +49,7 @@ public class TrackAlbumAlbum implements SpotifyObject {
     @SpotifyField
     private String uri;
 
+    @SpotifyNotRequired
     @SpotifyField("album_group")
     private String albumGroup;
 

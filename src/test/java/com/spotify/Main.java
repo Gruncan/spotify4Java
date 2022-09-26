@@ -1,6 +1,7 @@
 package com.spotify;
 
 import com.spotify.json.JSONObject;
+import com.spotify.objects.track.TrackAlbum;
 import com.spotify.requests.tracks.TrackGet;
 
 public class Main {
@@ -14,12 +15,10 @@ public class Main {
                 .getBuiltClient();
 
 
-        TrackGet currentUserProfileGet = new TrackGet("2mgkRsjpp6HH1MTyHYpTeF");
-        JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
-
-
-        String response = jsonObject.toString(4);
-        System.out.println(response);
+        TrackGet trackGet = new TrackGet("2mgkRsjpp6HH1MTyHYpTeF");
+        JSONObject jsonObject = spotifyClient.executeRequest(trackGet);
+        TrackAlbum track = trackGet.serialize(jsonObject);
+        System.out.println(track.toString());
 
 
     }
