@@ -10,12 +10,12 @@ import com.spotify.requests.util.Type;
  * Get the current user's followed artists.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-followed">Spotify Docs</a>
  */
-public class FollowedArtists extends AbstractRequest {
+public class FollowedArtistsGet extends AbstractRequest {
 
     private final static String URL = "me/following/";
 
 
-    public FollowedArtists() {
+    public FollowedArtistsGet() {
         super(new ParameterPairBuilder().addKeys("type", "after", "limit")
                 .addClasses(Type.class, String.class, Integer.class).build());
     }

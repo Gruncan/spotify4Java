@@ -32,6 +32,7 @@ public class SpotifyClientBuilder {
 
     private SpotifyClient builtClient;
     private SpotifyHttpServerProvider spotifyHttpServerProvider;
+    private boolean printAccessToken;
 
 
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
@@ -45,6 +46,7 @@ public class SpotifyClientBuilder {
         this.timeWhenRefresh = -1;
         this.refreshToken = null;
         this.builtClient = null;
+        this.printAccessToken = false;
     }
 
     public SpotifyClientBuilder addScope(Scope... scope) {
@@ -66,6 +68,10 @@ public class SpotifyClientBuilder {
     public SpotifyClientBuilder setShowDialog(boolean b) {
         this.showDialog = b;
         return this;
+    }
+
+    public static SpotifyClient buildFromToken(String token) {
+        return new SpotifyClientImp(token);
     }
 
 
@@ -138,10 +144,17 @@ public class SpotifyClientBuilder {
         }
     }
 
+    public SpotifyClientBuilder printAccessToken() {
+        this.printAccessToken = true;
+        return this;
+    }
+
     private SpotifyClient getSpotifyClient(HttpResponse response) {
 
         JSONObject jsonObject = new JSONObject(response.getContent());
         String token = jsonObject.getString("access_token");
+        if (printAccessToken)
+            System.out.println(token);
         int expiresIn = jsonObject.getInt("expires_in");
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
         this.refreshToken = jsonObject.getString("refresh_token");
@@ -157,8 +170,6 @@ public class SpotifyClientBuilder {
         httpRequest.addRequestHeader("Authorization", "Basic " + this.encoding);
 
         return httpRequest.execute();
-
-
     }
 
 

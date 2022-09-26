@@ -11,7 +11,7 @@ import com.spotify.util.Util;
  * Get Spotify catalog information for several artists based on their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-artists">Spotify Docs</a>
  */
-public class SeveralArtistAlbumsGet extends AbstractRequest {
+public class SeveralArtistGet extends AbstractRequest {
 
 
     private final static String URL = "artists/";
@@ -20,7 +20,7 @@ public class SeveralArtistAlbumsGet extends AbstractRequest {
     /**
      * @param artists The array of artist's ids to get
      */
-    public SeveralArtistAlbumsGet(String... artists) {
+    public SeveralArtistGet(String... artists) {
         super(new ParameterPair("ids", String.class));
         super.addQuery(new RequestQuery<>("ids", Util.join(artists, ",")));
     }

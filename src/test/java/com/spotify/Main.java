@@ -12,8 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         SpotifyClient spotifyClient = new SpotifyClientBuilder(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL)
+                .printAccessToken()
                 .getBuiltClient();
 
+//        SpotifyClient spotifyClient = SpotifyClientBuilder.buildFromToken("BQCcVsMYETyr6W-Fs0pS50oxEtDw1TVbZVcLEqZj3VUVAEKbpID9EnQys1f0Nvd6SRu-whdTJabKaTp1I0kJYZ4K9W645SG08deHOL35tMIlvBbeMBpP8tbgRhgUFce1jPB4iPXwoASSJ0otYCL7BCBC4C2jG2fQ0NPfeNHDaJZ9voY");
 
         TrackGet trackGet = new TrackGet("2mgkRsjpp6HH1MTyHYpTeF");
         JSONObject jsonObject = spotifyClient.executeRequest(trackGet);
