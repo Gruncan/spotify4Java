@@ -17,8 +17,8 @@ class CurrentUserProfileGetTest {
         CurrentUserProfileGet request = new CurrentUserProfileGet();
         SpotifyUser spotifyUser = request.serialize(response);
 
-        System.out.println(spotifyUser);
-        assertTrue(true);
+        assertNotNull(spotifyUser);
+
 
     }
 }
