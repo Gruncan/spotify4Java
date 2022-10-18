@@ -2,7 +2,6 @@ package com.spotify.requests.tracks;
 
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
 
 
@@ -17,7 +16,7 @@ public class TracksSavedMeGet extends AbstractRequest {
 
     public TracksSavedMeGet() {
         super(new ParameterPairBuilder()
-                .addKeys("limit", "market", "offset").addClasses(Integer.class, Market.class, Integer.class).build());
+                .addKeys("limit", "market", "offset").addClasses(Integer.class, Integer.class).build());
 
     }
 

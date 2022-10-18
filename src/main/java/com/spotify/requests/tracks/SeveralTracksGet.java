@@ -3,7 +3,6 @@ package com.spotify.requests.tracks;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
-import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
 import com.spotify.util.Util;
 
@@ -22,7 +21,7 @@ public class SeveralTracksGet extends AbstractRequest {
      * @param tracks The array of tracks to get
      */
     public SeveralTracksGet(String... tracks) {
-        super(new ParameterPairBuilder().addKeys("ids", "market").addClasses(String.class, Market.class).build());
+        super(new ParameterPairBuilder().addKeys("ids", "market").addClasses(String.class).build());
         super.addQuery(new RequestQuery<>("ids", Util.join(tracks, ",")));
 
     }

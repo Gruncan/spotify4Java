@@ -2,7 +2,6 @@ package com.spotify.requests.albums;
 
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
 
 
@@ -20,7 +19,7 @@ public class AlbumTracksGet extends AbstractRequest {
      */
     public AlbumTracksGet(String id) {
         super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
-                .addClasses(Integer.class, Market.class, Integer.class).build());
+                .addClasses(Integer.class, Integer.class).build());
         this.id = id;
     }
 

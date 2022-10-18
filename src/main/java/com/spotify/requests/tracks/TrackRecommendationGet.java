@@ -3,7 +3,6 @@ package com.spotify.requests.tracks;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
-import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
 import com.spotify.util.Util;
 
@@ -35,7 +34,7 @@ public class TrackRecommendationGet extends AbstractRequest {
                         "target_duration_ms", "target_energy", "target_instrumentalness", "target_key", "target_liveness",
                         "target_loudness", "target_mode", "target_popularity", "target_speechiness", "target_tempo",
                         "target_time_signature", "target_valence")
-                .addClasses(String.class, String.class, String.class, Integer.class, Market.class, Float.class, Float.class,
+                .addClasses(String.class, String.class, String.class, Integer.class, Float.class, Float.class,
                         Integer.class, Float.class, Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class,
                         Float.class, Float.class, Integer.class, Float.class, Float.class, Float.class, Integer.class, Float.class,
                         Float.class, Integer.class, Float.class, Float.class, Integer.class, Integer.class, Float.class, Float.class,

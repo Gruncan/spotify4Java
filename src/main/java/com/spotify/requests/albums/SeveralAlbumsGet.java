@@ -3,8 +3,6 @@ package com.spotify.requests.albums;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.RequestQuery;
-import com.spotify.requests.util.Market;
-import com.spotify.requests.util.ParameterPairBuilder;
 import com.spotify.util.Util;
 
 
@@ -21,8 +19,6 @@ public class SeveralAlbumsGet extends AbstractRequest {
      * @param albums The array of albums to query
      */
     public SeveralAlbumsGet(String... albums) {
-        super(new ParameterPairBuilder().addKeys("market", "ids")
-                .addClasses(Market.class, String.class).build());
         super.addQuery(new RequestQuery<>("ids", Util.join(albums, ",")));
 
     }

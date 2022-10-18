@@ -3,7 +3,6 @@ package com.spotify.requests.artists;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.util.Group;
-import com.spotify.requests.util.Market;
 import com.spotify.requests.util.ParameterPairBuilder;
 
 
@@ -24,7 +23,7 @@ public class ArtistAlbumsGet extends AbstractRequest {
     public ArtistAlbumsGet(String id) {
 
         super(new ParameterPairBuilder().addKeys("include_groups", "limit", "market", "offset")
-                .addClasses(Group[].class, Integer.class, Market.class, Integer.class).build());
+                .addClasses(Group[].class, Integer.class, Integer.class).build());
         this.id = id;
     }
 

@@ -6,8 +6,7 @@ import com.http.HttpResponse;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.util.ParameterPair;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +14,7 @@ import java.util.Map;
 /**
  * The base of the API requests
  */
-public abstract class AbstractRequest<T extends Serializable> extends SpotifySerializer implements IRequest, Serialize<T> {
+public abstract class AbstractRequest implements IRequest {
 
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
@@ -86,6 +85,15 @@ public abstract class AbstractRequest<T extends Serializable> extends SpotifySer
     }
 
 
+    @Override
+    public JSONObject execute(String token) {
+        for (Field field : this.getClass().getDeclaredFields()) {
+            System.out.println(field.getName());
+        }
+        return null;
+    }
+
+
     /**
      * Adds a query key value to given request proved it is allowed.
      *
@@ -99,14 +107,4 @@ public abstract class AbstractRequest<T extends Serializable> extends SpotifySer
     }
 
 
-    @Override
-    public T serialize(JSONObject json) {
-        Class<T> cls = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        if (cls.equals(String.class))
-            return (T) json.toString();
-        else if (cls.equals(JSONObject.class))
-            return (T) json;
-        else
-            return this.serializer(cls, json);
-    }
 }

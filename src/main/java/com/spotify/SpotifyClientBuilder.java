@@ -198,6 +198,7 @@ public class SpotifyClientBuilder {
 
         @Override
         public JSONObject executeRequest(AbstractRequest abstractRequest) {
+
             return abstractRequest.execute(this.accessToken);
         }
     }
