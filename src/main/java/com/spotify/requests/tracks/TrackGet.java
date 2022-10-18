@@ -1,19 +1,21 @@
 package com.spotify.requests.tracks;
 
-import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifySubRequest;
 
 
 /**
  * Get Spotify catalog information for multiple tracks based on their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks">Spotify Docs</a>
  */
+
+@SpotifyRequest("tracks")
 public class TrackGet extends AbstractRequest {
 
-    private final static String URL = "tracks/{id}/";
 
+    @SpotifySubRequest
     private final String id;
-
 
     /**
      * @param id The id of the track to be queried
@@ -22,9 +24,4 @@ public class TrackGet extends AbstractRequest {
         this.id = id;
     }
 
-    @Override
-    public JSONObject execute(String token) {
-        super.execute(token);
-        return super.requestGet(token, URL.replace("{id}", this.id));
-    }
 }

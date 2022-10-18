@@ -86,11 +86,28 @@ public abstract class AbstractRequest implements IRequest {
 
 
     @Override
-    public JSONObject execute(String token) {
+    public JSONObject execute(String token) throws IllegalAccessException {
+        SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
+
+        if (spotifyRequest == null) return null; //class is not annotated, to be handled properly
+
+        String url = spotifyRequest.value();
+        StringBuilder sb = new StringBuilder(url);
+        if (!url.endsWith("/")) sb.append("/");
+
+
         for (Field field : this.getClass().getDeclaredFields()) {
-            System.out.println(field.getName());
+            field.setAccessible(true);
+            if (field.getAnnotation(SpotifySubRequest.class) != null) {
+                Object o = field.get(this);
+                sb.append(o.toString()).append("/");
+            } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
+                continue;
+            }
+            field.setAccessible(false);
         }
-        return null;
+
+        return this.requestGet(token, BASE_URL + url);
     }
 
 
