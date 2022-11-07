@@ -80,6 +80,11 @@ public class HttpRequest {
 
 
             int code = con.getResponseCode();
+            // if request failed at receiver end
+            if (code != 200)
+                return new HttpResponse(code, null, con.getResponseMessage());
+
+            // if request failed at client end
             InputStream is = con.getErrorStream();
             if (is == null)
                 is = con.getInputStream();
