@@ -1,26 +1,45 @@
 package com.spotify.requests.albums;
 
-import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.util.ParameterPairBuilder;
+import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestField;
 
 
 /**
  * Get a list of the albums saved in the current Spotify user's 'Your Music' library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-albums">Spotify Docs</a>
  */
+@SpotifyRequest("me/albums/")
 public class AlbumsSavedMeGet extends AbstractRequest {
 
-    private final static String URL = "me/albums/";
+
+    @SpotifyRequestField
+    private int limit;
+
+    @SpotifyRequestField
+    private String market;
+
+    @SpotifyRequestField
+    private int offset;
 
 
     public AlbumsSavedMeGet() {
-        super(new ParameterPairBuilder().addKeys("limit", "market", "offset")
-                .addClasses(Integer.class, Integer.class).build());
+        this.limit = -1;
+        this.market = null;
+        this.offset = -1;
     }
 
-    @Override
-    public JSONObject execute(String token) {
-        return super.requestGet(token, URL);
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+
 }

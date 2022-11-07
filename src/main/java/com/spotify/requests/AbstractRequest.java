@@ -5,7 +5,9 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.util.ParameterPair;
+import com.spotify.util.Util;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +38,27 @@ public abstract class AbstractRequest implements IRequest {
         }
     }
 
+    private static <T> boolean isPrimitiveDefault(Object o, Class<T> cls) {
+        if (!cls.isPrimitive()) return false;
+
+        if (cls.equals(int.class)) {
+            Integer i = (Integer) o;
+            return i == -1;
+        } else if (cls.equals(boolean.class)) {
+            Boolean b = (Boolean) o;
+            return !b;
+        } else if (cls.equals(double.class)) {
+            Double d = (Double) o;
+            return d == -1;
+        }
+        return false;
+    }
+
+    private static <T> String convertToString(Class<T> cls, Object o) {
+        T v = (T) o;
+        return v.toString();
+    }
+
     /**
      * Basic HTTP GET request on a given URL with parameters specified
      *
@@ -50,15 +73,11 @@ public abstract class AbstractRequest implements IRequest {
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
 
-        for (RequestQuery<?> rq : this.queries.values()) {
-            request.addRequestQuery(rq.getKey(), rq.getPair());
-        }
-
 
         try {
             HttpResponse response = request.execute();
             int code = response.getCode();
-            String s = response.getContent();
+            String s = response.getMessage();
             if (code == 200) {
                 return new JSONObject(s);
             } else if (code == 401) {
@@ -84,7 +103,6 @@ public abstract class AbstractRequest implements IRequest {
         }
     }
 
-
     @Override
     public JSONObject execute(String token) throws IllegalAccessException {
         SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
@@ -101,13 +119,44 @@ public abstract class AbstractRequest implements IRequest {
             if (field.getAnnotation(SpotifySubRequest.class) != null) {
                 Object o = field.get(this);
                 sb.append(o.toString()).append("/");
+
             } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
-                continue;
+                if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+
+                Object o = field.get(this);
+                Class<?> type = field.getType();
+                if (o == null || isPrimitiveDefault(o, type)) continue;
+
+                sb.append(field.getName());
+                sb.append("=");
+                System.out.println(field);
+
+                if (type.isArray()) {
+                    int length = Array.getLength(o);
+                    Class<?> componentType = type.getComponentType();
+                    String[] strings = new String[length];
+                    for (int i = 0; i < length; i++) {
+                        Object v = Array.get(o, i);
+                        String s = convertToString(componentType, v);
+                        strings[i] = s;
+                    }
+                    sb.append("\"");
+                    String parameter = Util.join(strings, ",");
+                    sb.append(parameter).append("\"");
+                    sb.append("&");
+                } else {
+                    sb.append(o);
+                    sb.append("&");
+                }
+
             }
             field.setAccessible(false);
         }
-
-        return this.requestGet(token, BASE_URL + url);
+        String urlQuery = sb.toString();
+        if (!urlQuery.endsWith("/"))
+            urlQuery = urlQuery.substring(0, urlQuery.length() - 1);
+        System.out.println(BASE_URL + urlQuery);
+        return this.requestGet(token, urlQuery);
     }
 
 
@@ -122,6 +171,4 @@ public abstract class AbstractRequest implements IRequest {
             this.queries.put(query.getKey(), query);
         }
     }
-
-
 }
