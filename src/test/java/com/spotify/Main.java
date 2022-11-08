@@ -1,7 +1,7 @@
 package com.spotify;
 
 import com.spotify.json.JSONObject;
-import com.spotify.requests.albums.AlbumsSavedMeGet;
+import com.spotify.requests.albums.AlbumTracksGet;
 
 public class Main {
 
@@ -20,8 +20,9 @@ public class Main {
 //        JSONObject jsonObject = spotifyClient.executeRequest(trackGet);
 //        System.out.println(jsonObject.toString(4));
 
-        AlbumsSavedMeGet al = new AlbumsSavedMeGet();
+        AlbumTracksGet al = new AlbumTracksGet("2mgkRsjpp6HH1MTyHYpTeF");
 
+//        AlbumsSavedMeGet al = new AlbumsSavedMeGet();
         JSONObject jsonObject = spotifyClient.executeRequest(al);
         System.out.println(jsonObject.toString(4));
 

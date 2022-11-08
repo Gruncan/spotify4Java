@@ -11,5 +11,6 @@ public @interface SpotifyRequest {
 
     String value() default "";
 
+    String end() default "";
 
 }

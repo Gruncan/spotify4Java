@@ -9,7 +9,9 @@ import com.spotify.util.Util;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -113,48 +115,71 @@ public abstract class AbstractRequest implements IRequest {
         StringBuilder sb = new StringBuilder(url);
         if (!url.endsWith("/")) sb.append("/");
 
-
+        List<Field> spotifySubRequestFields = new ArrayList<>();
+        List<Field> spotifyFieldRequestFields = new ArrayList<>();
         for (Field field : this.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
             if (field.getAnnotation(SpotifySubRequest.class) != null) {
-                Object o = field.get(this);
-                sb.append(o.toString()).append("/");
-
+                spotifySubRequestFields.add(field);
             } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
-                if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+                spotifyFieldRequestFields.add(field);
+            }
+        }
 
-                Object o = field.get(this);
-                Class<?> type = field.getType();
-                if (o == null || isPrimitiveDefault(o, type)) continue;
+        for (Field field : spotifySubRequestFields) {
+            field.setAccessible(true);
+            Object o = field.get(this);
+            if (o == null) {
+                field.setAccessible(false);
+                continue;
+            }
+            sb.append(o).append("/");
+            field.setAccessible(false);
+        }
 
-                sb.append(field.getName());
-                sb.append("=");
-                System.out.println(field);
+        String end = spotifyRequest.end();
+        if (!end.equals("")) {
+            sb.append(end);
+        }
 
-                if (type.isArray()) {
-                    int length = Array.getLength(o);
-                    Class<?> componentType = type.getComponentType();
-                    String[] strings = new String[length];
-                    for (int i = 0; i < length; i++) {
-                        Object v = Array.get(o, i);
-                        String s = convertToString(componentType, v);
-                        strings[i] = s;
-                    }
-                    sb.append("\"");
-                    String parameter = Util.join(strings, ",");
-                    sb.append(parameter).append("\"");
-                    sb.append("&");
-                } else {
-                    sb.append(o);
-                    sb.append("&");
+        for (Field field : spotifyFieldRequestFields) {
+            field.setAccessible(true);
+            if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+
+            Object o = field.get(this);
+            Class<?> type = field.getType();
+            if (o == null || isPrimitiveDefault(o, type)) {
+                field.setAccessible(false);
+                continue;
+            }
+
+            sb.append(field.getName());
+            sb.append("=");
+            System.out.println(field);
+
+            if (type.isArray()) {
+                int length = Array.getLength(o);
+                Class<?> componentType = type.getComponentType();
+                String[] strings = new String[length];
+                for (int i = 0; i < length; i++) {
+                    Object v = Array.get(o, i);
+                    String s = convertToString(componentType, v);
+                    strings[i] = s;
                 }
-
+                sb.append("\"");
+                String parameter = Util.join(strings, ",");
+                sb.append(parameter).append("\"");
+                sb.append("&");
+            } else {
+                sb.append(o);
+                sb.append("&");
             }
             field.setAccessible(false);
         }
+
         String urlQuery = sb.toString();
-        if (!urlQuery.endsWith("/"))
+//        if (!urlQuery.endsWith("/"))
             urlQuery = urlQuery.substring(0, urlQuery.length() - 1);
+
         System.out.println(BASE_URL + urlQuery);
         return this.requestGet(token, urlQuery);
     }
