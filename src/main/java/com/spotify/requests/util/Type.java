@@ -4,8 +4,8 @@ import java.util.Locale;
 
 public enum Type {
 
-    ARTISTS,
-    TRACKS;
+    ARTIST,
+    TRACK;
 
 
     @Override
