@@ -59,7 +59,7 @@ public class SpotifyRequestTester {
             SpotifyClient spotifyClient = spotifyClientBuilder.build(code);
 
             TrackGet currentUserProfileGet = new TrackGet("2mgkRsjpp6HH1MTyHYpTeF");
-            JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet);
+            JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet).ok();
 
 
             String response = jsonObject.toString(4);

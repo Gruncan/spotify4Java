@@ -6,8 +6,8 @@
 
 
     <groupId>com.spotstat</groupId>
-    <artifactId>spotstat</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>S4J</artifactId>
+    <version>1.1a</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,12 +18,25 @@
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <excludedGroups>SlowNetworkTest</excludedGroups>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>

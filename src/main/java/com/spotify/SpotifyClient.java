@@ -1,13 +1,13 @@
 package com.spotify;
 
-import com.spotify.json.JSONObject;
-import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.IRequest;
+import com.spotify.requests.RequestResponse;
 
 public interface SpotifyClient {
 
 
     // to be changed
-    JSONObject executeRequest(AbstractRequest abstractRequest);
+    RequestResponse executeRequest(IRequest request);
 
 
 }

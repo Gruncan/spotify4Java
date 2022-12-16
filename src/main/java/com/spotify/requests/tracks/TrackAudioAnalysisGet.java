@@ -1,17 +1,19 @@
 package com.spotify.requests.tracks;
 
-import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifySubRequest;
 
 
 /**
  * Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track’s structure and musical content, including rhythm, pitch, and timbre.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis">Spotify Docs</a>
  */
+@SpotifyRequest("audio-analysis")
 public class TrackAudioAnalysisGet extends AbstractRequest {
 
-    private final static String URL = "audio-analysis/{id}/";
 
+    @SpotifySubRequest
     private final String id;
 
     /**
@@ -19,12 +21,7 @@ public class TrackAudioAnalysisGet extends AbstractRequest {
      * @param id    The id of the track to be queried
      */
     public TrackAudioAnalysisGet(String id) {
-        super();
         this.id = id;
     }
 
-    @Override
-    public JSONObject execute(String token) {
-        return super.requestGet(token, URL.replace("{id}", this.id));
-    }
 }

@@ -1,6 +1,6 @@
 package com.spotify.requests;
 
-import com.spotify.json.JSONObject;
+
 
 public interface IRequest {
 
@@ -9,6 +9,6 @@ public interface IRequest {
      *
      * @return {@code JSONObject} the raw json response
      */
-    JSONObject execute(String token);
+    RequestResponse execute(String token);
 
 }

@@ -1,34 +1,36 @@
 package com.spotify.requests.tracks;
 
-import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.RequestQuery;
+import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.util.Market;
-import com.spotify.requests.util.ParameterPairBuilder;
-import com.spotify.util.Util;
 
 
 /**
  * Get Spotify catalog information for multiple tracks based on their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks">Spotify Docs</a>
  */
+@SpotifyRequest("tracks")
 public class SeveralTracksGet extends AbstractRequest {
 
 
-    private final static String URL = "tracks/";
+    @SpotifyRequestField
+    private final String[] ids;
 
+    @SpotifyRequestField
+    private Market market;
 
     /**
      * @param tracks The array of tracks to get
      */
-    public SeveralTracksGet(String... tracks) {
-        super(new ParameterPairBuilder().addKeys("ids", "market").addClasses(String.class, Market.class).build());
-        super.addQuery(new RequestQuery<>("ids", Util.join(tracks, ",")));
 
+    public SeveralTracksGet(String... ids) {
+        this.ids = ids;
+        this.market = null;
     }
 
-    @Override
-    public JSONObject execute(String token) {
-        return super.requestGet(token, URL);
+    public void setMarket(Market market) {
+        this.market = market;
     }
+
 }
