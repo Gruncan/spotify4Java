@@ -23,7 +23,7 @@ public class Main {
         TrackGet al = new TrackGet("05lBXOMA1uHpVPEQZyjoh3");
 
 //        AlbumsSavedMeGet al = new AlbumsSavedMeGet();
-        JSONObject jsonObject = spotifyClient.executeRequest(al);
+        JSONObject jsonObject = spotifyClient.executeRequest(al).ok();
         System.out.println(jsonObject.toString(4));
 
 

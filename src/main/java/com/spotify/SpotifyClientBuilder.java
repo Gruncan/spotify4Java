@@ -6,6 +6,7 @@ import com.http.HttpResponse;
 import com.http.SpotifyHttpServerProvider;
 import com.spotify.json.JSONObject;
 import com.spotify.requests.IRequest;
+import com.spotify.requests.RequestResponse;
 import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
 
@@ -197,7 +198,7 @@ public class SpotifyClientBuilder {
 
 
         @Override
-        public JSONObject executeRequest(IRequest request) {
+        public RequestResponse executeRequest(IRequest request) {
             return request.execute(this.accessToken);
         }
     }

@@ -48,7 +48,7 @@ public abstract class AbstractRequest implements IRequest {
      * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
      * @return The raw json response from the request
      */
-    protected final JSONObject requestGet(String token, String url) {
+    protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
 
 
@@ -63,7 +63,7 @@ public abstract class AbstractRequest implements IRequest {
             String s = response.getMessage();
             switch (code) {
                 case 200:
-                    return new JSONObject(response.getContent());
+                    return new RequestResponse(new JSONObject(response.getContent()), code, s);
                 case 401:
                     System.out.println("Bad or expired token. This can happen if the user revoked a " +
                             "token or the access token has expired. You should re-authenticate the user.");
@@ -79,9 +79,8 @@ public abstract class AbstractRequest implements IRequest {
                 default:
                     System.out.printf("Unknown fail cause, status code: %s.%n", code);
             }
-            System.out.println(s);
 
-            return null;
+            return new RequestResponse(null, code, s);
 
 
         } catch (NullPointerException e) {
@@ -91,7 +90,7 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     @Override
-    public JSONObject execute(String token) {
+    public RequestResponse execute(String token) {
 
         String urlQuery = this.buildRequestUrl();
         if (urlQuery == null) return null;
