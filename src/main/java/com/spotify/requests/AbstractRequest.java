@@ -108,7 +108,7 @@ public abstract class AbstractRequest implements IRequest {
 
             url = spotifyRequest.value();
             StringBuilder sb = new StringBuilder(url);
-            //if (!url.endsWith("/")) sb.append("/");
+            if (!url.endsWith("/")) sb.append("/");
 
             List<Field> spotifySubRequestFields = new ArrayList<>();
             List<Field> spotifyFieldRequestFields = new ArrayList<>();
@@ -140,7 +140,10 @@ public abstract class AbstractRequest implements IRequest {
             // Fields annotated with SpotifyRequestField
             for (Field field : spotifyFieldRequestFields) {
                 field.setAccessible(true);
-                if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+                if (sb.toString().endsWith("/")) {
+                    sb = new StringBuilder(sb.substring(0, sb.length() - 1));
+                    sb.append("?");
+                }
 
                 Object o = field.get(this);
                 Class<?> type = field.getType();

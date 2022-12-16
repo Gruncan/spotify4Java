@@ -4,6 +4,7 @@ import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilderTester;
 import com.spotify.requests.RequestResponse;
 import com.spotify.requests.util.Market;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,6 +28,7 @@ class SeveralTracksGetTest {
 
 
     @Test
+    @Tag("SlowNetworkTest")
     public void severalTrackGetExecuteTest() {
         String[] songs = new String[]{"1ljziaoMnRH95aPeOSGAtr", "2fOYcnUo9iPTOqIlSg26MY"};
         SeveralTracksGet tracksGet = new SeveralTracksGet(songs);
