@@ -80,22 +80,26 @@ public abstract class AbstractRequest implements IRequest {
             HttpResponse response = request.execute();
             int code = response.getCode();
             String s = response.getMessage();
-            if (code == 200) {
-                return new JSONObject(s);
-            } else if (code == 401) {
-                System.out.println("Bad or expired token. This can happen if the user revoked a token or the access token has expired. You should re-authenticate the user.");
-            } else if (code == 403) {
-                System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...). Unfortunately, re-authenticating the user won't help here.");
-            } else if (code == 429) {
-                System.out.println("The app has exceeded its rate limits.");
-            } else if (code == 400) {
-                System.out.println("Bad request.");
-            } else if (code == 404) {
-                System.out.println("Unknown request");
-            } else {
-                System.out.printf("Unknown fail cause, status code: %s.%n", code);
+            switch (code) {
+                case 200:
+                    return new JSONObject(response.getContent());
+                case 401:
+                    System.out.println("Bad or expired token. This can happen if the user revoked a " +
+                            "token or the access token has expired. You should re-authenticate the user.");
+                case 403:
+                    System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
+                            ". Unfortunately, re-authenticating the user won't help here.");
+                case 429:
+                    System.out.println("The app has exceeded its rate limits.");
+                case 400:
+                    System.out.println("Bad request.");
+                case 404:
+                    System.out.println("Unknown request");
+                default:
+                    System.out.printf("Unknown fail cause, status code: %s.%n", code);
             }
             System.out.println(s);
+
             return null;
 
 
@@ -197,3 +201,4 @@ public abstract class AbstractRequest implements IRequest {
         }
     }
 }
+ 
