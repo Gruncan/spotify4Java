@@ -2,6 +2,7 @@ package com.spotify.requests.tracks;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilderTester;
+import com.spotify.requests.RequestResponse;
 import com.spotify.requests.util.Market;
 import org.junit.jupiter.api.Test;
 
@@ -27,12 +28,14 @@ class SeveralTracksGetTest {
 
     @Test
     public void severalTrackGetExecuteTest() {
-        String[] songs = new String[]{"1ljziaoMnRH95aPeOSGAtr", "2fOYcnUo9iPTOqIlSg26MY"}
+        String[] songs = new String[]{"1ljziaoMnRH95aPeOSGAtr", "2fOYcnUo9iPTOqIlSg26MY"};
         SeveralTracksGet tracksGet = new SeveralTracksGet(songs);
 
         SpotifyClient scbt = new SpotifyClientBuilderTester().getBuiltClient();
 
-        scbt.executeRequest(tracksGet);
+        RequestResponse response = scbt.executeRequest(tracksGet);
+
+        assertEquals(200, response.getCode());
 
 
     }
