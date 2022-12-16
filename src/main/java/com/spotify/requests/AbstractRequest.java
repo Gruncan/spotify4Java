@@ -9,9 +9,7 @@ import com.spotify.util.Util;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -21,11 +19,6 @@ public abstract class AbstractRequest implements IRequest {
 
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
-    private final Map<String, Class<?>> restrictedQueryTypes;
-
-    public AbstractRequest() {
-        this.restrictedQueryTypes = new HashMap<>();
-    }
 
 
     private static <T> boolean isPrimitiveDefault(Object o, Class<T> cls) {
@@ -98,82 +91,100 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     @Override
-    public JSONObject execute(String token) throws IllegalAccessException {
-        SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
+    public JSONObject execute(String token) {
 
-        if (spotifyRequest == null) return null; //class is not annotated, to be handled properly
+        String urlQuery = this.buildRequestUrl();
+        if (urlQuery == null) return null;
 
-        String url = spotifyRequest.value();
-        StringBuilder sb = new StringBuilder(url);
-        if (!url.endsWith("/")) sb.append("/");
+        return this.requestGet(token, urlQuery);
+    }
 
-        List<Field> spotifySubRequestFields = new ArrayList<>();
-        List<Field> spotifyFieldRequestFields = new ArrayList<>();
-        for (Field field : this.getClass().getDeclaredFields()) {
-            if (field.getAnnotation(SpotifySubRequest.class) != null) {
-                spotifySubRequestFields.add(field);
-            } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
-                spotifyFieldRequestFields.add(field);
-            }
-        }
 
-        for (Field field : spotifySubRequestFields) {
-            field.setAccessible(true);
-            Object o = field.get(this);
-            if (o == null) {
-                field.setAccessible(false);
-                continue;
-            }
-            sb.append(o).append("/");
-            field.setAccessible(false);
-        }
+    public String buildRequestUrl() {
+        String url = "None";
+        try {
+            SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
 
-        String end = spotifyRequest.end();
-        if (!end.equals("")) {
-            sb.append(end);
-        }
+            if (spotifyRequest == null) return null; //class is not annotated, to be handled properly
 
-        for (Field field : spotifyFieldRequestFields) {
-            field.setAccessible(true);
-            if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+            url = spotifyRequest.value();
+            StringBuilder sb = new StringBuilder(url);
+            //if (!url.endsWith("/")) sb.append("/");
 
-            Object o = field.get(this);
-            Class<?> type = field.getType();
-            if (o == null || isPrimitiveDefault(o, type)) {
-                field.setAccessible(false);
-                continue;
-            }
-
-            sb.append(field.getName());
-            sb.append("=");
-            System.out.println(field);
-
-            if (type.isArray()) {
-                int length = Array.getLength(o);
-                Class<?> componentType = type.getComponentType();
-                String[] strings = new String[length];
-                for (int i = 0; i < length; i++) {
-                    Object v = Array.get(o, i);
-                    String s = convertToString(componentType, v);
-                    strings[i] = s;
+            List<Field> spotifySubRequestFields = new ArrayList<>();
+            List<Field> spotifyFieldRequestFields = new ArrayList<>();
+            for (Field field : this.getClass().getDeclaredFields()) {
+                if (field.getAnnotation(SpotifySubRequest.class) != null) {
+                    spotifySubRequestFields.add(field);
+                } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
+                    spotifyFieldRequestFields.add(field);
                 }
-                sb.append("\"");
-                String parameter = Util.join(strings, ",");
-                sb.append(parameter).append("\"");
-                sb.append("&");
-            } else {
-                sb.append(o);
-                sb.append("&");
             }
-            field.setAccessible(false);
-        }
 
-        String urlQuery = sb.toString();
-//        if (!urlQuery.endsWith("/"))
+            // Fields annotated with SpotifySubRequest
+            for (Field field : spotifySubRequestFields) {
+                field.setAccessible(true);
+                Object o = field.get(this);
+                if (o == null) {
+                    field.setAccessible(false);
+                    continue;
+                }
+                sb.append(o).append("/");
+                field.setAccessible(false);
+            }
+
+            String end = spotifyRequest.end();
+            if (!end.equals("")) {
+                sb.append(end);
+            }
+
+            // Fields annotated with SpotifyRequestField
+            for (Field field : spotifyFieldRequestFields) {
+                field.setAccessible(true);
+                if (!sb.toString().endsWith("&") && !sb.toString().endsWith("/")) sb.append("?");
+
+                Object o = field.get(this);
+                Class<?> type = field.getType();
+                if (o == null || isPrimitiveDefault(o, type)) {
+                    field.setAccessible(false);
+                    continue;
+                }
+
+                sb.append(field.getName());
+                sb.append("=");
+
+                if (type.isArray()) {
+                    int length = Array.getLength(o);
+                    Class<?> componentType = type.getComponentType();
+                    String[] strings = new String[length];
+                    for (int i = 0; i < length; i++) {
+                        Object v = Array.get(o, i);
+                        String s = convertToString(componentType, v);
+                        strings[i] = s;
+                    }
+
+                    String parameter = Util.join(strings, ",");
+                    sb.append(parameter);
+                    sb.append("&");
+                } else {
+                    sb.append(o);
+                    sb.append("&");
+                }
+                field.setAccessible(false);
+            }
+
+            String urlQuery = sb.toString();
             urlQuery = urlQuery.substring(0, urlQuery.length() - 1);
 
-        System.out.println(BASE_URL + urlQuery);
-        return this.requestGet(token, urlQuery);
+            return urlQuery;
+
+
+        } catch (IllegalAccessException e) {
+            System.out.println("Unable to access a field in for request url: " + url);
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 

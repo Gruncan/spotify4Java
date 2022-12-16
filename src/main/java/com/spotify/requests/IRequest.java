@@ -9,6 +9,6 @@ public interface IRequest {
      *
      * @return {@code JSONObject} the raw json response
      */
-    JSONObject execute(String token) throws IllegalAccessException;
+    JSONObject execute(String token);
 
 }

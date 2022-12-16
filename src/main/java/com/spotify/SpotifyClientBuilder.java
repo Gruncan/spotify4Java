@@ -198,11 +198,7 @@ public class SpotifyClientBuilder {
 
         @Override
         public JSONObject executeRequest(IRequest request) {
-            try {
-                return request.execute(this.accessToken);
-            } catch (IllegalAccessException e) {
-                return null;
-            }
+            return request.execute(this.accessToken);
         }
     }
 }
