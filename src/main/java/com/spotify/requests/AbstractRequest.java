@@ -166,10 +166,12 @@ public abstract class AbstractRequest implements IRequest {
                     }
 
                     String parameter = Util.join(strings, ",");
+                    parameter = parameter.replace(" ", "%20");
                     sb.append(parameter);
                     sb.append("&");
                 } else {
-                    sb.append(o);
+                    String v = o.toString().replace(" ", "%20");
+                    sb.append(v);
                     sb.append("&");
                 }
                 field.setAccessible(false);

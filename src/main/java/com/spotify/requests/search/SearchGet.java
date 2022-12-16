@@ -4,6 +4,7 @@ import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.util.Market;
+import com.spotify.requests.util.Type;
 
 
 @SpotifyRequest("search")
@@ -13,7 +14,7 @@ public class SearchGet extends AbstractRequest {
     private final String q;
 
     @SpotifyRequestField
-    private final String type;
+    private final Type[] type;
 
     @SpotifyRequestField
     private String include_external;
@@ -27,7 +28,7 @@ public class SearchGet extends AbstractRequest {
     @SpotifyRequestField
     private int offset;
 
-    public SearchGet(String q, String type) {
+    public SearchGet(String q, Type... type) {
         this.q = q;
         this.type = type;
         this.include_external = null;
