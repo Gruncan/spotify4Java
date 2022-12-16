@@ -1,28 +1,56 @@
 package com.spotify.requests.search;
 
-import com.spotify.json.JSONObject;
 import com.spotify.requests.AbstractRequest;
-import com.spotify.requests.RequestQuery;
-import com.spotify.requests.util.ParameterPairBuilder;
+import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.util.Market;
 
+
+@SpotifyRequest("search")
 public class SearchGet extends AbstractRequest {
 
-    private final static String URL = "search/";
+    @SpotifyRequestField
+    private final String q;
 
+    @SpotifyRequestField
+    private final String type;
+
+    @SpotifyRequestField
+    private String include_external;
+
+    @SpotifyRequestField
+    private int limit;
+
+    @SpotifyRequestField
+    private Market market;
+
+    @SpotifyRequestField
+    private int offset;
 
     public SearchGet(String q, String type) {
-        super(new ParameterPairBuilder()
-                .addKeys("q", "type", "include_external", "limit", "market", "offset")
-                .addClasses(String.class, String.class, String.class, Integer.class, Integer.class)
-                .build());
-        super.addQuery(new RequestQuery<>("q", q));
-        super.addQuery(new RequestQuery<>("type", type));
-
+        this.q = q;
+        this.type = type;
+        this.include_external = null;
+        this.limit = -1;
+        this.market = null;
+        this.offset = -1;
     }
 
-    @Override
-    public JSONObject execute(String token) {
-        return super.requestGet(token, URL);
+
+    public void setIncludeExternal(String s) {
+        this.include_external = s;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = Math.max(0, Math.min(limit, 50));
+    }
+
+    public void setMarket(Market market) {
+        this.market = market;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = Math.max(0, Math.min(offset, 1000));
     }
 
 
