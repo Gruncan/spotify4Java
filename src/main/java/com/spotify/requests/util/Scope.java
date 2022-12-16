@@ -1,7 +1,6 @@
 package com.spotify.requests.util;
 
 import com.spotify.requests.IRequest;
-import com.spotify.requests.users.CurrentUserProfileGet;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public enum Scope {
     PLAYLIST_READ_COLLABORATIVE("playlist-read-collaborative"),
     APP_REMOTE_CONTROL("app-remote-control"),
     USER_READ_PLAYBACK_STATE("user-read-playback-state"),
-    USER_READ_EMAIL("user-read-email", CurrentUserProfileGet.class),
+    USER_READ_EMAIL("user-read-email"),
     STREAMING("streaming"),
     USER_TOP_READ("user-top-read"),
     PLAYLIST_MODIFY_PUBLIC("playlist-modify-public"),
