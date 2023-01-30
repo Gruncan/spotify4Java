@@ -6,6 +6,8 @@ import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.util.Market;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -115,6 +117,52 @@ public class TrackRecommendationGet extends AbstractRequest {
         } catch (IllegalAccessException e) {
             System.out.println("Failed to instantiate default values.");
             e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * @param maxs maps array to field order in class
+     *             max_acousticness, max_danceability, max_energy, max_instrumentalness, max_liveness, max_loudness, max_speechiness, max_tempo, max_valence, max_duration_ms, max_key, max_mode, max_popularity, max_time_signature
+     *             0               , 1               , 2         , 3, ...
+     */
+    public void setMaximums(double[] maxs) {
+        if (maxs.length != 14)
+            throw new IndexOutOfBoundsException(String.format("Failed to set maximums should be size 14 found size %s.", maxs.length));
+
+        this.setGenericFields(maxs, "max_");
+    }
+
+    public void setMinimums(double[] mins) {
+        if (mins.length != 14)
+            throw new IndexOutOfBoundsException(String.format("Failed to set minimums should be size 14 found size %s.", mins.length));
+
+        this.setGenericFields(mins, "min_");
+    }
+
+    public void setTargets(double[] targets) {
+        if (targets.length != 14)
+            throw new IndexOutOfBoundsException(String.format("Failed to set targets should be size 14 found size %s", targets.length));
+
+        this.setGenericFields(targets, "target_");
+    }
+
+    private void setGenericFields(double[] gen, String s) {
+        List<Field> filteredFields = Arrays.stream(this.getClass().getDeclaredFields())
+                .filter(field -> field.getName().startsWith(s)).toList();
+        try {
+            for (int i = 0; i < filteredFields.size(); i++) {
+                Field f = filteredFields.get(i);
+                f.setAccessible(true);
+                if (f.getType().equals(int.class))
+                    f.set(this, (int) gen[i]);
+                else
+                    f.set(this, gen[i]);
+
+                f.setAccessible(false);
+            }
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
         }
     }
 
