@@ -33,7 +33,7 @@ class TrackRecommendationGetTest {
         TrackRecommendationGet trg = new TrackRecommendationGet(arr, arr, arr);
 
         double[] values = new double[]{-10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d, -10d};
-        trg.setMaximums(values);
+        trg.setMinimums(values);
 
         Field timeSig = trg.getClass().getDeclaredField("min_time_signature");
         timeSig.setAccessible(true);
