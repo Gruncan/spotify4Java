@@ -3,7 +3,7 @@ package com.spotify.requests;
 import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
 import com.spotify.util.Util;
 
 import java.lang.reflect.Array;

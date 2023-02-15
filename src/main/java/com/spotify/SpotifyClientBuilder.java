@@ -4,7 +4,7 @@ import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.http.SpotifyHttpServerProvider;
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
 import com.spotify.requests.IRequest;
 import com.spotify.requests.RequestResponse;
 import com.spotify.requests.util.Scope;

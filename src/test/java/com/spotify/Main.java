@@ -1,6 +1,6 @@
 package com.spotify;
 
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
 import com.spotify.requests.search.SearchGet;
 import com.spotify.requests.util.Type;
 

@@ -1,6 +1,6 @@
 package com.spotify.requests;
 
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
 
 public class RequestResponse {
 

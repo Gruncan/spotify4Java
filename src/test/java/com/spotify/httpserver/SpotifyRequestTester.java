@@ -2,7 +2,7 @@ package com.spotify.httpserver;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
 import com.spotify.requests.tracks.TrackGet;
 import com.spotify.util.Util;
 import com.sun.net.httpserver.HttpExchange;
