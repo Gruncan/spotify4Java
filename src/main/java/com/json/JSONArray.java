@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.spotify.json;
+package com.json;
 
 
 import java.lang.reflect.Array;
