@@ -3,7 +3,7 @@ package com.spotify.requests.search;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
-import com.spotify.requests.util.Market;
+import com.spotify.util.Market;
 import com.spotify.requests.util.Type;
 
 
