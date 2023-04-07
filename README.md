@@ -25,7 +25,7 @@ SpotifyClient spotifyClient = new SpotifyClientBuilder("CLIENT_ID", "CLIENT_SECR
 ``getBuiltClient()`` will make/create the necessary requests/server following spotify's OAuth 2.0 authentication
 framework
 
-<img src="https://developer.spotify.com/assets/AuthG_AuthoriztionCode.png" width="70%">
+<img src="https://developer.spotify.com/images/documentation/web-api/auth-code-flow.png" width="70%">
 
 If however you already have an `access_token` you can use:
 
@@ -60,22 +60,22 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <details open>
 <summary><strong><u>Album:</u></strong></summary>
 
-- AlbumGet ([api.spotify.com/v1/albums/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album))
-- SeveralAlbumsGet ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))
-- AlbumTracksGet ([api.spotify.com/v1/albums/{id}/tracks](https://developer.spoify.com/documentation/web-api/reference/#/operations/get-an-albums-tracks))
-- AlbumsSavedMeGet ([api.spotify.com/v1/me/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-albums))
-- AlbumsCheckSavedGet ([api.spotify.com/v1/me/albums/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-albums))
+- ~~AlbumGet ([api.spotify.com/v1/albums/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album))~~
+- ~~SeveralAlbumsGet ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))~~
+- ~~AlbumTracksGet ([api.spotify.com/v1/albums/{id}/tracks](https://developer.spoify.com/documentation/web-api/reference/#/operations/get-an-albums-tracks))~~
+- ~~AlbumsSavedMeGet ([api.spotify.com/v1/me/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-albums))~~
+- ~~AlbumsCheckSavedGet ([api.spotify.com/v1/me/albums/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-albums))~~
 
 </details>
 <br>
 <details open>
 <summary><strong><u>Artists:</u></strong></summary>
 
-- ArtistGet ([api.spotify.com/v1/artists/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artist))
-- SeveralArtistsGet ([api.spotify.com/v1/artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-artists))
-- ArtistsAlbumsGet ([api.spotify.com/v1/artists/{id}/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-albums))
-- ArtistTopTracksGet ([api.spotify.com/v1/artists/{id}/top-tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-top-tracks))
-- ArtistRelatedArtistsGet ([api.spotify.com/v1/artists/related-artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-related-artists))
+- ~~ArtistGet ([api.spotify.com/v1/artists/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artist))~~
+- ~~SeveralArtistsGet ([api.spotify.com/v1/artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-artists))~~
+- ~~ArtistsAlbumsGet ([api.spotify.com/v1/artists/{id}/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-albums))~~
+- ~~ArtistTopTracksGet ([api.spotify.com/v1/artists/{id}/top-tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-top-tracks))~~
+- ~~ArtistRelatedArtistsGet ([api.spotify.com/v1/artists/related-artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-related-artists))~~
 
 </details>
 <br>
@@ -100,8 +100,8 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 
 - TrackGet ([api.spotify.com/tracks/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track))
 - SeveralTracksGet ([api.spotify.com/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks))
-- TrackSavedMeGet ([api.spotify.com/me/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-tracks))
-- TrackUserSavedGet ([api.spotify.com/me/tracks/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-tracks))
+- ~~TrackSavedMeGet ([api.spotify.com/me/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-saved-tracks))~~
+- ~~TrackUserSavedGet ([api.spotify.com/me/tracks/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-users-saved-tracks))~~
 - SeveralTrackAudioFeaturesGet ([api.spotify.com/audio-features](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features))
 - TrackAudioFeaturesGet ([api.spotify.com/audio-features/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features))
 - TrackAudioAnalysis ([api.spotify.com/audio-analysis/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis))
@@ -119,12 +119,12 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <details open>
 <summary><strong><u>User</u></strong></summary>
 
-- CurrentUserProfileGet ([api.spotify.com/me](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile))
-- UserTopItemsGet ([api.spotify.com/me/top/{type}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks))
-- UserProfileGet ([api.spotify.com/users/{user_id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-profile))
-- FollowedArtistsGet ([api.spotify.com/me/following](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-followed))
-- UserCheckFollowsArtistUserGet ([api.spotify.com/me/following/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-current-user-follows))
-- UserCheckFollowPlaylistGet ([api.spotify.com/playlists/{playlist_id}/followers/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-if-user-follows-playlist))
+- ~~CurrentUserProfileGet ([api.spotify.com/me](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-current-users-profile))~~
+- ~~UserTopItemsGet ([api.spotify.com/me/top/{type}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-top-artists-and-tracks))~~
+- ~~UserProfileGet ([api.spotify.com/users/{user_id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-users-profile))~~
+- ~~FollowedArtistsGet ([api.spotify.com/me/following](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-followed))~~
+- ~~UserCheckFollowsArtistUserGet ([api.spotify.com/me/following/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-current-user-follows))~~
+- ~~UserCheckFollowPlaylistGet ([api.spotify.com/playlists/{playlist_id}/followers/contains](https://developer.spotify.com/documentation/web-api/reference/#/operations/check-if-user-follows-playlist))~~
 
 </details>
 <br>
@@ -156,6 +156,7 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <summary><strong><u>Markets</u></strong></summary>
 </details>
 <br>
+(<s>scorethrough</s> items were previously implemented but removed in the refactor will be back soon)
 
 ### <u>Future Plans</u>
 - Implement the remainder of api request
