@@ -2,8 +2,8 @@ package com.spotify.requests.tracks;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilderTester;
+import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.RequestResponse;
-import com.spotify.util.Market;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 

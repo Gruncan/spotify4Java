@@ -1,4 +1,4 @@
-package com.spotify.util;
+package com.spotify.objects.wrappers;
 
 
 import com.spotify.objects.SpotifyObject;

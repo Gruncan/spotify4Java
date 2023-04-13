@@ -1,11 +1,11 @@
-package com.spotify.requests;
+package com.spotify;
 
-import com.spotify.exceptions.SpotifySerializationException;
 import com.json.JSONArray;
 import com.json.JSONObject;
+import com.spotify.exceptions.SpotifySerializationException;
 import com.spotify.objects.SpotifyField;
-import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.SpotifyObject;
+import com.spotify.objects.SpotifyOptional;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -76,8 +76,8 @@ public class SpotifySerializer {
                 if (!required && (jsonPath == null || jsonPath.isNull(name)))
                     continue;
                 else if (jsonPath == null || jsonPath.isNull(name))
-                    throw new SpotifySerializationException(String.format("No mapping found for spotify required field: %s. " +
-                            "Java variable: %s", spotifyField.value(), field.getName()));
+                    throw new SpotifySerializationException(String.format("No mapping found for spotify required field: \"%s/%s\". " +
+                            "Java class %s field: %s", String.join("/", spotifyField.path()), spotifyField.value(), cls, field.getName()));
 
 
                 field.setAccessible(true);

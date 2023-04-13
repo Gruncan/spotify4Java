@@ -1,9 +1,9 @@
 package com.spotify.requests.tracks;
 
+import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
-import com.spotify.util.Market;
 
 
 /**

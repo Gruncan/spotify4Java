@@ -18,7 +18,6 @@ class TrackGetTest {
 
         String url = trackGet.buildRequestUrl();
 
-
         assertEquals("tracks/id1", url);
     }
 
