@@ -1,6 +1,6 @@
 package com.spotify.requests.tracks;
 
-import com.spotify.objects.ModelsSpotify;
+import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.Track;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -13,7 +13,7 @@ import com.spotify.requests.SpotifySubRequest;
  */
 
 @SpotifyRequest("tracks")
-@ModelsSpotify(Track.class)
+@SpotifySerialize(Track.class)
 public class TrackGet extends AbstractRequest {
 
 

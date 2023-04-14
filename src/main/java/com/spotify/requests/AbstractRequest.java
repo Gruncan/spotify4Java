@@ -5,8 +5,8 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.json.JSONObject;
 import com.spotify.SpotifyResponse;
-import com.spotify.objects.ModelsSpotify;
 import com.spotify.objects.SpotifyObject;
+import com.spotify.objects.SpotifySerialize;
 import com.spotify.util.Util;
 
 import java.lang.reflect.Array;
@@ -97,7 +97,7 @@ public abstract class AbstractRequest implements IRequest {
         if (urlQuery == null) return null;
 
         RequestResponse response = this.requestGet(token, urlQuery);
-        ModelsSpotify ms = this.getClass().getAnnotation(ModelsSpotify.class);
+        SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
         Class<? extends SpotifyObject> cls = ms.value();
         return new SpotifyResponse(response, cls);
     }
