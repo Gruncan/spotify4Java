@@ -1,5 +1,7 @@
 package com.spotify.requests.tracks;
 
+import com.spotify.objects.ModelsSpotify;
+import com.spotify.objects.tracks.Track;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifySubRequest;
@@ -11,6 +13,7 @@ import com.spotify.requests.SpotifySubRequest;
  */
 
 @SpotifyRequest("tracks")
+@ModelsSpotify(Track.class)
 public class TrackGet extends AbstractRequest {
 
 

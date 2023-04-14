@@ -1,11 +1,8 @@
-package com.spotify;
+package com.spotify.objects;
 
 import com.json.JSONArray;
 import com.json.JSONObject;
 import com.spotify.exceptions.SpotifySerializationException;
-import com.spotify.objects.SpotifyField;
-import com.spotify.objects.SpotifyObject;
-import com.spotify.objects.SpotifyOptional;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -13,10 +10,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-public class SpotifySerializer {
+public abstract class SpotifySerializer {
 
-
-    protected <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
         try {
             if (cls.isEnum()) {
                 return (E) this.handleEnum((Class<? extends Enum>) cls, json.getString("value"));
@@ -116,7 +113,7 @@ public class SpotifySerializer {
         }
     }
 
-
+    @SuppressWarnings("unchecked")
     private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) {
         E[] array = (E[]) Array.newInstance(cls, jsonArray.length());
         for (int i = 0; i < array.length; i++)
@@ -124,8 +121,14 @@ public class SpotifySerializer {
         return array;
     }
 
-    private <T extends Enum<T>> T handleEnum(Class<T> cls, String value) {
+    private <E extends Enum<E>> E handleEnum(Class<E> cls, String value) {
         return Enum.valueOf(cls, value);
     }
+
+    protected <S extends SpotifyObject> S serializeObject(JSONObject json, Class<S> cls) {
+        if (json == null) return null;
+        return this.serializer(cls, json);
+    }
+
 
 }

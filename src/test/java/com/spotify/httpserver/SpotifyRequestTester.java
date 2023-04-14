@@ -2,7 +2,6 @@ package com.spotify.httpserver;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
-import com.json.JSONObject;
 import com.spotify.requests.tracks.TrackGet;
 import com.spotify.util.Util;
 import com.sun.net.httpserver.HttpExchange;
@@ -59,13 +58,13 @@ public class SpotifyRequestTester {
             SpotifyClient spotifyClient = spotifyClientBuilder.build(code);
 
             TrackGet currentUserProfileGet = new TrackGet("2mgkRsjpp6HH1MTyHYpTeF");
-            JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet).ok();
+//            JSONObject jsonObject = spotifyClient.executeRequest(currentUserProfileGet).ok();
 
 
-            String response = jsonObject.toString(4);
-            e.sendResponseHeaders(200, response.getBytes().length);
+//            String response = jsonObject.toString(4);
+//            e.sendResponseHeaders(200, response.getBytes().length);
             try (OutputStream os = e.getResponseBody()) {
-                os.write(response.getBytes());
+//                os.write(response.getBytes());
             } finally {
                 server.stop(5);
             }

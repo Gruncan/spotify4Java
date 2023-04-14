@@ -4,6 +4,9 @@ import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.json.JSONObject;
+import com.spotify.SpotifyResponse;
+import com.spotify.objects.ModelsSpotify;
+import com.spotify.objects.SpotifyObject;
 import com.spotify.util.Util;
 
 import java.lang.reflect.Array;
@@ -32,11 +35,12 @@ public abstract class AbstractRequest implements IRequest {
             return !b;
         } else if (cls.equals(double.class)) {
             Double d = (Double) o;
-            return d == -1;
+            return d == -1d;
         }
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     private static <T> String convertToString(Class<T> cls, Object o) {
         T v = (T) o;
         return v.toString();
@@ -50,8 +54,6 @@ public abstract class AbstractRequest implements IRequest {
      */
     protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
-
-
         HttpRequest request = new HttpRequest(BASE_URL + url, HttpMethod.GET);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
@@ -90,12 +92,14 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     @Override
-    public RequestResponse execute(String token) {
-
+    public SpotifyResponse execute(String token) {
         String urlQuery = this.buildRequestUrl();
         if (urlQuery == null) return null;
 
-        return this.requestGet(token, urlQuery);
+        RequestResponse response = this.requestGet(token, urlQuery);
+        ModelsSpotify ms = this.getClass().getAnnotation(ModelsSpotify.class);
+        Class<? extends SpotifyObject> cls = ms.value();
+        return new SpotifyResponse(response, cls);
     }
 
 

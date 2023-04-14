@@ -1,6 +1,5 @@
 package com.spotify;
 
-import com.json.JSONObject;
 import com.spotify.objects.tracks.Track;
 import com.spotify.requests.tracks.TrackGet;
 
@@ -15,11 +14,9 @@ public class Main {
 
         TrackGet trackGet = new TrackGet("05lBXOMA1uHpVPEQZyjoh3");
 
-        JSONObject jsonObject = sc.executeRequest(trackGet).ok();
 
-        SpotifySerializer ss = new SpotifySerializer();
-
-        Track track = ss.serializer(Track.class, jsonObject);
+        SpotifyResponse spotifyResponse = sc.executeRequest(trackGet);
+        Track track = spotifyResponse.getSerialisedObject();
 
         System.out.println(track);
 

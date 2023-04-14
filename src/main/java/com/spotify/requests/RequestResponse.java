@@ -31,6 +31,4 @@ public class RequestResponse {
     public String getMessage() {
         return this.message;
     }
-
-
 }

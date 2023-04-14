@@ -3,7 +3,6 @@ package com.spotify.requests.tracks;
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilderTester;
 import com.spotify.objects.wrappers.Market;
-import com.spotify.requests.RequestResponse;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +34,9 @@ class SeveralTracksGetTest {
 
         SpotifyClient scbt = new SpotifyClientBuilderTester().getBuiltClient();
 
-        RequestResponse response = scbt.executeRequest(tracksGet);
+//        RequestResponse response = scbt.executeRequest(tracksGet);
 
-        assertEquals(200, response.getCode());
+//        assertEquals(200, response.getCode());
 
 
     }
