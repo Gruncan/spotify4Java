@@ -102,7 +102,7 @@ public abstract class AbstractRequest implements IRequest {
         Class<? extends SpotifyObject> cls = ms.value();
         SpotifyResponse response;
         if (ms.isArray())
-            response = new SpotifyResponse(rresponse, cls, request.value());
+            response = new SpotifyResponse(rresponse, cls, request.value().replace("-", "_"));
         else
             response = new SpotifyResponse(rresponse, cls);
 
