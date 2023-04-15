@@ -84,7 +84,6 @@ public abstract class AbstractRequest implements IRequest {
 
             return new RequestResponse(content, code, s);
 
-
         } catch (NullPointerException e) {
             e.printStackTrace();
             return null;
@@ -98,6 +97,7 @@ public abstract class AbstractRequest implements IRequest {
 
         RequestResponse rresponse = this.requestGet(token, urlQuery);
         SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
+        if (ms == null) return null;
         SpotifyRequest request = this.getClass().getAnnotation(SpotifyRequest.class);
         Class<? extends SpotifyObject> cls = ms.value();
         SpotifyResponse response;
