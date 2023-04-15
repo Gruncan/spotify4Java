@@ -96,10 +96,18 @@ public abstract class AbstractRequest implements IRequest {
         String urlQuery = this.buildRequestUrl();
         if (urlQuery == null) return null;
 
-        RequestResponse response = this.requestGet(token, urlQuery);
+        RequestResponse rresponse = this.requestGet(token, urlQuery);
         SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
+        SpotifyRequest request = this.getClass().getAnnotation(SpotifyRequest.class);
         Class<? extends SpotifyObject> cls = ms.value();
-        return new SpotifyResponse(response, cls);
+        SpotifyResponse response;
+        if (ms.isArray())
+            response = new SpotifyResponse(rresponse, cls, request.value());
+        else
+            response = new SpotifyResponse(rresponse, cls);
+
+
+        return response;
     }
 
 

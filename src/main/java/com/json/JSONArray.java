@@ -633,6 +633,7 @@ public class JSONArray implements Iterable<Object> {
         if (object instanceof JSONObject) {
             return (JSONObject) object;
         } else {
+            if (object == null || object.toString().equals("null")) return null;
             throw JSON.typeMismatch(index, object, "JSONObject");
         }
     }

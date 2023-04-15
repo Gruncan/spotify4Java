@@ -1,5 +1,7 @@
 package com.spotify.requests.tracks;
 
+import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.tracks.Track;
 import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -11,6 +13,7 @@ import com.spotify.requests.SpotifyRequestField;
  * <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks">Spotify Docs</a>
  */
 @SpotifyRequest("tracks")
+@SpotifySerialize(value = Track.class, isArray = true)
 public class SeveralTracksGet extends AbstractRequest {
 
 

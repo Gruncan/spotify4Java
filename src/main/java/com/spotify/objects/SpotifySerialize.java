@@ -8,4 +8,6 @@ public @interface SpotifySerialize {
 
     Class<? extends SpotifyObject> value();
 
+    boolean isArray() default false;
+
 }
