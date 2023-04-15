@@ -54,7 +54,9 @@ public abstract class AbstractRequest implements IRequest {
      */
     protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
-        HttpRequest request = new HttpRequest(BASE_URL + url, HttpMethod.GET);
+        String requestURL = BASE_URL + url;
+        HttpMethod method = HttpMethod.GET;
+        HttpRequest request = new HttpRequest(requestURL, method);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
 
@@ -63,26 +65,24 @@ public abstract class AbstractRequest implements IRequest {
             HttpResponse response = request.execute();
             int code = response.getCode();
             String s = response.getMessage();
+            JSONObject content = null;
             switch (code) {
-                case 200:
-                    return new RequestResponse(new JSONObject(response.getContent()), code, s);
-                case 401:
-                    System.out.println("Bad or expired token. This can happen if the user revoked a " +
-                            "token or the access token has expired. You should re-authenticate the user.");
-                case 403:
-                    System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
-                            ". Unfortunately, re-authenticating the user won't help here.");
-                case 429:
-                    System.out.println("The app has exceeded its rate limits.");
-                case 400:
-                    System.out.println("Bad request.");
-                case 404:
-                    System.out.println("Unknown request");
-                default:
-                    System.out.printf("Unknown fail cause, status code: %s.%n", code);
+                case 200 -> content = new JSONObject(response.getContent());
+                case 401 -> System.out.printf("Error: Bad or expired token. This can happen if the user revoked a " +
+                                "token or the access token has expired. You should re-authenticate the user for %s request %s%n",
+                        method, requestURL);
+                case 403 ->
+                        System.out.printf("Error: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
+                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", method,
+                                requestURL);
+                case 429 -> System.out.println("Error: The app has exceeded its rate limits.");
+                case 400 -> System.out.printf("Error: Bad request for %s request %s%n", method, requestURL);
+                case 404 -> System.out.printf("Error: Unknown request for %s request %s%n", method, requestURL);
+                default -> System.out.printf("Error: Unknown fail cause, status code: '%s' for %s request %s .%n", code,
+                        method, requestURL);
             }
 
-            return new RequestResponse(null, code, s);
+            return new RequestResponse(content, code, s);
 
 
         } catch (NullPointerException e) {
