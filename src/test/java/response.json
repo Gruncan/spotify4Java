@@ -1,0 +1,83 @@
+[
+  {
+    "album": {
+      "album_group": "album",
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/1km0R7wy712AzLkA1WjKET"
+          },
+          "href": "https://api.spotify.com/v1/artists/1km0R7wy712AzLkA1WjKET",
+          "id": "1km0R7wy712AzLkA1WjKET",
+          "name": "Biffy Clyro",
+          "type": "artist",
+          "uri": "spotify:artist:1km0R7wy712AzLkA1WjKET"
+        }
+      ],
+      "available_markets": [
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/6UuQatBlB5QYszvOsBawSD"
+      },
+      "href": "https://api.spotify.com/v1/albums/6UuQatBlB5QYszvOsBawSD",
+      "id": "6UuQatBlB5QYszvOsBawSD",
+      "images": [
+        {
+          "height": 640,
+          "url": "https://i.scdn.co/image/ab67616d0000b273377169f345863de4ceb5d41f",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url": "https://i.scdn.co/image/ab67616d00001e02377169f345863de4ceb5d41f",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url": "https://i.scdn.co/image/ab67616d00004851377169f345863de4ceb5d41f",
+          "width": 64
+        }
+      ],
+      "name": "Only Revolutions",
+      "release_date": "2010-01-18",
+      "release_date_precision": "day",
+      "total_tracks": 13,
+      "type": "album",
+      "uri": "spotify:album:6UuQatBlB5QYszvOsBawSD"
+    },
+    "artists": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1km0R7wy712AzLkA1WjKET"
+        },
+        "href": "https://api.spotify.com/v1/artists/1km0R7wy712AzLkA1WjKET",
+        "id": "1km0R7wy712AzLkA1WjKET",
+        "name": "Biffy Clyro",
+        "type": "artist",
+        "uri": "spotify:artist:1km0R7wy712AzLkA1WjKET"
+      }
+    ],
+    "available_markets": [
+    ],
+    "disc_number": 1,
+    "duration_ms": 301080,
+    "explicit": false,
+    "external_ids": {
+      "isrc": "GBFTG0900057"
+    },
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/05lBXOMA1uHpVPEQZyjoh3"
+    },
+    "href": "https://api.spotify.com/v1/tracks/05lBXOMA1uHpVPEQZyjoh3",
+    "id": "05lBXOMA1uHpVPEQZyjoh3",
+    "is_local": false,
+    "name": "Bubbles",
+    "popularity": 57,
+    "preview_url": "https://p.scdn.co/mp3-preview/ef9c24746d22d4acebd47b881699d78c128060b6?cid=49d248093d8c41dd8b65aba37c5ef665",
+    "track_number": 3,
+    "type": "track",
+    "uri": "spotify:track:05lBXOMA1uHpVPEQZyjoh3"
+  },
+  null
+]

@@ -1,13 +1,12 @@
 package com.spotify;
 
-import com.spotify.requests.IRequest;
-import com.spotify.requests.RequestResponse;
+import com.spotify.requests.AbstractRequest;
 
 public interface SpotifyClient {
 
 
     // to be changed
-    RequestResponse executeRequest(IRequest request);
+    SpotifyResponse executeRequest(AbstractRequest request);
 
 
 }

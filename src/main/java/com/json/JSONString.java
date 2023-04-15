@@ -1,4 +1,4 @@
-package com.spotify.json;
+package com.json;
 
 /**
  * The <code>JSONString</code> interface allows a <code>toJSONString()</code>

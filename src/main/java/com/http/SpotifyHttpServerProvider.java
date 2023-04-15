@@ -34,14 +34,13 @@ public class SpotifyHttpServerProvider {
             if (!url.getHost().equals("127.0.0.1"))
                 url = new URL("https://127.0.0.1:8888/redirect/");
 
-
             Desktop desktop = Desktop.getDesktop();
-            server = HttpServer.create(new InetSocketAddress(url.getPort()), 0);
+            this.server = HttpServer.create(new InetSocketAddress(url.getPort()), 0);
             this.countDownLatch = new CountDownLatch(1);
-            server.createContext(url.getPath(), new RedirectHandler());
+            this.server.createContext(url.getPath(), new RedirectHandler());
 
-            desktop.browse(new URI(spotifyClientBuilder.buildAuthUrl()));
-            server.start();
+            desktop.browse(new URI(this.spotifyClientBuilder.buildAuthUrl()));
+            this.server.start();
         } catch (IOException | URISyntaxException e) {
             System.out.println("Unable to start server.");
             e.printStackTrace();

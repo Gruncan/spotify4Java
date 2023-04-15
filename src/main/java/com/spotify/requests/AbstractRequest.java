@@ -3,7 +3,10 @@ package com.spotify.requests;
 import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
-import com.spotify.json.JSONObject;
+import com.json.JSONObject;
+import com.spotify.SpotifyResponse;
+import com.spotify.objects.SpotifyObject;
+import com.spotify.objects.SpotifySerialize;
 import com.spotify.util.Util;
 
 import java.lang.reflect.Array;
@@ -32,11 +35,12 @@ public abstract class AbstractRequest implements IRequest {
             return !b;
         } else if (cls.equals(double.class)) {
             Double d = (Double) o;
-            return d == -1;
+            return d == -1d;
         }
         return false;
     }
 
+    @SuppressWarnings("unchecked")
     private static <T> String convertToString(Class<T> cls, Object o) {
         T v = (T) o;
         return v.toString();
@@ -50,9 +54,9 @@ public abstract class AbstractRequest implements IRequest {
      */
     protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
-
-
-        HttpRequest request = new HttpRequest(BASE_URL + url, HttpMethod.GET);
+        String requestURL = BASE_URL + url;
+        HttpMethod method = HttpMethod.GET;
+        HttpRequest request = new HttpRequest(requestURL, method);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
 
@@ -61,27 +65,24 @@ public abstract class AbstractRequest implements IRequest {
             HttpResponse response = request.execute();
             int code = response.getCode();
             String s = response.getMessage();
+            JSONObject content = null;
             switch (code) {
-                case 200:
-                    return new RequestResponse(new JSONObject(response.getContent()), code, s);
-                case 401:
-                    System.out.println("Bad or expired token. This can happen if the user revoked a " +
-                            "token or the access token has expired. You should re-authenticate the user.");
-                case 403:
-                    System.out.println("Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
-                            ". Unfortunately, re-authenticating the user won't help here.");
-                case 429:
-                    System.out.println("The app has exceeded its rate limits.");
-                case 400:
-                    System.out.println("Bad request.");
-                case 404:
-                    System.out.println("Unknown request");
-                default:
-                    System.out.printf("Unknown fail cause, status code: %s.%n", code);
+                case 200 -> content = new JSONObject(response.getContent());
+                case 401 -> System.out.printf("Error: Bad or expired token. This can happen if the user revoked a " +
+                                "token or the access token has expired. You should re-authenticate the user for %s request %s%n",
+                        method, requestURL);
+                case 403 ->
+                        System.out.printf("Error: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
+                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", method,
+                                requestURL);
+                case 429 -> System.out.println("Error: The app has exceeded its rate limits.");
+                case 400 -> System.out.printf("Error: Bad request for %s request %s%n", method, requestURL);
+                case 404 -> System.out.printf("Error: Unknown request for %s request %s%n", method, requestURL);
+                default -> System.out.printf("Error: Unknown fail cause, status code: '%s' for %s request %s .%n", code,
+                        method, requestURL);
             }
 
-            return new RequestResponse(null, code, s);
-
+            return new RequestResponse(content, code, s);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -90,12 +91,23 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     @Override
-    public RequestResponse execute(String token) {
-
+    public SpotifyResponse execute(String token) {
         String urlQuery = this.buildRequestUrl();
         if (urlQuery == null) return null;
 
-        return this.requestGet(token, urlQuery);
+        RequestResponse rresponse = this.requestGet(token, urlQuery);
+        SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
+        if (ms == null) return null;
+        SpotifyRequest request = this.getClass().getAnnotation(SpotifyRequest.class);
+        Class<? extends SpotifyObject> cls = ms.value();
+        SpotifyResponse response;
+        if (ms.isArray())
+            response = new SpotifyResponse(rresponse, cls, request.value().replace("-", "_"));
+        else
+            response = new SpotifyResponse(rresponse, cls);
+
+
+        return response;
     }
 
 

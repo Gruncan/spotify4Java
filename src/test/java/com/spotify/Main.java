@@ -1,21 +1,25 @@
 package com.spotify;
 
-import com.spotify.json.JSONObject;
-import com.spotify.requests.search.SearchGet;
-import com.spotify.requests.util.Type;
+import com.spotify.objects.tracks.TrackAudioAnalysis;
+import com.spotify.requests.tracks.TrackAudioAnalysisGet;
 
 public class Main {
 
 
     public static void main(String[] args) throws IllegalAccessException {
-        SpotifyClient sc = new SpotifyClientBuilderTester().printAccessToken().getBuiltClient();
+        SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
 
-        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
-//        AbstractRequest al = new SeveralTrackAudioFeaturesGet("05lBXOMA1uHpVPEQZyjoh3", "1ljziaoMnRH95aPeOSGAtr1");
 
-        System.out.println(searchGet.buildRequestUrl());
-        JSONObject jsonObject = sc.executeRequest(searchGet).ok();
-        System.out.println(jsonObject.toString(4));
+//        SeveralTracksGet severalTracksGet = new SeveralTracksGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
+        TrackAudioAnalysisGet trackGet = new TrackAudioAnalysisGet("4CeeEOM32jQcH3eN9Q2dGj");
+
+        SpotifyResponse trackResponse = sc.executeRequest(trackGet);
+
+
+        TrackAudioAnalysis tracks = trackResponse.getSerialisedObject();
+
+
+        System.out.println(tracks);
 
 
     }
