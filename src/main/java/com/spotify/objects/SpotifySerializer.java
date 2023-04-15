@@ -115,6 +115,16 @@ public abstract class SpotifySerializer {
 
     @SuppressWarnings("unchecked")
     private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) {
+        if (cls.isPrimitive()) {
+            if (cls.equals(int.class))
+                cls = (Class<E>) Integer.class;
+            else if (cls.equals(boolean.class))
+                cls = (Class<E>) Boolean.class;
+            else if (cls.equals(double.class))
+                cls = (Class<E>) Double.class;
+            else
+                return null;
+        }
         E[] array = (E[]) Array.newInstance(cls, jsonArray.length());
         for (int i = 0; i < array.length; i++)
             array[i] = this.serializeField(cls, jsonArray.getModifiedJSONObject(i), "value");

@@ -1,9 +1,7 @@
 package com.spotify;
 
-import com.spotify.objects.tracks.TrackAudioFeatures;
-import com.spotify.requests.tracks.SeveralTrackAudioFeaturesGet;
-
-import java.util.Arrays;
+import com.spotify.objects.tracks.TrackAudioAnalysis;
+import com.spotify.requests.tracks.TrackAudioAnalysisGet;
 
 public class Main {
 
@@ -13,16 +11,15 @@ public class Main {
 
 
 //        SeveralTracksGet severalTracksGet = new SeveralTracksGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
-        SeveralTrackAudioFeaturesGet trackGet = new SeveralTrackAudioFeaturesGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
+        TrackAudioAnalysisGet trackGet = new TrackAudioAnalysisGet("4CeeEOM32jQcH3eN9Q2dGj");
 
-
-//        SpotifyResponse sr = sc.executeRequest(severalTracksGet);
         SpotifyResponse trackResponse = sc.executeRequest(trackGet);
 
-        TrackAudioFeatures[] tracks = trackResponse.getSerialisedObjects();
+
+        TrackAudioAnalysis tracks = trackResponse.getSerialisedObject();
 
 
-        System.out.println(Arrays.toString(tracks));
+        System.out.println(tracks);
 
 
     }
