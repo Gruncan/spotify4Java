@@ -46,12 +46,13 @@ public static void main(String[]args){
     SpotifyClient spotifyClient = new SpotifyClientBuilder("CLIENT_ID", "CLIENT_SECRET", "REDIRECT_URL")
                                                             .getBuiltClient();
     TrackGet trackGet = new TrackGet("Track_id");
-    JSONObject jsonObject = spotifyClient.executeRequest(trackGet);
-    System.out.println(jsonObject.toString());
+    SpotifyResponse spotifyReponse = spotifyClient.executeRequest(trackGet);
+    Track track = spotifyResponse.getSerialisedObject();
+    System.out.println(track);
 }
 ```
 
-Returns a `JSONObject` response that encapsulates the raw json response from the spotify api
+Returns a `SpotifyResponse` encapsulating the RequestReponse from the spotify api and allowing the JSON to be serialized into a Java Object associated with the request.
 
 All Json classes were taken from https://github.com/tdunning/open-json with only minor edits.
 
