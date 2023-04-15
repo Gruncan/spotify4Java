@@ -5,9 +5,11 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @SpotifyOptional
 public class AudioSegment implements SpotifyObject {
 
@@ -34,9 +36,9 @@ public class AudioSegment implements SpotifyObject {
     private double loudnessEnd;
 
     @SpotifyField
-    private double[] pitches;
+    private Double[] pitches;
 
     @SpotifyField
-    private double[] timbre;
+    private Double[] timbre;
 
 }

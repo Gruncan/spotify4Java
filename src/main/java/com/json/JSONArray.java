@@ -648,7 +648,7 @@ public class JSONArray implements Iterable<Object> {
         } else if (object instanceof Boolean) {
             return new JSONObject(String.format("{\"value\": %b}", object));
         } else if (object instanceof Double) {
-            return new JSONObject(String.format("{\"value\": %d}", object));
+            return new JSONObject(String.format("{\"value\": %f}", object));
         } else if (object instanceof Integer) {
             return new JSONObject(String.format("{\"value\": %d}", object));
         } else {
