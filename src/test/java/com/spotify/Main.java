@@ -1,7 +1,8 @@
 package com.spotify;
 
-import com.spotify.objects.tracks.TrackAudioAnalysis;
-import com.spotify.requests.tracks.TrackAudioAnalysisGet;
+import com.spotify.objects.search.Search;
+import com.spotify.requests.search.SearchGet;
+import com.spotify.requests.util.Type;
 
 public class Main {
 
@@ -11,15 +12,16 @@ public class Main {
 
 
 //        SeveralTracksGet severalTracksGet = new SeveralTracksGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
-        TrackAudioAnalysisGet trackGet = new TrackAudioAnalysisGet("4CeeEOM32jQcH3eN9Q2dGj");
+        SearchGet searchGet = new SearchGet("remaster%20track:Doxy%20artist:Miles%20Davis", Type.TRACK);
 
-        SpotifyResponse trackResponse = sc.executeRequest(trackGet);
+        SpotifyResponse searchResponse = sc.executeRequest(searchGet);
+
+        System.out.println(searchResponse.getRequestResponse().ok().toString(4));
+
+        Search search = searchResponse.getSerialisedObject();
 
 
-        TrackAudioAnalysis tracks = trackResponse.getSerialisedObject();
-
-
-        System.out.println(tracks);
+        System.out.println(search);
 
 
     }
