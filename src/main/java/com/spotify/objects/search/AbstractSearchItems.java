@@ -7,10 +7,11 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+
 @Getter
 @Setter
 @ToString
-public class SearchItems<T extends SpotifyObject> implements SpotifyObject {
+public abstract class AbstractSearchItems implements SpotifyObject {
 
     @SpotifyField
     private String href;
@@ -32,7 +33,5 @@ public class SearchItems<T extends SpotifyObject> implements SpotifyObject {
     @SpotifyField
     private int total;
 
-    @SpotifyField
-    private T[] items;
 }
 

@@ -5,13 +5,15 @@ import com.json.JSONObject;
 import com.spotify.exceptions.SpotifySerializationException;
 
 import java.io.Serializable;
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 
 public abstract class SpotifySerializer {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
-        System.out.println(cls);
         try {
             if (cls.isEnum()) {
                 return (E) this.handleEnum((Class<? extends Enum>) cls, json.getString("value"));
@@ -81,9 +83,9 @@ public abstract class SpotifySerializer {
                     Class<?> componentRawType = fieldType.getComponentType();
                     Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
 
-                    Type[] types = ((ParameterizedType) cls.getGenericSuperclass()).getActualTypeArguments();
-                    if (types.length == 1)
-                        componentType = (Class) types[0];
+//                    Type[] types = ((ParameterizedType) cls.getGenericSuperclass()).getActualTypeArguments();
+//                    if (types.length == 1)
+//                        componentType = (Class) types[0];
 
 
                     JSONArray jsonArray = jsonPath.getJSONArray(name);

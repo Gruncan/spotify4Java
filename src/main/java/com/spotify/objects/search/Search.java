@@ -3,13 +3,7 @@ package com.spotify.objects.search;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.albums.Album;
-import com.spotify.objects.artists.Artist;
-import com.spotify.objects.audiobooks.Audiobook;
-import com.spotify.objects.episodes.Episode;
-import com.spotify.objects.playlists.Playlist;
-import com.spotify.objects.shows.Show;
-import com.spotify.objects.tracks.Track;
+import com.spotify.objects.search.items.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,24 +16,24 @@ import lombok.ToString;
 public class Search implements SpotifyObject {
 
     @SpotifyField
-    private SearchItems<Track> tracks;
+    private SearchItemTracks tracks;
 
     @SpotifyField
-    private SearchItems<Artist> artists;
+    private SearchItemArtists artists;
 
     @SpotifyField
-    private SearchItems<Album> albums;
+    private SearchItemsAlbums albums;
 
     @SpotifyField
-    private SearchItems<Playlist> playlists;
+    private SearchItemsPlaylists playlists;
 
     @SpotifyField
-    private SearchItems<Show> shows;
+    private SearchItemsShows shows;
 
     @SpotifyField
-    private SearchItems<Episode> episodes;
+    private SearchItemsEpisodes episodes;
 
     @SpotifyField
-    private SearchItems<Audiobook> audiobooks;
+    private SearchItemsAudiobooks audiobooks;
 
 }
