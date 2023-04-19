@@ -1,8 +1,8 @@
 package com.spotify;
 
-import com.spotify.objects.search.Search;
-import com.spotify.requests.search.SearchGet;
-import com.spotify.requests.util.Type;
+import com.spotify.objects.tracks.TrackRecommendation;
+import com.spotify.objects.wrappers.Market;
+import com.spotify.requests.tracks.TrackRecommendationGet;
 
 public class Main {
 
@@ -20,32 +20,32 @@ public class Main {
 //
 //        Search search = searchResponse.getSerialisedObject();
 
+
+        String[] seedArtists = {"4NHQUGzhtTLFvgF5SZesLK"};
+        String[] seedGenres = {"classic", "country"};
+        String[] seedTracks = {"0c6xIDDpzE81m2q797ordA"};
+        TrackRecommendationGet trg = new TrackRecommendationGet(seedArtists, seedGenres, seedTracks);
+
+        trg.setLimit(10);
+        trg.setMarket(Market.ES);
+
+
+        SpotifyResponse sp = sc.executeRequest(trg);
+
+        TrackRecommendation trackRecommendation = sp.getSerialisedObject();
+
+        System.out.println(trackRecommendation);
+
+
+//        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
 //
-//        String[] seedArtists = {"4NHQUGzhtTLFvgF5SZesLK"};
-//        String[] seedGenres = {"classic", "country"};
-//        String[] seedTracks = {"0c6xIDDpzE81m2q797ordA"};
-//        TrackRecommendationGet trg = new TrackRecommendationGet(seedArtists, seedGenres, seedTracks);
 //
-//        trg.setLimit(10);
-//        trg.setMarket(Market.ES);
+//        SpotifyResponse sp = sc.executeRequest(searchGet);
 //
 //
-//        SpotifyResponse sp = sc.executeRequest(trg);
+//        Search search = sp.getSerialisedObject();
 //
-//        TrackRecommendation trackRecommendation = sp.getSerialisedObject();
-//
-//        System.out.println(trackRecommendation);
-
-
-        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
-
-
-        SpotifyResponse sp = sc.executeRequest(searchGet);
-
-
-        Search search = sp.getSerialisedObject();
-
-        System.out.println(search);
+//        System.out.println(search);
 
     }
 

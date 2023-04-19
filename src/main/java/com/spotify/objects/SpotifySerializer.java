@@ -83,11 +83,6 @@ public abstract class SpotifySerializer {
                     Class<?> componentRawType = fieldType.getComponentType();
                     Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
 
-//                    Type[] types = ((ParameterizedType) cls.getGenericSuperclass()).getActualTypeArguments();
-//                    if (types.length == 1)
-//                        componentType = (Class) types[0];
-
-
                     JSONArray jsonArray = jsonPath.getJSONArray(name);
                     field.set(e, this.createArray(componentType, jsonArray));
                 } else {

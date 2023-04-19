@@ -103,7 +103,7 @@ public class Track implements SpotifyObject {
         return "Track{" +
                 "album=" + album +
                 ", artists=" + Arrays.toString(artists) +
-                ", markets=" + markets.length +
+                ", markets=" + (this.markets != null ? String.valueOf(markets.length) : "null") +
                 ", discNumber=" + discNumber +
                 ", duration=" + duration +
                 ", explicit=" + explicit +
