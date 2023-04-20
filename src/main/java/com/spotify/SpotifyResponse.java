@@ -27,8 +27,8 @@ public class SpotifyResponse extends SpotifySerializer {
 
     }
 
-    public RequestResponse getRequestResponse() {
-        return this.requestResponse;
+    public JSONObject getJsonObject() {
+        return this.requestResponse.ok();
     }
 
     @SuppressWarnings("unchecked")

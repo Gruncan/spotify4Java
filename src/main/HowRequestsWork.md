@@ -20,7 +20,6 @@ as `"https://api.spotify.com/v1/<request>"`
 So for `<request> = albums`,
 
 ```java
-
 @SpotifyRequest("albums")
 public class MyClass extends AbstractRequest {
 }
@@ -33,7 +32,6 @@ the url will be `"https://api.spotify.com/v1/albums"`
 Add `@SpotifySubRequest` to the required field
 
 ```java
-
 @SpotifyRequest("albums")
 public class MyClass extends AbstractRequest {
 
@@ -50,7 +48,6 @@ matters**)
 Add `@SpotifyRequestField` to the required fields
 
 ```java
-
 @SpotifyRequest("albums")
 public class MyClass extends AbstractRequest {
 
@@ -67,7 +64,6 @@ Where `parameter = market`, the field name. The `value` is the value within the 
 So for
 
 ```java
-
 @SpotifyRequest("albums")
 public class MyClass extends AbstractRequest {
 
@@ -84,4 +80,10 @@ the url will be evaluated as `https://api.spotify.com/v1/albums/382ObEPsp2rxGrns
 (RequestField will again be evaluated in order of declaration within the class however order doesn't matter with url
 parameters)
 
+and finally to execute the request, after creating a SpotifyClient instance,
 
+```java
+MyClass myClass=new MyClass();
+        SpotifyRepsonse sr=spotifyClient.executeRequest(myClass);
+        JSONObject json=sr.getJsonObject();
+```

@@ -53,6 +53,7 @@ public class Main {
 
         Album[] album = spotifyResponse.getSerialisedObjects();
 
+
         System.out.println(Arrays.toString(album));
 
     }
