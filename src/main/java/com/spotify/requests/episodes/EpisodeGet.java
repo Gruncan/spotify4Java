@@ -5,7 +5,9 @@ import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifySubRequest;
+import lombok.Setter;
 
+@Setter
 @SpotifyRequest("episodes")
 //TODO permissions
 public class EpisodeGet extends AbstractRequest {
