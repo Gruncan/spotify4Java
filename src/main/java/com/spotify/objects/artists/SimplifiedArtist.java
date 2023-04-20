@@ -1,4 +1,4 @@
-package com.spotify.objects.tracks;
+package com.spotify.objects.artists;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;

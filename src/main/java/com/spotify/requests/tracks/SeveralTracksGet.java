@@ -6,6 +6,7 @@ import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import lombok.Setter;
 
 
 /**
@@ -14,6 +15,7 @@ import com.spotify.requests.SpotifyRequestField;
  */
 @SpotifyRequest("tracks")
 @SpotifySerialize(value = Track.class, isArray = true)
+@Setter
 public class SeveralTracksGet extends AbstractRequest {
 
 
@@ -32,8 +34,5 @@ public class SeveralTracksGet extends AbstractRequest {
         this.market = null;
     }
 
-    public void setMarket(Market market) {
-        this.market = market;
-    }
 
 }

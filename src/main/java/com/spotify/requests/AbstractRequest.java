@@ -24,7 +24,7 @@ public abstract class AbstractRequest implements IRequest {
     private final static String BASE_URL = "https://api.spotify.com/v1/";
 
 
-    private static <T> boolean isPrimitiveDefault(Object o, Class<T> cls) {
+    private static boolean isPrimitiveDefault(Object o, Class<?> cls) {
         if (!cls.isPrimitive()) return false;
 
         if (cls.equals(int.class)) {
@@ -56,6 +56,7 @@ public abstract class AbstractRequest implements IRequest {
         // Initialisation of http get request
         String requestURL = BASE_URL + url;
         HttpMethod method = HttpMethod.GET;
+        System.out.println(requestURL);
         HttpRequest request = new HttpRequest(requestURL, method);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
@@ -164,7 +165,13 @@ public abstract class AbstractRequest implements IRequest {
                     continue;
                 }
 
-                sb.append(field.getName());
+                String name = field.getName();
+                // If not the field name
+                SpotifyRequestField srf = field.getAnnotation(SpotifyRequestField.class);
+                if (!srf.value().equals("\""))
+                    name = srf.value();
+
+                sb.append(name);
                 sb.append("=");
 
                 if (type.isArray()) {

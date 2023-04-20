@@ -7,7 +7,7 @@
 
     <groupId>com.spotstat</groupId>
     <artifactId>S4J</artifactId>
-    <version>1.1.2a</version>
+    <version>1.2.0a</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

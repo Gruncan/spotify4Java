@@ -1,13 +1,18 @@
 package com.spotify.requests.search;
 
+import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.search.Search;
 import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.util.Type;
+import lombok.Setter;
 
 
 @SpotifyRequest("search")
+@SpotifySerialize(Search.class)
+@Setter
 public class SearchGet extends AbstractRequest {
 
     @SpotifyRequestField
@@ -17,42 +22,24 @@ public class SearchGet extends AbstractRequest {
     private final Type[] type;
 
     @SpotifyRequestField
-    private String include_external;
+    private Market market;
 
     @SpotifyRequestField
     private int limit;
 
     @SpotifyRequestField
-    private Market market;
-
-    @SpotifyRequestField
     private int offset;
+
+    @SpotifyRequestField("include_external")
+    private String includeExternal;
 
     public SearchGet(String q, Type... type) {
         this.q = q;
         this.type = type;
-        this.include_external = null;
+        this.includeExternal = null;
         this.limit = -1;
         this.market = null;
         this.offset = -1;
     }
-
-
-    public void setIncludeExternal(String s) {
-        this.include_external = s;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = Math.max(0, Math.min(limit, 50));
-    }
-
-    public void setMarket(Market market) {
-        this.market = market;
-    }
-
-    public void setOffset(int offset) {
-        this.offset = Math.max(0, Math.min(offset, 1000));
-    }
-
 
 }

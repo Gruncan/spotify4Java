@@ -18,9 +18,10 @@ public class RequestResponse {
 
 
     public JSONObject ok() {
-        if (code == 200)
+        if (code == 200) {
+//            System.out.println(this.content.toString());
             return this.content;
-        else
+        } else
             return null;
     }
 

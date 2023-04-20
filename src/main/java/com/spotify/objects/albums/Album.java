@@ -1,8 +1,9 @@
-package com.spotify.objects.tracks;
+package com.spotify.objects.albums;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
+import com.spotify.objects.artists.SimplifiedArtist;
 import com.spotify.objects.wrappers.Market;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyExternalID;
@@ -23,6 +24,7 @@ public class Album implements SpotifyObject {
     @SpotifyField("total_tracks")
     private int totalTracks;
 
+    @SpotifyOptional
     @SpotifyField("available_markets")
     private Market[] markets;
 
@@ -90,7 +92,7 @@ public class Album implements SpotifyObject {
         return "Album{" +
                 "albumType='" + albumType + '\'' +
                 ", totalTracks=" + totalTracks +
-                ", markets=" + markets.length +
+                ", markets=" + (this.markets != null ? String.valueOf(markets.length) : "null") +
                 ", externalIDs='" + externalIDs + '\'' +
                 ", href='" + href + '\'' +
                 ", id='" + id + '\'' +

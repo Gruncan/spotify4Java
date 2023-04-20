@@ -4,8 +4,13 @@ import java.util.Locale;
 
 public enum Type {
 
+    ALBUM,
     ARTIST,
-    TRACK;
+    PLAYLIST,
+    TRACK,
+    SHOW,
+    EPISODE,
+    AUDIOBOOK;
 
 
     @Override

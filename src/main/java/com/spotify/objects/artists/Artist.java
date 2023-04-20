@@ -1,7 +1,6 @@
-package com.spotify.objects.tracks;
+package com.spotify.objects.artists;
 
 import com.spotify.objects.SpotifyField;
-import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.wrappers.SpotifyImage;
 import lombok.Getter;
@@ -11,22 +10,19 @@ import java.util.Arrays;
 
 @Getter
 @Setter
-public class Artist extends SimplifiedArtist implements SpotifyObject {
+@SpotifyOptional
+public class Artist extends SimplifiedArtist {
 
 
-    @SpotifyOptional
     @SpotifyField(value = "total", path = {"followers"})
     private int followers;
 
-    @SpotifyOptional
     @SpotifyField
     private String[] genres;
 
-    @SpotifyOptional
     @SpotifyField
     private SpotifyImage[] images;
 
-    @SpotifyOptional
     @SpotifyField
     private int popularity;
 
