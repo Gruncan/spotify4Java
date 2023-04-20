@@ -20,6 +20,7 @@ as `"https://api.spotify.com/v1/<request>"`
 So for `<request> = albums`,
 
 ```java
+
 @SpotifyRequest("albums")
 public class MyClass extends AbstractRequest {
 }
@@ -76,6 +77,11 @@ public class MyClass extends AbstractRequest {
 ```
 
 the url will be evaluated as `https://api.spotify.com/v1/albums/382ObEPsp2rxGrnsizN5TX?market=ES`
+
+Fields with types other than String will call `toString`
+
+Fields with the type of array, the array contents will be put into a comma seperated list of their respected string
+contents.
 
 (RequestField will again be evaluated in order of declaration within the class however order doesn't matter with url
 parameters)
