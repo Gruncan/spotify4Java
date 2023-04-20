@@ -1,9 +1,8 @@
 package com.spotify;
 
-import com.spotify.objects.albums.Album;
-import com.spotify.requests.albums.SeveralAlbumsGet;
-
-import java.util.Arrays;
+import com.spotify.objects.search.Search;
+import com.spotify.requests.search.SearchGet;
+import com.spotify.requests.util.Type;
 
 public class Main {
 
@@ -38,23 +37,23 @@ public class Main {
 //        System.out.println(trackRecommendation);
 
 
-//        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
-//
-//
-//        SpotifyResponse sp = sc.executeRequest(searchGet);
-//
-//
-//        Search search = sp.getSerialisedObject();
-//
-//        System.out.println(search);
-
-        SeveralAlbumsGet albumGet = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
-        SpotifyResponse spotifyResponse = sc.executeRequest(albumGet);
-
-        Album[] album = spotifyResponse.getSerialisedObjects();
+        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
 
 
-        System.out.println(Arrays.toString(album));
+        SpotifyResponse sp = sc.executeRequest(searchGet);
+
+
+        Search search = sp.getSerialisedObject();
+
+        System.out.println(search);
+
+//        SeveralAlbumsGet albumGet = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
+//        SpotifyResponse spotifyResponse = sc.executeRequest(albumGet);
+//
+//        Album[] album = spotifyResponse.getSerialisedObjects();
+//
+//
+//        System.out.println(Arrays.toString(album));
 
     }
 

@@ -13,8 +13,8 @@ public class ArtistsAlbumsGet extends AbstractRequest {
     @SpotifySubRequest
     private final String id;
 
-    @SpotifyRequestField
-    private String[] include_groups;
+    @SpotifyRequestField("include_groups")
+    private String[] includeGroups;
 
     public ArtistsAlbumsGet(String id) {
         this.id = id;

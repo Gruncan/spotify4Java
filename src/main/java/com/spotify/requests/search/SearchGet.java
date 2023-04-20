@@ -30,13 +30,13 @@ public class SearchGet extends AbstractRequest {
     @SpotifyRequestField
     private int offset;
 
-    @SpotifyRequestField
-    private String include_external;
+    @SpotifyRequestField("include_external")
+    private String includeExternal;
 
     public SearchGet(String q, Type... type) {
         this.q = q;
         this.type = type;
-        this.include_external = null;
+        this.includeExternal = null;
         this.limit = -1;
         this.market = null;
         this.offset = -1;
