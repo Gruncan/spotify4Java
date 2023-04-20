@@ -1,8 +1,9 @@
 package com.spotify;
 
-import com.spotify.objects.tracks.TrackRecommendation;
-import com.spotify.objects.wrappers.Market;
-import com.spotify.requests.tracks.TrackRecommendationGet;
+import com.spotify.objects.albums.Album;
+import com.spotify.requests.albums.SeveralAlbumsGet;
+
+import java.util.Arrays;
 
 public class Main {
 
@@ -21,20 +22,20 @@ public class Main {
 //        Search search = searchResponse.getSerialisedObject();
 
 
-        String[] seedArtists = {"4NHQUGzhtTLFvgF5SZesLK"};
-        String[] seedGenres = {"classic", "country"};
-        String[] seedTracks = {"0c6xIDDpzE81m2q797ordA"};
-        TrackRecommendationGet trg = new TrackRecommendationGet(seedArtists, seedGenres, seedTracks);
-
-        trg.setLimit(10);
-        trg.setMarket(Market.ES);
-
-
-        SpotifyResponse sp = sc.executeRequest(trg);
-
-        TrackRecommendation trackRecommendation = sp.getSerialisedObject();
-
-        System.out.println(trackRecommendation);
+//        String[] seedArtists = {"4NHQUGzhtTLFvgF5SZesLK"};
+//        String[] seedGenres = {"classic", "country"};
+//        String[] seedTracks = {"0c6xIDDpzE81m2q797ordA"};
+//        TrackRecommendationGet trg = new TrackRecommendationGet(seedArtists, seedGenres, seedTracks);
+//
+//        trg.setLimit(10);
+//        trg.setMarket(Market.ES);
+//
+//
+//        SpotifyResponse sp = sc.executeRequest(trg);
+//
+//        TrackRecommendation trackRecommendation = sp.getSerialisedObject();
+//
+//        System.out.println(trackRecommendation);
 
 
 //        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
@@ -46,6 +47,13 @@ public class Main {
 //        Search search = sp.getSerialisedObject();
 //
 //        System.out.println(search);
+
+        SeveralAlbumsGet albumGet = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
+        SpotifyResponse spotifyResponse = sc.executeRequest(albumGet);
+
+        Album[] album = spotifyResponse.getSerialisedObjects();
+
+        System.out.println(Arrays.toString(album));
 
     }
 
