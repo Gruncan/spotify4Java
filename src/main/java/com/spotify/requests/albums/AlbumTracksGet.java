@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @SpotifyRequest(value = "albums", end = "tracks")
 @Setter
-public class GetAlbumTracks extends AbstractRequest {
+public class AlbumTracksGet extends AbstractRequest {
 
 
     @SpotifySubRequest
@@ -25,7 +25,7 @@ public class GetAlbumTracks extends AbstractRequest {
     private int offset;
 
 
-    public GetAlbumTracks(String id) {
+    public AlbumTracksGet(String id) {
         this.id = id;
         this.market = null;
         // Defaults
