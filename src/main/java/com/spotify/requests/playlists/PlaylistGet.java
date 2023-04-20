@@ -12,7 +12,7 @@ import lombok.Setter;
 public class PlaylistGet extends AbstractRequest {
 
     @SpotifySubRequest
-    private final String playlist_id;
+    private final String id;
 
     @SpotifyRequestField
     private Market market;
@@ -24,7 +24,7 @@ public class PlaylistGet extends AbstractRequest {
     private String[] additionalTypes;
 
     public PlaylistGet(String id) {
-        this.playlist_id = id;
+        this.id = id;
     }
 
 }

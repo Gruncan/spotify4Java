@@ -8,9 +8,9 @@ import com.spotify.requests.SpotifySubRequest;
 public class PlaylistImageGet extends AbstractRequest {
 
     @SpotifySubRequest
-    private final String playlist_id;
+    private final String id;
 
     public PlaylistImageGet(String id) {
-        this.playlist_id = id;
+        this.id = id;
     }
 }

@@ -13,7 +13,7 @@ public class PlaylistTracksGet extends AbstractRequest {
 
 
     @SpotifySubRequest
-    private final String playlist_id;
+    private final String id;
 
     @SpotifyRequestField
     private Market market;
@@ -31,7 +31,7 @@ public class PlaylistTracksGet extends AbstractRequest {
     private String[] additionalTypes;
 
     public PlaylistTracksGet(String id) {
-        this.playlist_id = id;
+        this.id = id;
     }
 
 

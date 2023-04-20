@@ -13,7 +13,7 @@ public class SingleCategoriesGet extends AbstractRequest {
 
 
     @SpotifySubRequest
-    private final String category_id;
+    private final String id;
 
     @SpotifyRequestField
     private Market country;
@@ -21,8 +21,8 @@ public class SingleCategoriesGet extends AbstractRequest {
     @SpotifyRequestField
     private String locale;
 
-    public SingleCategoriesGet(String category_id) {
-        this.category_id = category_id;
+    public SingleCategoriesGet(String id) {
+        this.id = id;
     }
 
 

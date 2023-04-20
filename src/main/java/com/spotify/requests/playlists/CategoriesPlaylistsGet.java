@@ -12,7 +12,7 @@ import lombok.Setter;
 public class CategoriesPlaylistsGet extends AbstractRequest {
 
     @SpotifySubRequest
-    private final String category_id;
+    private final String id;
 
     @SpotifyRequestField
     private Market country;
@@ -24,7 +24,7 @@ public class CategoriesPlaylistsGet extends AbstractRequest {
     private int offset;
 
     public CategoriesPlaylistsGet(String id) {
-        this.category_id = id;
+        this.id = id;
     }
 
 }
