@@ -1,6 +1,6 @@
-## Want to add your own request? and serialize them into objects?
+## Adding custom requests
 
-1. Simply create a new class with any name you want
+1. Create a new class
 2. Make `AbstractRequest` its super class
 
 ```java
@@ -60,7 +60,7 @@ public class MyClass extends AbstractRequest {
 }
 ```
 
-Where `parameter = market`, the field name. The `value` is the value within the specific field
+Where `parameter` is the field name, in this case "`market`". The `value` is the value within the specific field
 
 So for
 
