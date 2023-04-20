@@ -1,4 +1,4 @@
-package com.spotify.requests.playlists;
+package com.spotify.requests.shows;
 
 import com.spotify.objects.wrappers.Market;
 import com.spotify.requests.AbstractRequest;
@@ -8,14 +8,15 @@ import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
 @Setter
-@SpotifyRequest(value = "browse/categories", end = "playlist")
-public class CategoriesPlaylistsGet extends AbstractRequest {
+@SpotifyRequest(value = "shows", end = "episodes")
+public class ShowEpisodesGet extends AbstractRequest {
+
 
     @SpotifySubRequest
-    private final String category_id;
+    private final String id;
 
     @SpotifyRequestField
-    private Market country;
+    private Market market;
 
     @SpotifyRequestField
     private int limit;
@@ -23,8 +24,8 @@ public class CategoriesPlaylistsGet extends AbstractRequest {
     @SpotifyRequestField
     private int offset;
 
-    public CategoriesPlaylistsGet(String id) {
-        this.category_id = id;
-    }
 
+    public ShowEpisodesGet(String id) {
+        this.id = id;
+    }
 }

@@ -3,7 +3,9 @@ package com.spotify.requests.playlists;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import lombok.Setter;
 
+@Setter
 @SpotifyRequest("browse/featured-playlist")
 public class FeaturedPlaylistGet extends AbstractRequest {
 
