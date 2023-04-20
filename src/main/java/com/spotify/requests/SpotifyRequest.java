@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface SpotifyRequest {
 
-    String value() default "";
+    String value();
 
     String end() default "";
 
