@@ -165,7 +165,13 @@ public abstract class AbstractRequest implements IRequest {
                     continue;
                 }
 
-                sb.append(field.getName());
+                String name = field.getName();
+                // If not the field name
+                SpotifyRequestField srf = field.getAnnotation(SpotifyRequestField.class);
+                if (!srf.value().equals("\""))
+                    name = srf.value();
+
+                sb.append(name);
                 sb.append("=");
 
                 if (type.isArray()) {

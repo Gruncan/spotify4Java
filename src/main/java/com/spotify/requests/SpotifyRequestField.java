@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface SpotifyRequestField {
 
+    String value() default "\"";
 
 }
