@@ -5,9 +5,11 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyImage;
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class SimplifiedChapter implements SpotifyObject {
 
     @SpotifyField("audio_preview_url")

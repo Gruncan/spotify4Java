@@ -5,9 +5,11 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyImage;
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class Audiobook implements SpotifyObject {
 
 

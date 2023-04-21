@@ -5,9 +5,11 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.albums.SimplifiedAlbum;
 import com.spotify.objects.search.AbstractSearchItems;
+import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class AudiobookChapter extends AbstractSearchItems {
 
 
