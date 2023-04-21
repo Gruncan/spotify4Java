@@ -1,6 +1,6 @@
 package com.spotify.requests.categories;
 
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -12,7 +12,7 @@ public class SeveralCategoriesGet extends AbstractRequest {
 
 
     @SpotifyRequestField
-    private Market country;
+    private Country country;
 
     @SpotifyRequestField
     private String locale;

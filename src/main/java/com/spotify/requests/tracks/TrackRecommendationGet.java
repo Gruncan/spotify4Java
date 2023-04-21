@@ -2,7 +2,7 @@ package com.spotify.requests.tracks;
 
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.TrackRecommendation;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -35,7 +35,7 @@ public class TrackRecommendationGet extends AbstractRequest {
     @SpotifyRequestField
     private int limit;
     @SpotifyRequestField
-    private Market market;
+    private Country market;
 
 
     @SpotifyRequestField

@@ -5,7 +5,7 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.albums.Album;
 import com.spotify.objects.artists.Artist;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyExternalID;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +27,7 @@ public class Track implements SpotifyObject {
 
     @SpotifyOptional
     @SpotifyField("available_markets")
-    private Market[] markets;
+    private Country[] markets;
 
     @SpotifyOptional
     @SpotifyField("disc_number")

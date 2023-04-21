@@ -4,7 +4,7 @@ import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.artists.SimplifiedArtist;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyExternalID;
 import com.spotify.objects.wrappers.SpotifyImage;
@@ -26,7 +26,7 @@ public class Album implements SpotifyObject {
 
     @SpotifyOptional
     @SpotifyField("available_markets")
-    private Market[] markets;
+    private Country[] markets;
 
     @SpotifyField(value = "spotify", path = {"external_urls"})
     private String externalIDs;

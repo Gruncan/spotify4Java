@@ -1,6 +1,6 @@
 package com.spotify.requests.capters;
 
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -15,7 +15,7 @@ public class SeveralChaptersGet extends AbstractRequest {
     private final String[] ids;
 
     @SpotifyRequestField
-    private Market market;
+    private Country market;
 
     public SeveralChaptersGet(String... ids) {
         this.ids = ids;

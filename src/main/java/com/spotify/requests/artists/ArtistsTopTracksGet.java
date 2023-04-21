@@ -1,7 +1,7 @@
 package com.spotify.requests.artists;
 
 import com.spotify.objects.SpotifyField;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifySubRequest;
@@ -16,7 +16,7 @@ public class ArtistsTopTracksGet extends AbstractRequest {
     private final String id;
 
     @SpotifyField
-    private Market market;
+    private Country market;
 
     public ArtistsTopTracksGet(String id) {
         this.id = id;

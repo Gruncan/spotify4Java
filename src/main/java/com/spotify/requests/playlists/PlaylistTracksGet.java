@@ -1,6 +1,6 @@
 package com.spotify.requests.playlists;
 
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -16,7 +16,7 @@ public class PlaylistTracksGet extends AbstractRequest {
     private final String id;
 
     @SpotifyRequestField
-    private Market market;
+    private Country market;
 
     @SpotifyRequestField
     private String[] fields;

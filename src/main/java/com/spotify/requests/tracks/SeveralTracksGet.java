@@ -2,7 +2,7 @@ package com.spotify.requests.tracks;
 
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.Track;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -23,7 +23,7 @@ public class SeveralTracksGet extends AbstractRequest {
     private final String[] ids;
 
     @SpotifyRequestField
-    private Market market;
+    private Country market;
 
     /**
      * @param tracks The array of tracks to get

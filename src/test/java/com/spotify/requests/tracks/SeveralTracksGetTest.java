@@ -2,7 +2,7 @@ package com.spotify.requests.tracks;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilderTester;
-import com.spotify.objects.wrappers.Market;
+import com.spotify.objects.wrappers.Country;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ class SeveralTracksGetTest {
     public void severalTrackGetUrlBuildTest() {
 
         SeveralTracksGet tracksGet = new SeveralTracksGet("id1", "id2", "id3");
-        tracksGet.setMarket(Market.GB);
+        tracksGet.setMarket(Country.GB);
 
         String url = tracksGet.buildRequestUrl();
 

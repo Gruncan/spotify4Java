@@ -7,7 +7,7 @@ import com.spotify.objects.SpotifyObject;
  * Represents the available query market codes according to
  * <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO_3166-1_alpha-2</a>
  */
-public enum Market implements SpotifyObject {
+public enum Country implements SpotifyObject {
 
     /*** Afghanistan */
     AF("Afghanistan"),
@@ -513,7 +513,7 @@ public enum Market implements SpotifyObject {
 
     private final String name;
 
-    Market(String name) {
+    Country(String name) {
         this.name = name;
     }
 
