@@ -1,14 +1,17 @@
 package com.spotify.requests.artists;
 
 import com.spotify.objects.SpotifyField;
+import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.tracks.Track;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
-@SpotifyRequest(value = "artists", end = "top-tracks")
 @Setter
+@SpotifyRequest(value = "artists", end = "top-tracks")
+@SpotifySerialize(value = Track.class, isArray = true)
 public class ArtistsTopTracksGet extends AbstractRequest {
 
 
