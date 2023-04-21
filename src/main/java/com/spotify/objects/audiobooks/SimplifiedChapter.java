@@ -3,22 +3,22 @@ package com.spotify.objects.audiobooks;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.wrappers.SpotifyCopyright;
+import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyImage;
 import lombok.Setter;
 
 @Setter
-public class Audiobook implements SpotifyObject {
+public class SimplifiedChapter implements SpotifyObject {
 
+    @SpotifyField("audio_preview_url")
+    private String audioPreviewUrl;
 
-    @SpotifyField
-    private AudiobookAuthor[] authors;
-
+    @SpotifyOptional
     @SpotifyField("available_markets")
-    private String[] availableMarkets;
+    private Country[] markets;
 
-    @SpotifyField
-    private SpotifyCopyright[] copyrights;
+    @SpotifyField("chapter_number")
+    private int chapterNumber;
 
     @SpotifyField
     private String description;
@@ -26,9 +26,8 @@ public class Audiobook implements SpotifyObject {
     @SpotifyField("html_description")
     private String htmlDescription;
 
-    @SpotifyField
-    @SpotifyOptional
-    private String edition;
+    @SpotifyField("duration_ms")
+    private int duration;
 
     @SpotifyField
     private boolean explicit;
@@ -45,31 +44,21 @@ public class Audiobook implements SpotifyObject {
     @SpotifyField
     private SpotifyImage[] images;
 
+    @SpotifyField("is_playable")
+    private boolean isPlayable;
+
     @SpotifyField
     private String[] languages;
 
-    @SpotifyField("media_type")
-    private String mediaType;
-
     @SpotifyField
-    private AudiobookNarrator[] narrators;
+    private String name;
 
-    @SpotifyField
-    private String publisher;
-
-    @SpotifyField
-    private String type;
+    @SpotifyField("release_date")
+    private String releaseDate;
 
     @SpotifyField
     private String uri;
 
-    @SpotifyField("total_chapters")
-    private int totalChapters;
-
-    @SpotifyField
-    private AudiobookChapter[] chapters;
-
-
-
-
+    @SpotifyField(value = "reason", path = {"restrictions"})
+    private String restrictions;
 }

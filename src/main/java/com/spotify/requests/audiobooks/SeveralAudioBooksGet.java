@@ -1,5 +1,7 @@
 package com.spotify.requests.audiobooks;
 
+import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.audiobooks.Audiobook;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -8,6 +10,7 @@ import lombok.Setter;
 
 @Setter
 @SpotifyRequest("audiobooks")
+@SpotifySerialize(value = Audiobook.class, isArray = true)
 public class SeveralAudioBooksGet extends AbstractRequest {
 
 
