@@ -155,8 +155,8 @@ public abstract class AbstractRequest implements IRequest {
                 field.setAccessible(true);
                 if (sb.toString().endsWith("/")) {
                     sb = new StringBuilder(sb.substring(0, sb.length() - 1));
-                    sb.append("?");
                 }
+                sb.append("?");
 
                 Object o = field.get(this);
                 Class<?> type = field.getType();
