@@ -1,5 +1,7 @@
 package com.spotify.requests.categories;
 
+import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.categories.Category;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -9,6 +11,7 @@ import lombok.Setter;
 
 @Setter
 @SpotifyRequest("browse/categories")
+@SpotifySerialize(Category.class)
 public class SingleCategoriesGet extends AbstractRequest {
 
 
