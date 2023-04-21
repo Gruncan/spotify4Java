@@ -33,6 +33,6 @@ public class Artist extends SimplifiedArtist {
                 ", genres=" + Arrays.toString(genres) +
                 ", images=" + Arrays.toString(images) +
                 ", popularity=" + popularity +
-                '}';
+                '}' + super.toString();
     }
 }
