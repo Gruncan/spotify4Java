@@ -8,9 +8,9 @@ import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import lombok.Setter;
 
+@Setter
 @SpotifyRequest("albums")
 @SpotifySerialize(value = Album.class, isArray = true)
-@Setter
 public class SeveralAlbumsGet extends AbstractRequest {
 
     @SpotifyRequestField
