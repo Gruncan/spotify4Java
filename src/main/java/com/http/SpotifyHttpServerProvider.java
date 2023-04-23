@@ -1,3 +1,7 @@
+/*
+ * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
+ *  25/09/22
+ */
 package com.http;
 
 import com.spotify.SpotifyClientBuilder;
