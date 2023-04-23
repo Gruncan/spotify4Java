@@ -4,9 +4,17 @@
  */
 package com.http;
 
+import com.spotify.requests.AbstractRequest;
+import com.spotify.SpotifyResponse;
+
 /**
  * Represent the response from a {@link HttpRequest}
  * <p>Created when calling {@link  HttpRequest#execute()}</p>
+ * @see HttpRequest
+ * @see HttpMethod
+ * @see SpotifyHttpServerProvider
+ * @see AbstractRequest
+ * @see SpotifyResponse
  */
 public class HttpResponse {
 

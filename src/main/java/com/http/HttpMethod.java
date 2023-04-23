@@ -7,6 +7,8 @@ package com.http;
 /**
  * Represents the type of the HTTP request
  * <p>Used when initializing a {@link HttpRequest}</p>
+ * @see HttpRequest
+ * @see HttpResponse
  */
 public enum HttpMethod {
 

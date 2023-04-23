@@ -16,11 +16,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import com.spotify.requests.AbstractRequest;
+import com.spotify.SpotifyClientBuilder;
 
 /**
- * Represents a HTTP request
- * @see     com.spotify.requests.AbstractRequest
- * @see     com.spotify.SpotifyClientBuilder
+ * Represents a HTTP request, used for doing every request to spotify's API
+ * @see     HttpMethod
+ * @see     HttpResponse
+ * @see     SpotifyHttpServerProvider
+ * @see     AbstractRequest
+ * @see     SpotifyClientBuilder
  */
 public class HttpRequest {
 
