@@ -9,6 +9,9 @@ import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
+/**
+ *
+ */
 @SpotifyRequest("albums")
 @SpotifySerialize(Album.class)
 @Setter

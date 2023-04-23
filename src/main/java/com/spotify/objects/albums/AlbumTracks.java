@@ -16,8 +16,8 @@ import lombok.ToString;
 /**
  * Represents the spotify tracks associated with an album<br>
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-an-albums-tracks">AlbumTracks</a>
- * @see com.spotify.requests.albums.AlbumTracksGet
- * @see com.spotify.objects.search.AbstractSearchItems
+ * @see AlbumTracksGet
+ * @see AbstractSearchItems
  */
 @Getter
 @Setter

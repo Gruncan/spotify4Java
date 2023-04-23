@@ -22,10 +22,12 @@ import java.util.concurrent.CountDownLatch;
 
 /**
  * Responsible for handling Spotify authentication and return calls <br>
- * Following Spotify's Authorization Code flow <img src="https://developer.spotify.com/images/documentation/web-api/auth-code-flow.png">
+ * Following Spotify's Authorization Code flow
  * @see SpotifyClientBuilder
  */
+//<img src="https://developer.spotify.com/images/documentation/web-api/auth-code-flow.png" width="100" height="auto">
 public class SpotifyHttpServerProvider {
+
 
     protected final SpotifyClientBuilder spotifyClientBuilder;
     private HttpServer server;

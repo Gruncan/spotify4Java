@@ -17,8 +17,8 @@ import lombok.Setter;
 /**
  * Represents a spotify album<br>
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-an-album">Album</a>
- * @see com.spotify.requests.albums.AlbumGet
- * @see com.spotify.objects.albums.SimplifiedAlbum
+ * @see AlbumGet
+ * @see SimplifiedAlbum
  */
 @Getter
 @Setter
