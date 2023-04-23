@@ -1,5 +1,13 @@
+/*
+ * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
+ *  25/09/22
+ */
 package com.http;
 
+/**
+ * Represent the response from a {@link HttpRequest}
+ * <p>Created when calling {@link  HttpRequest#execute()}</p>
+ */
 public class HttpResponse {
 
 
@@ -7,7 +15,12 @@ public class HttpResponse {
     private final String content;
     private final String message;
 
-
+    /**
+     * Initializes a {@link HttpResponse}
+     * @param code The code of the response
+     * @param content The content of the response, can be {@code null}
+     * @param message The response message of the response
+     */
     public HttpResponse(int code, String content, String message) {
         this.code = code;
         this.content = content;
@@ -16,14 +29,14 @@ public class HttpResponse {
 
 
     public int getCode() {
-        return code;
+        return this.code;
     }
 
     public String getContent() {
-        return content;
+        return this.content;
     }
 
     public String getMessage() {
-        return message;
+        return this.message;
     }
 }
