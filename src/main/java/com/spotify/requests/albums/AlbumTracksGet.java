@@ -1,7 +1,7 @@
 package com.spotify.requests.albums;
 
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
+import com.spotify.SpotifyResponse;
 import com.spotify.objects.albums.AlbumTracks;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
@@ -19,6 +19,7 @@ import lombok.Setter;
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
+ * @see SpotifyResponse
  */
 @Setter
 @SpotifySerialize(AlbumTracks.class)
@@ -57,7 +58,6 @@ public class AlbumTracksGet extends AbstractRequest {
      */
     public AlbumTracksGet(String id) {
         this.id = id;
-        this.market = null;
     }
 
 }

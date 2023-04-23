@@ -1,5 +1,6 @@
 package com.spotify.requests.albums;
 
+import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.albums.Album;
 import com.spotify.objects.wrappers.Country;
@@ -18,6 +19,7 @@ import lombok.Setter;
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
+ * @see SpotifyResponse
  */
 @Setter
 @SpotifyRequest("albums")

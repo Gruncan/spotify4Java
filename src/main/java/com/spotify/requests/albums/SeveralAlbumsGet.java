@@ -1,5 +1,6 @@
 package com.spotify.requests.albums;
 
+import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.albums.Album;
 import com.spotify.objects.wrappers.Country;
@@ -17,6 +18,7 @@ import lombok.Setter;
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
+ * @see SpotifyResponse
  */
 @Setter
 @SpotifyRequest("albums")
@@ -24,7 +26,7 @@ import lombok.Setter;
 public class SeveralAlbumsGet extends AbstractRequest {
 
     /**
-     * A comma-separated list of the Spotify IDs for the albums. Maximum: 20 IDs.
+     * A list of the Spotify IDs for the albums. Maximum: 20 IDs.
      */
     @SpotifyRequestField
     private final String[] ids;
@@ -42,7 +44,6 @@ public class SeveralAlbumsGet extends AbstractRequest {
      */
     public SeveralAlbumsGet(String... ids) {
         this.ids = ids;
-        this.market = null;
     }
 
 }
