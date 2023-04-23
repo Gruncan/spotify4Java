@@ -7,7 +7,7 @@
 
     <groupId>com.spotstat</groupId>
     <artifactId>S4J</artifactId>
-    <version>1.2.0a</version>
+    <version>1.4.5a</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -40,6 +40,22 @@
                 <version>2.22.2</version>
                 <configuration>
                     <excludedGroups>SlowNetworkTest</excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Built-By>Gruncan</Built-By>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
