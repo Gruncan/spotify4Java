@@ -1,3 +1,7 @@
+/*
+ * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
+ *  21/04/23
+ */
 package com.spotify.objects.albums;
 
 import com.spotify.objects.SpotifyField;
@@ -8,9 +12,18 @@ import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyExternalID;
 import com.spotify.objects.wrappers.SpotifyImage;
+import com.spotify.objects.artists.ArtistAlbums;
+import com.spotify.requests.artists.ArtistsAlbumsGet;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents a spotify SimplifiedAlbum object<br>
+ * Reduces repetition and is used in responses from {@link ArtistsAlbumsGet}
+ * @see Album
+ * @see ArtistAlbums
+ * @see ArtistsAlbumsGet
+ */
 @Getter
 @Setter
 public class SimplifiedAlbum implements SpotifyObject {
