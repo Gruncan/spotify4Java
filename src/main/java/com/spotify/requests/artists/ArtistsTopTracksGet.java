@@ -42,7 +42,7 @@ public class ArtistsTopTracksGet extends AbstractRequest {
 
     /**
      * Initializes the {@link ArtistsTopTracksGet} request
-     * @param id The Spotify ID of the album.
+     * @param id The Spotify ID of the artist.
      */
     public ArtistsTopTracksGet(String id) {
         this.id = id;

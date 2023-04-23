@@ -34,7 +34,7 @@ public class SeveralArtistsGet extends AbstractRequest {
 
     /**
      * Initializes the {@link SeveralAlbumsGet} request
-     * @param ids A list of the Spotify IDs for the albums. Maximum: 20 IDs.
+     * @param ids A list of the Spotify IDs for the artists. Maximum: 20 IDs.
      */
     public SeveralArtistsGet(String... ids) {
         this.ids = ids;

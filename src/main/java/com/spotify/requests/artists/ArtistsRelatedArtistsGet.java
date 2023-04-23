@@ -32,7 +32,7 @@ public class ArtistsRelatedArtistsGet extends AbstractRequest {
 
     /**
      * Initializes the {@link ArtistsRelatedArtistsGet} request
-     * @param id The Spotify ID of the album.
+     * @param id The Spotify ID of the artist.
      */
     public ArtistsRelatedArtistsGet(String id) {
         this.id = id;
