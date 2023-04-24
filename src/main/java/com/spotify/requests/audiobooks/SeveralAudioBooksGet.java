@@ -15,7 +15,7 @@ import lombok.Setter;
  * Get Spotify catalog information for several audiobooks identified by their Spotify IDs.<br>
  * Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.<br>
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-an-album">Spotify Docs</a>
- * <p>Serializes into {@link Audiobook}</p>
+ * <p>Serializes into {@link Audiobook} array</p>
  *
  * @see Audiobook
  * @see AbstractRequest

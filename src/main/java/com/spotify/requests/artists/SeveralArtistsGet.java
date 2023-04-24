@@ -13,7 +13,7 @@ import lombok.Setter;
 /**
  * Get Spotify catalog information for several artists based on their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-artists">Spotify Docs</a>
- * <p>Serializes into {@link Artist}</p>
+ * <p>Serializes into {@link Artist} array</p>
  *
  * @see Artist
  * @see AbstractRequest

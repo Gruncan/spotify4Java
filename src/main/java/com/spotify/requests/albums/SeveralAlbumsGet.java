@@ -12,7 +12,7 @@ import lombok.Setter;
 /**
  * Get Spotify catalog information for multiple albums identified by their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-albums">Spotify Docs</a>
- * <p>Serializes into {@link Album}</p>
+ * <p>Serializes into {@link Album} array</p>
  *
  * @see Album
  * @see AbstractRequest
