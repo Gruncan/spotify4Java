@@ -2,14 +2,12 @@ package com.spotify.requests.episodes;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
 import com.spotify.objects.episodes.Episode;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifySubRequest;
-import com.spotify.requests.albums.SeveralAlbumsGet;
 import lombok.Setter;
 
 /**

@@ -2,12 +2,10 @@ package com.spotify.requests.artists;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
 import com.spotify.objects.artists.Artist;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifySubRequest;
-import com.spotify.requests.albums.AlbumGet;
 import lombok.Setter;
 
 /**

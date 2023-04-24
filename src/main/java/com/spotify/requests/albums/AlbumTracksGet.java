@@ -1,7 +1,7 @@
 package com.spotify.requests.albums;
 
-import com.spotify.objects.SpotifySerialize;
 import com.spotify.SpotifyResponse;
+import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.albums.AlbumTracks;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;

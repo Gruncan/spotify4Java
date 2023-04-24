@@ -2,7 +2,6 @@ package com.spotify.requests.audiobooks;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
 import com.spotify.objects.audiobooks.Audiobook;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
