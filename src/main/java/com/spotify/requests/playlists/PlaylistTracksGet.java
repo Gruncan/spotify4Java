@@ -8,7 +8,6 @@ import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifySubRequest;
-import com.spotify.requests.albums.AlbumGet;
 import lombok.Setter;
 
 /**

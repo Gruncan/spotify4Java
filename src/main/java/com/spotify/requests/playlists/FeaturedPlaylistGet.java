@@ -1,10 +1,7 @@
 package com.spotify.requests.playlists;
 
-import com.spotify.objects.playlists.Playlist;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
-import com.spotify.objects.search.items.SearchItemsPlaylists;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -15,7 +12,7 @@ import lombok.Setter;
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists">Spotify Docs</a>
  * <p>Serializes into {@link ?}</p>
  *
- * @see SearchItemsPlaylists
+ * @see ?
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
