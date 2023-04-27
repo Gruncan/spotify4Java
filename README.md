@@ -42,7 +42,7 @@ and executing it with your spotifyClient `executeRequest`
 Example:
 
 ```java
-public static void main(String[]args){
+public static void main(String[] args){
     SpotifyClient spotifyClient = new SpotifyClientBuilder("CLIENT_ID", "CLIENT_SECRET", "REDIRECT_URL")
                                                             .getBuiltClient();
     TrackGet trackGet = new TrackGet("Track_id");
