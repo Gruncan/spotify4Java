@@ -5,6 +5,7 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.json.JSONObject;
 import com.spotify.SpotifyResponse;
+import com.spotify.exceptions.SpotifyUrlParserException;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.util.Util;
@@ -47,10 +48,11 @@ public abstract class AbstractRequest implements IRequest {
     }
 
     /**
-     * Basic HTTP GET request on a given URL with parameters specified
+     * Basic Spotify HTTP GET request on a given URL with parameters specified
      *
+     * @param token The token from spotify's authentication to be added to "Bearer" header information
      * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
-     * @return The raw json response from the request
+     * @return The HTTP response from the request, wrapped in {@link RequestResponse}
      */
     protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
@@ -91,14 +93,28 @@ public abstract class AbstractRequest implements IRequest {
         }
     }
 
+    /**
+     * Executes the subclasses request
+     * @param token The token from spotify's authentication
+     * @return The response wrapped to be serialized {@link SpotifyResponse}
+     */
     @Override
     public SpotifyResponse execute(String token) {
-        String urlQuery = this.buildRequestUrl();
+        String urlQuery;
+        try {
+            urlQuery = this.buildRequestUrl();
+        }catch (SpotifyUrlParserException e){
+            e.printStackTrace();
+            return null;
+        }
+        // if buildRequestUrl returns null not error
         if (urlQuery == null) return null;
 
+        // To be changed for specified request not just GET
         RequestResponse rresponse = this.requestGet(token, urlQuery);
         SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
         if (ms == null) return null;
+        // Ensured to be non-null in above buildRequestUrl call
         SpotifyRequest request = this.getClass().getAnnotation(SpotifyRequest.class);
         Class<? extends SpotifyObject> cls = ms.value();
         SpotifyResponse response;
@@ -112,12 +128,15 @@ public abstract class AbstractRequest implements IRequest {
     }
 
 
-    public String buildRequestUrl() {
+    public String buildRequestUrl() throws SpotifyUrlParserException{
         String url = "None";
         try {
             SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
 
-            if (spotifyRequest == null) return null; //class is not annotated, to be handled properly
+            if (spotifyRequest == null){
+                throw new SpotifyUrlParserException(String.format("Class %s is not annotated with %s, unable to build " +
+                        "url for unknown request.", this.getClass(), SpotifyRequest.class));
+            }
 
             url = spotifyRequest.value();
             StringBuilder sb = new StringBuilder(url);
