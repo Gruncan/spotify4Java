@@ -41,12 +41,6 @@ public abstract class AbstractRequest implements IRequest {
         return false;
     }
 
-    @SuppressWarnings("unchecked")
-    private static <T> String convertToString(Class<T> cls, Object o) {
-        T v = (T) o;
-        return v.toString();
-    }
-
     /**
      * Basic Spotify HTTP GET request on a given URL with parameters specified
      *
@@ -195,11 +189,10 @@ public abstract class AbstractRequest implements IRequest {
 
                 if (type.isArray()) {
                     int length = Array.getLength(o);
-                    Class<?> componentType = type.getComponentType();
                     String[] strings = new String[length];
                     for (int i = 0; i < length; i++) {
                         Object v = Array.get(o, i);
-                        String s = convertToString(componentType, v);
+                        String s = v.toString(); // Dynamic Dispatch
                         strings[i] = s;
                     }
 
