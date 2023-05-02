@@ -28,13 +28,13 @@ public class SpotifyResponse extends SpotifySerializer {
     }
 
     public JSONObject getJsonObject() {
-        return this.requestResponse.ok();
+        return this.requestResponse.getParsedJson();
     }
 
     @SuppressWarnings("unchecked")
     public <E extends SpotifyObject> E[] getSerialisedObjects() {
         if (this.index == null) return null;
-        JSONArray jsonArray = this.requestResponse.ok().getJSONArray(this.index);
+        JSONArray jsonArray = this.requestResponse.getParsedJson().getJSONArray(this.index);
         int length = jsonArray.length();
         E[] array = (E[]) Array.newInstance(this.cls, length);
         for (int i = 0; i < length; i++) {
@@ -47,7 +47,7 @@ public class SpotifyResponse extends SpotifySerializer {
 
     @SuppressWarnings("unchecked")
     public <E extends SpotifyObject> E getSerialisedObject() {
-        return (E) super.serializeObject(this.requestResponse.ok(), cls);
+        return (E) super.serializeObject(this.requestResponse.getParsedJson(), cls);
     }
 
 }

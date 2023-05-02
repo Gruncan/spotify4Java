@@ -45,13 +45,11 @@ public class RequestResponse {
 
     /**
      * Returns the raw unchecked parsed json if {@code code == 200}
+     *
      * @return The raw unchecked parsed {@link JSONObject}
      */
-    public JSONObject ok() {
-        if (code == 200) {
-            return this.content;
-        } else
-            return null;
+    public JSONObject getParsedJson() {
+        return this.content;
     }
 
     public int getCode() {
