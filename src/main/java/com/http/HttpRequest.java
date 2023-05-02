@@ -1,9 +1,7 @@
-/*
- * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
- *  7/11/22
- */
 package com.http;
 
+import com.spotify.SpotifyClientBuilder;
+import com.spotify.requests.AbstractRequest;
 import com.spotify.util.Util;
 
 import java.io.BufferedReader;
@@ -16,8 +14,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import com.spotify.requests.AbstractRequest;
-import com.spotify.SpotifyClientBuilder;
 
 /**
  * Represents a HTTP request, used for doing every request to spotify's API
@@ -26,6 +22,9 @@ import com.spotify.SpotifyClientBuilder;
  * @see     SpotifyHttpServerProvider
  * @see     AbstractRequest
  * @see     SpotifyClientBuilder
+ *
+ * @author Gruncan
+ * @since 1.0.0
  */
 public class HttpRequest {
 

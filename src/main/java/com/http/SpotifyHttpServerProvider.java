@@ -1,7 +1,3 @@
-/*
- * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
- *  25/09/22
- */
 package com.http;
 
 import com.spotify.SpotifyClientBuilder;
@@ -24,6 +20,9 @@ import java.util.concurrent.CountDownLatch;
  * Responsible for handling Spotify authentication and return calls <br>
  * Following Spotify's Authorization Code flow
  * @see SpotifyClientBuilder
+ *
+ * @author Gruncan
+ * @since 1.0.0
  */
 //<img src="https://developer.spotify.com/images/documentation/web-api/auth-code-flow.png" width="100" height="auto">
 public class SpotifyHttpServerProvider {

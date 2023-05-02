@@ -1,7 +1,3 @@
-/*
- * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
- *  25/09/22
- */
 package com.http;
 
 /**
@@ -9,6 +5,9 @@ package com.http;
  * <p>Used when initializing a {@link HttpRequest}</p>
  * @see HttpRequest
  * @see HttpResponse
+ *
+ * @author Gruncan
+ * @since 1.0.0
  */
 public enum HttpMethod {
 

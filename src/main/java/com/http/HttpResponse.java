@@ -1,11 +1,7 @@
-/*
- * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
- *  25/09/22
- */
 package com.http;
 
-import com.spotify.requests.AbstractRequest;
 import com.spotify.SpotifyResponse;
+import com.spotify.requests.AbstractRequest;
 
 /**
  * Represent the response from a {@link HttpRequest}
@@ -15,6 +11,9 @@ import com.spotify.SpotifyResponse;
  * @see SpotifyHttpServerProvider
  * @see AbstractRequest
  * @see SpotifyResponse
+ *
+ * @author Gruncan
+ * @since 1.0.0
  */
 public class HttpResponse {
 
