@@ -18,8 +18,8 @@ import com.spotify.requests.SpotifySubRequest;
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
-@SpotifySerialize(value = SpotifyImage.class, isArray = true)
 @SpotifyRequest(value = "playlists", end = "images")
+@SpotifySerialize(value = SpotifyImage.class, isArray = true)
 public class PlaylistImageGet extends AbstractRequest {
 
     /**

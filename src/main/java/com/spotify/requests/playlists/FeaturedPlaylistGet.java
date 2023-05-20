@@ -2,6 +2,7 @@ package com.spotify.requests.playlists;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.playlists.BrowsedPlaylist;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -10,9 +11,9 @@ import lombok.Setter;
 /**
  * Get a list of Spotify featured playlists (shown, for example, on a Spotify player's 'Browse' tab).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link BrowsedPlaylist}</p>
  *
- * @see ?
+ * @see BrowsedPlaylist
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -20,6 +21,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest("browse/featured-playlist")
+@SpotifySerialize(BrowsedPlaylist.class)
 public class FeaturedPlaylistGet extends AbstractRequest {
 
     /**

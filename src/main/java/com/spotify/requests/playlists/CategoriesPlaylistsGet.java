@@ -2,6 +2,7 @@ package com.spotify.requests.playlists;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.playlists.BrowsedPlaylist;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get a list of Spotify playlists tagged with a particular category.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-categories-playlists">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link BrowsedPlaylist}</p>
  *
- * @see ?
+ * @see BrowsedPlaylist
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "browse/categories", end = "playlist")
+@SpotifySerialize(BrowsedPlaylist.class)
 public class CategoriesPlaylistsGet extends AbstractRequest {
 
     /**

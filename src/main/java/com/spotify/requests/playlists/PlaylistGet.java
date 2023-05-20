@@ -23,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest("playlists")
+@SpotifySerialize(Playlist.class)
 public class PlaylistGet extends AbstractRequest {
 
     /**
