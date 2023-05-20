@@ -1,8 +1,4 @@
-package com.spotify.httpserver;
-
-import com.http.HttpMethod;
-import com.http.HttpRequest;
-import com.http.HttpResponse;
+package com.http;
 
 public class ClientTest {
 

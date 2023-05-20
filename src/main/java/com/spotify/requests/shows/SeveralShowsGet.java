@@ -7,7 +7,6 @@ import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
-import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
 /**
@@ -30,7 +29,7 @@ public class SeveralShowsGet extends AbstractRequest {
     /**
      * A list of the Spotify IDs for the shows. Maximum: 50 IDs.
      */
-    @SpotifySubRequest
+    @SpotifyRequestField
     private final String[] ids;
 
     /**

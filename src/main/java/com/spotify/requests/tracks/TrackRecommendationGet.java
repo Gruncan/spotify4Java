@@ -413,18 +413,6 @@ public class TrackRecommendationGet extends AbstractRequest {
         this.seedArtists = seedArtists;
         this.seedGenres = seedGenres;
         this.seedTracks = seedTracks;
-        try {
-            for (Field field : this.getClass().getDeclaredFields()) {
-                field.setAccessible(true);
-                Class<?> type = field.getType();
-                if (type.equals(int.class) || type.equals(double.class)) {
-                    field.set(this, -1);
-                }
-            }
-        } catch (IllegalAccessException e) {
-            System.out.println("Failed to instantiate default values.");
-            e.printStackTrace();
-        }
     }
 
 

@@ -73,10 +73,5 @@ public class SearchGet extends AbstractRequest {
     public SearchGet(String q, Type... type) {
         this.q = q;
         this.type = type;
-        this.includeExternal = null;
-        this.limit = -1;
-        this.market = null;
-        this.offset = -1;
     }
-
 }

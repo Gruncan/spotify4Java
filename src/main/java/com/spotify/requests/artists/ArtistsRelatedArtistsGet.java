@@ -18,7 +18,7 @@ import com.spotify.requests.SpotifySubRequest;
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
-@SpotifyRequest(value = "artists", end = "related-artist")
+@SpotifyRequest(value = "artists", end = "related-artists")
 @SpotifySerialize(Artist.class)
 public class ArtistsRelatedArtistsGet extends AbstractRequest {
 

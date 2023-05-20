@@ -20,7 +20,7 @@ import lombok.Setter;
  * @see SpotifyResponse
  */
 @Setter
-@SpotifyRequest("browse/featured-playlist")
+@SpotifyRequest("browse/featured-playlists")
 @SpotifySerialize(BrowsedPlaylist.class)
 public class FeaturedPlaylistGet extends AbstractRequest {
 

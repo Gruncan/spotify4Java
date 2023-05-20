@@ -31,6 +31,11 @@ public class SpotifyResponse extends SpotifySerializer {
         return this.requestResponse.getParsedJson();
     }
 
+
+    public boolean wasSuccess() {
+        return this.requestResponse.getCode() == 200;
+    }
+
     @SuppressWarnings("unchecked")
     public <E extends SpotifyObject> E[] getSerialisedObjects() {
         if (this.index == null) return null;

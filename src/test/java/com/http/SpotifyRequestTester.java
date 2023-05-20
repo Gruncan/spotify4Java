@@ -1,4 +1,4 @@
-package com.spotify.httpserver;
+package com.http;
 
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;

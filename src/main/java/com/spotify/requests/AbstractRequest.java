@@ -3,6 +3,7 @@ package com.spotify.requests;
 import com.http.HttpMethod;
 import com.http.HttpRequest;
 import com.http.HttpResponse;
+import com.json.JSONException;
 import com.json.JSONObject;
 import com.spotify.SpotifyResponse;
 import com.spotify.exceptions.SpotifyUrlParserException;
@@ -30,7 +31,7 @@ public abstract class AbstractRequest implements IRequest {
 
         if (cls.equals(int.class)) {
             Integer i = (Integer) o;
-            return i == -1;
+            return i == 0;
         } else if (cls.equals(boolean.class)) {
             Boolean b = (Boolean) o;
             return !b;
@@ -41,18 +42,27 @@ public abstract class AbstractRequest implements IRequest {
         return false;
     }
 
+
+    public String getRequestURL() {
+        try {
+            return BASE_URL + this.buildRequestUrl();
+        } catch (SpotifyUrlParserException e) {
+            return "Failed to construct URL";
+        }
+
+    }
+
     /**
      * Basic Spotify HTTP GET request on a given URL with parameters specified
      *
      * @param token The token from spotify's authentication to be added to "Bearer" header information
-     * @param url The specific API URL to be used, excluding "https://api.spotify.com/v1/"
+     * @param url   The specific API URL to be used, excluding "https://api.spotify.com/v1/"
      * @return The HTTP response from the request, wrapped in {@link RequestResponse}
      */
     protected final RequestResponse requestGet(String token, String url) {
         // Initialisation of http get request
         String requestURL = BASE_URL + url;
         HttpMethod method = HttpMethod.GET;
-        System.out.println(requestURL);
         HttpRequest request = new HttpRequest(requestURL, method);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
@@ -64,7 +74,13 @@ public abstract class AbstractRequest implements IRequest {
             String s = response.getMessage();
             JSONObject content = null;
             switch (code) {
-                case 200 -> content = new JSONObject(response.getContent());
+                case 200 -> {
+                    try {
+                        content = new JSONObject(response.getContent());
+                    } catch (JSONException e) {
+                        content = new JSONObject(String.format("{\"value\": %s}", response.getContent()));
+                    }
+                }
                 case 401 -> System.out.printf("Error: Bad or expired token. This can happen if the user revoked a " +
                                 "token or the access token has expired. You should re-authenticate the user for %s request %s%n",
                         method, requestURL);
@@ -163,13 +179,14 @@ public abstract class AbstractRequest implements IRequest {
                 sb.append(end);
             }
 
+            if (sb.toString().endsWith("/"))
+                sb = new StringBuilder(sb.substring(0, sb.length() - 1));
+
+            sb.append("?");
+
             // Fields annotated with SpotifyRequestField
             for (Field field : spotifyFieldRequestFields) {
                 field.setAccessible(true);
-                if (sb.toString().endsWith("/")) {
-                    sb = new StringBuilder(sb.substring(0, sb.length() - 1));
-                }
-                sb.append("?");
 
                 Object o = field.get(this);
                 Class<?> type = field.getType();

@@ -1,12 +1,12 @@
 package com.spotify.requests.artists;
 
 import com.spotify.SpotifyResponse;
-import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.Track;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
@@ -35,15 +35,17 @@ public class ArtistsTopTracksGet extends AbstractRequest {
     /**
      * An ISO 3166-1 alpha-2 country code. If a country code is specified, only content that is available in that market will be returned.
      */
-    @SpotifyField
-    private Country market;
+    @SpotifyRequestField
+    private final Country market;
 
     /**
      * Initializes the {@link ArtistsTopTracksGet} request
+     *
      * @param id The Spotify ID of the artist.
      */
-    public ArtistsTopTracksGet(String id) {
+    public ArtistsTopTracksGet(String id, Country market) {
         this.id = id;
+        this.market = market;
     }
 
 }

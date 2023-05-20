@@ -22,7 +22,7 @@ import lombok.Setter;
  * @see SpotifyResponse
  */
 @Setter
-@SpotifyRequest(value = "browse/categories", end = "playlist")
+@SpotifyRequest(value = "browse/categories", end = "playlists")
 @SpotifySerialize(BrowsedPlaylist.class)
 public class CategoriesPlaylistsGet extends AbstractRequest {
 

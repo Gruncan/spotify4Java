@@ -1,19 +1,6 @@
 package com.spotify;
 
-import com.json.JSONObject;
-import com.spotify.objects.albums.AlbumTracks;
-import com.spotify.objects.artists.Artist;
-import com.spotify.objects.artists.SimplifiedArtist;
-import com.spotify.objects.search.Search;
-import com.spotify.objects.tracks.SimplifiedTrack;
-import com.spotify.objects.tracks.Track;
-import com.spotify.requests.albums.AlbumTracksGet;
-import com.spotify.requests.search.SearchGet;
-import com.spotify.requests.tracks.TrackGet;
-import com.spotify.requests.util.Type;
-
-import javax.lang.model.SourceVersion;
-import java.util.Arrays;
+import com.spotify.requests.artists.ArtistGet;
 
 public class Main {
 
@@ -85,12 +72,11 @@ public class Main {
 //        System.out.println(Arrays.toString(artists));
 //        System.out.println(Arrays.toString(sArtists));
 
-        AlbumTracksGet albumTracksGet = new AlbumTracksGet("6d1vGZsr6Uy3h9IigBpPAf");
+        ArtistGet request = new ArtistGet("0TnOYISbd1XYRBk9myaseg");
 
-        SpotifyResponse sp = sc.executeRequest(albumTracksGet);
-        AlbumTracks albumTracks = sp.getSerialisedObject();
+        SpotifyResponse sp = sc.executeRequest(request);
 
-        System.out.println(albumTracks.toString());
+        System.out.println(sp.getJsonObject().toString(4));
 
 
     }
