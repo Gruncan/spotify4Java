@@ -2,7 +2,7 @@ package com.spotify.requests.shows;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.shows.Show;
+import com.spotify.objects.shows.SimplifiedShow;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -13,9 +13,9 @@ import lombok.Setter;
 /**
  * Get Spotify catalog information for several shows based on their Spotify IDs.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-shows">Spotify Docs</a>
- * <p>Serializes into {@link Show}</p>
+ * <p>Serializes into {@link SimplifiedShow}</p>
  *
- * @see Show
+ * @see SimplifiedShow
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -23,7 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest("shows")
-@SpotifySerialize(value = Show.class, isArray = true)
+@SpotifySerialize(value = SimplifiedShow.class, isArray = true)
 public class SeveralShowsGet extends AbstractRequest {
 
 

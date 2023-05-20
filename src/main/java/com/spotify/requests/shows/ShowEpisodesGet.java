@@ -2,6 +2,7 @@ package com.spotify.requests.shows;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.shows.ShowEpisodesSearch;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-shows-episodes">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link ShowEpisodesSearch}</p>
  *
- * @see ?
+ * @see ShowEpisodesSearch
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "shows", end = "episodes")
+@SpotifySerialize(ShowEpisodesSearch.class)
 public class ShowEpisodesGet extends AbstractRequest {
 
 

@@ -2,7 +2,7 @@ package com.spotify.requests.playlists;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.playlists.PlaylistTracks;
+import com.spotify.objects.playlists.PlaylistTracksSearch;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -13,9 +13,9 @@ import lombok.Setter;
 /**
  * Get full details of the items of a playlist owned by a Spotify user.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-playlists-tracks">Spotify Docs</a>
- * <p>Serializes into {@link PlaylistTracks}</p>
+ * <p>Serializes into {@link PlaylistTracksSearch}</p>
  *
- * @see PlaylistTracks
+ * @see PlaylistTracksSearch
  * @see AbstractRequest
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -23,7 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "playlists", end = "tracks")
-@SpotifySerialize(PlaylistTracks.class)
+@SpotifySerialize(PlaylistTracksSearch.class)
 public class PlaylistTracksGet extends AbstractRequest {
 
 

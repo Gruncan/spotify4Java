@@ -1,35 +1,28 @@
-package com.spotify.objects.chapters;
+package com.spotify.objects.shows;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
-import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.audiobooks.SimplifiedAudiobook;
 import com.spotify.objects.wrappers.Country;
+import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyImage;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Chapter implements SpotifyObject {
-
-    @SpotifyField("audio_preview_url")
-    private String audioPreviewUrl;
+public class SimplifiedShow implements SpotifyObject {
 
     @SpotifyField("available_markets")
     private Country[] markets;
 
-    @SpotifyField("chapter_number")
-    private int chapterNumber;
+    @SpotifyField
+    private SpotifyCopyright[] copyrights;
 
     @SpotifyField
     private String description;
 
     @SpotifyField("html_description")
     private String htmlDescription;
-
-    @SpotifyField("duration_ms")
-    private int duration;
 
     @SpotifyField
     private boolean explicit;
@@ -46,20 +39,20 @@ public class Chapter implements SpotifyObject {
     @SpotifyField
     private SpotifyImage[] images;
 
+    @SpotifyField("is_externally_hosted")
+    private boolean isExternallyHosted;
+
     @SpotifyField
     private String[] languages;
+
+    @SpotifyField("media_type")
+    private String mediaType;
 
     @SpotifyField
     private String name;
 
-    @SpotifyField("release_date")
-    private String releaseDate;
-
-    @SpotifyField("release_date_precision")
-    private String releaseDatePrecision;
-
-    @SpotifyField("resume_point")
-    private ChapterResumePoint resumePoint;
+    @SpotifyField
+    private String publisher;
 
     @SpotifyField
     private String type;
@@ -67,11 +60,6 @@ public class Chapter implements SpotifyObject {
     @SpotifyField
     private String uri;
 
-    @SpotifyOptional
-    @SpotifyField(value = "reason", path = {"restrictions"})
-    private String restrictions;
-
-    @SpotifyField
-    private SimplifiedAudiobook audiobook;
-
+    @SpotifyField("total_episodes")
+    private int totalEpisodes;
 }

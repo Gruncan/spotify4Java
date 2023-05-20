@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PlaylistTracks extends AbstractSearchItems {
+public class PlaylistTracksSearch extends AbstractSearchItems {
 
     @SpotifyField
-    private PlaylistTrack items;
+    private PlaylistTrack[] items;
 
 }

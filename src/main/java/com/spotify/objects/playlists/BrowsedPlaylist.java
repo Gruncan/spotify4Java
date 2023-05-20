@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BrowsedPlaylist extends PlaylistTracks {
+public class BrowsedPlaylist extends PlaylistTracksSearch {
 
     @SpotifyField
     private String message;

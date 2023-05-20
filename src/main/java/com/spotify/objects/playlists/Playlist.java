@@ -44,7 +44,7 @@ public class Playlist implements SpotifyObject {
     private String snapshotID;
 
     @SpotifyField
-    private PlaylistTracks tracks;
+    private PlaylistTracksSearch tracks;
 
     @SpotifyField
     private String type;
