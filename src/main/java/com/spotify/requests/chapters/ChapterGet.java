@@ -2,6 +2,7 @@ package com.spotify.requests.chapters;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.chapters.Chapter;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
@@ -23,6 +24,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest("chapters")
+@SpotifySerialize(Chapter.class)
 public class ChapterGet extends AbstractRequest {
 
 

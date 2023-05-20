@@ -1,13 +1,15 @@
-package com.spotify.objects.audiobooks;
+package com.spotify.objects.chapters;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
+
 @Getter
+@Setter
 public class ChapterResumePoint implements SpotifyObject {
+
 
     @SpotifyField("fully_played")
     private boolean fullyPlayed;
