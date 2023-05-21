@@ -16,6 +16,7 @@ import lombok.Setter;
  *
  * @see AlbumGet
  * @see SimplifiedAlbum
+ * @see SpotifyObject
  */
 @Getter
 @Setter

@@ -15,6 +15,7 @@ import lombok.Setter;
  * @see AlbumTracksGet
  * @see AbstractSearchItems
  * @see SimplifiedTrack
+ * @see SpotifyObject
  */
 @Getter
 @Setter

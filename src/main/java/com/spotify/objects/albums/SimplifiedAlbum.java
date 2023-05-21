@@ -13,11 +13,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Represents a spotify SimplifiedAlbumObject<br>
+ * Represents a spotify SimplifiedAlbumObject
  *
  * @see Album
  * @see ArtistAlbums
  * @see ArtistsAlbumsGet
+ * @see SpotifyObject
  */
 @Getter
 @Setter
@@ -139,11 +140,4 @@ public class SimplifiedAlbum implements SpotifyObject {
     @SpotifyField
     private int popularity;
 
-
-//    @SpotifyOptional
-//    @SpotifyField("album_group")
-//    private String albumGroup;
-//
-//    @SpotifyField("artists")
-//    private SimplifiedArtist[] simplifiedArtists;
 }
