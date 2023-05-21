@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class GenreTests extends AbstractConnectionTest {
+public class GenreSeedsTests extends AbstractConnectionTest {
 
     @Test
     @Tag("NetworkTest")
