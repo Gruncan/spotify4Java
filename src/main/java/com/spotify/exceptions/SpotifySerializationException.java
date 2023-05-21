@@ -1,7 +1,3 @@
-/*
- * Written by Gruncan for spotify4Java (https://github.com/Gruncan/spotify4Java/)
- *  26/09/22
- */
 package com.spotify.exceptions;
 
 import com.spotify.objects.SpotifySerializer;

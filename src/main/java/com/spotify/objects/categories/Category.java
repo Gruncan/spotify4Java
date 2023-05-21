@@ -3,7 +3,6 @@ package com.spotify.objects.categories;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.wrappers.SpotifyImage;
-import com.spotify.requests.SpotifyRequestField;
 import lombok.Getter;
 import lombok.Setter;
 

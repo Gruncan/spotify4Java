@@ -3,7 +3,6 @@ package com.spotify.objects.tracks;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.artists.Artist;
 import com.spotify.objects.artists.SimplifiedArtist;
 import com.spotify.objects.wrappers.Country;
 import lombok.Getter;
