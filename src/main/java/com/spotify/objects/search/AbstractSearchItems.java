@@ -3,13 +3,22 @@ package com.spotify.objects.search;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
+import com.spotify.objects.search.items.*;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Represents a search item used across various requests to minimise repetition.
  *
- * @see
+ * @see Search
+ * @see SearchItemArtists
+ * @see SearchItemsAlbums
+ * @see SearchItemsAudiobooks
+ * @see SearchItemsEpisodes
+ * @see SearchItemsPlaylists
+ * @see SearchItemsShows
+ * @see SearchItemTracks
+ * @see SpotifyObject
  */
 @Getter
 @Setter
