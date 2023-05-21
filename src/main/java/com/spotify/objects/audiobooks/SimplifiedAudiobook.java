@@ -3,12 +3,20 @@ package com.spotify.objects.audiobooks;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
+import com.spotify.objects.chapters.Chapter;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyImage;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Represents a spotify SimplifiedAudiobookObject
+ *
+ * @see Audiobook
+ * @see Chapter
+ * @see SpotifyObject
+ */
 @Getter
 @Setter
 public class SimplifiedAudiobook implements SpotifyObject {
