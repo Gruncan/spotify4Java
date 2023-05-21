@@ -1,21 +1,20 @@
-package com.spotify.objects.audiobooks;
+package com.spotify.objects.wrappers;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.wrappers.Country;
-import com.spotify.objects.wrappers.SpotifyImage;
+import com.spotify.objects.chapters.ChapterResumePoint;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class SimplifiedChapter implements SpotifyObject {
+@Setter
+public abstract class AbstractCompilation implements SpotifyObject {
+
 
     @SpotifyField("audio_preview_url")
     private String audioPreviewUrl;
 
-    @SpotifyOptional
     @SpotifyField("available_markets")
     private Country[] markets;
 
@@ -46,11 +45,8 @@ public class SimplifiedChapter implements SpotifyObject {
     @SpotifyField
     private SpotifyImage[] images;
 
-    @SpotifyField("is_playable")
-    private boolean isPlayable;
-
     @SpotifyField
-    private String[] languages;
+    private String languages;
 
     @SpotifyField
     private String name;
@@ -58,9 +54,19 @@ public class SimplifiedChapter implements SpotifyObject {
     @SpotifyField("release_date")
     private String releaseDate;
 
+    @SpotifyField("release_date_precision")
+    private String releaseDatePrecision;
+
+    @SpotifyField("resume_point")
+    private ChapterResumePoint resumePoint;
+
+    @SpotifyField
+    private String type;
+
     @SpotifyField
     private String uri;
 
+    @SpotifyOptional
     @SpotifyField(value = "reason", path = {"restrictions"})
     private String restrictions;
 }
