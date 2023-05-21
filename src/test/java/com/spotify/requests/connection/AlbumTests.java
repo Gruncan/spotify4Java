@@ -1,7 +1,7 @@
 package com.spotify.requests.connection;
 
 import com.spotify.SpotifyResponse;
-import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.albums.AlbumGet;
 import com.spotify.requests.albums.AlbumTracksGet;
 import com.spotify.requests.albums.SeveralAlbumsGet;
@@ -16,7 +16,7 @@ public class AlbumTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void albumGetTest() {
-        AbstractRequest request = new AlbumGet("4aawyAB9vmqN3uQ7FjRGTy");
+        SpotifyRequestVariant request = new AlbumGet("4aawyAB9vmqN3uQ7FjRGTy");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
     }
@@ -25,7 +25,7 @@ public class AlbumTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void severalAlbumGetTest() {
-        AbstractRequest request = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
+        SpotifyRequestVariant request = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
     }
@@ -33,7 +33,7 @@ public class AlbumTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void albumTracksGetTest() {
-        AbstractRequest request = new AlbumTracksGet("4aawyAB9vmqN3uQ7FjRGTy");
+        SpotifyRequestVariant request = new AlbumTracksGet("4aawyAB9vmqN3uQ7FjRGTy");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
     }

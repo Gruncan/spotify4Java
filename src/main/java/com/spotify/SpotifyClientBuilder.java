@@ -5,7 +5,8 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.http.SpotifyHttpServerProvider;
 import com.json.JSONObject;
-import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.SpotifyRequestExecutor;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
 import com.spotify.util.Util;
 
@@ -187,7 +188,7 @@ public class SpotifyClientBuilder {
     }
 
 
-    private static class SpotifyClientImp implements SpotifyClient {
+    private static final class SpotifyClientImp extends SpotifyRequestExecutor implements SpotifyClient {
 
         private final String accessToken;
 
@@ -197,8 +198,8 @@ public class SpotifyClientBuilder {
 
 
         @Override
-        public SpotifyResponse executeRequest(AbstractRequest request) {
-            return request.execute(this.accessToken);
+        public SpotifyResponse executeRequest(SpotifyRequestVariant request) {
+            return super.execute(this.accessToken, request);
         }
     }
 }

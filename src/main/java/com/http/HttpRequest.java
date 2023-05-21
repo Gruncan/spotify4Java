@@ -1,7 +1,7 @@
 package com.http;
 
 import com.spotify.SpotifyClientBuilder;
-import com.spotify.requests.AbstractRequest;
+import com.spotify.requests.SpotifyRequestExecutor;
 import com.spotify.util.Util;
 
 import java.io.BufferedReader;
@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 
 /**
  * Represents a HTTP request, used for doing every request to spotify's API
- * @see     HttpMethod
- * @see     HttpResponse
- * @see     SpotifyHttpServerProvider
- * @see     AbstractRequest
- * @see     SpotifyClientBuilder
  *
  * @author Gruncan
+ * @see HttpMethod
+ * @see HttpResponse
+ * @see SpotifyHttpServerProvider
+ * @see SpotifyRequestExecutor
+ * @see SpotifyClientBuilder
  * @since 1.0.0
  */
 public class HttpRequest {

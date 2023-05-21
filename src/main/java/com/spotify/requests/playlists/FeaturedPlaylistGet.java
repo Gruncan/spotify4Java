@@ -3,9 +3,9 @@ package com.spotify.requests.playlists;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.playlists.BrowsedPlaylist;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 /**
@@ -14,7 +14,7 @@ import lombok.Setter;
  * <p>Serializes into {@link BrowsedPlaylist}</p>
  *
  * @see BrowsedPlaylist
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("browse/featured-playlists")
 @SpotifySerialize(BrowsedPlaylist.class)
-public class FeaturedPlaylistGet extends AbstractRequest {
+public class FeaturedPlaylistGet implements SpotifyRequestVariant {
 
     /**
      * A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want the list of returned items to be relevant to a particular country. If omitted, the returned items will be relevant to all countries.

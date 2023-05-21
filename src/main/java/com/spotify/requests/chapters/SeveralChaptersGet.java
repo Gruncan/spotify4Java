@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.chapters.Chapter;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.albums.SeveralAlbumsGet;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Chapter} array</p>
  *
  * @see Chapter
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("chapters")
 @SpotifySerialize(value = Chapter.class, isArray = true)
-public class SeveralChaptersGet extends AbstractRequest {
+public class SeveralChaptersGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs.

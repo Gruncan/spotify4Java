@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.TrackRecommendation;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 import java.lang.reflect.Field;
@@ -23,7 +23,7 @@ import java.util.List;
  * <p>Serializes into {@link TrackRecommendation}</p>
  *
  * @see TrackRecommendation
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -31,7 +31,7 @@ import java.util.List;
 @Setter
 @SpotifyRequest("recommendations")
 @SpotifySerialize(TrackRecommendation.class)
-public class TrackRecommendationGet extends AbstractRequest {
+public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**

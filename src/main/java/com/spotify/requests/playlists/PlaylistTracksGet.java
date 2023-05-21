@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.playlists.PlaylistTracksSearch;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
  * <p>Serializes into {@link PlaylistTracksSearch}</p>
  *
  * @see PlaylistTracksSearch
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest(value = "playlists", end = "tracks")
 @SpotifySerialize(PlaylistTracksSearch.class)
-public class PlaylistTracksGet extends AbstractRequest {
+public class PlaylistTracksGet implements SpotifyRequestVariant {
 
 
     /**

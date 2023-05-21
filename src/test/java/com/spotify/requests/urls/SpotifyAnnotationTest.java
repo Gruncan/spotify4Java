@@ -1,10 +1,10 @@
 package com.spotify.requests.urls;
 
 import com.spotify.exceptions.SpotifyUrlParserException;
-import com.spotify.requests.urls.testclasses.TestFieldRequestClass1;
-import com.spotify.requests.urls.testclasses.TestRequestClass1;
-import com.spotify.requests.urls.testclasses.TestSubRequestClass1;
-import com.spotify.requests.urls.testclasses.TestSubRequestClass2;
+import com.spotify.requests.urls.testclasses.TestFieldRequestClass1Executor;
+import com.spotify.requests.urls.testclasses.TestRequestExecutorClass1;
+import com.spotify.requests.urls.testclasses.TestSubRequestClass1Executor;
+import com.spotify.requests.urls.testclasses.TestSubRequestClass2Executor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,14 +13,16 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SpotifyAnnotationTest {
 
 
+    private final static SpotifyClientMock client = new SpotifyClientMock();
+
     /**
      * Tests classes that don't have @SpotifyRequest annotation
      */
     @Test
     public void spotifyRequestAnnotationTest1() throws SpotifyUrlParserException {
-        TestRequestClass1 trc = new TestRequestClass1();
+        TestRequestExecutorClass1 trc = new TestRequestExecutorClass1();
         trc.setField1("value1");
-        assertThrows(SpotifyUrlParserException.class, trc::buildRequestUrl);
+        assertThrows(SpotifyUrlParserException.class, () -> client.getBuiltURL(trc));
 
     }
 
@@ -31,14 +33,13 @@ public class SpotifyAnnotationTest {
      */
     @Test
     public void spotifySubRequestAnnotationTest1() throws SpotifyUrlParserException {
-        TestSubRequestClass1 trc = new TestSubRequestClass1();
+        TestSubRequestClass1Executor trc = new TestSubRequestClass1Executor();
 
         trc.setField1("subrequest1");
         trc.setField2("subrequest2");
         trc.setField3("failsubrequest");
 
-        String url = trc.buildRequestUrl();
-
+        String url = client.getBuiltURL(trc);
         assertEquals("url/subrequest1/subrequest2", url);
 
     }
@@ -49,14 +50,13 @@ public class SpotifyAnnotationTest {
      */
     @Test
     public void spotifySubRequestAnnotationTest2() throws SpotifyUrlParserException {
-        TestSubRequestClass1 trc = new TestSubRequestClass1();
+        TestSubRequestClass1Executor trc = new TestSubRequestClass1Executor();
 
         trc.setField1("subrequest1");
         trc.setField2(null);
 
-        String url = trc.buildRequestUrl();
-
-//        assertNull(url);
+        String url = client.getBuiltURL(trc);
+        assertEquals("url/subrequest1", url);
     }
 
 
@@ -65,14 +65,14 @@ public class SpotifyAnnotationTest {
      * Should fail to create url since subRequest fields must be type String
      */
     @Test
-    public void spotifySubRequestAnnotationTest3() {
-        TestSubRequestClass2 trc = new TestSubRequestClass2();
+    public void spotifySubRequestAnnotationTest3() throws SpotifyUrlParserException {
+        TestSubRequestClass2Executor trc = new TestSubRequestClass2Executor();
 
         trc.setIntField(6);
 
-//        SpotifyUrlParserException thrown = assertThrows(SpotifyUrlParserException.class, trc::buildRequestUrl);
+        String url = client.getBuiltURL(trc);
+//        assertThrows(SpotifyUrlParserException.class, ()->client.getBuiltURL(trc));
 
-//        assertNotNull(thrown);
     }
 
 
@@ -83,16 +83,16 @@ public class SpotifyAnnotationTest {
      */
     @Test
     public void spotifyFieldRequestAnnotationTest1() throws SpotifyUrlParserException {
-        TestFieldRequestClass1 trc = new TestFieldRequestClass1();
+        TestFieldRequestClass1Executor trc = new TestFieldRequestClass1Executor();
 
         trc.setField1("value1");
         trc.setField2("value2");
         trc.setField3(null);
 
 
-        String url = trc.buildRequestUrl();
+        String url = client.getBuiltURL(trc);
 
-//        assertEquals("url?field1=value1&FIELD2=value2", url);
+        assertEquals("url?field1=value1&FIELD2=value2", url);
 
     }
 

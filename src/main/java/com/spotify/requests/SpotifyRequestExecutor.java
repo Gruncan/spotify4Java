@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * The base of the API requests
  */
-public abstract class AbstractRequest implements IRequest {
+public abstract class SpotifyRequestExecutor {
 
 
     private final static String BASE_URL = "https://api.spotify.com/v1/";
@@ -40,16 +40,6 @@ public abstract class AbstractRequest implements IRequest {
             return d == -1d;
         }
         return false;
-    }
-
-
-    public String getRequestURL() {
-        try {
-            return BASE_URL + this.buildRequestUrl();
-        } catch (SpotifyUrlParserException e) {
-            return "Failed to construct URL";
-        }
-
     }
 
     /**
@@ -105,15 +95,16 @@ public abstract class AbstractRequest implements IRequest {
 
     /**
      * Executes the subclasses request
+     *
      * @param token The token from spotify's authentication
      * @return The response wrapped to be serialized {@link SpotifyResponse}
      */
-    @Override
-    public SpotifyResponse execute(String token) {
+    protected SpotifyResponse execute(String token, SpotifyRequestVariant request) {
         String urlQuery;
+        Class<? extends SpotifyRequestVariant> requestClass = request.getClass();
         try {
-            urlQuery = this.buildRequestUrl();
-        }catch (SpotifyUrlParserException e){
+            urlQuery = this.buildRequestUrl(request);
+        } catch (SpotifyUrlParserException e) {
             e.printStackTrace();
             return null;
         }
@@ -122,14 +113,14 @@ public abstract class AbstractRequest implements IRequest {
 
         // To be changed for specified request not just GET
         RequestResponse rresponse = this.requestGet(token, urlQuery);
-        SpotifySerialize ms = this.getClass().getAnnotation(SpotifySerialize.class);
+        SpotifySerialize ms = requestClass.getAnnotation(SpotifySerialize.class);
         if (ms == null) return null;
         // Ensured to be non-null in above buildRequestUrl call
-        SpotifyRequest request = this.getClass().getAnnotation(SpotifyRequest.class);
+        SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
         Class<? extends SpotifyObject> cls = ms.value();
         SpotifyResponse response;
         if (ms.isArray())
-            response = new SpotifyResponse(rresponse, cls, request.value().replace("-", "_"));
+            response = new SpotifyResponse(rresponse, cls, srequest.value().replace("-", "_"));
         else
             response = new SpotifyResponse(rresponse, cls);
 
@@ -138,14 +129,15 @@ public abstract class AbstractRequest implements IRequest {
     }
 
 
-    public String buildRequestUrl() throws SpotifyUrlParserException{
-        String url = "None";
+    protected String buildRequestUrl(SpotifyRequestVariant request) throws SpotifyUrlParserException {
+        String url = null;
         try {
-            SpotifyRequest spotifyRequest = this.getClass().getAnnotation(SpotifyRequest.class);
+            Class<? extends SpotifyRequestVariant> requestClass = request.getClass();
+            SpotifyRequest spotifyRequest = requestClass.getAnnotation(SpotifyRequest.class);
 
-            if (spotifyRequest == null){
+            if (spotifyRequest == null) {
                 throw new SpotifyUrlParserException(String.format("Class %s is not annotated with %s, unable to build " +
-                        "url for unknown request.", this.getClass(), SpotifyRequest.class));
+                        "url for unknown request.", requestClass, SpotifyRequest.class));
             }
 
             url = spotifyRequest.value();
@@ -154,7 +146,7 @@ public abstract class AbstractRequest implements IRequest {
 
             List<Field> spotifySubRequestFields = new ArrayList<>();
             List<Field> spotifyFieldRequestFields = new ArrayList<>();
-            for (Field field : this.getClass().getDeclaredFields()) {
+            for (Field field : requestClass.getDeclaredFields()) {
                 if (field.getAnnotation(SpotifySubRequest.class) != null) {
                     spotifySubRequestFields.add(field);
                 } else if (field.getAnnotation(SpotifyRequestField.class) != null) {
@@ -165,7 +157,7 @@ public abstract class AbstractRequest implements IRequest {
             // Fields annotated with SpotifySubRequest
             for (Field field : spotifySubRequestFields) {
                 field.setAccessible(true);
-                Object o = field.get(this);
+                Object o = field.get(request);
                 if (o == null) {
                     field.setAccessible(false);
                     continue;
@@ -188,7 +180,7 @@ public abstract class AbstractRequest implements IRequest {
             for (Field field : spotifyFieldRequestFields) {
                 field.setAccessible(true);
 
-                Object o = field.get(this);
+                Object o = field.get(request);
                 Class<?> type = field.getType();
                 if (o == null || isPrimitiveDefault(o, type)) {
                     field.setAccessible(false);

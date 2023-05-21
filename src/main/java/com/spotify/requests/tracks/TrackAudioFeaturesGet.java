@@ -3,8 +3,8 @@ package com.spotify.requests.tracks;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.TrackAudioFeatures;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 
 
@@ -14,14 +14,14 @@ import com.spotify.requests.SpotifySubRequest;
  * <p>Serializes into {@link TrackAudioFeatures}</p>
  *
  * @see TrackAudioFeatures
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest("audio-features")
 @SpotifySerialize(TrackAudioFeatures.class)
-public class TrackAudioFeaturesGet extends AbstractRequest {
+public class TrackAudioFeaturesGet implements SpotifyRequestVariant {
 
     /**
      * The Spotify ID for the track.

@@ -42,16 +42,17 @@ and executing it with your spotifyClient `executeRequest`
 Example:
 
 ```java
-public static void main(String[] args){
-    SpotifyClient spotifyClient = new SpotifyClientBuilder("CLIENT_ID", "CLIENT_SECRET", "REDIRECT_URL")
-                                                            .getBuiltClient();
-    TrackGet trackGet = new TrackGet("Track_id");
-    JSONObject jsonObject = spotifyClient.executeRequest(trackGet);
-    System.out.println(jsonObject.toString());
-}
+public static void main(String[]args){
+        SpotifyClient spotifyClient=new SpotifyClientBuilder("CLIENT_ID","CLIENT_SECRET","REDIRECT_URL")
+        .getBuiltClient();
+        TrackGet trackGet=new TrackGet("Track_id");
+        SpotifyResponse response=spotifyClient.executeRequest(trackGet);
+        JSONObject jsonObject=response.getJsonObject();
+        System.out.println(jsonObject.toString());
+        }
 ```
 
-Returns a `JSONObject` response that encapsulates the raw json response from the spotify api
+Returns a `SpotifyResponse` that encapsulates the json response from the spotify api
 
 All Json classes were taken from https://github.com/tdunning/open-json with only minor edits.
 

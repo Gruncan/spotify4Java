@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.audiobooks.Audiobook;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Audiobook}</p>
  *
  * @see Audiobook
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("audiobooks")
 @SpotifySerialize(Audiobook.class)
-public class AudiobookGet extends AbstractRequest {
+public class AudiobookGet implements SpotifyRequestVariant {
 
 
     /**

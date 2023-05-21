@@ -3,8 +3,8 @@ package com.spotify.requests.playlists;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.wrappers.SpotifyImage;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 
 /**
@@ -13,14 +13,14 @@ import com.spotify.requests.SpotifySubRequest;
  * <p>Serializes into {@link SpotifyImage}</p>
  *
  * @see SpotifyImage
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest(value = "playlists", end = "images")
 @SpotifySerialize(value = SpotifyImage.class, isArray = true)
-public class PlaylistImageGet extends AbstractRequest {
+public class PlaylistImageGet implements SpotifyRequestVariant {
 
     /**
      * The Spotify ID of the playlist.

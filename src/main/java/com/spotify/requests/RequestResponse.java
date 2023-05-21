@@ -8,7 +8,7 @@ import com.spotify.SpotifyResponse;
  * The request response from spotify, with already parsed JSON
  *
  * @see SpotifyResponse
- * @see AbstractRequest
+ * @see SpotifyRequestExecutor
  * @see SpotifyRequest
  * @see JSONObject
  * @see HttpResponse

@@ -3,8 +3,8 @@ package com.spotify.requests.genres;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.genres.GenreSeeds;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 /**
@@ -13,7 +13,7 @@ import lombok.Setter;
  * <p>Serializes into {@link GenreSeeds} array</p>
  *
  * @see GenreSeeds
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -21,6 +21,6 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("recommendations/available-genre-seeds")
 @SpotifySerialize(GenreSeeds.class)
-public class GenreAvailableGet extends AbstractRequest {
+public class GenreAvailableGet implements SpotifyRequestVariant {
 
 }

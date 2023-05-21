@@ -3,8 +3,8 @@ package com.spotify.requests.markets;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.markets.Markets;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 
 /**
  * Get the list of markets where Spotify is available.
@@ -12,13 +12,13 @@ import com.spotify.requests.SpotifyRequest;
  * <p>Serializes into {@link Markets} array</p>
  *
  * @see Markets
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest("markets")
 @SpotifySerialize(Markets.class)
-public class MarketsAvailableGet extends AbstractRequest {
+public class MarketsAvailableGet implements SpotifyRequestVariant {
 
 }

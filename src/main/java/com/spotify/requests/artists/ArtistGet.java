@@ -3,8 +3,8 @@ package com.spotify.requests.artists;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.artists.Artist;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
@@ -14,7 +14,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Artist}</p>
  *
  * @see Artist
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("artists")
 @SpotifySerialize(Artist.class)
-public class ArtistGet extends AbstractRequest {
+public class ArtistGet implements SpotifyRequestVariant {
 
 
     /**

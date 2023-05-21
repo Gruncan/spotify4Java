@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.shows.Show;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
@@ -16,7 +16,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Show}</p>
  *
  * @see Show
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("shows")
 @SpotifySerialize(Show.class)
-public class ShowGet extends AbstractRequest {
+public class ShowGet implements SpotifyRequestVariant {
 
     /**
      * The Spotify ID for the show.

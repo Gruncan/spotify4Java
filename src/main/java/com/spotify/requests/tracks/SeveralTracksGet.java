@@ -5,9 +5,9 @@ import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.albums.Album;
 import com.spotify.objects.tracks.Track;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 
@@ -17,7 +17,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Track} array</p>
  *
  * @see Album
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("tracks")
 @SpotifySerialize(value = Track.class, isArray = true)
-public class SeveralTracksGet extends AbstractRequest {
+public class SeveralTracksGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs.

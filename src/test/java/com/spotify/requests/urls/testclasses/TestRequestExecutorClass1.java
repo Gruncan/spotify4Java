@@ -1,11 +1,11 @@
 package com.spotify.requests.urls.testclasses;
 
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 @Setter
-public class TestRequestClass1 extends AbstractRequest {
+public class TestRequestExecutorClass1 implements SpotifyRequestVariant {
 
 
     @SpotifyRequestField

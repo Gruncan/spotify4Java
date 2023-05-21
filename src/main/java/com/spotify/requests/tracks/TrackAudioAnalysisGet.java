@@ -3,8 +3,9 @@ package com.spotify.requests.tracks;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.tracks.TrackAudioAnalysis;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
+import com.spotify.requests.SpotifyRequestExecutor;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 
 
@@ -14,14 +15,14 @@ import com.spotify.requests.SpotifySubRequest;
  * <p>Serializes into {@link TrackAudioAnalysis}</p>
  *
  * @see TrackAudioAnalysis
- * @see AbstractRequest
+ * @see SpotifyRequestExecutor
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest("audio-analysis")
 @SpotifySerialize(TrackAudioAnalysis.class)
-public class TrackAudioAnalysisGet extends AbstractRequest {
+public class TrackAudioAnalysisGet implements SpotifyRequestVariant {
 
     /**
      * The Spotify ID for the track.

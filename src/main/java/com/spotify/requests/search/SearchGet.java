@@ -4,9 +4,9 @@ import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
 import com.spotify.objects.search.Search;
 import com.spotify.objects.wrappers.Country;
-import com.spotify.requests.AbstractRequest;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
+import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Type;
 import lombok.Setter;
 
@@ -17,7 +17,7 @@ import lombok.Setter;
  * <p>Serializes into {@link Search}</p>
  *
  * @see Search
- * @see AbstractRequest
+ * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
@@ -26,7 +26,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("search")
 @SpotifySerialize(Search.class)
-public class SearchGet extends AbstractRequest {
+public class SearchGet implements SpotifyRequestVariant {
 
     /**
      * Your search query.<br>
