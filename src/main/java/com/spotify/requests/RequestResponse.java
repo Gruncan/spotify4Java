@@ -44,7 +44,7 @@ public class RequestResponse {
     }
 
     /**
-     * Returns the raw unchecked parsed json if {@code code == 200}
+     * Returns the raw unchecked parsed json
      *
      * @return The raw unchecked parsed {@link JSONObject}
      */
