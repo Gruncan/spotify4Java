@@ -1,82 +1,23 @@
 package com.spotify;
 
-import com.spotify.requests.artists.ArtistGet;
+import com.spotify.objects.playlists.PlaylistTracksSearch;
+import com.spotify.requests.playlists.PlaylistTracksGet;
+
+import java.util.Arrays;
 
 public class Main {
 
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
 
-
-//        SeveralTracksGet severalTracksGet = new SeveralTracksGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
-//        SearchGet searchGet = new SearchGet("remaster%20track:Doxy%20artist:Miles%20Davis", Type.TRACK);
-//
-//        SpotifyResponse searchResponse = sc.executeRequest(searchGet);
-//
-//        System.out.println(searchResponse.getRequestResponse().ok().toString(4));
-//
-//        Search search = searchResponse.getSerialisedObject();
-
-
-//        String[] seedArtists = {"4NHQUGzhtTLFvgF5SZesLK"};
-//        String[] seedGenres = {"classic", "country"};
-//        String[] seedTracks = {"0c6xIDDpzE81m2q797ordA"};
-//        TrackRecommendationGet trg = new TrackRecommendationGet(seedArtists, seedGenres, seedTracks);
-//
-//        trg.setLimit(10);
-//        trg.setMarket(Market.ES);
-//
-//
-//        SpotifyResponse sp = sc.executeRequest(trg);
-//
-//        TrackRecommendation trackRecommendation = sp.getSerialisedObject();
-//
-//        System.out.println(trackRecommendation);
-
-
-//        SearchGet searchGet = new SearchGet("Don't Stop artist:Fleetwood Mac", Type.TRACK);
-//
-//
-//        SpotifyResponse sp = sc.executeRequest(searchGet);
-//
-//
-//        Search search = sp.getSerialisedObject();
-//
-//        System.out.println(search);
-
-//        SeveralAlbumsGet albumGet = new SeveralAlbumsGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
-//        SpotifyResponse spotifyResponse = sc.executeRequest(albumGet);
-//
-//        Album[] album = spotifyResponse.getSerialisedObjects();
-//
-//
-//        System.out.println(Arrays.toString(album));
-
-
-//        TrackGet trackGet = new TrackGet("05lBXOMA1uHpVPEQZyjoh3");
-//
-//        SpotifyResponse sp = sc.executeRequest(trackGet);
-////
-//        System.out.println(sp.getJsonObject().toString(4));
-
-//        Track track = sp.getSerialisedObject();
-//
-//        Artist[] artists = track.getArtists();
-//
-//        SimplifiedTrack track1 = ((SimplifiedTrack) track);
-//
-//        SimplifiedArtist[] sArtists = track1.getSimplifiedArtists();
-//
-//
-//        System.out.println(Arrays.toString(artists));
-//        System.out.println(Arrays.toString(sArtists));
-
-        ArtistGet request = new ArtistGet("0TnOYISbd1XYRBk9myaseg");
+        PlaylistTracksGet request = new PlaylistTracksGet("3cEYpjA9oz9GiPac4AsH4n");
 
         SpotifyResponse sp = sc.executeRequest(request);
 
-        System.out.println(sp.getJsonObject().toString(4));
+        PlaylistTracksSearch playlistTrack = sp.getSerialisedObject();
+
+        System.out.println(Arrays.toString(playlistTrack.getItems()));
 
 
     }

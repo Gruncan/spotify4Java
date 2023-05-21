@@ -2,8 +2,12 @@ package com.spotify.objects.playlists;
 
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
+import com.spotify.objects.SpotifyOptional;
+import com.spotify.objects.episodes.Episode;
+import com.spotify.objects.tracks.Track;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Represents a track or episode in a playlist
@@ -14,18 +18,19 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class PlaylistTrack implements SpotifyObject {
 
     /**
      * The date and time the track or episode was added. Note: some very old playlists may return null in this field.
      */
-    @SpotifyField
+    @SpotifyField("added_at")
     private String addedAt;
 
     /**
      * The Spotify user who added the track or episode. Note: some very old playlists may return null in this field.
      */
-    @SpotifyField
+    @SpotifyField("added_by")
     private PlaylistContributor addedBy;
 
     /**
@@ -35,9 +40,17 @@ public class PlaylistTrack implements SpotifyObject {
     private boolean isLocal;
 
     /**
-     * Information about the track or episode.
+     * Information about the track
      */
-    //todo optional field can be more than one thing
-    private SpotifyObject oneof;
+    @SpotifyOptional
+    @SpotifyField
+    private Track track;
+
+    /**
+     * Information about the episode.
+     */
+    @SpotifyOptional
+    @SpotifyField
+    private Episode episode;
 
 }

@@ -22,12 +22,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@SpotifyOptional
 public class Track extends SimplifiedTrack implements SpotifyObject {
 
     /**
      * The album on which the track appears. The album object includes a link in href to full information about the album
      */
-    @SpotifyOptional
     @SpotifyField
     private TrackAlbum album;
 
@@ -40,7 +40,6 @@ public class Track extends SimplifiedTrack implements SpotifyObject {
     /**
      * Known external IDs for the track.
      */
-    @SpotifyOptional
     @SpotifyField("external_ids")
     private SpotifyExternalID externalIDs;
 
@@ -54,7 +53,6 @@ public class Track extends SimplifiedTrack implements SpotifyObject {
      * Artist and album popularity is derived mathematically from track popularity. Note: the popularity value may lag
      * actual popularity by a few days: the value is not updated in real time.
      */
-    @SpotifyOptional
     @SpotifyField
     private int popularity;
 

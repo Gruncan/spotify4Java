@@ -28,6 +28,7 @@ public class PlaylistContributor implements SpotifyObject {
     /**
      * Information about the followers of this user.
      */
+    @SpotifyOptional
     @SpotifyField
     private SpotifyFollowers followers;
 
