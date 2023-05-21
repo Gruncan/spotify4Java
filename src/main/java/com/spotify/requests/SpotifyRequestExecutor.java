@@ -5,6 +5,7 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.json.JSONException;
 import com.json.JSONObject;
+import com.spotify.SpotifyAPIVersion;
 import com.spotify.SpotifyResponse;
 import com.spotify.exceptions.SpotifyUrlParserException;
 import com.spotify.objects.SpotifyObject;
@@ -18,13 +19,18 @@ import java.util.List;
 
 
 /**
- * The base of the API requests
+ * Responsible for the logic of executing spotify API requests
  */
 public abstract class SpotifyRequestExecutor {
 
 
-    private final static String BASE_URL = "https://api.spotify.com/v1/";
+    private final static String API_URL = "https://api.spotify.com";
 
+    private String BASE_URL;
+
+    public SpotifyRequestExecutor() {
+        this.setAPIVersion(SpotifyAPIVersion.V1);
+    }
 
     private static boolean isPrimitiveDefault(Object o, Class<?> cls) {
         if (!cls.isPrimitive()) return false;
@@ -37,9 +43,13 @@ public abstract class SpotifyRequestExecutor {
             return !b;
         } else if (cls.equals(double.class)) {
             Double d = (Double) o;
-            return d == -1d;
+            return d == 0d;
         }
         return false;
+    }
+
+    public void setAPIVersion(SpotifyAPIVersion version) {
+        this.BASE_URL = String.format(API_URL + "/%s/", version);
     }
 
     /**
