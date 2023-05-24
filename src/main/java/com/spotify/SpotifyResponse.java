@@ -31,6 +31,9 @@ public class SpotifyResponse extends SpotifySerializer {
         return this.requestResponse.getParsedJson();
     }
 
+    public Class<? extends SpotifyObject> getRepresentedClass() {
+        return this.cls;
+    }
 
     public boolean wasSuccess() {
         return this.requestResponse.getCode() == 200;
@@ -54,5 +57,6 @@ public class SpotifyResponse extends SpotifySerializer {
     public <E extends SpotifyObject> E getSerialisedObject() {
         return (E) super.serializeObject(this.requestResponse.getParsedJson(), cls);
     }
+
 
 }

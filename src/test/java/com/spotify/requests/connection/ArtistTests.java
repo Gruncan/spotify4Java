@@ -39,7 +39,7 @@ public class ArtistTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void artistsTopTracksGetTest() {
-        SpotifyRequestVariant request = new ArtistsTopTracksGet("0TnOYISbd1XYRBk9myaseg", Country.GB);
+        SpotifyRequestVariant request = new ArtistsTopTracksGet("0TnOYISbd1XYRBk9myaseg", Country.GB.toString());
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
     }

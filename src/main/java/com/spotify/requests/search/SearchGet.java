@@ -10,6 +10,8 @@ import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Type;
 import lombok.Setter;
 
+import java.util.stream.Stream;
+
 /**
  * Get Spotify catalog information about albums, artists, playlists, tracks, shows, episodes or audiobooks that match a keyword string.
  * Note: Audiobooks are only available for the US, UK, Ireland, New Zealand and Australia markets.
@@ -65,9 +67,22 @@ public class SearchGet implements SpotifyRequestVariant {
     @SpotifyRequestField("include_external")
     private String includeExternal;
 
+
+    public SearchGet(String q, String... type) {
+        this(q, Stream.of(type).map(t -> {
+            for (Type type1 : Type.values()) {
+                if (t.equals(type1.toString())) {
+                    return type1;
+                }
+            }
+            return null;
+        }).toArray(Type[]::new));
+    }
+
     /**
      * Initializes the {@link SearchGet} request
-     * @param q Your search query.
+     *
+     * @param q    Your search query.
      * @param type A list of item {@link Type}s to search across.
      */
     public SearchGet(String q, Type... type) {

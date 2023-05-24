@@ -38,6 +38,11 @@ public class ArtistsTopTracksGet implements SpotifyRequestVariant {
     @SpotifyRequestField
     private final Country market;
 
+
+    public ArtistsTopTracksGet(String id, String market) {
+        this(id, Country.valueOf(market));
+    }
+
     /**
      * Initializes the {@link ArtistsTopTracksGet} request
      *

@@ -9,7 +9,7 @@ public abstract class AbstractConnectionTest {
     protected SpotifyClient client;
 
     public AbstractConnectionTest() {
-        this.client = SpotifyClientTester.getSpotifyClient();
+        this.client = (SpotifyClient) SpotifyClientTester.getSpotifyClient();
     }
 
 

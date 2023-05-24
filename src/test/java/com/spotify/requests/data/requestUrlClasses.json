@@ -33,7 +33,8 @@
   },
   "com.spotify.requests.artists.ArtistsTopTracksGet": {
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks",
-    "id": "0TnOYISbd1XYRBk9myaseg"
+    "id": "0TnOYISbd1XYRBk9myaseg",
+    "market": "ES"
   },
   "com.spotify.requests.artists.ArtistsRelatedArtistsGet": {
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/related-artists",
@@ -113,7 +114,9 @@
   "com.spotify.requests.search.SearchGet": {
     "url": "https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=album",
     "q": "remaster%20track:Doxy%20artist:Miles%20Davis",
-    "type": "album"
+    "type": [
+      "album"
+    ]
   },
   "com.spotify.requests.shows.ShowGet": {
     "url": "https://api.spotify.com/v1/shows/38bS44xjbVVZ3No3ByF1dJ",

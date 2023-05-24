@@ -174,7 +174,6 @@ public class SpotifyClientBuilder {
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
         this.refreshToken = jsonObject.getString("refresh_token");
         return new SpotifyClientImp(token);
-
     }
 
     private HttpResponse sendPostTokenRequest(Map<String, String> queries) {

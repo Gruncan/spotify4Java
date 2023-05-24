@@ -28,8 +28,11 @@ public abstract class SpotifyRequestExecutor {
 
     private String BASE_URL;
 
+    private String cachedBuiltUrl;
+
     public SpotifyRequestExecutor() {
         this.setAPIVersion(SpotifyAPIVersion.V1);
+        this.cachedBuiltUrl = null;
     }
 
     private static boolean isPrimitiveDefault(Object o, Class<?> cls) {
@@ -139,7 +142,7 @@ public abstract class SpotifyRequestExecutor {
     }
 
 
-    protected String buildRequestUrl(SpotifyRequestVariant request) throws SpotifyUrlParserException {
+    public String buildRequestUrl(SpotifyRequestVariant request) throws SpotifyUrlParserException {
         String url = null;
         try {
             Class<? extends SpotifyRequestVariant> requestClass = request.getClass();
@@ -229,16 +232,22 @@ public abstract class SpotifyRequestExecutor {
 
             String urlQuery = sb.toString();
             urlQuery = urlQuery.substring(0, urlQuery.length() - 1);
-
+            this.cachedBuiltUrl = urlQuery;
             return urlQuery;
 
 
         } catch (IllegalAccessException e) {
             System.out.println("Unable to access a field in for request url: " + url);
             e.printStackTrace();
+            this.cachedBuiltUrl = null;
             return null;
         }
 
+    }
+
+
+    public String getCachedURL() {
+        return this.cachedBuiltUrl;
     }
 
 
