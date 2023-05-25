@@ -22,7 +22,7 @@ public class SpotifyAnnotationTest {
     public void spotifyRequestAnnotationTest1() {
         TestRequestExecutorClass1 trc = new TestRequestExecutorClass1();
         trc.setField1("value1");
-        assertThrows(SpotifyUrlParserException.class, () -> client.getBuiltURL(trc));
+        assertThrows(SpotifyUrlParserException.class, () -> client.getBuiltUrlE(trc));
 
     }
 

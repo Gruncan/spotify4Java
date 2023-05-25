@@ -3,7 +3,7 @@
         <module name="S4J"/>
         <extension name="coverage">
             <pattern>
-                <option name="PATTERN" value="com.spotify.requests.connection.*"/>
+                <option name="PATTERN" value="com.spotify.requests.connection.tests.*"/>
                 <option name="ENABLED" value="true"/>
             </pattern>
         </extension>

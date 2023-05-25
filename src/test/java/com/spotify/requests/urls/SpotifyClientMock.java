@@ -14,6 +14,11 @@ public class SpotifyClientMock extends SpotifyRequestExecutor implements Spotify
         return null;
     }
 
+
+    public String getBuiltUrlE(SpotifyRequestVariant request) throws SpotifyUrlParserException {
+        return super.buildRequestUrl(request);
+    }
+
     public String getBuiltURL(SpotifyRequestVariant request) {
         try {
             return super.buildRequestUrl(request);
