@@ -1,14 +1,15 @@
-package com.spotify.requests.connection;
+package com.spotify.requests.connection.tests;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.requests.SpotifyRequestVariant;
+import com.spotify.requests.connection.AbstractConnectionTest;
 import com.spotify.requests.tracks.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TrackTests extends AbstractConnectionTest {
+public class TrackConnectionTests extends AbstractConnectionTest {
 
     @Test
     @Tag("NetworkTest")

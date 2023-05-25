@@ -8,12 +8,13 @@ import com.spotify.requests.SpotifyClientTester;
 import com.spotify.requests.SpotifyRequestExecutor;
 import com.spotify.requests.SpotifyRequestVariant;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Designed to be run once before release to checked data is correct.
@@ -22,17 +23,17 @@ import java.util.stream.Collectors;
 public class RetrieveSpotifyData {
 
 
-    private static final String LOCATION = "src/test/java/com/spotify/requests/data/";
+    private static final String LOCATION = "src/test/java/com/spotify/requests/data/resources/";
     private static final String VERSION = "V1_0_0";
 
     public static void main(String[] args) throws ClassNotFoundException {
-        String fileContents = getFileContents();
+        String fileContents = Util.getFileContents(LOCATION + "requestUrlClasses.json");
         if (fileContents == null) return;
-        Map<String, SpotifyResponse> responses = getResponses(fileContents);
+        Map<Class<? extends SpotifyRequestVariant>, Pair> responses = getResponses(fileContents);
         writeResults(responses);
     }
 
-    private static void writeResults(Map<String, SpotifyResponse> responses) {
+    private static void writeResults(Map<Class<? extends SpotifyRequestVariant>, Pair> responses) {
         try {
 
             String filename = String.format("SpotifyResponses-%s.json", VERSION);
@@ -46,10 +47,11 @@ public class RetrieveSpotifyData {
             try (FileWriter writer = new FileWriter(LOCATION + filename)) {
                 writer.write("{");
                 int i = 0;
-                for (Map.Entry<String, SpotifyResponse> pair : responses.entrySet()) {
+                for (Map.Entry<Class<? extends SpotifyRequestVariant>, Pair> pair : responses.entrySet()) {
                     writer.write("\"" + pair.getKey() + "\": {");
-                    writer.write("\"json\": " + pair.getValue().getJsonObject());
-                    writer.write(", \"cls\": \"" + pair.getValue().getRepresentedClass() + "\"");
+                    writer.write("\"json\": " + pair.getValue().response().getJsonObject());
+                    writer.write(", \"cls\": \"" + pair.getValue().response().getRepresentedClass() + "\"");
+                    writer.write(", \"url\": \"" + pair.getValue().url() + "\"");
                     writer.write("}");
                     if (i != responses.size() - 1) writer.write(",\n");
                     i++;
@@ -66,8 +68,8 @@ public class RetrieveSpotifyData {
 
     }
 
-    private static Map<String, SpotifyResponse> getResponses(String fileContents) throws ClassNotFoundException {
-        Map<String, SpotifyResponse> responses = new HashMap<>();
+    private static Map<Class<? extends SpotifyRequestVariant>, Pair> getResponses(String fileContents) throws ClassNotFoundException {
+        Map<Class<? extends SpotifyRequestVariant>, Pair> responses = new HashMap<>();
         JSONObject json = new JSONObject(fileContents);
         for (String key : json.keySet()) {
             Class<? extends SpotifyRequestVariant> cls = (Class<? extends SpotifyRequestVariant>) Class.forName(key);
@@ -89,14 +91,14 @@ public class RetrieveSpotifyData {
                     params[i] = getStringArray((Object[]) params[i]);
                 }
             }
-            Pair<String, SpotifyResponse> responsePair = execute(cls, params);
-            if (responsePair == null) continue;
-            responses.put(responsePair.key(), responsePair.value());
+            Tuple<? extends SpotifyRequestVariant> responseTuple = execute(cls, params);
+            if (responseTuple == null) continue;
+            responses.put(responseTuple.request(), new Pair(responseTuple.url, responseTuple.response()));
         }
         return responses;
     }
 
-    private static <T extends SpotifyRequestVariant> Pair<String, SpotifyResponse> execute(Class<T> cls, Object... params) {
+    private static <T extends SpotifyRequestVariant> Tuple<T> execute(Class<T> cls, Object... params) {
         try {
             Constructor<T> con = (Constructor<T>) cls.getConstructors()[0];
             T request = con.newInstance(params);
@@ -104,7 +106,7 @@ public class RetrieveSpotifyData {
             System.out.printf("Executed %s%n", cls.getName());
             SpotifyResponse response = ((SpotifyClient) sc).executeRequest(request);
             String url = sc.getCachedURL();
-            return new Pair<>(url, response);
+            return new Tuple<>(cls, url, response);
 
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
@@ -113,15 +115,6 @@ public class RetrieveSpotifyData {
 
     }
 
-    private static String getFileContents() {
-        String file = LOCATION + "requestUrlClasses.json";
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            return reader.lines().collect(Collectors.joining("\n"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     private static String[] getStringArray(Object[] o) {
         String[] s = new String[o.length];
@@ -131,6 +124,10 @@ public class RetrieveSpotifyData {
         return s;
     }
 
-    private record Pair<K, V>(K key, V value) {
+    private record Tuple<T extends SpotifyRequestVariant>(Class<T> request, String url, SpotifyResponse response) {
+    }
+
+    private record Pair(String url, SpotifyResponse response) {
+
     }
 }

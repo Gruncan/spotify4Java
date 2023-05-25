@@ -19,7 +19,7 @@ public class SpotifyAnnotationTest {
      * Tests classes that don't have @SpotifyRequest annotation
      */
     @Test
-    public void spotifyRequestAnnotationTest1() throws SpotifyUrlParserException {
+    public void spotifyRequestAnnotationTest1() {
         TestRequestExecutorClass1 trc = new TestRequestExecutorClass1();
         trc.setField1("value1");
         assertThrows(SpotifyUrlParserException.class, () -> client.getBuiltURL(trc));
@@ -32,7 +32,7 @@ public class SpotifyAnnotationTest {
      * Ensures that field that are not annotated do not add to url
      */
     @Test
-    public void spotifySubRequestAnnotationTest1() throws SpotifyUrlParserException {
+    public void spotifySubRequestAnnotationTest1() {
         TestSubRequestClass1Executor trc = new TestSubRequestClass1Executor();
 
         trc.setField1("subrequest1");
@@ -49,7 +49,7 @@ public class SpotifyAnnotationTest {
      * Should fail to create url since a field annotated with subRequest should not be none
      */
     @Test
-    public void spotifySubRequestAnnotationTest2() throws SpotifyUrlParserException {
+    public void spotifySubRequestAnnotationTest2() {
         TestSubRequestClass1Executor trc = new TestSubRequestClass1Executor();
 
         trc.setField1("subrequest1");
@@ -65,7 +65,7 @@ public class SpotifyAnnotationTest {
      * Should fail to create url since subRequest fields must be type String
      */
     @Test
-    public void spotifySubRequestAnnotationTest3() throws SpotifyUrlParserException {
+    public void spotifySubRequestAnnotationTest3() {
         TestSubRequestClass2Executor trc = new TestSubRequestClass2Executor();
 
         trc.setIntField(6);
@@ -82,7 +82,7 @@ public class SpotifyAnnotationTest {
      * and non labelled fields
      */
     @Test
-    public void spotifyFieldRequestAnnotationTest1() throws SpotifyUrlParserException {
+    public void spotifyFieldRequestAnnotationTest1() {
         TestFieldRequestClass1Executor trc = new TestFieldRequestClass1Executor();
 
         trc.setField1("value1");

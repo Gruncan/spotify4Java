@@ -1,16 +1,17 @@
-package com.spotify.requests.connection;
+package com.spotify.requests.connection.tests;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.audiobooks.AudiobookChaptersGet;
 import com.spotify.requests.audiobooks.AudiobookGet;
 import com.spotify.requests.audiobooks.SeveralAudioBooksGet;
+import com.spotify.requests.connection.AbstractConnectionTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AudiobookTests extends AbstractConnectionTest {
+public class AudiobookConnectionTests extends AbstractConnectionTest {
 
 
     @Test

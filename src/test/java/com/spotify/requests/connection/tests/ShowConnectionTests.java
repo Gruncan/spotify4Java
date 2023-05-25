@@ -1,7 +1,8 @@
-package com.spotify.requests.connection;
+package com.spotify.requests.connection.tests;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.requests.SpotifyRequestVariant;
+import com.spotify.requests.connection.AbstractConnectionTest;
 import com.spotify.requests.shows.SeveralShowsGet;
 import com.spotify.requests.shows.ShowEpisodesGet;
 import com.spotify.requests.shows.ShowGet;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ShowTests extends AbstractConnectionTest {
+public class ShowConnectionTests extends AbstractConnectionTest {
 
 
     @Test
