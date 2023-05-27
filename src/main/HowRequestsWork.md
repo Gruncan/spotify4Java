@@ -92,7 +92,7 @@ parameters)
 and finally to execute the request, after creating a SpotifyClient instance,
 
 ```java
-MyClass myClass=new MyClass();
-        SpotifyRepsonse sr=spotifyClient.executeRequest(myClass);
-        JSONObject json=sr.getJsonObject();
+MyClass myClass = new MyClass();
+SpotifyRepsonse sr = spotifyClient.executeRequest(myClass);
+JSONObject json = sr.getJsonObject();
 ```
