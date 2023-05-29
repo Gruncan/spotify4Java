@@ -1,9 +1,7 @@
 package com.spotify;
 
-import com.spotify.objects.playlists.PlaylistTracksSearch;
-import com.spotify.requests.playlists.PlaylistTracksGet;
-
-import java.util.Arrays;
+import com.spotify.objects.user.Profile;
+import com.spotify.requests.users.UserProfileGet;
 
 public class Main {
 
@@ -11,15 +9,15 @@ public class Main {
     public static void main(String[] args) {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
 
-        PlaylistTracksGet request = new PlaylistTracksGet("3cEYpjA9oz9GiPac4AsH4n");
+        UserProfileGet us = new UserProfileGet();
 
-        SpotifyResponse sp = sc.executeRequest(request);
+        SpotifyResponse response = sc.executeRequest(us);
 
-        PlaylistTracksSearch playlistTrack = sp.getSerialisedObject();
+        System.out.println(response.getJsonObject().toString(4));
 
-        System.out.println(Arrays.toString(playlistTrack.getItems()));
+        Profile profile = response.getSerialisedObject();
 
-
+        System.out.println(profile);
     }
 
 }
