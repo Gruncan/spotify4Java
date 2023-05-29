@@ -42,14 +42,13 @@ and executing it with your spotifyClient `executeRequest`
 Example:
 
 ```java
-public static void main(String[]args){
-        SpotifyClient spotifyClient=new SpotifyClientBuilder("CLIENT_ID","CLIENT_SECRET","REDIRECT_URL")
-        .getBuiltClient();
-        TrackGet trackGet=new TrackGet("Track_id");
-        SpotifyResponse response=spotifyClient.executeRequest(trackGet);
-        JSONObject jsonObject=response.getJsonObject();
-        System.out.println(jsonObject.toString());
-        }
+public static void main(String[] args){
+    SpotifyClient spotifyClient = new SpotifyClientBuilder("CLIENT_ID", "CLIENT_SECRET", "REDIRECT_URL").getBuiltClient();
+    TrackGet trackGet = new TrackGet("Track_id");
+    SpotifyResponse response = spotifyClient.executeRequest(trackGet);
+    JSONObject jsonObject = response.getJsonObject();
+    System.out.println(jsonObject.toString());
+}
 ```
 
 Returns a `SpotifyResponse` that encapsulates the json response from the spotify api
@@ -61,9 +60,9 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <details open>
 <summary><strong><u>Album:</u></strong></summary>
 
-- **AlbumGet** ([api.spotify.com/v1/albums/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album))
+- AlbumGet ([api.spotify.com/v1/albums/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album))
 - AlbumTracksGet ([api.spotify.com/v1/albums/{id}/tracks](https://developer.spoify.com/documentation/web-api/reference/#/operations/get-an-albums-tracks))
-- **SeveralAlbumsGet** ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))
+- SeveralAlbumsGet ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))
 
 </details>
 <br>
@@ -79,96 +78,94 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 </details>
 <br>
 <details open>
-<summary><strong><u>Audiobooks</u></strong></summary>
+<summary><strong><u>Audiobooks:</u></strong></summary>
 
-- AudiobookGet
-- SeveralAudioBooksGet
-
-</details>
-<br>
-<details open>
-<summary><strong><u>Chapters</u></strong></summary>
-
-- ChapterGet
-- SeveralChaptersGet
+- AudiobookGet ([api.spotify.com/v1/audiobooks/{id}](https://developer.spotify.com/documentation/web-api/reference/get-an-audiobook))
+- SeveralAudioBooksGet ([api.spotify.com/v1/audiobooks/](https://developer.spotify.com/documentation/web-api/reference/get-multiple-audiobooks))
+- AudiobookChaptersGet ([api.spotify.com/v1/audiobooks/{id}/chapters](https://developer.spotify.com/documentation/web-api/reference/get-audiobook-chapters))
 
 </details>
 <br>
 <details open>
-<summary><strong><u>Categories</u></strong></summary>
+<summary><strong><u>Categories:</u></strong></summary>
 
-- SeveralCategoriesGet
-- SingleCategoriesGet
-
-</details>
-<br>
-<details open>
-<summary><strong><u>Episodes</u></strong></summary>
-
-- EpisodeGet
-- SeveralEpisodesGet
+- CategoriesGet ([api.spotify.com/v1/browse/categories/{category_id}](https://developer.spotify.com/documentation/web-api/reference/get-a-category))
+- SeveralCategoriesGet ([api.spotify.com/v1/browse/categories](https://developer.spotify.com/documentation/web-api/reference/get-categories))
 
 </details>
 <br>
 <details open>
-<summary><strong><u>Genres</u></strong></summary>
+<summary><strong><u>Chapters:</u></strong></summary>
 
-- GenreAvailableGet
-
-</details>
-<br>
-<details open>
-<summary><strong><u>Markets</u></strong></summary>
-
-- MarketsAvailableGet
+- ChapterGet ([api.spotify.com/v1/chapters/{id}](https://developer.spotify.com/documentation/web-api/reference/get-a-chapter))
+- SeveralChaptersGet ([api.spotify.com/v1/chapters](https://developer.spotify.com/documentation/web-api/reference/get-several-chapters))
 
 </details>
 <br>
 <details open>
-<summary><strong><u>Playlists</u></strong></summary>
+<summary><strong><u>Episodes:</u></strong></summary>
 
-- CategoriesPlaylistsGet
-- FeaturedPlaylistGet
-- PlaylistGet
-- PlaylistImageGet
-- PlaylistTracksGet
+- EpisodeGet ([api.spotify.com/v1/episodes/{id}](https://developer.spotify.com/documentation/web-api/reference/get-an-episode))
+- SeveralEpisodesGet ([api.spotify.com/v1/episodes](https://developer.spotify.com/documentation/web-api/reference/get-multiple-episodes))
 
 </details>
 <br>
 <details open>
-<summary><strong><u>Search</u></strong></summary>
+<summary><strong><u>Genres:</u></strong></summary>
 
-- **SearchGet**
-
-</details>
-<br>
-<details open>
-<summary><strong><u>Shows</u></strong></summary>
-
-- SeveralShowsGet
-- ShowEpisodesGet
-- ShowGet
+- GenreAvailableGet ([api.spotify.com/v1/recommendations/available-genre-seeds](https://developer.spotify.com/documentation/web-api/reference/get-recommendation-genres))
 
 </details>
 <br>
 <details open>
-<summary><strong><u>Tracks</u></strong></summary>
+<summary><strong><u>Markets:</u></strong></summary>
 
-- **SeveralTrackAudioFeaturesGet** ([api.spotify.com/audio-features](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features))
-- **SeveralTracksGet** ([api.spotify.com/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks))
-- **TrackAudioAnalysisGet** ([api.spotify.com/audio-analysis/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis))
-- **TrackAudioFeaturesGet** ([api.spotify.com/audio-features/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features))
-- **TrackGet** ([api.spotify.com/tracks/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track))
-- **TrackRecommendationGet** ([api.spotify.com/recommendations](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-recommendations))
+- MarketsAvailableGet ([api.spotify.com/v1/markets](https://developer.spotify.com/documentation/web-api/reference/get-available-markets))
 
 </details>
+<br>
+<details open>
+<summary><strong><u>Playlists:</u></strong></summary>
 
-(<b>bold</b> items are able to be serialized into the respective classes)
+- PlaylistGet ([api.spotify.com/v1/playlists/{playlist_id}](https://developer.spotify.com/documentation/web-api/reference/get-playlist))
+- CategoriesPlaylistsGet ([api.spotify.com/v1/browse/categories/{category_id}/playlists](https://developer.spotify.com/documentation/web-api/reference/get-a-categories-playlists))
+- FeaturedPlaylistGet ([api.spotify.com/v1/browse/featured-playlists](https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists))
+- PlaylistImageGet ([api.spotify.com/v1/playlists/{playlist_id}/images](https://developer.spotify.com/documentation/web-api/reference/get-playlist-cover))
+- PlaylistTracksGet [api.spotify.com/v1/playlists/{playlist_id}/tracks](https://developer.spotify.com/documentation/web-api/reference/get-playlists-tracks))
+
+</details>
+<br>
+<details open>
+<summary><strong><u>Search:</u></strong></summary>
+
+- SearchGet ([api.spotify.com/v1/search](https://developer.spotify.com/documentation/web-api/reference/search))
+
+</details>
+<br>
+<details open>
+<summary><strong><u>Shows:</u></strong></summary>
+
+- ShowGet ([api.spotify.com/v1/shows/{id}](https://developer.spotify.com/documentation/web-api/reference/get-a-show))
+- SeveralShowsGet ([api.spotify.com/v1/shows](https://developer.spotify.com/documentation/web-api/reference/get-multiple-shows))
+- ShowEpisodesGet ([api.spotify.com/v1/shows/{id}/episodes](https://developer.spotify.com/documentation/web-api/reference/get-a-shows-episodes))
+
+
+</details>
+<br>
+<details open>
+<summary><strong><u>Tracks:</u></strong></summary>
+
+- SeveralTrackAudioFeaturesGet ([api.spotify.com/audio-features](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features))
+- SeveralTracksGet ([api.spotify.com/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks))
+- TrackAudioAnalysisGet ([api.spotify.com/audio-analysis/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis))
+- TrackAudioFeaturesGet ([api.spotify.com/audio-features/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features))
+- TrackGet ([api.spotify.com/tracks/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track))
+- TrackRecommendationGet ([api.spotify.com/recommendations](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-recommendations))
+
+</details>
 
 ### <u>Future Plans</u>
 - Implement the remainder of api request
-- Completely finish writing the spotify objects
-- Rewrite how requests classes are written (annotations)
 - Bring back Spring support for handling user authentication
 - Add more branches of api requests not just web api
 - Optimise multiple call different threads

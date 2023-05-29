@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("browse/categories")
 @SpotifySerialize(Category.class)
-public class SingleCategoriesGet implements SpotifyRequestVariant {
+public class CategoriesGet implements SpotifyRequestVariant {
 
 
     /**
@@ -46,10 +46,10 @@ public class SingleCategoriesGet implements SpotifyRequestVariant {
     private String locale;
 
     /**
-     * Initializes the {@link SingleCategoriesGet} request
+     * Initializes the {@link CategoriesGet} request
      * @param id The Spotify category ID for the category.
      */
-    public SingleCategoriesGet(String id) {
+    public CategoriesGet(String id) {
         this.id = id;
     }
 

@@ -59,7 +59,7 @@
   "com.spotify.requests.categories.SeveralCategoriesGet": {
     "url": "https://api.spotify.com/v1/browse/categories"
   },
-  "com.spotify.requests.categories.SingleCategoriesGet": {
+  "com.spotify.requests.categories.CategoriesGet": {
     "url": "https://api.spotify.com/v1/browse/categories/dinner",
     "id": "dinner"
   },
