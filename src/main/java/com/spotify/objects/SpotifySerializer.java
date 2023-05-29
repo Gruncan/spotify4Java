@@ -9,8 +9,26 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public abstract class SpotifySerializer {
+
+
+    /**
+     * Recursively gets all fields from current class to highest in hierarchy
+     */
+    private List<Field> getAllFields(Class<?> cls){
+        Class<?> supperCls = cls.getSuperclass();
+        if (supperCls == null) return new ArrayList<>();
+
+        List<Field> fields = this.getAllFields(supperCls);
+        fields.addAll(Arrays.asList(cls.getDeclaredFields()));
+
+        return fields;
+    }
+
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
@@ -25,7 +43,9 @@ public abstract class SpotifySerializer {
             boolean clsRequired = notRequiredCls != null;
 
 
-            for (Field field : cls.getDeclaredFields()) {
+            List<Field> allFields = this.getAllFields(cls);
+            for (Field field : allFields) {
+
                 SpotifyField spotifyField = field.getAnnotation(SpotifyField.class);
                 // if not field not annotated ignore
                 if (spotifyField == null) continue;
@@ -82,7 +102,6 @@ public abstract class SpotifySerializer {
                 if (fieldType.isArray()) {
                     Class<?> componentRawType = fieldType.getComponentType();
                     Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
-
 
                     JSONArray jsonArray = jsonPath.getJSONArray(name);
                     field.set(e, this.createArray(componentType, jsonArray));

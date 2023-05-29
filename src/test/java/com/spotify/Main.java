@@ -1,25 +1,23 @@
 package com.spotify;
 
-import com.spotify.objects.tracks.TrackAudioAnalysis;
-import com.spotify.requests.tracks.TrackAudioAnalysisGet;
+import com.spotify.objects.playlists.PlaylistTracksSearch;
+import com.spotify.requests.playlists.PlaylistTracksGet;
+
+import java.util.Arrays;
 
 public class Main {
 
 
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
 
+        PlaylistTracksGet request = new PlaylistTracksGet("3cEYpjA9oz9GiPac4AsH4n");
 
-//        SeveralTracksGet severalTracksGet = new SeveralTracksGet("05lBXOMA1uHpVPEQZyjoh3", "4CeeEOM32jQcH3eN9Q2dGj");
-        TrackAudioAnalysisGet trackGet = new TrackAudioAnalysisGet("4CeeEOM32jQcH3eN9Q2dGj");
+        SpotifyResponse sp = sc.executeRequest(request);
 
-        SpotifyResponse trackResponse = sc.executeRequest(trackGet);
+        PlaylistTracksSearch playlistTrack = sp.getSerialisedObject();
 
-
-        TrackAudioAnalysis tracks = trackResponse.getSerialisedObject();
-
-
-        System.out.println(tracks);
+        System.out.println(Arrays.toString(playlistTrack.getItems()));
 
 
     }
