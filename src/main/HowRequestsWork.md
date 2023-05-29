@@ -1,10 +1,10 @@
 ## Adding custom requests
 
 1. Create a new class
-2. Make `AbstractRequest` its super class
+2. Make `SpotifyRequestVariant` its interface
 
 ```java
-public class MyClass extends AbstractRequest {
+public class MyClass implements SpotifyRequestVariant {
 }
 ```
 
@@ -22,7 +22,7 @@ So for `<request> = albums`,
 ```java
 
 @SpotifyRequest("albums")
-public class MyClass extends AbstractRequest {
+public class MyClass implements SpotifyRequestVariant {
 }
 ```
 
@@ -33,8 +33,9 @@ the url will be `"https://api.spotify.com/v1/albums"`
 Add `@SpotifySubRequest` to the required field
 
 ```java
+
 @SpotifyRequest("albums")
-public class MyClass extends AbstractRequest {
+public class MyClass implements SpotifyRequestVariant {
 
     @SpotifySubRequest
     private final String id;
@@ -49,8 +50,9 @@ matters**)
 Add `@SpotifyRequestField` to the required fields
 
 ```java
+
 @SpotifyRequest("albums")
-public class MyClass extends AbstractRequest {
+public class MyClass implements SpotifyRequestVariant {
 
     @SpotifySubRequest
     private final String id;
@@ -65,8 +67,9 @@ Where `parameter` is the field name, in this case "`market`". The `value` is the
 So for
 
 ```java
+
 @SpotifyRequest("albums")
-public class MyClass extends AbstractRequest {
+public class MyClass implements SpotifyRequestVariant {
 
     @SpotifySubRequest
     private final String id = "382ObEPsp2rxGrnsizN5TX";
@@ -89,7 +92,7 @@ parameters)
 and finally to execute the request, after creating a SpotifyClient instance,
 
 ```java
-MyClass myClass=new MyClass();
-        SpotifyRepsonse sr=spotifyClient.executeRequest(myClass);
-        JSONObject json=sr.getJsonObject();
+MyClass myClass = new MyClass();
+SpotifyRepsonse sr = spotifyClient.executeRequest(myClass);
+JSONObject json = sr.getJsonObject();
 ```

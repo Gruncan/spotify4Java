@@ -16,17 +16,33 @@ import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
+/**
+ * Responsible for handling Spotify authentication and return calls <br>
+ * Following Spotify's Authorization Code flow
+ * @see SpotifyClientBuilder
+ *
+ * @author Gruncan
+ * @since 1.0.0
+ */
+//<img src="https://developer.spotify.com/images/documentation/web-api/auth-code-flow.png" width="100" height="auto">
 public class SpotifyHttpServerProvider {
+
 
     protected final SpotifyClientBuilder spotifyClientBuilder;
     private HttpServer server;
     private CountDownLatch countDownLatch;
 
+    /**
+     * Initialized the users authentication server
+     * @param spotifyClientBuilder the spotifyClient requesting authentifying
+     */
     public SpotifyHttpServerProvider(SpotifyClientBuilder spotifyClientBuilder) {
         this.spotifyClientBuilder = spotifyClientBuilder;
     }
 
-
+    /**
+     * Runs the server to receive the response from spotify given specified information from {@code SpotifyClientBuilder}
+     */
     public void runServer() {
         try {
             URL url = this.spotifyClientBuilder.getRedirectUrl();
@@ -47,10 +63,18 @@ public class SpotifyHttpServerProvider {
         }
     }
 
+    /**
+     * Returns the {@code CountDownLatch} for ensuring required information is received before returning the built SpotifyClient
+     * @see SpotifyClientBuilder#getBuiltClient()
+     * @return {@code CountDownLatch} for specified server instance
+     */
     public CountDownLatch getCountDownLatch() {
         return this.countDownLatch;
     }
 
+    /**
+     * Handles response from spotify and building the {@link com.spotify.SpotifyClient} for given {@code SpotifyClientBuilder}
+     */
     private class RedirectHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange e) throws IOException {

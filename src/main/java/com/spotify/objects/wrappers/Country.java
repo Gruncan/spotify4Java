@@ -163,7 +163,7 @@ public enum Country implements SpotifyObject {
     FR("France"),
     /*** French Guiana */
     GF("French Guiana"),
-    /*** French Polynesia" */
+    /*** French Polynesia */
     PF("French Polynesia"),
     /*** French Southern Territories */
     TF("French Southern Territories"),
@@ -491,7 +491,7 @@ public enum Country implements SpotifyObject {
     VE("Venezuela, Bolivarian Republic of"),
     /*** Viet Nam */
     VN("Viet Nam"),
-    /*** Virgin Islands, British" */
+    /*** Virgin Islands, British */
     VG("Virgin Islands, British"),
     /*** Virgin Islands, U.S. */
     VI("Virgin Islands, U.S."),

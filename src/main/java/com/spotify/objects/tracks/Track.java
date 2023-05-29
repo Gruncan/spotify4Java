@@ -3,124 +3,58 @@ package com.spotify.objects.tracks;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.albums.Album;
 import com.spotify.objects.artists.Artist;
-import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyExternalID;
+import com.spotify.requests.tracks.TrackGet;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Arrays;
-
+/**
+ * Represents a spotify track
+ * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-track">TrackGet</a>
+ *
+ * @see TrackGet
+ * @see TrackAlbum
+ * @see Artist
+ * @see SpotifyExternalID
+ * @see SimplifiedTrack
+ * @see SpotifyObject
+ */
 @Getter
 @Setter
-public class Track implements SpotifyObject {
+@SpotifyOptional
+public class Track extends SimplifiedTrack implements SpotifyObject {
 
-
-    @SpotifyOptional
+    /**
+     * The album on which the track appears. The album object includes a link in href to full information about the album
+     */
     @SpotifyField
-    private Album album;
+    private TrackAlbum album;
 
-    @SpotifyOptional
+    /**
+     * The artists who performed the track. Each artist object includes a link in href to more detailed information about the artist.
+     */
     @SpotifyField
     private Artist[] artists;
 
-    @SpotifyOptional
-    @SpotifyField("available_markets")
-    private Country[] markets;
-
-    @SpotifyOptional
-    @SpotifyField("disc_number")
-    private int discNumber;
-
-    @SpotifyOptional
-    @SpotifyField("duration_ms")
-    private int duration;
-
-    @SpotifyOptional
-    @SpotifyField
-    private boolean explicit;
-
-    @SpotifyOptional
+    /**
+     * Known external IDs for the track.
+     */
     @SpotifyField("external_ids")
     private SpotifyExternalID externalIDs;
 
-    @SpotifyOptional
-    @SpotifyField(value = "spotify", path = {"external_urls"})
-    private String externalUrlsSpotify;
-
-    @SpotifyOptional
-    @SpotifyField
-    private String href;
-
-    @SpotifyOptional
-    @SpotifyField
-    private String id;
-
-    @SpotifyOptional
-    @SpotifyField("is_playable")
-    private boolean isPlayable;
-
-    @SpotifyOptional
-    @SpotifyField("linked_form")
-    private Object linkedForm;
-
-    @SpotifyOptional
-    @SpotifyField(value = "reason", path = {"restrictions"})
-    private String restrictions;
-
-    @SpotifyOptional
-    @SpotifyField
-    private String name;
-
-    @SpotifyOptional
+    /**
+     * The popularity of the track. The value will be between 0 and 100, with 100 being the most popular.
+     * The popularity of a track is a value between 0 and 100, with 100 being the most popular.
+     * The popularity is calculated by algorithm and is based, in the most part, on the total number of plays the track
+     * has had and how recent those plays are.
+     * Generally speaking, songs that are being played a lot now will have a higher popularity than songs that were played
+     * a lot in the past. Duplicate tracks (e.g. the same track from a single and an album) are rated independently.
+     * Artist and album popularity is derived mathematically from track popularity. Note: the popularity value may lag
+     * actual popularity by a few days: the value is not updated in real time.
+     */
     @SpotifyField
     private int popularity;
 
-    @SpotifyOptional
-    @SpotifyField("preview_url")
-    private String previewURL;
 
-    @SpotifyOptional
-    @SpotifyField("track_number")
-    private int trackNumber;
-
-    @SpotifyOptional
-    @SpotifyField
-    private String type;
-
-    @SpotifyOptional
-    @SpotifyField
-    private String uri;
-
-    @SpotifyOptional
-    @SpotifyField("is_local")
-    private boolean isLocal;
-
-
-    @Override
-    public String toString() {
-        return "Track{" +
-                "album=" + album +
-                ", artists=" + Arrays.toString(artists) +
-                ", markets=" + (this.markets != null ? String.valueOf(markets.length) : "null") +
-                ", discNumber=" + discNumber +
-                ", duration=" + duration +
-                ", explicit=" + explicit +
-                ", externalIDs=" + externalIDs +
-                ", externalUrlsSpotify=" + externalUrlsSpotify +
-                ", href='" + href + '\'' +
-                ", id='" + id + '\'' +
-                ", isPlayable=" + isPlayable +
-                ", linkedForm=" + linkedForm +
-                ", restrictions='" + restrictions + '\'' +
-                ", name='" + name + '\'' +
-                ", popularity=" + popularity +
-                ", previewURL='" + previewURL + '\'' +
-                ", trackNumber=" + trackNumber +
-                ", type='" + type + '\'' +
-                ", uri='" + uri + '\'' +
-                ", isLocal=" + isLocal +
-                '}';
-    }
 }

@@ -76,6 +76,10 @@ public class JSONArray implements Iterable<Object> {
         }
     }
 
+    public List<Object> getValues() {
+        return this.values;
+    }
+
     /**
      * Creates a new {@code JSONArray} with values from the next array in the
      * tokener.
