@@ -58,15 +58,12 @@ public abstract class SpotifyRequestExecutor {
     /**
      * Basic Spotify HTTP GET request on a given URL with parameters specified
      *
-     * @param token The token from spotify's authentication to be added to "Bearer" header information
-     * @param url   The specific API URL to be used, excluding "https://api.spotify.com/v1/"
+     * @param token   The token from spotify's authentication to be added to "Bearer" header information
+     * @param request The http request to execute and get result
      * @return The HTTP response from the request, wrapped in {@link RequestResponse}
      */
-    protected final RequestResponse requestGet(String token, String url) {
+    protected final RequestResponse requestExecute(String token, HttpRequest request) {
         // Initialisation of http get request
-        String requestURL = BASE_URL + url;
-        HttpMethod method = HttpMethod.GET;
-        HttpRequest request = new HttpRequest(requestURL, method);
         request.addRequestHeader("Authorization", "Bearer " + token);
         request.addRequestHeader("Content-Type", "application/json");
 
@@ -86,16 +83,18 @@ public abstract class SpotifyRequestExecutor {
                 }
                 case 401 -> System.out.printf("Error: Bad or expired token. This can happen if the user revoked a " +
                                 "token or the access token has expired. You should re-authenticate the user for %s request %s%n",
-                        method, requestURL);
+                        request.getMethod(), request.getURL());
                 case 403 ->
                         System.out.printf("Error: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
-                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", method,
-                                requestURL);
+                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", request.getMethod(),
+                                request.getURL());
                 case 429 -> System.out.println("Error: The app has exceeded its rate limits.");
-                case 400 -> System.out.printf("Error: Bad request for %s request %s%n", method, requestURL);
-                case 404 -> System.out.printf("Error: Unknown request for %s request %s%n", method, requestURL);
+                case 400 ->
+                        System.out.printf("Error: Bad request for %s request %s%n", request.getMethod(), request.getURL());
+                case 404 ->
+                        System.out.printf("Error: Unknown request for %s request %s%n", request.getMethod(), request.getURL());
                 default -> System.out.printf("Error: Unknown fail cause, status code: '%s' for %s request %s .%n", code,
-                        method, requestURL);
+                        request.getMethod(), request.getURL());
             }
 
             return new RequestResponse(content, code, s);
@@ -106,13 +105,14 @@ public abstract class SpotifyRequestExecutor {
         }
     }
 
+
     /**
      * Executes the subclasses request
      *
      * @param token The token from spotify's authentication
      * @return The response wrapped to be serialized {@link SpotifyResponse}
      */
-    protected SpotifyResponse execute(String token, SpotifyRequestVariant request) {
+    protected final SpotifyResponse execute(String token, SpotifyRequestVariant request) {
         String urlQuery;
         Class<? extends SpotifyRequestVariant> requestClass = request.getClass();
         try {
@@ -124,12 +124,15 @@ public abstract class SpotifyRequestExecutor {
         // if buildRequestUrl returns null not error
         if (urlQuery == null) return null;
 
-        // To be changed for specified request not just GET
-        RequestResponse rresponse = this.requestGet(token, urlQuery);
+        SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
+        HttpMethod method = srequest.method();
+        RequestResponse rresponse = this.requestExecute(token, new HttpRequest(urlQuery, method));
+
+
         SpotifySerialize ms = requestClass.getAnnotation(SpotifySerialize.class);
         if (ms == null) return null;
         // Ensured to be non-null in above buildRequestUrl call
-        SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
+
         Class<? extends SpotifyObject> cls = ms.value();
         SpotifyResponse response;
         if (ms.isArray())

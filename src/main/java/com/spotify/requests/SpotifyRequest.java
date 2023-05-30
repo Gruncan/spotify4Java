@@ -1,5 +1,7 @@
 package com.spotify.requests;
 
+import com.http.HttpMethod;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -21,8 +23,16 @@ public @interface SpotifyRequest {
 
     /**
      * The end part of the complete url, added to the end after {@link SpotifySubRequest} class fields are evaluated
+     *
      * @return The end part of the complete url, {@code default} is empty string
      */
     String end() default "";
+
+    /**
+     * The HTTP method for the request
+     *
+     * @return The HTTP method for the execution
+     */
+    HttpMethod method() default HttpMethod.GET;
 
 }

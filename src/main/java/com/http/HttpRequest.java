@@ -103,20 +103,21 @@ public class HttpRequest {
             URL url = new URL(this.URL + params);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(this.TYPE.name());
-            if (this.TYPE == HttpMethod.POST) {
+            if (this.TYPE == HttpMethod.POST || this.TYPE == HttpMethod.PUT) {
                 int length = 0;
                 if (this.content != null) length = this.content.getBytes().length;
 
                 con.setFixedLengthStreamingMode(length);
                 con.setDoOutput(true);
             }
+
             for (Map.Entry<String, String> pair : this.headers.entrySet()) {
                 String key = pair.getKey();
                 String value = pair.getValue();
                 con.setRequestProperty(key, value);
             }
 
-            if (TYPE == HttpMethod.POST && this.content != null) {
+            if ((TYPE == HttpMethod.POST || TYPE == HttpMethod.PUT) && this.content != null) {
                 con.setDoOutput(true);
                 try (OutputStream os = con.getOutputStream()) {
                     byte[] input = this.content.getBytes(StandardCharsets.UTF_8);
@@ -161,6 +162,14 @@ public class HttpRequest {
             sb.append(entry.getKey()).append(":").append(entry.getValue()).append("\n\t\t");
         }
         return sb.toString();
+    }
+
+    public String getURL() {
+        return this.URL;
+    }
+
+    public HttpMethod getMethod() {
+        return this.TYPE;
     }
 
 
