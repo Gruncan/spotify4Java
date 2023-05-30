@@ -86,7 +86,7 @@ public class HttpRequest {
      * @param content the content to be set
      */
     public void addContent(String content) {
-        if (this.TYPE == HttpMethod.POST)
+        if (this.TYPE == HttpMethod.POST || this.TYPE == HttpMethod.PUT)
             this.content = content;
     }
 

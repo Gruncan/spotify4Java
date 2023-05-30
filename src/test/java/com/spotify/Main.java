@@ -1,7 +1,6 @@
 package com.spotify;
 
-import com.spotify.objects.user.Profile;
-import com.spotify.requests.users.UserProfileGet;
+import com.spotify.requests.playlists.FollowPlaylistPut;
 
 public class Main {
 
@@ -9,15 +8,12 @@ public class Main {
     public static void main(String[] args) {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
 
-        UserProfileGet us = new UserProfileGet();
+        FollowPlaylistPut request = new FollowPlaylistPut("37i9dQZF1E8Fz3Y6IBuffG");
 
-        SpotifyResponse response = sc.executeRequest(us);
+        SpotifyResponse response = sc.executeRequest(request);
 
         System.out.println(response.getJsonObject().toString(4));
 
-        Profile profile = response.getSerialisedObject();
-
-        System.out.println(profile);
     }
 
 }

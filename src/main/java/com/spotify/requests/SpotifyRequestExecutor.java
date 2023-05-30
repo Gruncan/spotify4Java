@@ -15,6 +15,7 @@ import com.spotify.util.Util;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -76,7 +77,9 @@ public abstract class SpotifyRequestExecutor {
             switch (code) {
                 case 200 -> {
                     try {
-                        content = new JSONObject(response.getContent());
+                        if (!response.getContent().isBlank())
+                            content = new JSONObject(response.getContent());
+
                     } catch (JSONException e) {
                         content = new JSONObject(String.format("{\"value\": %s}", response.getContent()));
                     }
@@ -126,11 +129,41 @@ public abstract class SpotifyRequestExecutor {
 
         SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
         HttpMethod method = srequest.method();
-        RequestResponse rresponse = this.requestExecute(token, new HttpRequest(BASE_URL + urlQuery, method));
+        HttpRequest httpRequest = new HttpRequest(BASE_URL + urlQuery, method);
+        if (method == HttpMethod.POST || method == HttpMethod.PUT) {
+            List<Field> spotifyContentFields = Arrays.stream(requestClass.getDeclaredFields())
+                    .filter(field -> field.getAnnotation(SpotifyRequestContent.class) != null)
+                    .toList();
+            try {
+                StringBuilder sb = new StringBuilder("{");
+                for (int i = 0; i < spotifyContentFields.size(); i++) {
+                    Field field = spotifyContentFields.get(i);
+                    SpotifyRequestContent spotifyRequestContent = field.getAnnotation(SpotifyRequestContent.class);
+                    String value = spotifyRequestContent.value();
+                    sb.append("\"").append(value).append("\":");
+                    field.setAccessible(true);
+                    if (field.getType().isPrimitive())
+                        sb.append(field.get(request));
+                    else
+                        sb.append("\"").append(field.get(request).toString()).append("\"");
+                    if (i != spotifyContentFields.size() - 1) sb.append(",");
+                    field.setAccessible(false);
+                }
+                sb.append("}");
+                httpRequest.addContent(sb.toString());
+            } catch (IllegalAccessException e) {
+                System.out.printf("Failed to parse %s body content for request: %s%n", method, requestClass.getName());
+                e.printStackTrace();
+                return null;
+            }
+
+        }
+
+        RequestResponse rresponse = this.requestExecute(token, httpRequest);
 
 
         SpotifySerialize ms = requestClass.getAnnotation(SpotifySerialize.class);
-        if (ms == null) return null;
+        if (ms == null) return new SpotifyResponse(rresponse, null);
         // Ensured to be non-null in above buildRequestUrl call
 
         Class<? extends SpotifyObject> cls = ms.value();
