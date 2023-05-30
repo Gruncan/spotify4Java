@@ -8,6 +8,7 @@ import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
+import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
@@ -22,7 +23,7 @@ import lombok.Setter;
  * @see SpotifyResponse
  */
 @Setter
-@SpotifyRequest(value = "playlists", end = "tracks")
+@SpotifyRequest(value = "playlists", end = "tracks", authorizations = Scope.PLAYLIST_READ_PRIVATE)
 @SpotifySerialize(PlaylistTracksSearch.class)
 public class PlaylistTracksGet implements SpotifyRequestVariant {
 

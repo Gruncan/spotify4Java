@@ -7,6 +7,7 @@ import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
+import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
@@ -21,7 +22,7 @@ import lombok.Setter;
  * @see SpotifyResponse
  */
 @Setter
-@SpotifyRequest("episodes")
+@SpotifyRequest(value = "episodes", authorizations = Scope.USER_READ_PLAYBACK_POSITION)
 @SpotifySerialize(value = Episode.class, isArray = true)
 public class SeveralEpisodesGet implements SpotifyRequestVariant {
 
