@@ -3,7 +3,6 @@ package com.spotify.objects.user;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.SpotifyOptional;
-import com.spotify.objects.wrappers.Country;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,7 +14,7 @@ import lombok.ToString;
 public class Profile implements SpotifyObject {
 
     @SpotifyField
-    private Country country;
+    private String country;
 
     @SpotifyField("display_name")
     private String displayName;

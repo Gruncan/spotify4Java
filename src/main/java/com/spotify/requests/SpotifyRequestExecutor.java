@@ -126,7 +126,7 @@ public abstract class SpotifyRequestExecutor {
 
         SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
         HttpMethod method = srequest.method();
-        RequestResponse rresponse = this.requestExecute(token, new HttpRequest(urlQuery, method));
+        RequestResponse rresponse = this.requestExecute(token, new HttpRequest(BASE_URL + urlQuery, method));
 
 
         SpotifySerialize ms = requestClass.getAnnotation(SpotifySerialize.class);

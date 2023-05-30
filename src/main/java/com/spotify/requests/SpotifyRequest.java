@@ -1,6 +1,7 @@
 package com.spotify.requests;
 
 import com.http.HttpMethod;
+import com.spotify.requests.util.Scope;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -35,4 +36,6 @@ public @interface SpotifyRequest {
      */
     HttpMethod method() default HttpMethod.GET;
 
+
+    Scope[] authorizations() default {};
 }

@@ -145,9 +145,7 @@ public abstract class SpotifySerializer {
     }
 
     protected <S extends SpotifyObject> S serializeObject(JSONObject json, Class<S> cls) {
-        if (json == null) return null;
+        if (json == null || cls == null) return null;
         return this.serializer(cls, json);
     }
-
-
 }

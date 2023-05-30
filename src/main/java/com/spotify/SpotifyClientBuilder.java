@@ -5,6 +5,7 @@ import com.http.HttpRequest;
 import com.http.HttpResponse;
 import com.http.SpotifyHttpServerProvider;
 import com.json.JSONObject;
+import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestExecutor;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
@@ -86,7 +87,7 @@ public class SpotifyClientBuilder {
     }
 
     public static SpotifyClient buildFromToken(String token) {
-        return new SpotifyClientImp(token);
+        return new SpotifyClientImp(token, null);
     }
 
 
@@ -173,7 +174,7 @@ public class SpotifyClientBuilder {
         int expiresIn = jsonObject.getInt("expires_in");
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
         this.refreshToken = jsonObject.getString("refresh_token");
-        return new SpotifyClientImp(token);
+        return new SpotifyClientImp(token, this.scopeList);
     }
 
     private HttpResponse sendPostTokenRequest(Map<String, String> queries) {
@@ -187,17 +188,27 @@ public class SpotifyClientBuilder {
     }
 
 
-    private static final class SpotifyClientImp extends SpotifyRequestExecutor implements SpotifyClient {
+    private final static class SpotifyClientImp extends SpotifyRequestExecutor implements SpotifyClient {
 
         private final String accessToken;
+        private final List<Scope> scopes;
 
-        public SpotifyClientImp(String accessToken) {
+        public SpotifyClientImp(String accessToken, List<Scope> scopes) {
             this.accessToken = accessToken;
+            this.scopes = scopes;
         }
 
 
         @Override
         public SpotifyResponse executeRequest(SpotifyRequestVariant request) {
+            SpotifyRequest spotifyRequest = request.getClass().getAnnotation(SpotifyRequest.class);
+            for (Scope scope : spotifyRequest.authorizations()) {
+                if (!this.scopes.contains(scope)) {
+                    System.out.printf("Failed to execute %s, client does not have required scopes %s%n",
+                            request.getClass().getName(), Arrays.toString(spotifyRequest.authorizations()));
+                    return null;
+                }
+            }
             return super.execute(this.accessToken, request);
         }
     }

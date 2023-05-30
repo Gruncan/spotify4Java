@@ -1,5 +1,7 @@
 package com.spotify;
 
+import com.spotify.requests.util.Scope;
+
 public class SpotifyClientBuilderTester extends SpotifyClientBuilder {
 
     private static final String CLIENT_ID = "49d248093d8c41dd8b65aba37c5ef665";
@@ -9,6 +11,7 @@ public class SpotifyClientBuilderTester extends SpotifyClientBuilder {
 
     public SpotifyClientBuilderTester() {
         super(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+        super.addScope(Scope.values());
     }
 
 
