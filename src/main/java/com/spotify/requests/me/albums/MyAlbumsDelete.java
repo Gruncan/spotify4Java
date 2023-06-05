@@ -8,6 +8,7 @@ import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestContent;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
+import com.spotify.requests.albums.AlbumGet;
 import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
@@ -39,9 +40,8 @@ public class MyAlbumsDelete implements SpotifyRequestVariant {
     private final String[] bodyIds;
 
     /**
-     * Initializes the {@link MyAlbumsDelete} request
-     *
-     * @param ids The Spotify IDS of the album.
+     * Initializes the {@link AlbumGet} request
+     * @param id The Spotify ID of the album.
      */
     public MyAlbumsDelete(String... ids) {
         this.bodyIds = ids;
