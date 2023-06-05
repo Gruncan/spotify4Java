@@ -38,7 +38,7 @@ public abstract class SpotifyRequestExecutor {
     }
 
     private static boolean isPrimitiveDefault(Object o, Class<?> cls) {
-        if (!cls.isPrimitive()) return false;
+        if (!cls.isPrimitive() || o == null) return false;
 
         if (cls.equals(int.class)) {
             Integer i = (Integer) o;
@@ -75,7 +75,7 @@ public abstract class SpotifyRequestExecutor {
             int code = response.getCode();
             String s = response.getMessage();
             JSONObject content = null;
-            if (code == 201) code = 200;
+            if (code == 201 || code == 202) code = 200;
             switch (code) {
                 case 200 -> {
                     try {
@@ -102,7 +102,7 @@ public abstract class SpotifyRequestExecutor {
                         request.getMethod(), request.getURL());
             }
 
-            return new RequestResponse(content, code, s);
+            return new RequestResponse(content, response.getCode(), s);
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -138,52 +138,62 @@ public abstract class SpotifyRequestExecutor {
                     .filter(field -> field.getAnnotation(SpotifyRequestContent.class) != null)
                     .toList();
             try {
-                StringBuilder sb = new StringBuilder("{");
-                for (int i = 0; i < spotifyContentFields.size(); i++) {
-                    Field field = spotifyContentFields.get(i);
-                    SpotifyRequestContent spotifyRequestContent = field.getAnnotation(SpotifyRequestContent.class);
-                    String value = spotifyRequestContent.value();
-                    if (value.equals("\"")) value = field.getName();
+                StringBuilder sb = new StringBuilder();
+                if (spotifyContentFields.size() == 1 && spotifyContentFields.get(0).getAnnotation(SpotifyRequestContent.class).isRaw()) {
+                    Field field = spotifyContentFields.get(0);
+                    SpotifyRequestContent content = field.getAnnotation(SpotifyRequestContent.class);
+                    httpRequest.addRequestHeader("Content-Type", content.contentType());
                     field.setAccessible(true);
-                    Object v = field.get(request);
-                    if (v == null) {
-                        field.setAccessible(false);
-                        continue;
-                    }
-                    sb.append("\"").append(value).append("\":");
-
-
-                    Class<?> type = field.getType();
-
-                    if (type.isArray()) {
-                        Object[] av = (Object[]) v;
-                        Class<?> compType = type.getComponentType();
-                        if (compType.isPrimitive())
-                            sb.append(Arrays.toString(av));
-                        else if (compType.equals(String.class))
-                            sb.append("[")
-                                    .append(Arrays.stream(av)
-                                            .map(o -> "\"" + o.toString() + "\"").
-                                            collect(Collectors.joining(",")))
-                                    .append("]");
-                        else
-                            sb.append("[")
-                                    .append(Arrays.stream(av)
-                                            .map(Object::toString).
-                                            collect(Collectors.joining(",")))
-                                    .append("]");
-
-
-                    } else if (type.isPrimitive())
-                        sb.append(v);
-                    else
-                        sb.append("\"").append(v).append("\"");
-
-                    if (i != spotifyContentFields.size() - 1) sb.append(",");
+                    Object o = field.get(request);
+                    sb.append(o.toString());
                     field.setAccessible(false);
+                } else {
+                    sb.append("{");
+                    for (int i = 0; i < spotifyContentFields.size(); i++) {
+                        Field field = spotifyContentFields.get(i);
+                        SpotifyRequestContent spotifyRequestContent = field.getAnnotation(SpotifyRequestContent.class);
+                        String value = spotifyRequestContent.value();
+                        if (value.equals("\"")) value = field.getName();
+                        field.setAccessible(true);
+                        Object v = field.get(request);
+                        Class<?> type = field.getType();
+                        if (v == null || isPrimitiveDefault(v, type)) {
+                            field.setAccessible(false);
+                            continue;
+                        }
+
+                        sb.append("\"").append(value).append("\":");
+
+                        if (type.isArray()) {
+                            Object[] av = (Object[]) v;
+                            Class<?> compType = type.getComponentType();
+                            if (compType.isPrimitive())
+                                sb.append(Arrays.toString(av));
+                            else if (compType.equals(String.class))
+                                sb.append("[")
+                                        .append(Arrays.stream(av)
+                                                .map(o -> "\"" + o.toString() + "\"").
+                                                collect(Collectors.joining(",")))
+                                        .append("]");
+                            else
+                                sb.append("[")
+                                        .append(Arrays.stream(av)
+                                                .map(Object::toString).
+                                                collect(Collectors.joining(",")))
+                                        .append("]");
+
+
+                        } else if (type.isPrimitive())
+                            sb.append(v);
+                        else
+                            sb.append("\"").append(v).append("\"");
+
+                        if (i != spotifyContentFields.size() - 1) sb.append(",");
+                        field.setAccessible(false);
+                    }
+                    if (sb.toString().endsWith(",")) sb.deleteCharAt(sb.length() - 1);
+                    sb.append("}");
                 }
-                if (sb.toString().endsWith(",")) sb.deleteCharAt(sb.length() - 1);
-                sb.append("}");
                 System.out.println(sb.toString());
                 httpRequest.addContent(sb.toString());
             } catch (IllegalAccessException e) {
@@ -191,8 +201,8 @@ public abstract class SpotifyRequestExecutor {
                 e.printStackTrace();
                 return null;
             }
+            }
 
-        }
 
         RequestResponse rresponse = this.requestExecute(token, httpRequest);
 

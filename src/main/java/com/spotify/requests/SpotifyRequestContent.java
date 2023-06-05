@@ -11,4 +11,10 @@ public @interface SpotifyRequestContent {
 
 
     String value() default "\"";
+
+
+    boolean isRaw() default false;
+
+    String contentType() default "";
+
 }

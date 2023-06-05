@@ -1,18 +1,18 @@
 package com.spotify;
 
-import com.spotify.requests.playlists.FollowPlaylistPut;
+import com.spotify.requests.playlists.PlaylistAddCoverImagePut;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
+        PlaylistAddCoverImagePut request = new PlaylistAddCoverImagePut("5WZVv7mYthzwwCN001nJXb", new File("C:\\Users\\DJ223\\Pictures\\test.jpeg"));
 
-        FollowPlaylistPut request = new FollowPlaylistPut("37i9dQZF1E8Fz3Y6IBuffG");
-
-        SpotifyResponse response = sc.executeRequest(request);
-
-        System.out.println(response.getJsonObject().toString(4));
+        sc.executeRequest(request);
 
     }
 
