@@ -28,16 +28,17 @@ public class MyAlbumsPut implements SpotifyRequestVariant {
 
 
     /**
+     * A list of the Spotify IDs for the albums. Maximum: 20 IDs.
+     */
+    @SpotifyRequestField
+    private String[] ids;
+
+    /**
      * A maximum of 50 items can be specified in one request.
      * Note: if the ids parameter is present in the query string, any IDs listed here in the body will be ignored.
      */
     @SpotifyRequestContent("ids")
     private final String[] bodyIds;
-    /**
-     * A list of the Spotify IDs for the albums. Maximum: 20 IDs.
-     */
-    @SpotifyRequestField
-    private String[] ids;
 
     /**
      * Initializes the {@link MyAlbumsPut} request
