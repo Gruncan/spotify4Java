@@ -86,7 +86,7 @@ public class HttpRequest {
      * @param content the content to be set
      */
     public void addContent(String content) {
-        if (this.TYPE == HttpMethod.POST || this.TYPE == HttpMethod.PUT)
+        if (this.TYPE != HttpMethod.GET)
             this.content = content;
     }
 
@@ -103,7 +103,7 @@ public class HttpRequest {
             URL url = new URL(this.URL + params);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod(this.TYPE.name());
-            if (this.TYPE == HttpMethod.POST || this.TYPE == HttpMethod.PUT) {
+            if (this.TYPE != HttpMethod.GET) {
                 int length = 0;
                 if (this.content != null) length = this.content.getBytes().length;
 
@@ -117,7 +117,7 @@ public class HttpRequest {
                 con.setRequestProperty(key, value);
             }
 
-            if ((TYPE == HttpMethod.POST || TYPE == HttpMethod.PUT) && this.content != null) {
+            if ((this.TYPE != HttpMethod.GET) && this.content != null) {
                 con.setDoOutput(true);
                 try (OutputStream os = con.getOutputStream()) {
                     byte[] input = this.content.getBytes(StandardCharsets.UTF_8);
