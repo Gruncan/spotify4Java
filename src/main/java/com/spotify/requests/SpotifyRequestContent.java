@@ -15,6 +15,6 @@ public @interface SpotifyRequestContent {
 
     boolean isRaw() default false;
 
-    String contentType() default "";
+    String contentType() default "application/json";
 
 }

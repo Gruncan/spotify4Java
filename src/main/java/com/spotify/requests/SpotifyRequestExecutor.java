@@ -137,6 +137,7 @@ public abstract class SpotifyRequestExecutor {
             List<Field> spotifyContentFields = Arrays.stream(requestClass.getDeclaredFields())
                     .filter(field -> field.getAnnotation(SpotifyRequestContent.class) != null)
                     .toList();
+            httpRequest.addRequestHeader("Content-Type", "application/json");
             try {
                 StringBuilder sb = new StringBuilder();
                 if (spotifyContentFields.size() == 1 && spotifyContentFields.get(0).getAnnotation(SpotifyRequestContent.class).isRaw()) {
