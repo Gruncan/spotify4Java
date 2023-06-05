@@ -202,6 +202,10 @@ public class SpotifyClientBuilder {
         @Override
         public SpotifyResponse executeRequest(SpotifyRequestVariant request) {
             SpotifyRequest spotifyRequest = request.getClass().getAnnotation(SpotifyRequest.class);
+            if (spotifyRequest == null) {
+                System.out.printf("Failed to execute %s, no request is annotated.", request.getClass().getName());
+                return null;
+            }
             for (Scope scope : spotifyRequest.authorizations()) {
                 if (!this.scopes.contains(scope)) {
                     System.out.printf("Failed to execute %s, client does not have required scopes %s%n",

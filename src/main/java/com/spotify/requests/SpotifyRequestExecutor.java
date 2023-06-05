@@ -17,6 +17,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -74,10 +75,11 @@ public abstract class SpotifyRequestExecutor {
             int code = response.getCode();
             String s = response.getMessage();
             JSONObject content = null;
+            if (code == 201) code = 200;
             switch (code) {
                 case 200 -> {
                     try {
-                        if (!response.getContent().isBlank())
+                        if (response.getContent() != null && !response.getContent().isBlank())
                             content = new JSONObject(response.getContent());
 
                     } catch (JSONException e) {
@@ -130,7 +132,8 @@ public abstract class SpotifyRequestExecutor {
         SpotifyRequest srequest = requestClass.getAnnotation(SpotifyRequest.class);
         HttpMethod method = srequest.method();
         HttpRequest httpRequest = new HttpRequest(BASE_URL + urlQuery, method);
-        if (method == HttpMethod.POST || method == HttpMethod.PUT) {
+        // Handles HTTP request content
+        if (method != HttpMethod.GET) {
             List<Field> spotifyContentFields = Arrays.stream(requestClass.getDeclaredFields())
                     .filter(field -> field.getAnnotation(SpotifyRequestContent.class) != null)
                     .toList();
@@ -140,16 +143,48 @@ public abstract class SpotifyRequestExecutor {
                     Field field = spotifyContentFields.get(i);
                     SpotifyRequestContent spotifyRequestContent = field.getAnnotation(SpotifyRequestContent.class);
                     String value = spotifyRequestContent.value();
-                    sb.append("\"").append(value).append("\":");
+                    if (value.equals("\"")) value = field.getName();
                     field.setAccessible(true);
-                    if (field.getType().isPrimitive())
-                        sb.append(field.get(request));
+                    Object v = field.get(request);
+                    if (v == null) {
+                        field.setAccessible(false);
+                        continue;
+                    }
+                    sb.append("\"").append(value).append("\":");
+
+
+                    Class<?> type = field.getType();
+
+                    if (type.isArray()) {
+                        Object[] av = (Object[]) v;
+                        Class<?> compType = type.getComponentType();
+                        if (compType.isPrimitive())
+                            sb.append(Arrays.toString(av));
+                        else if (compType.equals(String.class))
+                            sb.append("[")
+                                    .append(Arrays.stream(av)
+                                            .map(o -> "\"" + o.toString() + "\"").
+                                            collect(Collectors.joining(",")))
+                                    .append("]");
+                        else
+                            sb.append("[")
+                                    .append(Arrays.stream(av)
+                                            .map(Object::toString).
+                                            collect(Collectors.joining(",")))
+                                    .append("]");
+
+
+                    } else if (type.isPrimitive())
+                        sb.append(v);
                     else
-                        sb.append("\"").append(field.get(request).toString()).append("\"");
+                        sb.append("\"").append(v).append("\"");
+
                     if (i != spotifyContentFields.size() - 1) sb.append(",");
                     field.setAccessible(false);
                 }
+                if (sb.toString().endsWith(",")) sb.deleteCharAt(sb.length() - 1);
                 sb.append("}");
+                System.out.println(sb.toString());
                 httpRequest.addContent(sb.toString());
             } catch (IllegalAccessException e) {
                 System.out.printf("Failed to parse %s body content for request: %s%n", method, requestClass.getName());

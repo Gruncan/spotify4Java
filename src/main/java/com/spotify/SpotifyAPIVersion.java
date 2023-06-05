@@ -21,4 +21,5 @@ public enum SpotifyAPIVersion {
         return this.getVersion();
     }
 
+
 }
