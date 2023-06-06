@@ -38,6 +38,7 @@ public class SpotifyClientBuilder {
     private SpotifyClient builtClient;
     private SpotifyHttpServerProvider spotifyHttpServerProvider;
     private boolean printAccessToken;
+    private boolean enforceScopeCheck;
 
 
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
@@ -52,6 +53,7 @@ public class SpotifyClientBuilder {
         this.refreshToken = null;
         this.builtClient = null;
         this.printAccessToken = false;
+        this.enforceScopeCheck = true;
 
         try {
             this.redirectUrl = new URL(redirectUri);
@@ -83,6 +85,11 @@ public class SpotifyClientBuilder {
 
     public SpotifyClientBuilder setShowDialog(boolean b) {
         this.showDialog = b;
+        return this;
+    }
+
+    public SpotifyClientBuilder setEnforceScopeCheck(boolean b){
+        this.enforceScopeCheck = b;
         return this;
     }
 
@@ -174,7 +181,12 @@ public class SpotifyClientBuilder {
         int expiresIn = jsonObject.getInt("expires_in");
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
         this.refreshToken = jsonObject.getString("refresh_token");
-        return new SpotifyClientImp(token, this.scopeList);
+
+        if (this.enforceScopeCheck)
+            return new SpotifyClientImp(token, this.scopeList);
+        else
+            return new SpotifyClientImp(token, null);
+
     }
 
     private HttpResponse sendPostTokenRequest(Map<String, String> queries) {
@@ -206,11 +218,13 @@ public class SpotifyClientBuilder {
                 System.out.printf("Failed to execute %s, no request is annotated.", request.getClass().getName());
                 return null;
             }
-            for (Scope scope : spotifyRequest.authorizations()) {
-                if (!this.scopes.contains(scope)) {
-                    System.out.printf("Failed to execute %s, client does not have required scopes %s%n",
-                            request.getClass().getName(), Arrays.toString(spotifyRequest.authorizations()));
-                    return null;
+            if (this.scopes != null) {
+                for (Scope scope : spotifyRequest.authorizations()) {
+                    if (!this.scopes.contains(scope)) {
+                        System.out.printf("Failed to execute %s, client does not have required scopes %s%n",
+                                request.getClass().getName(), Arrays.toString(spotifyRequest.authorizations()));
+                        return null;
+                    }
                 }
             }
             return super.execute(this.accessToken, request);
