@@ -3,6 +3,7 @@ package com.spotify.requests.users;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.user.SimplifiedUser;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
@@ -10,15 +11,16 @@ import com.spotify.requests.SpotifySubRequest;
 /**
  * Get public profile information about a Spotify user.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-profile">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link SimplifiedUser}</p>
  *
- * @see ?
+ * @see SimplifiedUser
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest("users")
+@SpotifySerialize(SimplifiedUser.class)
 public class UserProfileGet implements SpotifyRequestVariant {
 
     /**
