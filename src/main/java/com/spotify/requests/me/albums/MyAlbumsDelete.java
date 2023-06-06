@@ -26,7 +26,7 @@ public class MyAlbumsDelete implements SpotifyRequestVariant {
 
 
     /**
-     * A comma-separated list of the Spotify IDs for the albums. Maximum: 20 IDs.
+     * A list of the Spotify IDs for the albums. Maximum: 20 IDs.
      */
     @SpotifyRequestField
     private String[] ids;
@@ -40,7 +40,7 @@ public class MyAlbumsDelete implements SpotifyRequestVariant {
 
     /**
      * Initializes the {@link MyAlbumsDelete} request
-     * @param ids The Spotify IDs of the album.
+     * @param ids The Spotify IDs of the albums.
      */
     public MyAlbumsDelete(String... ids) {
         this.bodyIds = ids;
