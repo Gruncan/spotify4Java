@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest(value = "episodes", authorizations = Scope.USER_READ_PLAYBACK_POSITION)
 @SpotifySerialize(value = Episode.class, isArray = true)
-public class SeveralEpisodesGet implements SpotifyRequestVariant {
+public class EpisodeSeveralGet implements SpotifyRequestVariant {
 
 
     /**
@@ -40,10 +40,10 @@ public class SeveralEpisodesGet implements SpotifyRequestVariant {
     private Country market;
 
     /**
-     * Initializes the {@link SeveralEpisodesGet} request
+     * Initializes the {@link EpisodeSeveralGet} request
      * @param ids A list of the Spotify IDs for the episodes. Maximum: 20 IDs.
      */
-    public SeveralEpisodesGet(String... ids) {
+    public EpisodeSeveralGet(String... ids) {
         this.ids = ids;
     }
 

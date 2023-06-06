@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("shows")
 @SpotifySerialize(value = SimplifiedShow.class, isArray = true)
-public class SeveralShowsGet implements SpotifyRequestVariant {
+public class ShowSeveralGet implements SpotifyRequestVariant {
 
 
     /**
@@ -39,10 +39,10 @@ public class SeveralShowsGet implements SpotifyRequestVariant {
     private Country market;
 
     /**
-     * Initializes the {@link SeveralShowsGet} request
+     * Initializes the {@link ShowSeveralGet} request
      * @param ids A list of the Spotify IDs for the shows. Maximum: 50 IDs.
      */
-    public SeveralShowsGet(String... ids) {
+    public ShowSeveralGet(String... ids) {
         this.ids = ids;
     }
 

@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("tracks")
 @SpotifySerialize(value = Track.class, isArray = true)
-public class SeveralTracksGet implements SpotifyRequestVariant {
+public class TrackSeveralGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs.
@@ -41,10 +41,10 @@ public class SeveralTracksGet implements SpotifyRequestVariant {
 
 
     /**
-     * Initializes the {@link SeveralTracksGet} request
+     * Initializes the {@link TrackSeveralGet} request
      * @param ids A list of the Spotify IDs.
      */
-    public SeveralTracksGet(String... ids) {
+    public TrackSeveralGet(String... ids) {
         this.ids = ids;
     }
 

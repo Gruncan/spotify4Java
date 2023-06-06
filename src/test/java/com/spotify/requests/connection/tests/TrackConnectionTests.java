@@ -22,7 +22,7 @@ public class TrackConnectionTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void severalTracksGetTest() {
-        SpotifyRequestVariant request = new SeveralTracksGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
+        SpotifyRequestVariant request = new TrackSeveralGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
                 "2takcwOaAZWiXQijPHIx7B");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
@@ -31,7 +31,7 @@ public class TrackConnectionTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void severalTrackAudioFeaturesGetTest() {
-        SpotifyRequestVariant request = new SeveralTrackAudioFeaturesGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
+        SpotifyRequestVariant request = new TrackAudioFeatureSeveralGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
                 "2takcwOaAZWiXQijPHIx7B");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());

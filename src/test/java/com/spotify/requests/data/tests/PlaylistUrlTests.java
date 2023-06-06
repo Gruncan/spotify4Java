@@ -12,14 +12,14 @@ public class PlaylistUrlTests extends AbstractUrlTest {
 
     @Test
     public void categoriesPlaylistsGetTestUrl() {
-        SpotifyRequestVariant request = new CategoriesPlaylistsGet("dinner");
+        SpotifyRequestVariant request = new PlaylistCategoriesGet("dinner");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
     }
 
     @Test
     public void featuredPlaylistsGetTestUrl() {
-        SpotifyRequestVariant request = new FeaturedPlaylistGet();
+        SpotifyRequestVariant request = new PlaylistFeaturedGet();
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
 

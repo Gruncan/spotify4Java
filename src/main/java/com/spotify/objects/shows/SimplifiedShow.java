@@ -5,7 +5,7 @@ import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.objects.wrappers.SpotifyCopyright;
 import com.spotify.objects.wrappers.SpotifyImage;
-import com.spotify.requests.shows.SeveralShowsGet;
+import com.spotify.requests.shows.ShowSeveralGet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +13,7 @@ import lombok.Setter;
  * Represents a spotify SimplifiedShowObject
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-shows">SeveralShowsGet</a>
  *
- * @see SeveralShowsGet
+ * @see ShowSeveralGet
  * @see Show
  * @see SpotifyObject
  */

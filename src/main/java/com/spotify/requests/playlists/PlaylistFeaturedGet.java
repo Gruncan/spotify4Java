@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("browse/featured-playlists")
 @SpotifySerialize(BrowsedPlaylist.class)
-public class FeaturedPlaylistGet implements SpotifyRequestVariant {
+public class PlaylistFeaturedGet implements SpotifyRequestVariant {
 
     /**
      * A country: an ISO 3166-1 alpha-2 country code. Provide this parameter if you want the list of returned items to be relevant to a particular country. If omitted, the returned items will be relevant to all countries.

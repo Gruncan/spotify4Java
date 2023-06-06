@@ -3,11 +3,11 @@ package com.spotify.requests.util;
 import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
 import com.spotify.requests.episodes.EpisodeGet;
-import com.spotify.requests.episodes.SeveralEpisodesGet;
+import com.spotify.requests.episodes.EpisodeSeveralGet;
 import com.spotify.requests.search.SearchGet;
-import com.spotify.requests.shows.SeveralShowsGet;
 import com.spotify.requests.shows.ShowEpisodesGet;
 import com.spotify.requests.shows.ShowGet;
+import com.spotify.requests.shows.ShowSeveralGet;
 
 import java.util.List;
 
@@ -225,15 +225,15 @@ public enum Scope {
      * Required by:
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-an-episode">Get an Episodes</a> - {@link EpisodeGet}</li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-episodes">Get Several Episodes</a> - {@link SeveralEpisodesGet}</li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-episodes">Get Several Episodes</a> - {@link EpisodeSeveralGet}</li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-a-show">Get a Show</a> - {@link ShowGet}</li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-showsd">Get Several Shows</a> - {@link SeveralShowsGet}</li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-multiple-showsd">Get Several Shows</a> - {@link ShowSeveralGet}</li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-a-shows-episodes">Get a Show's Episodes</a> - {@link ShowEpisodesGet}</li>
      * </ul>
      * @see EpisodeGet
-     * @see SeveralEpisodesGet
+     * @see EpisodeSeveralGet
      * @see ShowGet
-     * @see SeveralShowsGet
+     * @see ShowSeveralGet
      * @see ShowEpisodesGet
      */
     USER_READ_PLAYBACK_POSITION("user-read-playback-position"),

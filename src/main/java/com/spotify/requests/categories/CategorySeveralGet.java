@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("browse/categories")
 @SpotifySerialize(Categories.class)
-public class SeveralCategoriesGet implements SpotifyRequestVariant {
+public class CategorySeveralGet implements SpotifyRequestVariant {
 
 
     /**

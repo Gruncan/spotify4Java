@@ -6,7 +6,6 @@ import com.spotify.objects.artists.Artist;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
-import com.spotify.requests.albums.SeveralAlbumsGet;
 import lombok.Setter;
 
 /**
@@ -23,7 +22,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("artists")
 @SpotifySerialize(value = Artist.class, isArray = true)
-public class SeveralArtistsGet implements SpotifyRequestVariant {
+public class ArtistSeveralGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs for the albums. Maximum: 20 IDs.
@@ -32,10 +31,10 @@ public class SeveralArtistsGet implements SpotifyRequestVariant {
     private final String[] ids;
 
     /**
-     * Initializes the {@link SeveralAlbumsGet} request
+     * Initializes the {@link ArtistSeveralGet} request
      * @param ids A list of the Spotify IDs for the artists. Maximum: 20 IDs.
      */
-    public SeveralArtistsGet(String... ids) {
+    public ArtistSeveralGet(String... ids) {
         this.ids = ids;
     }
 

@@ -15,7 +15,7 @@ public class PlaylistConnectionTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void categoriesPlaylistsGetTest() {
-        SpotifyRequestVariant request = new CategoriesPlaylistsGet("dinner");
+        SpotifyRequestVariant request = new PlaylistCategoriesGet("dinner");
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
     }
@@ -23,7 +23,7 @@ public class PlaylistConnectionTests extends AbstractConnectionTest {
     @Test
     @Tag("NetworkTest")
     public void featuredPlaylistsGetTest() {
-        SpotifyRequestVariant request = new FeaturedPlaylistGet();
+        SpotifyRequestVariant request = new PlaylistFeaturedGet();
         SpotifyResponse spotifyResponse = super.client.executeRequest(request);
         assertTrue(spotifyResponse.wasSuccess());
 

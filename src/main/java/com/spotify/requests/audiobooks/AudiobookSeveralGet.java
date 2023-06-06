@@ -7,7 +7,6 @@ import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
-import com.spotify.requests.albums.SeveralAlbumsGet;
 import lombok.Setter;
 
 /**
@@ -25,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("audiobooks")
 @SpotifySerialize(value = Audiobook.class, isArray = true)
-public class SeveralAudioBooksGet implements SpotifyRequestVariant {
+public class AudiobookSeveralGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs.
@@ -40,10 +39,10 @@ public class SeveralAudioBooksGet implements SpotifyRequestVariant {
     private Country market;
 
     /**
-     * Initializes the {@link SeveralAlbumsGet} request
+     * Initializes the {@link AudiobookSeveralGet} request
      * @param ids A list of the Spotify IDs.
      */
-    public SeveralAudioBooksGet(String... ids) {
+    public AudiobookSeveralGet(String... ids) {
         this.ids = ids;
     }
 

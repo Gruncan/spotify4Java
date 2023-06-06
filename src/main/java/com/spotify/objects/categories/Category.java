@@ -4,7 +4,7 @@ import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.search.AbstractSearchItems;
 import com.spotify.objects.wrappers.SpotifyImage;
-import com.spotify.requests.categories.CategoriesGet;
+import com.spotify.requests.categories.CategoryGet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import lombok.Setter;
  * Represents spotify category<br>
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-category">SingleCategoriesGet</a>
  *
- * @see CategoriesGet
+ * @see CategoryGet
  * @see AbstractSearchItems
  * @see SpotifyObject
  */

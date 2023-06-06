@@ -3,8 +3,8 @@ package com.spotify.objects.playlists;
 import com.spotify.objects.SpotifyField;
 import com.spotify.objects.SpotifyObject;
 import com.spotify.objects.search.AbstractSearchItems;
-import com.spotify.requests.playlists.CategoriesPlaylistsGet;
-import com.spotify.requests.playlists.FeaturedPlaylistGet;
+import com.spotify.requests.playlists.PlaylistCategoriesGet;
+import com.spotify.requests.playlists.PlaylistFeaturedGet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +13,8 @@ import lombok.Setter;
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists">FeaturedPlaylistGet</a>,
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-categories-playlists">CategoriesPlaylistsGet</a>
  *
- * @see FeaturedPlaylistGet
- * @see CategoriesPlaylistsGet
+ * @see PlaylistFeaturedGet
+ * @see PlaylistCategoriesGet
  * @see PlaylistTracksSearch
  * @see PlaylistTrack
  * @see AbstractSearchItems

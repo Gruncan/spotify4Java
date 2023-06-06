@@ -7,7 +7,6 @@ import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
-import com.spotify.requests.albums.SeveralAlbumsGet;
 import lombok.Setter;
 
 /**
@@ -40,7 +39,7 @@ public class SeveralChaptersGet implements SpotifyRequestVariant {
     private Country market;
 
     /**
-     * Initializes the {@link SeveralAlbumsGet} request
+     * Initializes the {@link SeveralChaptersGet} request
      * @param ids A list of the Spotify IDs.
      */
     public SeveralChaptersGet(String... ids) {

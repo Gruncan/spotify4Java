@@ -20,7 +20,7 @@ import com.spotify.requests.SpotifyRequestVariant;
  */
 @SpotifyRequest("audio-features")
 @SpotifySerialize(value = TrackAudioFeatures.class, isArray = true)
-public class SeveralTrackAudioFeaturesGet implements SpotifyRequestVariant {
+public class TrackAudioFeatureSeveralGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs for the tracks. Maximum: 100 IDs
@@ -30,10 +30,10 @@ public class SeveralTrackAudioFeaturesGet implements SpotifyRequestVariant {
 
 
     /**
-     * Initializes the {@link SeveralTrackAudioFeaturesGet} request
+     * Initializes the {@link TrackAudioFeatureSeveralGet} request
      * @param ids A list of the Spotify IDs for the tracks. Maximum: 100 IDs
      */
-    public SeveralTrackAudioFeaturesGet(String... ids) {
+    public TrackAudioFeatureSeveralGet(String... ids) {
         this.ids = ids;
     }
 

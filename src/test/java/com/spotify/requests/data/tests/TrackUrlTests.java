@@ -18,7 +18,7 @@ public class TrackUrlTests extends AbstractUrlTest {
 
     @Test
     public void severalTracksGetTestUrl() {
-        SpotifyRequestVariant request = new SeveralTracksGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
+        SpotifyRequestVariant request = new TrackSeveralGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
                 "2takcwOaAZWiXQijPHIx7B");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
@@ -26,7 +26,7 @@ public class TrackUrlTests extends AbstractUrlTest {
 
     @Test
     public void severalTrackAudioFeaturesGetTestUrl() {
-        SpotifyRequestVariant request = new SeveralTrackAudioFeaturesGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
+        SpotifyRequestVariant request = new TrackAudioFeatureSeveralGet("7ouMYWpwJ422jRcDASZB7P", "4VqPOruhp5EdPBeR92t6lQ",
                 "2takcwOaAZWiXQijPHIx7B");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
