@@ -2,6 +2,7 @@ package com.spotify.requests.me.audiobooks;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.audiobooks.Audiobooks;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -11,9 +12,9 @@ import lombok.Setter;
 /**
  * Get a list of the audiobooks saved in the current Spotify user's 'Your Music' library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-audiobooks">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link Audiobooks}</p>
  *
- * @see ?
+ * @see Audiobooks
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -21,6 +22,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/audiobooks", authorizations = Scope.USER_LIBRARY_READ)
+@SpotifySerialize(Audiobooks.class)
 public class MyAudiobooksGet implements SpotifyRequestVariant {
 
     /**

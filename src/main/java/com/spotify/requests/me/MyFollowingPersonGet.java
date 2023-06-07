@@ -11,9 +11,9 @@ import com.spotify.requests.util.Scope;
 /**
  * Check to see if the current user is following one or more artists or other Spotify users.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/check-current-user-follows">Spotify Docs</a>
- * <p>Serializes into {@link Boolean} array</p>
+ * <p>Serializes into {@link SpotifyBooleanArray} array</p>
  *
- * @see Boolean
+ * @see SpotifyBooleanArray
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize

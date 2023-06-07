@@ -14,9 +14,7 @@ import lombok.Setter;
 /**
  * Remove one or more albums from the current user's 'Your Music' library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/save-albums-user">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
  *
- * @see ?
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize

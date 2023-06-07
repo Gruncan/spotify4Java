@@ -4,10 +4,35 @@ import com.spotify.SpotifyClient;
 import com.spotify.SpotifyClientBuilder;
 import com.spotify.requests.episodes.EpisodeGet;
 import com.spotify.requests.episodes.EpisodeSeveralGet;
-import com.spotify.requests.search.SearchGet;
+import com.spotify.requests.me.*;
+import com.spotify.requests.me.albums.MyAlbumsDelete;
+import com.spotify.requests.me.albums.MyAlbumsGet;
+import com.spotify.requests.me.albums.MyAlbumsPut;
+import com.spotify.requests.me.albums.MyAlbumsSavedGet;
+import com.spotify.requests.me.audiobooks.MyAudiobooksDelete;
+import com.spotify.requests.me.audiobooks.MyAudiobooksGet;
+import com.spotify.requests.me.audiobooks.MyAudiobooksPut;
+import com.spotify.requests.me.audiobooks.MyAudiobooksSavedGet;
+import com.spotify.requests.me.episodes.MyEpisodesDelete;
+import com.spotify.requests.me.episodes.MyEpisodesGet;
+import com.spotify.requests.me.episodes.MyEpisodesPut;
+import com.spotify.requests.me.episodes.MyEpisodesSavedGet;
+import com.spotify.requests.me.player.*;
+import com.spotify.requests.me.playlists.MyPlaylistsGet;
+import com.spotify.requests.me.shows.MyShowsDelete;
+import com.spotify.requests.me.shows.MyShowsGet;
+import com.spotify.requests.me.shows.MyShowsPut;
+import com.spotify.requests.me.shows.MyShowsSavedGet;
+import com.spotify.requests.me.tracks.MyTracksDelete;
+import com.spotify.requests.me.tracks.MyTracksGet;
+import com.spotify.requests.me.tracks.MyTracksPut;
+import com.spotify.requests.me.tracks.MyTracksSavedGet;
+import com.spotify.requests.playlists.*;
 import com.spotify.requests.shows.ShowEpisodesGet;
 import com.spotify.requests.shows.ShowGet;
 import com.spotify.requests.shows.ShowSeveralGet;
+import com.spotify.requests.users.UserPlaylistCreatePost;
+import com.spotify.requests.users.UserPlaylistGet;
 
 import java.util.List;
 
@@ -27,7 +52,7 @@ public enum Scope {
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/upload-custom-playlist-cover">Add Custom Playlist Cover Image</a></li>
      * </ul>
-     * @see ?
+     * @see PlaylistAddCoverImagePut
      */
     UGC_IMAGE_UPLOAD("ugc-image-upload"),
 
@@ -40,9 +65,10 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-information-about-the-users-current-playback">Get Information About The User's Current Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-recently-played">Get the User's Currently Playing Track</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see MyPlayerDevicesGet
+     * @see MyPlayerGet
+     * @see MyPlayerQueueGet
+     *
      */
     USER_READ_PLAYBACK_STATE("user-read-playback-state"),
     /**
@@ -60,15 +86,15 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/transfer-a-users-playback">Transfer a User's Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/seek-to-position-in-currently-playing-track">Add An Item To The End Of User's Current Playback Queue</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see MyPlayerPausePut
+     * @see MyPlayerRepeatPut
+     * @see MyPlayerResumePut
+     * @see MyPlayerSeekPut
+     * @see MyPlayerSetVolumePut
+     * @see MyPlayerToggleShufflePut
+     * @see MyPlayerTransferPut
+     * @see MyPlayerPreviousPost
+     * @see MyPlayerNextPost
      */
     USER_MODIFY_PLAYBACK_STATE("user-modify-playback-state"),
 
@@ -77,11 +103,9 @@ public enum Scope {
      * Read your currently playing content.<br>
      * Required by:
      * <ul>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-recently-played">Get the User's Currently Playing Track</a></li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-queue">Get the User's Queue</a></li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-the-users-currently-playing-track">Get the User's Currently Playing Track</a></li>
      * </ul>
-     * @see ?
-     * @see ?
+     * @see MyPlayerCurrentlyPlayingGet
      */
     USER_READ_CURRENTLY_PLAYING("user-read-currently-playing"),
 
@@ -93,8 +117,6 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/ios">iOS SDK</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/android">Android SDK</a></li>
      * </ul>
-     * @see ?
-     * @see ?
      */
     APP_REMOTE_CONTROL("app-remote-control"),
 
@@ -106,7 +128,6 @@ public enum Scope {
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-playback-sdk">Web Playback SDK</a></li>
      * </ul>
-     * @see ?
      */
     STREAMING("streaming"),
 
@@ -119,9 +140,9 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-a-list-of-current-users-playlists">Get a List of Current User's Playlists</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists">Get a List of a User's Playlists</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see MyPlaylistsGet
+     * @see PlaylistTracksGet
+     * @see UserPlaylistGet
      */
     PLAYLIST_READ_PRIVATE("playlist-read-private"),
 
@@ -130,11 +151,9 @@ public enum Scope {
      * Access your collaborative playlists.<br>
      * Required by:
      * <ul>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-a-list-of-current-users-playlists">Get a List of Current User's Playlists</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists">Get a List of a User's Playlists</a></li>
      * </ul>
-     * @see ?
-     * @see ?
+     * @see UserPlaylistGet
      */
     PLAYLIST_READ_COLLABORATIVE("playlist-read-collaborative"),
 
@@ -153,15 +172,13 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/reorder-or-replace-playlists-tracks">Replace a Playlist's Items</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/upload-custom-playlist-cover">Upload a Custom Playlist Cover Image</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see PlaylistAddCoverImagePut
+     * @see PlaylistAddItemPost
+     * @see PlaylistFollowPut
+     * @see PlaylistRemoveItemDelete
+     * @see PlaylistUnfollowDelete
+     * @see PlaylistUpdatePut
+     * @see UserPlaylistCreatePost
      */
     PLAYLIST_MODIFY_PRIVATE("playlist-modify-private"),
 
@@ -181,15 +198,13 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/reorder-or-replace-playlists-tracks">Replace a Playlist's Items</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/upload-custom-playlist-cover">Upload a Custom Playlist Cover Image</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see PlaylistAddCoverImagePut
+     * @see PlaylistAddItemPost
+     * @see PlaylistFollowPut
+     * @see PlaylistRemoveItemDelete
+     * @see PlaylistUnfollowDelete
+     * @see PlaylistUpdatePut
+     * @see UserPlaylistCreatePost
      */
     PLAYLIST_MODIFY_PUBLIC("playlist-modify-public"),
 
@@ -201,8 +216,8 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/follow-artists-users">Follow Artists or Users</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/unfollow-artists-users">Unfollow Artists or Users</a></li>
      * </ul>
-     * @see ?
-     * @see ?
+     * @see MyFollowPersonPut
+     * @see MyUnfollowPersonDelete
      */
     USER_FOLLOW_MODIFY("user-follow-modify"),
 
@@ -214,8 +229,8 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/check-current-user-follows">Check if Current User Follows Artists or Users</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-followed">Get User's Followed Artists</a></li>
      * </ul>
-     * @see ?
-     * @see ?
+     * @see MyFollowedArtistsGet
+     * @see MyFollowingPersonGet
      */
     USER_FOLLOW_READ("user-follow-read"),
 
@@ -245,7 +260,7 @@ public enum Scope {
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks">Get a User's Top Artists and Tracks</a></li>
      * </ul>
-     * @see ?
+     * @see MyTopInfo
      */
     USER_TOP_READ("user-top-read"),
 
@@ -256,7 +271,7 @@ public enum Scope {
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-the-users-currently-playing-track">Get Current User's Recently Played Tracks</a></li>
      * </ul>
-     * @see ?
+     * @see MyPlayerRecentlyPlayedGet
      */
     USER_READ_RECENTLY_PLAYED("user-read-recently-played"),
 
@@ -273,12 +288,16 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/save-episodes-user">Save Episodes for User</a></li>
      *
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see MyAlbumsDelete
+     * @see MyAlbumsPut
+     * @see MyAudiobooksDelete
+     * @see MyAudiobooksPut
+     * @see MyEpisodesDelete
+     * @see MyEpisodesPut
+     * @see MyShowsDelete
+     * @see MyShowsPut
+     * @see MyTracksDelete
+     * @see MyTracksPut
      */
     USER_LIBRARY_MODIFY("user-library-modify"),
 
@@ -294,12 +313,16 @@ public enum Scope {
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/check-users-saved-episodes">Check User's Saved Episodes</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-episodes">Get User's Saved Episodes</a></li>
      * </ul>
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
-     * @see ?
+     * @see MyAlbumsGet
+     * @see MyAlbumsSavedGet
+     * @see MyAudiobooksGet
+     * @see MyAudiobooksSavedGet
+     * @see MyEpisodesGet
+     * @see MyEpisodesSavedGet
+     * @see MyShowsGet
+     * @see MyShowsSavedGet
+     * @see MyTracksGet
+     * @see MyTracksSavedGet
      */
     USER_LIBRARY_READ("user-library-read"),
 
@@ -310,7 +333,7 @@ public enum Scope {
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile">Get Current User's Profile</a></li>
      * </ul>
-     * @see ?
+     * @see MyProfileGet
      */
     USER_READ_EMAIL("user-read-email"),
 
@@ -319,11 +342,9 @@ public enum Scope {
      * Access your subscription details.<br>
      * Required by:
      * <ul>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/search">Search for an Item</a> - {@link SearchGet}</li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile">Get Current User's Profile</a></li>
      * </ul>
-     * @see SearchGet
-     * @see ?
+     * @see MyProfileGet
      */
     USER_READ_PRIVATE("user-read-private");
 

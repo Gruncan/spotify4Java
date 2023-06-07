@@ -2,6 +2,7 @@ package com.spotify.requests.me.albums;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.albums.SavedAlbums;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -13,9 +14,9 @@ import lombok.Setter;
 /**
  * Get a list of the albums saved in the current Spotify user's 'Your Music' library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-albums">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link SavedAlbums}</p>
  *
- * @see ?
+ * @see SavedAlbums
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -23,6 +24,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/albums", authorizations = Scope.USER_LIBRARY_READ)
+@SpotifySerialize(SavedAlbums.class)
 public class MyAlbumsGet implements SpotifyRequestVariant {
 
     /**

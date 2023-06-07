@@ -26,7 +26,7 @@ import java.util.stream.Stream;
  * @see Type
  */
 @Setter
-@SpotifyRequest("search")
+@SpotifyRequest(value = "search")
 @SpotifySerialize(Search.class)
 public class SearchGet implements SpotifyRequestVariant {
 

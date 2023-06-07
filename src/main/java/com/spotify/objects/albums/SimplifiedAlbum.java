@@ -47,7 +47,7 @@ public class SimplifiedAlbum implements SpotifyObject {
      * The Spotify URL for the object.
      */
     @SpotifyField(value = "spotify", path = {"external_urls"})
-    private String externalIDs;
+    private String externalUrls;
 
     /**
      * A link to the Web API endpoint providing full details of the album.
