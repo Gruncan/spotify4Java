@@ -2,6 +2,7 @@ package com.spotify.requests.me;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.artists.PageArtists;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get the current user's followed artists.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-followed">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link PageArtists}</p>
  *
- * @see ?
+ * @see PageArtists
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/following", authorizations = Scope.USER_FOLLOW_READ)
+@SpotifySerialize(PageArtists.class)
 public class MyFollowedArtistsGet implements SpotifyRequestVariant {
 
     /**

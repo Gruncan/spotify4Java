@@ -2,6 +2,8 @@ package com.spotify.requests.albums;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.albums.Albums;
+import com.spotify.objects.albums.PageAlbums;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -12,9 +14,9 @@ import lombok.Setter;
 /**
  * Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-new-releases">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link Albums}</p>
  *
- * @see ?
+ * @see Albums
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +24,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest("browse/new-releases")
+@SpotifySerialize(PageAlbums.class)
 public class AlbumReleasesGet implements SpotifyRequestVariant {
 
     /**

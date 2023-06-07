@@ -6,6 +6,7 @@ import com.spotify.objects.SpotifyOptional;
 import com.spotify.objects.search.items.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Represents a search item used across various requests to minimise repetition.
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public abstract class AbstractSearchItems implements SpotifyObject {
 
     /**
@@ -46,6 +48,7 @@ public abstract class AbstractSearchItems implements SpotifyObject {
     /**
      * The offset of the items returned (as set in the query or by default)
      */
+    @SpotifyOptional
     @SpotifyField
     private int offset;
 

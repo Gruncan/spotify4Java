@@ -1,8 +1,8 @@
 package com.spotify;
 
-import com.spotify.requests.playlists.PlaylistAddCoverImagePut;
+import com.spotify.objects.artists.PageArtists;
+import com.spotify.requests.me.MyFollowedArtistsGet;
 
-import java.io.File;
 import java.io.IOException;
 
 public class Main {
@@ -10,9 +10,15 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
-        PlaylistAddCoverImagePut request = new PlaylistAddCoverImagePut("5WZVv7mYthzwwCN001nJXb", new File("C:\\Users\\DJ223\\Pictures\\test.jpeg"));
+        MyFollowedArtistsGet request = new MyFollowedArtistsGet();
 
-        sc.executeRequest(request);
+        SpotifyResponse spotifyResponse = sc.executeRequest(request);
+        String out = spotifyResponse.getJsonObject().toString(4);
+
+
+        System.out.println(out);
+        PageArtists pageAlbums = spotifyResponse.getSerialisedObject();
+        System.out.println(pageAlbums.toString());
 
     }
 
