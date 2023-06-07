@@ -2,6 +2,7 @@ package com.spotify.requests.me;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.wrappers.SpotifyBooleanArray;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -10,15 +11,16 @@ import com.spotify.requests.util.Scope;
 /**
  * Check to see if the current user is following one or more artists or other Spotify users.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/check-current-user-follows">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link Boolean} array</p>
  *
- * @see ?
+ * @see Boolean
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest(value = "me/following/contains", authorizations = Scope.USER_FOLLOW_READ)
+@SpotifySerialize(value = SpotifyBooleanArray.class)
 public class MyFollowingPersonGet implements SpotifyRequestVariant {
 
     /**
