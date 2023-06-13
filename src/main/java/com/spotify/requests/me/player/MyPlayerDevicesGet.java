@@ -7,7 +7,7 @@ import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
 
 /**
- * Get information about a user’s available devices.
+ * Get information about a user's available devices.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-users-available-devices">Spotify Docs</a>
  * <p>Serializes into {@link ?}</p>
  *

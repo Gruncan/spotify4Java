@@ -44,7 +44,7 @@ public class MyPlayerResumePut implements SpotifyRequestVariant {
 
     /**
      * Indicates from where in the context playback should start.
-     * Only available when context_uri corresponds to an album or playlist object "position" is zero based and can’t be negative.
+     * Only available when context_uri corresponds to an album or playlist object "position" is zero based and can't be negative.
      */
     @SpotifyRequestContent
     private SpotifyPositionObject offset;

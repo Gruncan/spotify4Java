@@ -10,7 +10,7 @@ import com.spotify.requests.SpotifySubRequest;
 
 
 /**
- * Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track’s structure and musical content, including rhythm, pitch, and timbre.
+ * Get a low-level audio analysis for a track in the Spotify catalog. The audio analysis describes the track's structure and musical content, including rhythm, pitch, and timbre.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-audio-analysis">Spotify Docs</a>
  * <p>Serializes into {@link TrackAudioAnalysis}</p>
  *

@@ -10,7 +10,7 @@ import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
- * Set the volume for the user’s current playback device.
+ * Set the volume for the user's current playback device.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/set-volume-for-users-playback">Spotify Docs</a>
  *
  * @see SpotifyRequestVariant

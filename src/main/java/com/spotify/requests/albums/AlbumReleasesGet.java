@@ -12,7 +12,7 @@ import lombok.Setter;
 
 
 /**
- * Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player’s “Browse” tab).
+ * Get a list of new album releases featured in Spotify (shown, for example, on a Spotify player's "Browse" tab).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-new-releases">Spotify Docs</a>
  * <p>Serializes into {@link Albums}</p>
  *

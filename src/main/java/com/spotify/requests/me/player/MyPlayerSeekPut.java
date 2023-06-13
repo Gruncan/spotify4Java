@@ -10,7 +10,7 @@ import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
- * Seeks to the given position in the user’s currently playing track.
+ * Seeks to the given position in the user's currently playing track.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/seek-to-position-in-currently-playing-track">Spotify Docs</a>
  *
  * @see SpotifyRequestVariant

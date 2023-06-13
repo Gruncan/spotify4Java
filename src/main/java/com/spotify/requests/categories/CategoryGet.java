@@ -11,7 +11,7 @@ import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
 /**
- * Get a single category used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
+ * Get a single category used to tag items in Spotify (on, for example, the Spotify player's "Browse" tab).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-category">Spotify Docs</a>
  * <p>Serializes into {@link Category}</p>
  *

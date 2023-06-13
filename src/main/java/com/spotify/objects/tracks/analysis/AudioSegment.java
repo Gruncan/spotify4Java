@@ -65,7 +65,7 @@ public class AudioSegment implements SpotifyObject {
     private double loudnessEnd;
 
     /**
-     * Pitch content is given by a “chroma” vector, corresponding to the 12 pitch classes C, C#, D to B, with values
+     * Pitch content is given by a "chroma" vector, corresponding to the 12 pitch classes C, C#, D to B, with values
      * ranging from 0 to 1 that describe the relative dominance of every pitch in the chromatic scale.
      * For example a C Major chord would likely be represented by large values of C, E and G (i.e. classes 0, 4, and 7).
      * <br>
@@ -79,7 +79,7 @@ public class AudioSegment implements SpotifyObject {
     /**
      * Timbre is the quality of a musical note or sound that distinguishes different types of musical instruments, or voices.
      * It is a complex notion also referred to as sound color, texture, or tone quality, and is derived from the shape of
-     * a segment’s spectro-temporal surface, independently of pitch and loudness. The timbre feature is a vector that
+     * a segment's spectro-temporal surface, independently of pitch and loudness. The timbre feature is a vector that
      * includes 12 unbounded values roughly centered around 0. Those values are high level abstractions of the spectral
      * surface, ordered by degree of importance.
      * <br>

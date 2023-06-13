@@ -72,14 +72,14 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
     @SpotifyRequestField("min_acousticness")
     private double minAcousticness;
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -94,14 +94,14 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double targetAcousticness;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
     @SpotifyRequestField("min_danceability")
     private double minDanceability;
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -117,14 +117,14 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double targetDanceability;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
     @SpotifyRequestField("min_energy")
     private double minEnergy;
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -139,14 +139,14 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double targetEnergy;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
     @SpotifyRequestField("min_instrumentalness")
     private double minInstrumentalness;
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -161,7 +161,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double targetInstrumentalness;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -169,7 +169,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double minLiveness;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -186,7 +186,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -194,7 +194,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double minLoudness;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -211,7 +211,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -219,7 +219,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double minSpeechiness;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -236,7 +236,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -244,7 +244,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double minTempo;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -259,7 +259,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would
      * restrict results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -267,7 +267,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private double minValence;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -284,14 +284,14 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
     @SpotifyRequestField("min_duration_ms")
     private int minDuration;
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -306,7 +306,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int targetDuration;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would
      * restrict results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -314,7 +314,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int minKey;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -330,7 +330,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
 
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -338,7 +338,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int minMode;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -354,7 +354,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int targetMode;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -362,7 +362,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int minPopularity;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35
      * would filter out most tracks that are likely to be instrumental.
      */
@@ -378,7 +378,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int targetPopularity;
 
     /**
-     * For each tunable track attribute, a hard floor on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard floor on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, min_tempo=140 would restrict
      * results to only those tracks with a tempo of greater than 140 beats per minute.
      */
@@ -386,7 +386,7 @@ public class TrackRecommendationGet implements SpotifyRequestVariant {
     private int minTimeSignature;
 
     /**
-     * For each tunable track attribute, a hard ceiling on the selected track attribute’s value can be provided.
+     * For each tunable track attribute, a hard ceiling on the selected track attribute's value can be provided.
      * See tunable track attributes below for the list of available options. For example, max_instrumentalness=0.35 would
      * filter out most tracks that are likely to be instrumental.
      */

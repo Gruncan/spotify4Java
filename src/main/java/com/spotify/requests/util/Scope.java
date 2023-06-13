@@ -57,7 +57,7 @@ public enum Scope {
     UGC_IMAGE_UPLOAD("ugc-image-upload"),
 
     /**
-     * Read access to a user’s player state.<br>
+     * Read access to a user's player state.<br>
      * Read your currently playing content and Spotify Connect devices information.<br>
      * Required by:
      * <ul>
@@ -72,17 +72,17 @@ public enum Scope {
      */
     USER_READ_PLAYBACK_STATE("user-read-playback-state"),
     /**
-     * Write access to a user’s playback state <br>
+     * Write access to a user's playback state <br>
      * Control playback on your Spotify clients and Spotify Connect devices.<br>
      * Required by:
      * <ul>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/pause-a-users-playback">Pause a User's Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/seek-to-position-in-currently-playing-track">Seek To Position In Currently Playing Track</a></li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/set-volume-for-users-playback">Set Repeat Mode On User’s Playback</a></li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/set-volume-for-users-playback">Set Repeat Mode On User's Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/skip-users-playback-to-next-track">Set Volume For User's Playback</a></li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/skip-users-playback-to-previous-track">Skip User’s Playback To Previous Track</a></li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/skip-users-playback-to-previous-track">Skip User's Playback To Previous Track</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/start-a-users-playback">Start/Resume a User's Playback</a></li>
-     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/toggle-shuffle-for-users-playback">Toggle Shuffle For User’s Playback</a></li>
+     *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/toggle-shuffle-for-users-playback">Toggle Shuffle For User's Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/transfer-a-users-playback">Transfer a User's Playback</a></li>
      *  <li><a href="https://developer.spotify.com/documentation/web-api/reference/seek-to-position-in-currently-playing-track">Add An Item To The End Of User's Current Playback Queue</a></li>
      * </ul>
@@ -99,7 +99,7 @@ public enum Scope {
     USER_MODIFY_PLAYBACK_STATE("user-modify-playback-state"),
 
     /**
-     * Read access to a user’s currently playing content.<br>
+     * Read access to a user's currently playing content.<br>
      * Read your currently playing content.<br>
      * Required by:
      * <ul>
@@ -235,7 +235,7 @@ public enum Scope {
     USER_FOLLOW_READ("user-follow-read"),
 
     /**
-     * Read access to a user’s playback position in a content.<br>
+     * Read access to a user's playback position in a content.<br>
      * Read your position in content you have played.<br>
      * Required by:
      * <ul>
@@ -265,7 +265,7 @@ public enum Scope {
     USER_TOP_READ("user-top-read"),
 
     /**
-     * Read access to a user’s recently played tracks.<br>
+     * Read access to a user's recently played tracks.<br>
      * Access your recently played items.<br>
      * Required by:
      * <ul>
@@ -327,7 +327,7 @@ public enum Scope {
     USER_LIBRARY_READ("user-library-read"),
 
     /**
-     * Read access to user’s email address.<br>
+     * Read access to user's email address.<br>
      * Get your real email address.<br>
      * Required by:
      * <ul>
@@ -338,7 +338,7 @@ public enum Scope {
     USER_READ_EMAIL("user-read-email"),
 
     /**
-     * Read access to user’s subscription details (type of user account).<br>
+     * Read access to user's subscription details (type of user account).<br>
      * Access your subscription details.<br>
      * Required by:
      * <ul>

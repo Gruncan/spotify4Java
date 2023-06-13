@@ -9,7 +9,7 @@ import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
 
 /**
- * Get information about the user’s current playback state, including track or episode, progress, and active device.
+ * Get information about the user's current playback state, including track or episode, progress, and active device.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-information-about-the-users-current-playback">Spotify Docs</a>
  * <p>Serializes into {@link ?}</p>
  *

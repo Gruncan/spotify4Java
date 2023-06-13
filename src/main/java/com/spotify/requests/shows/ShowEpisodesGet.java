@@ -12,7 +12,7 @@ import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
- * Get Spotify catalog information about an show’s episodes. Optional parameters can be used to limit the number of episodes returned.
+ * Get Spotify catalog information about an show's episodes. Optional parameters can be used to limit the number of episodes returned.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-a-shows-episodes">Spotify Docs</a>
  * <p>Serializes into {@link ShowEpisodesSearch}</p>
  *

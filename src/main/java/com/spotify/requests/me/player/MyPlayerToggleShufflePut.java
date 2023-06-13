@@ -10,7 +10,7 @@ import com.spotify.requests.util.Scope;
 import lombok.Setter;
 
 /**
- * Toggle shuffle on or off for user’s playback.
+ * Toggle shuffle on or off for user's playback.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/toggle-shuffle-for-users-playback">Spotify Docs</a>
  *
  * @see SpotifyRequestVariant

@@ -11,7 +11,7 @@ import com.spotify.requests.SpotifySubRequest;
 import lombok.Setter;
 
 /**
- * Get Spotify catalog information about an album’s tracks. Optional parameters can be used to limit the number of tracks returned.
+ * Get Spotify catalog information about an album's tracks. Optional parameters can be used to limit the number of tracks returned.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-an-albums-tracks">Spotify Docs</a>
  * <p>Serializes into {@link AlbumTracks}</p>
  *

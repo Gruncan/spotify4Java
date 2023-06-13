@@ -10,7 +10,7 @@ import com.spotify.requests.SpotifyRequestVariant;
 import lombok.Setter;
 
 /**
- * Get a list of categories used to tag items in Spotify (on, for example, the Spotify player’s “Browse” tab).
+ * Get a list of categories used to tag items in Spotify (on, for example, the Spotify player's "Browse" tab).
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-categories">Spotify Docs</a>
  * <p>Serializes into {@link Categories} array</p>
  *
