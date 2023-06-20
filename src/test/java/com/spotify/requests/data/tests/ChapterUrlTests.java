@@ -19,7 +19,7 @@ public class ChapterUrlTests extends AbstractUrlTest {
     }
 
     @Test
-    public void severalChaptersGetTestUrl() {
+    public void chapterSeveralGetTestUrl() {
         SpotifyRequestVariant request = new ChapterSeveralGet("0IsXVP0JmcB2adSE338GkK", "3ZXb8FKZGU0EHALYX6uCzU",
                 "0D5wENdkdwbqlrHoaJ9g29");
         String actualUrl = super.client.getBuiltURL(request);

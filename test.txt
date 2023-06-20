@@ -1,88 +1,87 @@
-Get Album
-Get Several Albums
-Get Album Tracks
-Get User's Saved Albums
-Save Albums for Current User
-Remove Users' Saved Albums
-Check User's Saved Albums
-Get New Releases
-Get Artist
-Get Several Artists
-Get Artist's Albums
-Get Artist's Top Tracks
-Get Artist's Related Artists
-Get an Audiobook
-Get Several Audiobooks
-Get Audiobook Chapters
-Get User's Saved Audiobooks
-Save Audiobooks for Current User
-Remove User's Saved Audiobooks
-Check User's Saved Audiobooks
-Get Several Browse Categories
-Get Single Browse Category
-Get a Chapter
-Get Several Chapters
-Get Episode
-Get Several Episodes
-Get User's Saved Episodes
-Save Episodes for Current User
-Remove User's Saved Episodes
-Check User's Saved Episodes
-Get Available Genre Seeds
-Get Available Markets
-Get Playback State
-Transfer Playback
-Get Available Devices
-Get Currently Playing Track
-Start/Resume Playback
-Pause Playback
-Skip To Next
-Skip To Previous
-Seek To Position
-Set Repeat Mode
-Set Playback Volume
-Toggle Playback Shuffle
-Get Recently Played Tracks
-Get the User's Queue
-Add Item to Playback Queue
-Get Playlist
-Change Playlist Details
-Get Playlist Items
-Update Playlist Items
-Add Items to Playlist
-Remove Playlist Items
-Get Current User's Playlists
-Get User's Playlists
-Create Playlist
-Get Featured Playlists
-Get Category's Playlists
-Get Playlist Cover Image
-Add Custom Playlist Cover Image
-Search for Item
-Get Show
-Get Several Shows
-Get Show Episodes
-Get User's Saved Shows
-Save Shows for Current User
-Remove User's Saved Shows
-Check User's Saved Shows
-Get Track
-Get Several Tracks
-Get User's Saved Tracks
-Save Tracks for Current User
-Remove User's Saved Tracks
-Check User's Saved Tracks
-Get Tracks' Audio Features
-Get Track's Audio Features
-Get Track's Audio Analysis
-Get Recommendations
-Get Current User's Profile
-Get User's Top Items
-Get User's Profile
-Follow Playlist
-Unfollow Playlist
-Get Followed Artists
-Follow Artists or Users
-Unfollow Artists or Users
-Check If User Follows Artists or Users
-Check if Users Follow Playlist
+"com.spotify.requests.albums.AlbumGet"
+ "com.spotify.requests.albums.AlbumReleasesGet"
+ "com.spotify.requests.albums.AlbumSeveralGet"
+ "com.spotify.requests.albums.AlbumTracksGet"
+ "com.spotify.requests.artists.ArtistGet"
+ "com.spotify.requests.artists.ArtistsAlbumsGet"
+ "com.spotify.requests.artists.ArtistSeveralGet"
+ "com.spotify.requests.artists.ArtistsRelatedArtistsGet"
+ "com.spotify.requests.artists.ArtistsTopTracksGet"
+ "com.spotify.requests.audiobooks.AudiobookChaptersGet"
+ "com.spotify.requests.audiobooks.AudiobookGet"
+ "com.spotify.requests.audiobooks.AudiobookSeveralGet"
+ "com.spotify.requests.categories.CategoryGet"
+ "com.spotify.requests.categories.CategorySeveralGet"
+ "com.spotify.requests.chapters.ChapterGet"
+ "com.spotify.requests.chapters.ChapterSeveralGet"
+ "com.spotify.requests.episodes.EpisodeGet"
+ "com.spotify.requests.episodes.EpisodeSeveralGet"
+ "com.spotify.requests.genres.GenreAvailableGet"
+ "com.spotify.requests.markets.MarketsAvailableGet"
+ "com.spotify.requests.me.albums.MyAlbumsDelete"
+ "com.spotify.requests.me.albums.MyAlbumsGet"
+ "com.spotify.requests.me.albums.MyAlbumsPut"
+ "com.spotify.requests.me.albums.MyAlbumsSavedGet"
+ "com.spotify.requests.me.audiobooks.MyAudiobooksDelete"
+ "com.spotify.requests.me.audiobooks.MyAudiobooksGet"
+ "com.spotify.requests.me.audiobooks.MyAudiobooksPut"
+ "com.spotify.requests.me.audiobooks.MyAudiobooksSavedGet"
+ "com.spotify.requests.me.episodes.MyEpisodesDelete"
+ "com.spotify.requests.me.episodes.MyEpisodesGet"
+ "com.spotify.requests.me.episodes.MyEpisodesPut"
+ "com.spotify.requests.me.episodes.MyEpisodesSavedGet"
+ "com.spotify.requests.me.MyFollowedArtistsGet"
+ "com.spotify.requests.me.MyFollowingPersonGet"
+ "com.spotify.requests.me.MyFollowPersonPut"
+ "com.spotify.requests.me.MyProfileGet"
+ "com.spotify.requests.me.MyTopInfo"
+ "com.spotify.requests.me.MyUnfollowPersonDelete"
+ "com.spotify.requests.me.player.MyPlayerCurrentlyPlayingGet"
+ "com.spotify.requests.me.player.MyPlayerDevicesGet"
+ "com.spotify.requests.me.player.MyPlayerGet"
+ "com.spotify.requests.me.player.MyPlayerNextPost"
+ "com.spotify.requests.me.player.MyPlayerPausePut"
+ "com.spotify.requests.me.player.MyPlayerPreviousPost"
+ "com.spotify.requests.me.player.MyPlayerQueueGet"
+ "com.spotify.requests.me.player.MyPlayerQueuePost"
+ "com.spotify.requests.me.player.MyPlayerRecentlyPlayedGet"
+ "com.spotify.requests.me.player.MyPlayerRepeatPut"
+ "com.spotify.requests.me.player.MyPlayerResumePut"
+ "com.spotify.requests.me.player.MyPlayerSeekPut"
+ "com.spotify.requests.me.player.MyPlayerSetVolumePut"
+ "com.spotify.requests.me.player.MyPlayerToggleShufflePut"
+ "com.spotify.requests.me.player.MyPlayerTransferPut"
+ "com.spotify.requests.me.playlists.MyPlaylistsGet"
+ "com.spotify.requests.me.shows.MyShowsDelete"
+ "com.spotify.requests.me.shows.MyShowsGet"
+ "com.spotify.requests.me.shows.MyShowsPut"
+ "com.spotify.requests.me.shows.MyShowsSavedGet"
+ "com.spotify.requests.me.tracks.MyTracksDelete"
+ "com.spotify.requests.me.tracks.MyTracksGet"
+ "com.spotify.requests.me.tracks.MyTracksPut"
+ "com.spotify.requests.me.tracks.MyTracksSavedGet"
+ "com.spotify.requests.playlists.PlaylistAddCoverImagePut"
+ "com.spotify.requests.playlists.PlaylistAddItemPost"
+ "com.spotify.requests.playlists.PlaylistCategoriesGet"
+ "com.spotify.requests.playlists.PlaylistFeaturedGet"
+ "com.spotify.requests.playlists.PlaylistFollowingCheckGet"
+ "com.spotify.requests.playlists.PlaylistFollowPut"
+ "com.spotify.requests.playlists.PlaylistGet"
+ "com.spotify.requests.playlists.PlaylistImageGet"
+ "com.spotify.requests.playlists.PlaylistRemoveItemDelete"
+ "com.spotify.requests.playlists.PlaylistTracksGet"
+ "com.spotify.requests.playlists.PlaylistUnfollowDelete"
+ "com.spotify.requests.playlists.PlaylistUpdatePut"
+ "com.spotify.requests.search.SearchGet"
+ "com.spotify.requests.shows.ShowEpisodesGet"
+ "com.spotify.requests.shows.ShowGet"
+ "com.spotify.requests.shows.ShowSeveralGet"
+ "com.spotify.requests.tracks.TrackAudioAnalysisGet"
+ "com.spotify.requests.tracks.TrackAudioFeatureSeveralGet"
+ "com.spotify.requests.tracks.TrackAudioFeaturesGet"
+ "com.spotify.requests.tracks.TrackGet"
+ "com.spotify.requests.tracks.TrackRecommendationGet"
+ "com.spotify.requests.tracks.TrackSeveralGet"
+ "com.spotify.requests.users.UserPlaylistCreatePost"
+ "com.spotify.requests.users.UserPlaylistGet"
+ "com.spotify.requests.users.UserProfileGet"

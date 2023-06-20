@@ -49,7 +49,7 @@ public class PlaylistRemoveItemDelete implements SpotifyRequestVariant {
     private String snapshotId;
 
 
-    public PlaylistRemoveItemDelete(String id, String[] uris) {
+    public PlaylistRemoveItemDelete(String id, String... uris) {
         this.id = id;
         this.tracks = Arrays.stream(uris)
                 .map(SpotifyContentObject::new)

@@ -1,37 +1,35 @@
 package com.spotify.requests.data.tests;
 
 import com.spotify.requests.SpotifyRequestVariant;
-import com.spotify.requests.audiobooks.AudiobookChaptersGet;
-import com.spotify.requests.audiobooks.AudiobookGet;
-import com.spotify.requests.audiobooks.AudiobookSeveralGet;
 import com.spotify.requests.data.AbstractUrlTest;
+import com.spotify.requests.users.UserPlaylistCreatePost;
+import com.spotify.requests.users.UserPlaylistGet;
+import com.spotify.requests.users.UserProfileGet;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AudiobookUrlTests extends AbstractUrlTest {
-
+public class UserUrlTest extends AbstractUrlTest {
 
     @Test
-    public void audiobookChaptersGetTestUrl() {
-        SpotifyRequestVariant request = new AudiobookChaptersGet("7iHfbu1YPACw6oZPAFJtqe");
+    public void userPlaylistCreatePostTestUrl() {
+        SpotifyRequestVariant request = new UserPlaylistCreatePost("smedjan", "Test");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
     }
 
     @Test
-    public void audiobookGetTestUrl() {
-        SpotifyRequestVariant request = new AudiobookGet("7iHfbu1YPACw6oZPAFJtqe");
+    public void userPlaylistGetTestUrl() {
+        SpotifyRequestVariant request = new UserPlaylistGet("smedjan");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
     }
 
     @Test
-    public void audiobookSeveralGetTestUrl() {
-        SpotifyRequestVariant request = new AudiobookSeveralGet("18yVqkdbdRvS24c0Ilj2ci", "1HGw3J3NxZO1TP1BTtVhpZ", "7iHfbu1YPACw6oZPAFJtqe");
+    public void userProfileGetTestUrl() {
+        SpotifyRequestVariant request = new UserProfileGet("smedjan");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
     }
-
 
 }

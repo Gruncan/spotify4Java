@@ -13,7 +13,7 @@ public class ShowUrlTests extends AbstractUrlTest {
 
 
     @Test
-    public void severalShowsGetTestUrl() {
+    public void showSeveralGetTestUrl() {
         SpotifyRequestVariant request = new ShowSeveralGet("5CfCWKI5pZ28U0uOzXkDHe", "5as3aKmN2k11yfDDDSrvaZ");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));

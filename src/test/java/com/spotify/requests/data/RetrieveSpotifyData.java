@@ -24,13 +24,13 @@ public class RetrieveSpotifyData {
 
 
     private static final String LOCATION = "src/test/java/com/spotify/requests/data/resources/";
-    private static final String VERSION = "V1_0_0";
+    private static final String VERSION = "V1_5_0";
 
     public static void main(String[] args) throws ClassNotFoundException {
         String fileContents = Util.getFileContents(LOCATION + "requestUrlClasses-V1_5_0.json");
         if (fileContents == null) return;
         Map<Class<? extends SpotifyRequestVariant>, Pair> responses = getResponses(fileContents);
-//        writeResults(responses);
+        writeResults(responses);
     }
 
     private static void writeResults(Map<Class<? extends SpotifyRequestVariant>, Pair> responses) {

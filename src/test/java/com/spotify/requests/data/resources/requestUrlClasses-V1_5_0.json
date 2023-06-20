@@ -245,6 +245,7 @@
     "url" : "https://api.spotify.com/v1/me/tracks/contains?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": ["7ouMYWpwJ422jRcDASZB7P","4VqPOruhp5EdPBeR92t6lQ","2takcwOaAZWiXQijPHIx7B"]
   },
+
   "com.spotify.requests.playlists.PlaylistAddCoverImagePut":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/images",
     "id": "3cEYpjA9oz9GiPac4AsH4n",

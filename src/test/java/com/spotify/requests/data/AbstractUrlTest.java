@@ -7,7 +7,7 @@ import com.spotify.requests.urls.SpotifyClientMock;
 public class AbstractUrlTest {
 
     private static final String LOCATION = "src/test/java/com/spotify/requests/data/resources/";
-    private static final String VERSION = "V1_0_0";
+    private static final String VERSION = "V1_5_0";
 
     private static JSONObject json;
 
