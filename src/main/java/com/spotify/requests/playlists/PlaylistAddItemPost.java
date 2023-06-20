@@ -59,7 +59,11 @@ public class PlaylistAddItemPost implements SpotifyRequestVariant {
     @SpotifyRequestContent("position")
     private int bodyPosition;
 
-
+    /**
+     * Initializes the {@link PlaylistAddItemPost} request
+     * @param id The Spotify ID of the playlist.
+     * @param ids The ids of items to add to the playlist
+     */
     public PlaylistAddItemPost(String id, String... ids) {
         this.id = id;
         this.bodyUris = ids;
