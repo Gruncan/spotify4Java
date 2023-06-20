@@ -9,7 +9,7 @@ import com.spotify.requests.SpotifySubRequest;
 
 /**
  * Get Spotify catalog information for a single album.
- * <a href="https://developer.spotify.com/documentation/web-api/reference/get-an-album">Spotify Docs</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/check-if-user-follows-playlist">Spotify Docs</a>
  * <p>Serializes into {@link ?}</p>
  *
  * @see ?

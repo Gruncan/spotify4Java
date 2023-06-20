@@ -55,7 +55,16 @@ public class MyTopInfo implements SpotifyRequestVariant {
      * Initializes the {@link MyTopInfo} request
      * @param type The type of entity to return
      */
+    public MyTopInfo(String type){
+        this.type = RestrictedType.valueOf(type.toUpperCase());
+    }
+
+    /**
+     * Initializes the {@link MyTopInfo} request
+     * @param type The type of entity to return
+     */
     public MyTopInfo(RestrictedType type) {
         this.type = type;
     }
+
 }

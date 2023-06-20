@@ -20,7 +20,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/player/shuffle", authorizations = Scope.USER_MODIFY_PLAYBACK_STATE, method = HttpMethod.PUT)
-public class MyPlayerToggleShufflePut {
+public class MyPlayerToggleShufflePut implements SpotifyRequestVariant {
 
     /**
      * The state of the shuffle

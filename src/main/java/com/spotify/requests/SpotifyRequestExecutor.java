@@ -195,7 +195,7 @@ public abstract class SpotifyRequestExecutor {
                     if (sb.toString().endsWith(",")) sb.deleteCharAt(sb.length() - 1);
                     sb.append("}");
                 }
-                System.out.println(sb.toString());
+//                System.out.println(sb.toString());
                 httpRequest.addContent(sb.toString());
             } catch (IllegalAccessException e) {
                 System.out.printf("Failed to parse %s body content for request: %s%n", method, requestClass.getName());

@@ -27,10 +27,10 @@ public class RetrieveSpotifyData {
     private static final String VERSION = "V1_0_0";
 
     public static void main(String[] args) throws ClassNotFoundException {
-        String fileContents = Util.getFileContents(LOCATION + "requestUrlClasses.json");
+        String fileContents = Util.getFileContents(LOCATION + "requestUrlClasses-V1_5_0.json");
         if (fileContents == null) return;
         Map<Class<? extends SpotifyRequestVariant>, Pair> responses = getResponses(fileContents);
-        writeResults(responses);
+//        writeResults(responses);
     }
 
     private static void writeResults(Map<Class<? extends SpotifyRequestVariant>, Pair> responses) {
@@ -71,6 +71,8 @@ public class RetrieveSpotifyData {
     private static Map<Class<? extends SpotifyRequestVariant>, Pair> getResponses(String fileContents) throws ClassNotFoundException {
         Map<Class<? extends SpotifyRequestVariant>, Pair> responses = new HashMap<>();
         JSONObject json = new JSONObject(fileContents);
+        int length = json.keySet().size();
+        int c = 1;
         for (String key : json.keySet()) {
             Class<? extends SpotifyRequestVariant> cls = (Class<? extends SpotifyRequestVariant>) Class.forName(key);
             JSONObject inner = json.getJSONObject(key);
@@ -93,7 +95,9 @@ public class RetrieveSpotifyData {
             }
             Tuple<? extends SpotifyRequestVariant> responseTuple = execute(cls, params);
             if (responseTuple == null) continue;
+            System.out.printf("%d/%d | Executed %s%n", c, length, cls.getName());
             responses.put(responseTuple.request(), new Pair(responseTuple.url, responseTuple.response()));
+            c++;
         }
         return responses;
     }
@@ -103,7 +107,7 @@ public class RetrieveSpotifyData {
             Constructor<T> con = (Constructor<T>) cls.getConstructors()[0];
             T request = con.newInstance(params);
             SpotifyRequestExecutor sc = SpotifyClientTester.getSpotifyClient();
-            System.out.printf("Executed %s%n", cls.getName());
+
             SpotifyResponse response = ((SpotifyClient) sc).executeRequest(request);
             String url = sc.getCachedURL();
             return new Tuple<>(cls, url, response);

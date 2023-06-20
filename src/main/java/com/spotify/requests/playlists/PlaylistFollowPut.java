@@ -39,13 +39,6 @@ public class PlaylistFollowPut implements SpotifyRequestVariant {
     @SpotifyRequestContent("public")
     private boolean isPublic;
 
-    /**
-     * Initializes the {@link PlaylistFollowPut} request
-     * @param id The Spotify ID of the playlist.
-     */
-    public PlaylistFollowPut(String id) {
-        this.id = id;
-    }
 
     /**
      * Initializes the {@link PlaylistFollowPut} request
@@ -55,5 +48,14 @@ public class PlaylistFollowPut implements SpotifyRequestVariant {
     public PlaylistFollowPut(String id, boolean isPublic){
         this(id);
         this.isPublic = isPublic;
+    }
+
+
+    /**
+     * Initializes the {@link PlaylistFollowPut} request
+     * @param id The Spotify ID of the playlist.
+     */
+    public PlaylistFollowPut(String id) {
+        this.id = id;
     }
 }
