@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest("chapters")
 @SpotifySerialize(value = Chapter.class, isArray = true)
-public class SeveralChaptersGet implements SpotifyRequestVariant {
+public class ChapterSeveralGet implements SpotifyRequestVariant {
 
     /**
      * A list of the Spotify IDs.
@@ -39,10 +39,10 @@ public class SeveralChaptersGet implements SpotifyRequestVariant {
     private Country market;
 
     /**
-     * Initializes the {@link SeveralChaptersGet} request
+     * Initializes the {@link ChapterSeveralGet} request
      * @param ids A list of the Spotify IDs.
      */
-    public SeveralChaptersGet(String... ids) {
+    public ChapterSeveralGet(String... ids) {
         this.ids = ids;
     }
 

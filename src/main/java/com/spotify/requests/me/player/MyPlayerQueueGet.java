@@ -2,15 +2,14 @@ package com.spotify.requests.me.player;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
 
 /**
  * Get the list of objects that make up the user's queue.
- * <a href="https://developer.spotify.com/documentation/web-api/reference/remove-albums-user">Spotify Docs</a>
- * <p>Serializes into {@link Album}</p>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/get-queue">Spotify Docs</a>
+ * <p>Serializes into {@link ?}</p>
  *
  * @see ?
  * @see SpotifyRequestVariant

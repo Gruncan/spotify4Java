@@ -46,4 +46,14 @@ public class PlaylistFollowPut implements SpotifyRequestVariant {
     public PlaylistFollowPut(String id) {
         this.id = id;
     }
+
+    /**
+     * Initializes the {@link PlaylistFollowPut} request
+     * @param id The Spotify ID of the playlist.
+     * @param isPublic Whether the user's playlist is public or not
+     */
+    public PlaylistFollowPut(String id, boolean isPublic){
+        this(id);
+        this.isPublic = isPublic;
+    }
 }

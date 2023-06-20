@@ -3,7 +3,7 @@
     "url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy",
     "id": "4aawyAB9vmqN3uQ7FjRGTy"
   },
-  "com.spotify.requests.albums.SeveralAlbumsGet": {
+  "com.spotify.requests.albums.AlbumSeveralGet": {
     "url": "https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     "ids": [
       "382ObEPsp2rxGrnsizN5TX",
@@ -15,6 +15,8 @@
     "url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks",
     "id": "4aawyAB9vmqN3uQ7FjRGTy"
   },
+
+
   "com.spotify.requests.artists.ArtistGet": {
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
     "id": "0TnOYISbd1XYRBk9myaseg"

@@ -12,7 +12,7 @@ import lombok.Setter;
 
 /**
  * Get the current user's followed artists.
- * <a href="https://developer.spotify.com/documentation/web-api/reference/get-followed">Spotify Docs</a>
+ * <a href="https://developer.spotify.com/documentation/web-api/reference/follow-artists-users">Spotify Docs</a>
  *
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
