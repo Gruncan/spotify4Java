@@ -2,6 +2,7 @@ package com.spotify.requests.users;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.playlists.PlaylistPage;
 import com.spotify.objects.playlists.SimplifiedPlaylist;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -23,7 +24,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "users", end = "playlists", authorizations = {Scope.PLAYLIST_READ_PRIVATE, Scope.PLAYLIST_READ_COLLABORATIVE})
-@SpotifySerialize(SimplifiedPlaylist.class)
+@SpotifySerialize(PlaylistPage.class)
 public class UserPlaylistGet implements SpotifyRequestVariant {
 
     /**
