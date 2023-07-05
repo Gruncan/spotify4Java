@@ -2,6 +2,7 @@ package com.spotify.requests.me.shows;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.shows.ShowPage;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -11,9 +12,9 @@ import lombok.Setter;
 /**
  * Get a list of shows saved in the current Spotify user's library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-shows">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link ShowPage}</p>
  *
- * @see ?
+ * @see ShowPage
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -21,6 +22,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/shows", authorizations = Scope.USER_LIBRARY_READ)
+@SpotifySerialize(ShowPage.class)
 public class MyShowsGet implements SpotifyRequestVariant {
 
     /**
