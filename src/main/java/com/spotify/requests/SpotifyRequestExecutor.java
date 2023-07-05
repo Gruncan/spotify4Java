@@ -195,14 +195,13 @@ public abstract class SpotifyRequestExecutor {
                     if (sb.toString().endsWith(",")) sb.deleteCharAt(sb.length() - 1);
                     sb.append("}");
                 }
-//                System.out.println(sb.toString());
                 httpRequest.addContent(sb.toString());
             } catch (IllegalAccessException e) {
                 System.out.printf("Failed to parse %s body content for request: %s%n", method, requestClass.getName());
                 e.printStackTrace();
                 return null;
             }
-            }
+        }
 
 
         RequestResponse rresponse = this.requestExecute(token, httpRequest);
@@ -261,13 +260,10 @@ public abstract class SpotifyRequestExecutor {
                 field.setAccessible(false);
             }
 
-            String end = spotifyRequest.end();
-            if (!end.equals("")) {
-                sb.append(end);
-            }
+            sb.append(spotifyRequest.end());
 
             if (sb.toString().endsWith("/"))
-                sb = new StringBuilder(sb.substring(0, sb.length() - 1));
+                sb.deleteCharAt(sb.length()-1);
 
             sb.append("?");
 
@@ -296,7 +292,7 @@ public abstract class SpotifyRequestExecutor {
                     String[] strings = new String[length];
                     for (int i = 0; i < length; i++) {
                         Object v = Array.get(o, i);
-                        String s = v.toString(); // Dynamic Dispatch
+                        String s = v.toString(); // Dynamic dispatch
                         strings[i] = s;
                     }
 

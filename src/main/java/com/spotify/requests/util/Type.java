@@ -12,10 +12,6 @@ public enum Type {
     EPISODE,
     AUDIOBOOK;
 
-    Type() {
-
-    }
-
 
     @Override
     public String toString() {

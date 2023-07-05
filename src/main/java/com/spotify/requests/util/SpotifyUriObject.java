@@ -34,7 +34,7 @@ public class SpotifyUriObject {
         if (split.length != 3)
             throw new IllegalArgumentException("Failed to initialize, " +
                     "ensure spotify raw uri is of the format spotify:type:id");
-        this.type = Type.valueOf(split[1]);
+        this.type = Type.valueOf(split[1].toUpperCase());
         this.id = split[2];
     }
 
