@@ -2,6 +2,7 @@ package com.spotify.requests.me.player;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.player.PlaybackState;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -11,15 +12,16 @@ import com.spotify.requests.util.Scope;
 /**
  * Get information about the user's current playback state, including track or episode, progress, and active device.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-information-about-the-users-current-playback">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link PlaybackState}</p>
  *
- * @see ?
+ * @see PlaybackState
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest(value = "me/player", authorizations = Scope.USER_READ_PLAYBACK_STATE)
+@SpotifySerialize(PlaybackState.class)
 public class MyPlayerGet implements SpotifyRequestVariant {
 
     /**
