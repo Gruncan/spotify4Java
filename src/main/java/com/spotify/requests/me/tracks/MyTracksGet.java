@@ -2,6 +2,7 @@ package com.spotify.requests.me.tracks;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.tracks.TrackSavedPage;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get a list of the songs saved in the current Spotify user's 'Your Music' library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-tracks">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link TrackSavedPage}</p>
  *
- * @see ?
+ * @see TrackSavedPage
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/tracks", authorizations = Scope.USER_LIBRARY_READ)
+@SpotifySerialize(TrackSavedPage.class)
 public class MyTracksGet implements SpotifyRequestVariant {
 
     /**
