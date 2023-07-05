@@ -9,6 +9,7 @@ import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.util.Scope;
 import com.spotify.requests.util.SpotifyPositionObject;
+import com.spotify.requests.util.SpotifyUriObject;
 import lombok.Setter;
 
 /**
@@ -34,13 +35,13 @@ public class MyPlayerResumePut implements SpotifyRequestVariant {
      * Spotify URI of the context to play. Valid contexts are albums, artists & playlists.
      */
     @SpotifyRequestContent("context_uri")
-    private String contextUri;
+    private SpotifyUriObject contextUri;
 
     /**
      * An array of the Spotify track URIs to play
      */
     @SpotifyRequestContent
-    private String[] uris;
+    private SpotifyUriObject[] uris;
 
     /**
      * Indicates from where in the context playback should start.

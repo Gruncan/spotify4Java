@@ -8,7 +8,8 @@ import com.spotify.requests.SpotifyRequestContent;
 import com.spotify.requests.SpotifyRequestVariant;
 import com.spotify.requests.SpotifySubRequest;
 import com.spotify.requests.util.Scope;
-import com.spotify.requests.util.SpotifyContentObject;
+import com.spotify.requests.util.SpotifyUriObject;
+import com.spotify.requests.util.SpotifyUriWrapper;
 import lombok.Setter;
 
 import java.util.Arrays;
@@ -37,7 +38,7 @@ public class PlaylistRemoveItemDelete implements SpotifyRequestVariant {
      * An array of objects containing Spotify URIs of the tracks or episodes to remove
      */
     @SpotifyRequestContent
-    private final SpotifyContentObject[] tracks;
+    private final SpotifyUriWrapper[] tracks;
 
     /**
      * The playlist's snapshot ID against which you want to make the changes. The API will validate that the specified items
@@ -50,8 +51,16 @@ public class PlaylistRemoveItemDelete implements SpotifyRequestVariant {
     public PlaylistRemoveItemDelete(String id, String... uris) {
         this.id = id;
         this.tracks = Arrays.stream(uris)
-                .map(SpotifyContentObject::new)
-                .toArray(SpotifyContentObject[]::new);
+                .map(SpotifyUriObject::new)
+                .map(SpotifyUriWrapper::new)
+                .toArray(SpotifyUriWrapper[]::new);
+    }
+
+    public PlaylistRemoveItemDelete(String id, SpotifyUriObject... uris){
+        this.id = id;
+        this.tracks = Arrays.stream(uris)
+                .map(SpotifyUriWrapper::new)
+                .toArray(SpotifyUriWrapper[]::new);
     }
 
 }
