@@ -2,6 +2,7 @@ package com.spotify.requests.me.episodes;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.episodes.EpisodePage;
 import com.spotify.objects.wrappers.Country;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get a list of the episodes saved in the current Spotify user's library.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-saved-episodes">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link EpisodePage}</p>
  *
- * @see ?
+ * @see EpisodePage
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/episode", authorizations = {Scope.USER_LIBRARY_READ, Scope.USER_READ_PLAYBACK_POSITION})
+@SpotifySerialize(EpisodePage.class)
 public class MyEpisodesGet implements SpotifyRequestVariant {
 
     /**
