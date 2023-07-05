@@ -2,6 +2,7 @@ package com.spotify.requests.users;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.playlists.SimplifiedPlaylist;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -12,9 +13,9 @@ import lombok.Setter;
 /**
  * Get a list of the playlists owned or followed by a Spotify user.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link SimplifiedPlaylist}</p>
  *
- * @see ?
+ * @see SimplifiedPlaylist
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +23,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "users", end = "playlists", authorizations = {Scope.PLAYLIST_READ_PRIVATE, Scope.PLAYLIST_READ_COLLABORATIVE})
+@SpotifySerialize(SimplifiedPlaylist.class)
 public class UserPlaylistGet implements SpotifyRequestVariant {
 
     /**
