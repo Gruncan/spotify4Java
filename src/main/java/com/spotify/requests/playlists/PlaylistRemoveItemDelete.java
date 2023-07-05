@@ -16,9 +16,7 @@ import java.util.Arrays;
 /**
  * Remove one or more items from a user's playlist.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/remove-tracks-playlist">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
  *
- * @see ?
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
