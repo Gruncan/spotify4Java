@@ -2,6 +2,7 @@ package com.spotify.requests.playlists;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.wrappers.SpotifyBooleanArray;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -10,15 +11,16 @@ import com.spotify.requests.SpotifySubRequest;
 /**
  * Get Spotify catalog information for a single album.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/check-if-user-follows-playlist">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link SpotifyBooleanArray}</p>
  *
- * @see ?
+ * @see SpotifyBooleanArray
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
  * @see SpotifyResponse
  */
 @SpotifyRequest(value = "playlist", end = "followers/contains")
+@SpotifySerialize(SpotifyBooleanArray.class)
 public class PlaylistFollowingCheckGet implements SpotifyRequestVariant {
 
     /**

@@ -16,9 +16,7 @@ import lombok.Setter;
  * <i>Replace and reorder are mutually exclusive operations which share the same endpoint, but have different parameters.
  * These operations can't be applied together in a single request.</i><br>
  * <a href="https://developer.spotify.com/documentation/web-api/reference/reorder-or-replace-playlists-tracks">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
  *
- * @see ?
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
