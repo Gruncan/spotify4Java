@@ -3,6 +3,7 @@ package com.spotify.requests.users;
 import com.http.HttpMethod;
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.playlists.Playlist;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestContent;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -13,9 +14,9 @@ import lombok.Setter;
 /**
  * Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)
  * <a href="https://developer.spotify.com/documentation/web-api/reference/create-playlist">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link Playlist}</p>
  *
- * @see ?
+ * @see Playlist
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -24,6 +25,7 @@ import lombok.Setter;
 @Setter
 @SpotifyRequest(value = "users", end = "playlists",
         authorizations = {Scope.PLAYLIST_MODIFY_PRIVATE, Scope.PLAYLIST_MODIFY_PUBLIC}, method = HttpMethod.POST)
+@SpotifySerialize(Playlist.class)
 public class UserPlaylistCreatePost implements SpotifyRequestVariant {
 
     /**
