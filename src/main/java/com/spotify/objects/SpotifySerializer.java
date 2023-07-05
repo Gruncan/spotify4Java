@@ -31,7 +31,7 @@ public abstract class SpotifySerializer {
 
 
     @SuppressWarnings({"unchecked", "rawtypes"})
-    private <E extends Serializable> E serializer(Class<E> cls, JSONObject json) {
+    private <E extends Serializable> E serializer(Class<E> cls, JSONObject json) throws SpotifySerializationException{
         try {
             if (cls.isEnum()) {
                 return (E) this.handleEnum((Class<? extends Enum>) cls, json.getString("value"));
@@ -94,32 +94,36 @@ public abstract class SpotifySerializer {
                     continue;
                 else if (jsonPath == null || jsonPath.isNull(name))
                     throw new SpotifySerializationException(String.format("No mapping found for spotify required field: \"%s/%s\". " +
-                            "Java class %s field: %s", String.join("/", spotifyField.path()), spotifyField.value(), cls, field.getName()));
-
+                            "Java class %s field: %s", String.join(".", spotifyField.path()), spotifyField.value(), cls, field.getName()));
 
                 field.setAccessible(true);
+                try {
+                    if (fieldType.isArray()) {
+                        Class<?> componentRawType = fieldType.getComponentType();
+                        Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
 
-                if (fieldType.isArray()) {
-                    Class<?> componentRawType = fieldType.getComponentType();
-                    Class<? extends Serializable> componentType = (Class<? extends Serializable>) componentRawType;
-
-                    JSONArray jsonArray = jsonPath.getJSONArray(name);
-                    field.set(e, this.createArray(componentType, jsonArray));
-                } else {
-                    field.set(e, this.serializeField(fieldType, jsonPath, name));
+                        JSONArray jsonArray = jsonPath.getJSONArray(name);
+                        field.set(e, this.createArray(componentType, jsonArray));
+                    } else {
+                        field.set(e, this.serializeField(fieldType, jsonPath, name));
+                    }
+                    field.setAccessible(false);
+                }catch (SpotifySerializationException a){
+                    if(spotifyField.canSkip()) continue;
+                    a.printStackTrace();
+                    return null;
                 }
-                field.setAccessible(false);
             }
             return e;
 
         } catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-                 InvocationTargetException | SpotifySerializationException a) {
+                 InvocationTargetException a) {
             a.printStackTrace();
             return null;
         }
     }
 
-    private <E extends Serializable> E serializeField(Class<E> componentType, JSONObject jsonPath, String name) {
+    private <E extends Serializable> E serializeField(Class<E> componentType, JSONObject jsonPath, String name) throws SpotifySerializationException {
         if (!SpotifyObject.class.isAssignableFrom(componentType))
             return jsonPath.get(componentType, name);
         else {
@@ -133,7 +137,7 @@ public abstract class SpotifySerializer {
     }
 
     @SuppressWarnings("unchecked")
-    private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) {
+    private <E extends Serializable> E[] createArray(Class<E> cls, JSONArray jsonArray) throws SpotifySerializationException {
         E[] array = (E[]) Array.newInstance(cls, jsonArray.length());
         for (int i = 0; i < array.length; i++)
             array[i] = this.serializeField(cls, jsonArray.getModifiedJSONObject(i), "value");
@@ -146,6 +150,12 @@ public abstract class SpotifySerializer {
 
     protected <S extends SpotifyObject> S serializeObject(JSONObject json, Class<S> cls) {
         if (json == null || cls == null) return null;
-        return this.serializer(cls, json);
+        try{
+            return this.serializer(cls, json);
+        }catch (SpotifySerializationException e){
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }

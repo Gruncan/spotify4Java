@@ -18,4 +18,6 @@ public @interface SpotifyField {
 
     String[] path() default {};
 
+    boolean canSkip() default false;
+
 }

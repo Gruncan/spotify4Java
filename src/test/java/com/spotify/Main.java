@@ -1,24 +1,27 @@
 package com.spotify;
 
-import com.spotify.objects.wrappers.SpotifyBooleanArray;
-import com.spotify.requests.me.MyFollowingPersonGet;
+import com.spotify.objects.player.PlayerQueue;
+import com.spotify.requests.SpotifyRequestVariant;
+import com.spotify.requests.me.player.MyPlayerQueueGet;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
-        MyFollowingPersonGet request = new MyFollowingPersonGet("artist", "3zz52ViyCBcplK0ftEVPSS", "5K4W6rqBFWDnAN6FQUkS6x");
+        SpotifyRequestVariant request = new MyPlayerQueueGet();
         SpotifyResponse spotifyResponse = sc.executeRequest(request);
         String out = spotifyResponse.getJsonObject().toString(4);
 
 
-        System.out.println(out);
-        SpotifyBooleanArray pageAlbums = spotifyResponse.getSerialisedObject();
-        System.out.println(Arrays.toString(pageAlbums.getValues()));
+        PlayerQueue playerQueue = spotifyResponse.getSerialisedObject();
+
+
+        System.out.println(playerQueue);
+
+
 
     }
 
