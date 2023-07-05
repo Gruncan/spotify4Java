@@ -2,7 +2,7 @@ package com.spotify.requests.me.player;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
-import com.spotify.objects.albums.Album;
+import com.spotify.objects.tracks.TrackPage;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -12,9 +12,9 @@ import lombok.Setter;
 /**
  * Get tracks from the current user's recently played tracks.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-recently-played">Spotify Docs</a>
- * <p>Serializes into {@link Album}</p>
+ * <p>Serializes into {@link TrackPage}</p>
  *
- * @see ?
+ * @see TrackPage
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -22,6 +22,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/player/recently-played", authorizations = Scope.USER_READ_RECENTLY_PLAYED)
+@SpotifySerialize(TrackPage.class)
 public class MyPlayerRecentlyPlayedGet implements SpotifyRequestVariant {
 
     /**
