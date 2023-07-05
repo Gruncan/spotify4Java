@@ -2,6 +2,7 @@ package com.spotify.requests.me;
 
 import com.spotify.SpotifyResponse;
 import com.spotify.objects.SpotifySerialize;
+import com.spotify.objects.wrappers.ArtistTrackPage;
 import com.spotify.requests.SpotifyRequest;
 import com.spotify.requests.SpotifyRequestField;
 import com.spotify.requests.SpotifyRequestVariant;
@@ -14,9 +15,9 @@ import lombok.Setter;
 /**
  * Get the current user's top artists or tracks based on calculated affinity.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
+ * <p>Serializes into {@link ArtistTrackPage}</p>
  *
- * @see ?
+ * @see ArtistTrackPage
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize
@@ -24,6 +25,7 @@ import lombok.Setter;
  */
 @Setter
 @SpotifyRequest(value = "me/top", authorizations = Scope.USER_TOP_READ)
+@SpotifySerialize(ArtistTrackPage.class)
 public class MyTopInfo implements SpotifyRequestVariant {
 
     /**

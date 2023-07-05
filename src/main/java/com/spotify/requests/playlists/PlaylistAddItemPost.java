@@ -11,9 +11,7 @@ import lombok.Setter;
 /**
  * Add one or more items to a user's playlist.
  * <a href="https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist">Spotify Docs</a>
- * <p>Serializes into {@link ?}</p>
  *
- * @see ?
  * @see SpotifyRequestVariant
  * @see SpotifyRequest
  * @see SpotifySerialize

@@ -1,8 +1,7 @@
 package com.spotify;
 
-import com.spotify.objects.player.PlayerQueue;
 import com.spotify.requests.SpotifyRequestVariant;
-import com.spotify.requests.me.player.MyPlayerQueueGet;
+import com.spotify.requests.playlists.PlaylistAddItemPost;
 
 import java.io.IOException;
 
@@ -11,15 +10,14 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
-        SpotifyRequestVariant request = new MyPlayerQueueGet();
+        SpotifyRequestVariant request = new PlaylistAddItemPost("3NEEvJ4ZEy1qbPggJBxCBf","spotify:track:1odExI7RdWc4BT515LTAwj");
         SpotifyResponse spotifyResponse = sc.executeRequest(request);
         String out = spotifyResponse.getJsonObject().toString(4);
 
 
-        PlayerQueue playerQueue = spotifyResponse.getSerialisedObject();
+        System.out.println(out);
 
 
-        System.out.println(playerQueue);
 
 
 
