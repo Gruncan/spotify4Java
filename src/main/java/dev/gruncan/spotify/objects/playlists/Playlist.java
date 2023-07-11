@@ -5,6 +5,7 @@ import dev.gruncan.spotify.objects.SpotifyObject;
 import dev.gruncan.spotify.objects.search.items.SearchItemsPlaylists;
 import dev.gruncan.spotify.objects.wrappers.SpotifyFollowers;
 import dev.gruncan.spotify.requests.playlists.PlaylistGet;
+import dev.gruncan.spotify.requests.users.UserPlaylistCreatePost;
 import lombok.Getter;
 
 
@@ -13,7 +14,10 @@ import lombok.Getter;
  * Serialized from <a href="https://developer.spotify.com/documentation/web-api/reference/get-playlist">PlaylistGet</a>
  *
  * @see PlaylistGet
+ * @see UserPlaylistCreatePost
  * @see SearchItemsPlaylists
+ * @see SimplifiedPlaylist
+ * @see SpotifyFollowers
  * @see SpotifyObject
  */
 @Getter

@@ -4,8 +4,18 @@ import dev.gruncan.spotify.objects.SpotifyField;
 import dev.gruncan.spotify.objects.SpotifyObject;
 import dev.gruncan.spotify.objects.SpotifyOptional;
 import dev.gruncan.spotify.objects.wrappers.SpotifyImage;
+import dev.gruncan.spotify.requests.users.UserPlaylistGet;
 import lombok.Getter;
 
+/**
+ * Represents a simplified spotify playlist
+ *
+ * @see UserPlaylistGet
+ * @see Playlist
+ * @see SpotifyImage
+ * @see PlaylistContributor
+ * @see SpotifyObject
+ */
 @Getter
 public class SimplifiedPlaylist implements SpotifyObject {
 
