@@ -39,7 +39,7 @@ public class MyFollowPersonPut implements SpotifyRequestVariant {
      * An array of the artist or user Spotify IDs.
      */
     @SpotifyRequestContent("ids")
-    private final String[] bodyIds;
+    private String[] bodyIds;
 
 
     /**
@@ -49,7 +49,8 @@ public class MyFollowPersonPut implements SpotifyRequestVariant {
      */
     public MyFollowPersonPut(String type, String... ids) {
         this.type = type;
-        this.bodyIds = ids;
+        this.ids = ids;
+        this.bodyIds = new String[]{};
     }
 
 }

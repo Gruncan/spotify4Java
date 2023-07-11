@@ -32,6 +32,8 @@ public abstract class SpotifyRequestExecutor {
 
     private String cachedBuiltUrl;
 
+    private static boolean debug = false;
+
     public SpotifyRequestExecutor() {
         this.setAPIVersion(SpotifyAPIVersion.V1);
         this.cachedBuiltUrl = null;
@@ -75,7 +77,7 @@ public abstract class SpotifyRequestExecutor {
             int code = response.getCode();
             String s = response.getMessage();
             JSONObject content = null;
-            if (code == 201 || code == 202) code = 200;
+            if (code >= 201 && code <= 204) code = 200;
             switch (code) {
                 case 200 -> {
                     try {
@@ -203,7 +205,8 @@ public abstract class SpotifyRequestExecutor {
             }
         }
 
-
+        if (debug)
+            System.out.printf("Executing request for %s%n", requestClass.toString());
         RequestResponse rresponse = this.requestExecute(token, httpRequest);
 
 
@@ -270,17 +273,18 @@ public abstract class SpotifyRequestExecutor {
             // Fields annotated with SpotifyRequestField
             for (Field field : spotifyFieldRequestFields) {
                 field.setAccessible(true);
-
                 Object o = field.get(request);
                 Class<?> type = field.getType();
-                if (o == null || isPrimitiveDefault(o, type)) {
+                SpotifyRequestField srf = field.getAnnotation(SpotifyRequestField.class);
+
+                if (o == null || (!srf.requireDefault() && isPrimitiveDefault(o, type))) {
                     field.setAccessible(false);
                     continue;
                 }
 
                 String name = field.getName();
                 // If not the field name
-                SpotifyRequestField srf = field.getAnnotation(SpotifyRequestField.class);
+
                 if (!srf.value().equals("\""))
                     name = srf.value();
 
@@ -296,8 +300,9 @@ public abstract class SpotifyRequestExecutor {
                         strings[i] = s;
                     }
 
-                    String parameter = Util.join(strings, ",");
+                    String parameter = Util.join(strings, "%2C");
                     parameter = parameter.replace(" ", "%20");
+
                     sb.append(parameter);
                     sb.append("&");
                 } else {

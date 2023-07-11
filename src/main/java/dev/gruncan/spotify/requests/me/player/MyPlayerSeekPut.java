@@ -26,7 +26,7 @@ public class MyPlayerSeekPut implements SpotifyRequestVariant {
      * The position in milliseconds to seek to. Must be a positive number.
      * Passing in a position that is greater than the length of the track will cause the player to start playing the next song.
      */
-    @SpotifyRequestField("position_ms")
+    @SpotifyRequestField(value = "position_ms", requireDefault = true)
     private final int position;
 
     /**

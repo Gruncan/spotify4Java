@@ -15,4 +15,6 @@ public @interface SpotifyRequestField {
 
     String value() default "\"";
 
+    boolean requireDefault() default false;
+
 }

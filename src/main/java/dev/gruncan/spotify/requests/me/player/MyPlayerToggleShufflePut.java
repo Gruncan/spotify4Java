@@ -29,7 +29,7 @@ public class MyPlayerToggleShufflePut implements SpotifyRequestVariant {
      * <li>false : Do not shuffle user's playback.</li>
      * </ul>
      */
-    @SpotifyRequestField
+    @SpotifyRequestField(requireDefault = true)
     private final boolean state;
 
     /**
