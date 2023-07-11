@@ -36,7 +36,7 @@ public class SpotifyResponse extends SpotifySerializer {
     }
 
     public boolean wasSuccess() {
-        return this.requestResponse.getCode() == 200;
+        return this.requestResponse.getCode() >= 200 || this.requestResponse.getCode() <= 203 ;
     }
 
     @SuppressWarnings("unchecked")

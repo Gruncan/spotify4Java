@@ -86,18 +86,18 @@ public abstract class SpotifyRequestExecutor {
                         content = new JSONObject(String.format("{\"value\": %s}", response.getContent()));
                     }
                 }
-                case 401 -> System.out.printf("Error: Bad or expired token. This can happen if the user revoked a " +
+                case 401 -> System.out.printf("Error %d: Bad or expired token. This can happen if the user revoked a " +
                                 "token or the access token has expired. You should re-authenticate the user for %s request %s%n",
-                        request.getMethod(), request.getURL());
+                        code, request.getMethod(), request.getURL());
                 case 403 ->
-                        System.out.printf("Error: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
-                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", request.getMethod(),
+                        System.out.printf("Error %d: Bad OAuth request (wrong consumer key, bad nonce, expired timestamp...)" +
+                                        ". Unfortunately, re-authenticating the user won't help here for %s request %s.%n", code, request.getMethod(),
                                 request.getURL());
-                case 429 -> System.out.println("Error: The app has exceeded its rate limits.");
+                case 429 -> System.out.println("Error %d: The app has exceeded its rate limits.");
                 case 400 ->
-                        System.out.printf("Error: Bad request for %s request %s%n", request.getMethod(), request.getURL());
+                        System.out.printf("Error %d: Bad request for %s request %s%n", code, request.getMethod(), request.getURL());
                 case 404 ->
-                        System.out.printf("Error: Unknown request for %s request %s%n", request.getMethod(), request.getURL());
+                        System.out.printf("Error %d: Unknown request for %s request %s%n", code, request.getMethod(), request.getURL());
                 default -> System.out.printf("Error: Unknown fail cause, status code: '%s' for %s request %s .%n", code,
                         request.getMethod(), request.getURL());
             }

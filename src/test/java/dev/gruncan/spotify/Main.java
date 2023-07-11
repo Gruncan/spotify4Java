@@ -1,7 +1,7 @@
 package dev.gruncan.spotify;
 
 import dev.gruncan.spotify.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.requests.playlists.PlaylistAddItemPost;
+import dev.gruncan.spotify.requests.me.MyProfileGet;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         SpotifyClient sc = new SpotifyClientBuilderTester().getBuiltClient();
-        SpotifyRequestVariant request = new PlaylistAddItemPost("3NEEvJ4ZEy1qbPggJBxCBf","spotify:track:1odExI7RdWc4BT515LTAwj");
+        SpotifyRequestVariant request = new MyProfileGet();
         SpotifyResponse spotifyResponse = sc.executeRequest(request);
         String out = spotifyResponse.getJsonObject().toString(4);
 

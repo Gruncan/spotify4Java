@@ -47,7 +47,7 @@ public class UserPlaylistGet implements SpotifyRequestVariant {
 
     /**
      * Initializes the {@link UserPlaylistGet} request
-     * @param id The Spotify ID of the playlist.
+     * @param id The Spotify ID of the user.
      */
     public UserPlaylistGet(String id) {
         this.id = id;
