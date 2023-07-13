@@ -2,7 +2,7 @@
 
 # Spotify for Java (Still under development)
 
-Spotify api wrapper for java. <a href="https://gruncan.github.io/spotify4Java/"> JavaDocs</a>
+Spotify api wrapper for java. <a href="s4j.gruncan.dev"> JavaDocs</a>
 
 Written for enjoyment and a way to learn java concepts that I have rarely/never used.
 Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and concurrency.
@@ -62,7 +62,8 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 
 - AlbumGet ([api.spotify.com/v1/albums/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-album))
 - AlbumTracksGet ([api.spotify.com/v1/albums/{id}/tracks](https://developer.spoify.com/documentation/web-api/reference/#/operations/get-an-albums-tracks))
-- SeveralAlbumsGet ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))
+- AlbumSeveralGet ([api.spotify.com/v1/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-albums))
+- AlbumReleasesGet
 
 </details>
 <br>
@@ -72,8 +73,8 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 - ArtistGet ([api.spotify.com/v1/artists/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artist))
 - ArtistsAlbumsGet ([api.spotify.com/v1/artists/{id}/albums](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-albums))
 - ArtistsRelatedArtistsGet ([api.spotify.com/v1/artists/related-artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-related-artists))
-- ArtistTopTracksGet ([api.spotify.com/v1/artists/{id}/top-tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-top-tracks))
-- SeveralArtistsGet ([api.spotify.com/v1/artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-artists))
+- ArtistsTopTracksGet ([api.spotify.com/v1/artists/{id}/top-tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-an-artists-top-tracks))
+- ArtistSeveralGet ([api.spotify.com/v1/artists](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-multiple-artists))
 
 </details>
 <br>
@@ -81,7 +82,7 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <summary><strong><u>Audiobooks:</u></strong></summary>
 
 - AudiobookGet ([api.spotify.com/v1/audiobooks/{id}](https://developer.spotify.com/documentation/web-api/reference/get-an-audiobook))
-- SeveralAudioBooksGet ([api.spotify.com/v1/audiobooks/](https://developer.spotify.com/documentation/web-api/reference/get-multiple-audiobooks))
+- AudiobookSeveralGet ([api.spotify.com/v1/audiobooks/](https://developer.spotify.com/documentation/web-api/reference/get-multiple-audiobooks))
 - AudiobookChaptersGet ([api.spotify.com/v1/audiobooks/{id}/chapters](https://developer.spotify.com/documentation/web-api/reference/get-audiobook-chapters))
 
 </details>
@@ -89,8 +90,8 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <details open>
 <summary><strong><u>Categories:</u></strong></summary>
 
-- CategoriesGet ([api.spotify.com/v1/browse/categories/{category_id}](https://developer.spotify.com/documentation/web-api/reference/get-a-category))
-- SeveralCategoriesGet ([api.spotify.com/v1/browse/categories](https://developer.spotify.com/documentation/web-api/reference/get-categories))
+- CategoryGet ([api.spotify.com/v1/browse/categories/{category_id}](https://developer.spotify.com/documentation/web-api/reference/get-a-category))
+- CategorySeveralGet ([api.spotify.com/v1/browse/categories](https://developer.spotify.com/documentation/web-api/reference/get-categories))
 
 </details>
 <br>
@@ -98,7 +99,7 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <summary><strong><u>Chapters:</u></strong></summary>
 
 - ChapterGet ([api.spotify.com/v1/chapters/{id}](https://developer.spotify.com/documentation/web-api/reference/get-a-chapter))
-- SeveralChaptersGet ([api.spotify.com/v1/chapters](https://developer.spotify.com/documentation/web-api/reference/get-several-chapters))
+- ChapterSeveralGet ([api.spotify.com/v1/chapters](https://developer.spotify.com/documentation/web-api/reference/get-several-chapters))
 
 </details>
 <br>
@@ -106,7 +107,7 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <summary><strong><u>Episodes:</u></strong></summary>
 
 - EpisodeGet ([api.spotify.com/v1/episodes/{id}](https://developer.spotify.com/documentation/web-api/reference/get-an-episode))
-- SeveralEpisodesGet ([api.spotify.com/v1/episodes](https://developer.spotify.com/documentation/web-api/reference/get-multiple-episodes))
+- EpisodeSeveralGet ([api.spotify.com/v1/episodes](https://developer.spotify.com/documentation/web-api/reference/get-multiple-episodes))
 
 </details>
 <br>
@@ -125,13 +126,67 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 </details>
 <br>
 <details open>
+<summary><strong><u>Me:</u></strong></summary>
+
+- MyAlbumsDelete 
+- MyAlbumsGet
+- MyAlbumsPut
+- MyAlbumsSavedGet
+- MyAudiobooksDelete
+- MyAudiobooksGet
+- MyAudiobooksPut
+- MyAudiobooksSavedGet
+- MyEpisodesDelete
+- MyEpisodesGet
+- MyEpisodesPut
+- MyEpisodesSavedGet
+- MyFollowedArtistsGet
+- MyFollowingPersonGet
+- MyFollowPersonPut
+- MyProfileGet
+- MyTopInfo
+- MyUnfollowPersonDelete
+- MyPlayerCurrentlyPlayingGet
+- MyPlayerDevicesGet
+- MyPlayerGet
+- MyPlayerNextPost
+- MyPlayerPausePut
+- MyPlayerPreviousPost
+- MyPlayerQueueGet
+- MyPlayerQueuePost
+- MyPlayerRecentlyPlayedGet
+- MyPlayerRepeatPut
+- MyPlayerResumePut
+- MyPlayerSeekPut
+- MyPlayerSetVolumePut
+- MyPlayerToggleShufflePut
+- MyPlayerTransferPut
+- MyPlaylistsGet
+- MyShowsDelete
+- MyShowsGet
+- MyShowsPut
+- MyShowsSavedGet
+- MyTracksDelete
+- MyTracksGet
+- MyTracksPut
+- MyTracksSavedGet
+
+<details open>
 <summary><strong><u>Playlists:</u></strong></summary>
 
 - PlaylistGet ([api.spotify.com/v1/playlists/{playlist_id}](https://developer.spotify.com/documentation/web-api/reference/get-playlist))
-- CategoriesPlaylistsGet ([api.spotify.com/v1/browse/categories/{category_id}/playlists](https://developer.spotify.com/documentation/web-api/reference/get-a-categories-playlists))
-- FeaturedPlaylistGet ([api.spotify.com/v1/browse/featured-playlists](https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists))
+- PlaylistCategoriesGet ([api.spotify.com/v1/browse/categories/{category_id}/playlists](https://developer.spotify.com/documentation/web-api/reference/get-a-categories-playlists))
+- PlaylistFeaturedGet ([api.spotify.com/v1/browse/featured-playlists](https://developer.spotify.com/documentation/web-api/reference/get-featured-playlists))
 - PlaylistImageGet ([api.spotify.com/v1/playlists/{playlist_id}/images](https://developer.spotify.com/documentation/web-api/reference/get-playlist-cover))
 - PlaylistTracksGet [api.spotify.com/v1/playlists/{playlist_id}/tracks](https://developer.spotify.com/documentation/web-api/reference/get-playlists-tracks))
+- PlaylistAddCoverImagePut
+- PlaylistAddItemPost
+- PlaylistChangeDetailsPut
+- PlaylistFollowingCheckGet
+- PlaylistFollowPut
+- PlaylistRemoveItemDelete
+- PlaylistUnfollowDelete
+- PlaylistUpdatePut
 
 </details>
 <br>
@@ -146,7 +201,7 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <summary><strong><u>Shows:</u></strong></summary>
 
 - ShowGet ([api.spotify.com/v1/shows/{id}](https://developer.spotify.com/documentation/web-api/reference/get-a-show))
-- SeveralShowsGet ([api.spotify.com/v1/shows](https://developer.spotify.com/documentation/web-api/reference/get-multiple-shows))
+- ShowSeveralGet ([api.spotify.com/v1/shows](https://developer.spotify.com/documentation/web-api/reference/get-multiple-shows))
 - ShowEpisodesGet ([api.spotify.com/v1/shows/{id}/episodes](https://developer.spotify.com/documentation/web-api/reference/get-a-shows-episodes))
 
 
@@ -155,13 +210,21 @@ All Json classes were taken from https://github.com/tdunning/open-json with only
 <details open>
 <summary><strong><u>Tracks:</u></strong></summary>
 
-- SeveralTrackAudioFeaturesGet ([api.spotify.com/audio-features](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features))
-- SeveralTracksGet ([api.spotify.com/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks))
+- TrackAudioFeatureSeveralGet ([api.spotify.com/audio-features](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-audio-features))
+- TrackSeveralGet ([api.spotify.com/tracks](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-several-tracks))
 - TrackAudioAnalysisGet ([api.spotify.com/audio-analysis/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis))
 - TrackAudioFeaturesGet ([api.spotify.com/audio-features/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features))
 - TrackGet ([api.spotify.com/tracks/{id}](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-track))
 - TrackRecommendationGet ([api.spotify.com/recommendations](https://developer.spotify.com/documentation/web-api/reference/#/operations/get-recommendations))
 
+</details>
+<br>
+<details open>
+<summary><strong><u>User:</u></strong></summary>
+
+- UserPlaylistCreatePost
+- UserPlaylistGet
+- UserProfileGet
 </details>
 
 ### <u>Future Plans</u>

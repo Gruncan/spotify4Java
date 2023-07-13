@@ -31,6 +31,9 @@ public class RequestClasses {
                 name = name.replace("src\\main\\java\\", "")
                         .replace(".java", "")
                         .replace("\\", ".");
+//                String[] dir = name.split("\\.");
+//                name = dir[dir.length-1];
+
 
                 list.add(name);
             }
