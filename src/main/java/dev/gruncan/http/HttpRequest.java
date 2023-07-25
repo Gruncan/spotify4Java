@@ -1,7 +1,7 @@
 package dev.gruncan.http;
 
 import dev.gruncan.spotify.SpotifyClientBuilder;
-import dev.gruncan.spotify.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestExecutor;
 import dev.gruncan.spotify.util.Util;
 
 import java.io.BufferedReader;

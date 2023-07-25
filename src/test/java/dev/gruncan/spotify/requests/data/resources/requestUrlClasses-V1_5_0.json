@@ -1,12 +1,12 @@
 {
-  "dev.gruncan.spotify.requests.albums.AlbumGet":{
+  "dev.gruncan.spotify.webapi.requests.albums.AlbumGet":{
     "url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy",
     "id": "4aawyAB9vmqN3uQ7FjRGTy"
   },
-  "dev.gruncan.spotify.requests.albums.AlbumReleasesGet":{
+  "dev.gruncan.spotify.webapi.requests.albums.AlbumReleasesGet":{
     "url" : "https://api.spotify.com/v1/browse/new-releases"
   },
-  "dev.gruncan.spotify.requests.albums.AlbumSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.albums.AlbumSeveralGet":{
     "url": "https://api.spotify.com/v1/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     "ids": [
       "382ObEPsp2rxGrnsizN5TX",
@@ -14,19 +14,19 @@
       "2noRn2Aes5aoNVsU6iWThc"
     ]
   },
-  "dev.gruncan.spotify.requests.albums.AlbumTracksGet":{
+  "dev.gruncan.spotify.webapi.requests.albums.AlbumTracksGet":{
     "url": "https://api.spotify.com/v1/albums/4aawyAB9vmqN3uQ7FjRGTy/tracks",
     "id": "4aawyAB9vmqN3uQ7FjRGTy"
   },
-  "dev.gruncan.spotify.requests.artists.ArtistGet":{
+  "dev.gruncan.spotify.webapi.requests.artists.ArtistGet":{
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg",
     "id": "0TnOYISbd1XYRBk9myaseg"
   },
-  "dev.gruncan.spotify.requests.artists.ArtistsAlbumsGet":{
+  "dev.gruncan.spotify.webapi.requests.artists.ArtistsAlbumsGet":{
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/albums",
     "id": "0TnOYISbd1XYRBk9myaseg"
   },
-  "dev.gruncan.spotify.requests.artists.ArtistSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.artists.ArtistSeveralGet":{
     "url": "https://api.spotify.com/v1/artists?ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6",
     "ids": [
       "2CIMQHirSU0MQqyYHq0eOx",
@@ -34,25 +34,25 @@
       "1vCWHaC5f2uS3yhpwWbIA6"
     ]
   },
-  "dev.gruncan.spotify.requests.artists.ArtistsRelatedArtistsGet":{
+  "dev.gruncan.spotify.webapi.requests.artists.ArtistsRelatedArtistsGet":{
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/related-artists",
     "id": "0TnOYISbd1XYRBk9myaseg"
   },
-  "dev.gruncan.spotify.requests.artists.ArtistsTopTracksGet":{
+  "dev.gruncan.spotify.webapi.requests.artists.ArtistsTopTracksGet":{
     "url": "https://api.spotify.com/v1/artists/0TnOYISbd1XYRBk9myaseg/top-tracks",
     "id": "0TnOYISbd1XYRBk9myaseg",
     "market": "ES"
   },
 
-  "dev.gruncan.spotify.requests.audiobooks.AudiobookChaptersGet":{
+  "dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookChaptersGet":{
     "url": "https://api.spotify.com/v1/audiobooks/7iHfbu1YPACw6oZPAFJtqe/chapters",
     "id": "7iHfbu1YPACw6oZPAFJtqe"
   },
-  "dev.gruncan.spotify.requests.audiobooks.AudiobookGet":{
+  "dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookGet":{
     "url": "https://api.spotify.com/v1/audiobooks/7iHfbu1YPACw6oZPAFJtqe",
     "id": "7iHfbu1YPACw6oZPAFJtqe"
   },
-  "dev.gruncan.spotify.requests.audiobooks.AudiobookSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookSeveralGet":{
     "url": "https://api.spotify.com/v1/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe",
     "ids": [
       "18yVqkdbdRvS24c0Ilj2ci",
@@ -60,18 +60,18 @@
       "7iHfbu1YPACw6oZPAFJtqe"
     ]
   },
-  "dev.gruncan.spotify.requests.categories.CategoryGet":{
+  "dev.gruncan.spotify.webapi.requests.categories.CategoryGet":{
     "url": "https://api.spotify.com/v1/browse/categories/dinner",
     "id": "dinner"
   },
-  "dev.gruncan.spotify.requests.categories.CategorySeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.categories.CategorySeveralGet":{
     "url": "https://api.spotify.com/v1/browse/categories"
   },
-  "dev.gruncan.spotify.requests.chapters.ChapterGet":{
+  "dev.gruncan.spotify.webapi.requests.chapters.ChapterGet":{
     "url": "https://api.spotify.com/v1/chapters/0D5wENdkdwbqlrHoaJ9g29",
     "id": "0D5wENdkdwbqlrHoaJ9g29"
   },
-  "dev.gruncan.spotify.requests.chapters.ChapterSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.chapters.ChapterSeveralGet":{
     "url": "https://api.spotify.com/v1/chapters?ids=0IsXVP0JmcB2adSE338GkK%2C3ZXb8FKZGU0EHALYX6uCzU%2C0D5wENdkdwbqlrHoaJ9g29",
     "ids": [
       "0IsXVP0JmcB2adSE338GkK",
@@ -79,24 +79,24 @@
       "0D5wENdkdwbqlrHoaJ9g29"
     ]
   },
-  "dev.gruncan.spotify.requests.episodes.EpisodeGet":{
+  "dev.gruncan.spotify.webapi.requests.episodes.EpisodeGet":{
     "url": "https://api.spotify.com/v1/episodes/512ojhOuo1ktJprKbVcKyQ",
     "id": "512ojhOuo1ktJprKbVcKyQ"
   },
-  "dev.gruncan.spotify.requests.episodes.EpisodeSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.episodes.EpisodeSeveralGet":{
     "url": "https://api.spotify.com/v1/episodes?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf",
     "ids": [
       "77o6BIVlYM3msb4MMIL1jH",
       "0Q86acNRm6V9GYx55SXKwf"
     ]
   },
-  "dev.gruncan.spotify.requests.genres.GenreAvailableGet":{
+  "dev.gruncan.spotify.webapi.requests.genres.GenreAvailableGet":{
     "url": "https://api.spotify.com/v1/recommendations/available-genre-seeds"
   },
-  "dev.gruncan.spotify.requests.markets.MarketsAvailableGet":{
+  "dev.gruncan.spotify.webapi.requests.markets.MarketsAvailableGet":{
     "url": "https://api.spotify.com/v1/markets"
   },
-  "dev.gruncan.spotify.requests.me.albums.MyAlbumsDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.albums.MyAlbumsDelete":{
     "url" : "https://api.spotify.com/v1/me/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     "ids": [
       "382ObEPsp2rxGrnsizN5TX",
@@ -104,231 +104,231 @@
       "2noRn2Aes5aoNVsU6iWThc"
     ]
   },
-  "dev.gruncan.spotify.requests.me.albums.MyAlbumsGet":{
+  "dev.gruncan.spotify.webapi.requests.me.albums.MyAlbumsGet":{
     "url" : "https://api.spotify.com/v1/me/albums"
   },
-  "dev.gruncan.spotify.requests.me.albums.MyAlbumsPut":{
+  "dev.gruncan.spotify.webapi.requests.me.albums.MyAlbumsPut":{
     "url" : "https://api.spotify.com/v1/me/albums?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     "ids": ["382ObEPsp2rxGrnsizN5TX","1A2GTWGtFfWp7KSQTwWOyo","2noRn2Aes5aoNVsU6iWThc"]
   },
-  "dev.gruncan.spotify.requests.me.albums.MyAlbumsSavedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.albums.MyAlbumsSavedGet":{
     "url" : "https://api.spotify.com/v1/me/albums/contains?ids=382ObEPsp2rxGrnsizN5TX%2C1A2GTWGtFfWp7KSQTwWOyo%2C2noRn2Aes5aoNVsU6iWThc",
     "ids": ["382ObEPsp2rxGrnsizN5TX","1A2GTWGtFfWp7KSQTwWOyo","2noRn2Aes5aoNVsU6iWThc"]
   },
 
-  "dev.gruncan.spotify.requests.me.audiobooks.MyAudiobooksDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.audiobooks.MyAudiobooksDelete":{
     "url" : "https://api.spotify.com/v1/me/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe",
     "ids": ["18yVqkdbdRvS24c0Ilj2ci","1HGw3J3NxZO1TP1BTtVhpZ","7iHfbu1YPACw6oZPAFJtqe"]
   },
-  "dev.gruncan.spotify.requests.me.audiobooks.MyAudiobooksGet":{
+  "dev.gruncan.spotify.webapi.requests.me.audiobooks.MyAudiobooksGet":{
     "url" : "https://api.spotify.com/v1/me/audiobooks"
   },
-  "dev.gruncan.spotify.requests.me.audiobooks.MyAudiobooksPut":{
+  "dev.gruncan.spotify.webapi.requests.me.audiobooks.MyAudiobooksPut":{
     "url" : "https://api.spotify.com/v1/me/audiobooks?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe",
     "ids": ["18yVqkdbdRvS24c0Ilj2ci","1HGw3J3NxZO1TP1BTtVhpZ","7iHfbu1YPACw6oZPAFJtqe"]
   },
-  "dev.gruncan.spotify.requests.me.audiobooks.MyAudiobooksSavedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.audiobooks.MyAudiobooksSavedGet":{
     "url" : "https://api.spotify.com/v1/me/audiobooks/contains?ids=18yVqkdbdRvS24c0Ilj2ci%2C1HGw3J3NxZO1TP1BTtVhpZ%2C7iHfbu1YPACw6oZPAFJtqe",
     "ids": ["18yVqkdbdRvS24c0Ilj2ci","1HGw3J3NxZO1TP1BTtVhpZ","7iHfbu1YPACw6oZPAFJtqe"]
   },
-  "dev.gruncan.spotify.requests.me.episodes.MyEpisodesDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.episodes.MyEpisodesDelete":{
     "url" : "https://api.spotify.com/v1/me/episodes?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": ["7ouMYWpwJ422jRcDASZB7P","4VqPOruhp5EdPBeR92t6lQ","2takcwOaAZWiXQijPHIx7B"]
   },
-  "dev.gruncan.spotify.requests.me.episodes.MyEpisodesGet":{
+  "dev.gruncan.spotify.webapi.requests.me.episodes.MyEpisodesGet":{
     "url" : "https://api.spotify.com/v1/me/episodes"
   },
-  "dev.gruncan.spotify.requests.me.episodes.MyEpisodesPut":{
+  "dev.gruncan.spotify.webapi.requests.me.episodes.MyEpisodesPut":{
     "url" : "https://api.spotify.com/v1/me/episodes?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf",
     "ids": ["77o6BIVlYM3msb4MMIL1jH","0Q86acNRm6V9GYx55SXKwf"]
   },
-  "dev.gruncan.spotify.requests.me.episodes.MyEpisodesSavedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.episodes.MyEpisodesSavedGet":{
     "url" : "https://api.spotify.com/v1/me/episodes/contains?ids=77o6BIVlYM3msb4MMIL1jH%2C0Q86acNRm6V9GYx55SXKwf",
     "ids": ["77o6BIVlYM3msb4MMIL1jH","0Q86acNRm6V9GYx55SXKwf"]
   },
-  "dev.gruncan.spotify.requests.me.MyFollowedArtistsGet":{
+  "dev.gruncan.spotify.webapi.requests.me.MyFollowedArtistsGet":{
     "url" : "https://api.spotify.com/v1/me/following?type=artist"
   },
-  "dev.gruncan.spotify.requests.me.MyFollowingPersonGet":{
+  "dev.gruncan.spotify.webapi.requests.me.MyFollowingPersonGet":{
     "url" : "https://api.spotify.com/v1/me/following/contains?type=artist&ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6",
     "type": "artist",
     "ids": ["2CIMQHirSU0MQqyYHq0eOx","57dN52uHvrHOxijzpIgu3E","1vCWHaC5f2uS3yhpwWbIA6"]
   },
-  "dev.gruncan.spotify.requests.me.MyFollowPersonPut":{
+  "dev.gruncan.spotify.webapi.requests.me.MyFollowPersonPut":{
     "url" : "https://api.spotify.com/v1/me/following?type=artist&ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6",
     "type": "artist",
     "ids": ["2CIMQHirSU0MQqyYHq0eOx","57dN52uHvrHOxijzpIgu3E","1vCWHaC5f2uS3yhpwWbIA6"]
   },
-  "dev.gruncan.spotify.requests.me.MyProfileGet":{
+  "dev.gruncan.spotify.webapi.requests.me.MyProfileGet":{
     "url" : "https://api.spotify.com/v1/me"
   },
-  "dev.gruncan.spotify.requests.me.MyTopInfo":{
+  "dev.gruncan.spotify.webapi.requests.me.MyTopInfo":{
     "url" : "https://api.spotify.com/v1/me/top/artists",
     "type": "artists"
   },
-  "dev.gruncan.spotify.requests.me.MyUnfollowPersonDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.MyUnfollowPersonDelete":{
     "url" : "https://api.spotify.com/v1/me/following?type=artist&ids=2CIMQHirSU0MQqyYHq0eOx%2C57dN52uHvrHOxijzpIgu3E%2C1vCWHaC5f2uS3yhpwWbIA6",
     "type": "artist",
     "ids": ["2CIMQHirSU0MQqyYHq0eOx","57dN52uHvrHOxijzpIgu3E","1vCWHaC5f2uS3yhpwWbIA6"]
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerCurrentlyPlayingGet":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerCurrentlyPlayingGet":{
     "url" : "https://api.spotify.com/v1/me/player/currently-playing"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerDevicesGet":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerDevicesGet":{
     "url" : "https://api.spotify.com/v1/me/player/devices"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerGet":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerGet":{
     "url" : "https://api.spotify.com/v1/me/player"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerPausePut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerPausePut":{
     "url" : "https://api.spotify.com/v1/me/player/pause"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerQueueGet":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerQueueGet":{
     "url" : "https://api.spotify.com/v1/me/player/queue"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerRecentlyPlayedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerRecentlyPlayedGet":{
     "url" : "https://api.spotify.com/v1/me/player/recently-played"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerRepeatPut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerRepeatPut":{
     "url" : "https://api.spotify.com/v1/me/player/repeat?state=context",
     "state": "context"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerResumePut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerResumePut":{
     "url" : "https://api.spotify.com/v1/me/player/play"
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerSeekPut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerSeekPut":{
     "url" : "https://api.spotify.com/v1/me/player/seek?position_ms=25000",
     "position_ms": 25000
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerSetVolumePut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerSetVolumePut":{
     "url" : "https://api.spotify.com/v1/me/player/volume?volume_percent=50",
     "volume_percent": 50
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerToggleShufflePut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerToggleShufflePut":{
     "url" : "https://api.spotify.com/v1/me/player/shuffle?state=true",
     "state": true
   },
-  "dev.gruncan.spotify.requests.me.player.MyPlayerTransferPut":{
+  "dev.gruncan.spotify.webapi.requests.me.player.MyPlayerTransferPut":{
     "url" : "https://api.spotify.com/v1/me/player",
     "id": "74ASZWbe4lXaubB36ztrGX"
   },
-  "dev.gruncan.spotify.requests.me.playlists.MyPlaylistsGet":{
+  "dev.gruncan.spotify.webapi.requests.me.playlists.MyPlaylistsGet":{
     "url" : "https://api.spotify.com/v1/me/playlists"
   },
-  "dev.gruncan.spotify.requests.me.shows.MyShowsDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.shows.MyShowsDelete":{
     "url" : "https://api.spotify.com/v1/me/shows?ids=5CfCWKI5pZ28U0uOzXkDHe%2C5as3aKmN2k11yfDDDSrvaZ",
     "ids": ["5CfCWKI5pZ28U0uOzXkDHe","5as3aKmN2k11yfDDDSrvaZ"]
   },
-  "dev.gruncan.spotify.requests.me.shows.MyShowsGet":{
+  "dev.gruncan.spotify.webapi.requests.me.shows.MyShowsGet":{
     "url" : "https://api.spotify.com/v1/me/shows"
   },
-  "dev.gruncan.spotify.requests.me.shows.MyShowsPut":{
+  "dev.gruncan.spotify.webapi.requests.me.shows.MyShowsPut":{
     "url" : "https://api.spotify.com/v1/me/shows?ids=5CfCWKI5pZ28U0uOzXkDHe%2C5as3aKmN2k11yfDDDSrvaZ",
     "ids": ["5CfCWKI5pZ28U0uOzXkDHe","5as3aKmN2k11yfDDDSrvaZ"]
   },
-  "dev.gruncan.spotify.requests.me.shows.MyShowsSavedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.shows.MyShowsSavedGet":{
     "url" : "https://api.spotify.com/v1/me/shows/contains?ids=5CfCWKI5pZ28U0uOzXkDHe%2C5as3aKmN2k11yfDDDSrvaZ",
     "id": ["5CfCWKI5pZ28U0uOzXkDHe","5as3aKmN2k11yfDDDSrvaZ"]
   },
-  "dev.gruncan.spotify.requests.me.tracks.MyTracksDelete":{
+  "dev.gruncan.spotify.webapi.requests.me.tracks.MyTracksDelete":{
     "url" : "https://api.spotify.com/v1/me/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": ["7ouMYWpwJ422jRcDASZB7P","4VqPOruhp5EdPBeR92t6lQ","2takcwOaAZWiXQijPHIx7B"]
   },
-  "dev.gruncan.spotify.requests.me.tracks.MyTracksGet":{
+  "dev.gruncan.spotify.webapi.requests.me.tracks.MyTracksGet":{
     "url" : "https://api.spotify.com/v1/me/tracks"
   },
-  "dev.gruncan.spotify.requests.me.tracks.MyTracksPut":{
+  "dev.gruncan.spotify.webapi.requests.me.tracks.MyTracksPut":{
     "url" : "https://api.spotify.com/v1/me/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": ["7ouMYWpwJ422jRcDASZB7P","4VqPOruhp5EdPBeR92t6lQ","2takcwOaAZWiXQijPHIx7B"]
   },
-  "dev.gruncan.spotify.requests.me.tracks.MyTracksSavedGet":{
+  "dev.gruncan.spotify.webapi.requests.me.tracks.MyTracksSavedGet":{
     "url" : "https://api.spotify.com/v1/me/tracks/contains?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": ["7ouMYWpwJ422jRcDASZB7P","4VqPOruhp5EdPBeR92t6lQ","2takcwOaAZWiXQijPHIx7B"]
   },
 
-  "dev.gruncan.spotify.requests.playlists.PlaylistAddCoverImagePut":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistAddCoverImagePut":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/images",
     "id": "3cEYpjA9oz9GiPac4AsH4n",
     "image": "C:\\Users\\DJ223\\Pictures\\test.jpeg"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistAddItemPost":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistAddItemPost":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks",
     "id": "3cEYpjA9oz9GiPac4AsH4n",
     "uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistCategoriesGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistCategoriesGet":{
     "url": "https://api.spotify.com/v1/browse/categories/dinner/playlists",
     "id": "dinner"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistChangeDetailsPut":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistChangeDetailsPut":{
     "url": "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistFeaturedGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistFeaturedGet":{
     "url": "https://api.spotify.com/v1/browse/featured-playlists"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistFollowingCheckGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistFollowingCheckGet":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/followers/contains?ids=jmperezperez%2Cthelinmichael%2Cwizzler",
     "id": "4aawyAB9vmqN3uQ7FjRGTy",
     "ids": ["jmperezperez,thelinmichael,wizzler"]
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistFollowPut":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistFollowPut":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/followers",
     "id": "3cEYpjA9oz9GiPac4AsH4n",
     "isPublic": false
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistGet":{
     "url": "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistImageGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistImageGet":{
     "url": "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/images",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistRemoveItemDelete":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistRemoveItemDelete":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks",
     "id": "3cEYpjA9oz9GiPac4AsH4n",
     "uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistTracksGet":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistTracksGet":{
     "url": "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistUnfollowDelete":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistUnfollowDelete":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/followers",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.playlists.PlaylistUpdatePut":{
+  "dev.gruncan.spotify.webapi.requests.playlists.PlaylistUpdatePut":{
     "url" : "https://api.spotify.com/v1/playlists/3cEYpjA9oz9GiPac4AsH4n/tracks",
     "id": "3cEYpjA9oz9GiPac4AsH4n"
   },
-  "dev.gruncan.spotify.requests.search.SearchGet":{
+  "dev.gruncan.spotify.webapi.requests.search.SearchGet":{
     "url": "https://api.spotify.com/v1/search?q=remaster%2520track%3ADoxy%2520artist%3AMiles%2520Davis&type=album",
     "q": "remaster%20track:Doxy%20artist:Miles%20Davis",
     "type": [
       "album"
     ]
   },
-  "dev.gruncan.spotify.requests.shows.ShowEpisodesGet":{
+  "dev.gruncan.spotify.webapi.requests.shows.ShowEpisodesGet":{
     "url": "https://api.spotify.com/v1/shows/38bS44xjbVVZ3No3ByF1dJ/episodes",
     "id": "38bS44xjbVVZ3No3ByF1dJ"
   },
-  "dev.gruncan.spotify.requests.shows.ShowGet":{
+  "dev.gruncan.spotify.webapi.requests.shows.ShowGet":{
     "url": "https://api.spotify.com/v1/shows/38bS44xjbVVZ3No3ByF1dJ",
     "id": "38bS44xjbVVZ3No3ByF1dJ"
   },
-  "dev.gruncan.spotify.requests.shows.ShowSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.shows.ShowSeveralGet":{
     "url": "https://api.spotify.com/v1/shows?ids=5CfCWKI5pZ28U0uOzXkDHe%2C5as3aKmN2k11yfDDDSrvaZ",
     "ids": [
       "5CfCWKI5pZ28U0uOzXkDHe",
       "5as3aKmN2k11yfDDDSrvaZ"
     ]
   },
-  "dev.gruncan.spotify.requests.tracks.TrackAudioAnalysisGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackAudioAnalysisGet":{
     "url": "https://api.spotify.com/v1/audio-analysis/11dFghVXANMlKmJXsNCbNl",
     "id": "11dFghVXANMlKmJXsNCbNl"
   },
-  "dev.gruncan.spotify.requests.tracks.TrackAudioFeatureSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackAudioFeatureSeveralGet":{
     "url": "https://api.spotify.com/v1/audio-features?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": [
       "7ouMYWpwJ422jRcDASZB7P",
@@ -336,15 +336,15 @@
       "2takcwOaAZWiXQijPHIx7B"
     ]
   },
-  "dev.gruncan.spotify.requests.tracks.TrackAudioFeaturesGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackAudioFeaturesGet":{
     "url": "https://api.spotify.com/v1/audio-features/11dFghVXANMlKmJXsNCbNl",
     "id": "11dFghVXANMlKmJXsNCbNl"
   },
-  "dev.gruncan.spotify.requests.tracks.TrackGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackGet":{
     "url": "https://api.spotify.com/v1/tracks/11dFghVXANMlKmJXsNCbNl",
     "id": "11dFghVXANMlKmJXsNCbNl"
   },
-  "dev.gruncan.spotify.requests.tracks.TrackRecommendationGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackRecommendationGet":{
     "url": "https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA",
     "seed_artists": [
       "4NHQUGzhtTLFvgF5SZesLK"
@@ -357,7 +357,7 @@
       "0c6xIDDpzE81m2q797ordA"
     ]
   },
-  "dev.gruncan.spotify.requests.tracks.TrackSeveralGet":{
+  "dev.gruncan.spotify.webapi.requests.tracks.TrackSeveralGet":{
     "url": "https://api.spotify.com/v1/tracks?ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B",
     "ids": [
       "7ouMYWpwJ422jRcDASZB7P",
@@ -365,16 +365,16 @@
       "2takcwOaAZWiXQijPHIx7B"
     ]
   },
- "dev.gruncan.spotify.requests.users.UserPlaylistCreatePost":{
+ "dev.gruncan.spotify.webapi.requests.users.UserPlaylistCreatePost":{
        "url" : "https://api.spotify.com/v1/users/smedjan/playlists",
        "id": "smedjan",
        "name": "Test"
  },
- "dev.gruncan.spotify.requests.users.UserPlaylistGet":{
+ "dev.gruncan.spotify.webapi.requests.users.UserPlaylistGet":{
        "url" : "https://api.spotify.com/v1/users/smedjan/playlists",
        "id": "smedjan"
  },
- "dev.gruncan.spotify.requests.users.UserProfileGet": {
+ "dev.gruncan.spotify.webapi.requests.users.UserProfileGet": {
    "url" : "https://api.spotify.com/v1/users/smedjan",
    "id": "smedjan"
  }

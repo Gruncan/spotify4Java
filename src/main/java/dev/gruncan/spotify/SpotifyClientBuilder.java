@@ -5,10 +5,10 @@ import dev.gruncan.http.HttpRequest;
 import dev.gruncan.http.HttpResponse;
 import dev.gruncan.http.SpotifyHttpServerProvider;
 import dev.gruncan.json.JSONObject;
-import dev.gruncan.spotify.requests.SpotifyRequest;
-import dev.gruncan.spotify.requests.SpotifyRequestExecutor;
-import dev.gruncan.spotify.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.requests.util.Scope;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequest;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.webapi.requests.util.Scope;
 import dev.gruncan.spotify.util.Util;
 
 import java.net.MalformedURLException;

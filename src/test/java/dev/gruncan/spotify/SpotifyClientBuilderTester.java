@@ -1,6 +1,6 @@
 package dev.gruncan.spotify;
 
-import dev.gruncan.spotify.requests.util.Scope;
+import dev.gruncan.spotify.webapi.requests.util.Scope;
 
 public class SpotifyClientBuilderTester extends SpotifyClientBuilder {
 

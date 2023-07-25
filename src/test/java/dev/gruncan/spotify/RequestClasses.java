@@ -8,7 +8,7 @@ public class RequestClasses {
 
 
     public static void main(String[] args) {
-        String dir = "src/main/java/dev/gruncan/spotify/requests/";
+        String dir = "src/main/java/dev/gruncan/spotify/webapi/requests/";
         File base = new File(dir);
         List<String> allNames = new ArrayList<>();
         for (File f : base.listFiles()){

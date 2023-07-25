@@ -1,7 +1,7 @@
 package dev.gruncan.http;
 
 import dev.gruncan.spotify.SpotifyResponse;
-import dev.gruncan.spotify.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestExecutor;
 
 /**
  * Represent the response from a {@link HttpRequest}

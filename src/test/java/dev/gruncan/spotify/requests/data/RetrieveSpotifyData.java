@@ -5,8 +5,8 @@ import dev.gruncan.json.JSONObject;
 import dev.gruncan.spotify.SpotifyClient;
 import dev.gruncan.spotify.SpotifyResponse;
 import dev.gruncan.spotify.requests.SpotifyClientTester;
-import dev.gruncan.spotify.requests.SpotifyRequestExecutor;
-import dev.gruncan.spotify.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
 
 import java.io.File;
 import java.io.FileWriter;

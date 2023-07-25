@@ -1,8 +1,8 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.requests.categories.CategoryGet;
-import dev.gruncan.spotify.requests.categories.CategorySeveralGet;
+import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.webapi.requests.categories.CategoryGet;
+import dev.gruncan.spotify.webapi.requests.categories.CategorySeveralGet;
 import dev.gruncan.spotify.requests.data.AbstractUrlTest;
 import org.junit.jupiter.api.Test;
 

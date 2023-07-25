@@ -2,9 +2,9 @@ package dev.gruncan.spotify;
 
 import dev.gruncan.json.JSONArray;
 import dev.gruncan.json.JSONObject;
-import dev.gruncan.spotify.objects.SpotifyObject;
-import dev.gruncan.spotify.objects.SpotifySerializer;
-import dev.gruncan.spotify.requests.RequestResponse;
+import dev.gruncan.spotify.webapi.objects.SpotifyObject;
+import dev.gruncan.spotify.webapi.objects.SpotifySerializer;
+import dev.gruncan.spotify.webapi.requests.RequestResponse;
 
 import java.lang.reflect.Array;
 
