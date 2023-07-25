@@ -1,6 +1,7 @@
 
-# <u>Change list</u>
- - **com.spotify** renamed with proper domain name **dev.gruncan**
+# <u>Change list 1.5.0</u>
+ - **com.spotify** renamed with proper domain name **dev.gruncan.spotify**
+ - **spotify.objects** and **spotify.requests** moved deeper into **spotify.webapi.objects** and **spotify.webapi.requests**
 
 ### Request renames:
 
