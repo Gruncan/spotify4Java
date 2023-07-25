@@ -2,7 +2,7 @@
 
 # Spotify for Java (Still under development)
 
-Spotify api wrapper for java. <a href="s4j.gruncan.dev"> JavaDocs</a>
+Spotify api wrapper for java. <a href="https://s4j.gruncan.dev/"> JavaDocs</a>
 
 Written for enjoyment and a way to learn java concepts that I have rarely/never used.
 Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and concurrency.
