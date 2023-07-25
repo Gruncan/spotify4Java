@@ -1,3 +1,7 @@
+# Documentation files
+Docs/src
+
+
 #Intellij
 .idea
 target
