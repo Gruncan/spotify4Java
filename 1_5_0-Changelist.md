@@ -8,7 +8,7 @@
 Renamed requests starting with "**Several**" to start with specific request name
 
 | Previous Name |           |                      New Name |
-|---------------|:---------:|------------------------------:|
+|---------------|:---------:|------------------------------|
 |SeveralAlbumsGet|  &#8594;  |               AlbumSeveralGet |
 |ArtistTopTracksGet|  &#8594;  |           ArtistsTopTracksGet |
 |SeveralArtistsGet|  &#8594;  |              ArtistSeveralGet |

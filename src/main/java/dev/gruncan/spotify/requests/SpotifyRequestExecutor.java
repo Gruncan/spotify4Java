@@ -60,7 +60,7 @@ public abstract class SpotifyRequestExecutor {
     }
 
     /**
-     * Basic Spotify HTTP GET request on a given URL with parameters specified
+     * Basic Spotify HTTP request on a given URL with parameters specified
      *
      * @param token   The token from spotify's authentication to be added to "Bearer" header information
      * @param request The http request to execute and get result
