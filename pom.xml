@@ -14,8 +14,38 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
-    <dependencies>
+    <name>Spotify4Java</name>
+    <description>A spotify API wrapper written in Java</description>
+    <url>https://gruncan.dev/spotify4Java</url>
 
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://github.com/Gruncan/spotify4Java/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/Gruncan/spotify4Java.git</connection>
+        <developerConnection>scm:git:git://github.com/Gruncan/spotify4Java.git</developerConnection>
+        <url>https://github.com/Gruncan/spotify4Java/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>Gruncan</id>
+            <name>Duncan Jones</name>
+            <email>dj223@outlook.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+
+    <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -35,7 +65,6 @@
             <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
