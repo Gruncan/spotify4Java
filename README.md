@@ -7,6 +7,17 @@ Spotify api wrapper for java. <a href="https://s4j.gruncan.dev/"> JavaDocs</a>
 Written for enjoyment and a way to learn java concepts that I have rarely/never used.
 Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and concurrency.
 
+## Maven
+
+```XML
+<dependency>
+    <groupId>dev.gruncan.s4j</groupId>
+    <artifactId>S4J</artifactId>
+    <version>1.5.0</version>
+</dependency>
+```
+
+
 ## How it do
 
 Firstly create an app at spotify's dashboard https://developer.spotify.com/dashboard/applications

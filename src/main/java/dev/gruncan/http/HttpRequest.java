@@ -65,7 +65,7 @@ public class HttpRequest {
     }
 
     /**
-     * Adds a key value pair to the parameters in the form "<block>url?key=value\&... </block>"
+     * Adds a key value pair to the parameters in the form "url?key=value..."
      * @param key   a key parameter
      * @param value a value associated with the key
      */
