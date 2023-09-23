@@ -16,7 +16,13 @@ Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and 
     <version>1.5.0</version>
 </dependency>
 ```
+## Version Roadmap
+- v1.0.0: WebAPI
+- v2.0.0: AdAPI
+- v3.0.0: Embeds
+- v4.0.0: Open Access
 
+_Most often all rquests will be implemented before x.5.0 and all serialization before next major version_
 
 ## How it do
 
