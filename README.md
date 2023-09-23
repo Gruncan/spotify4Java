@@ -17,7 +17,7 @@ Demonstrated usage of OAuth 2.0 and java reflections, generics, networking, and 
 </dependency>
 ```
 ## Version Roadmap
-- v1.0.0: WebAPI
+- **v1.0.0: WebAPI**
 - v2.0.0: AdAPI
 - v3.0.0: Embeds
 - v4.0.0: Open Access
