@@ -1,11 +1,11 @@
 package dev.gruncan.spotify.requests.connection.tests;
 
 import dev.gruncan.spotify.SpotifyResponse;
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.connection.AbstractConnectionTest;
-import dev.gruncan.spotify.webapi.requests.shows.ShowEpisodesGet;
-import dev.gruncan.spotify.webapi.requests.shows.ShowGet;
-import dev.gruncan.spotify.webapi.requests.shows.ShowSeveralGet;
+import dev.gruncan.spotify.api.web.requests.shows.ShowEpisodesGet;
+import dev.gruncan.spotify.api.web.requests.shows.ShowGet;
+import dev.gruncan.spotify.api.web.requests.shows.ShowSeveralGet;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 

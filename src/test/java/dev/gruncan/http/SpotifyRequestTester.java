@@ -5,7 +5,7 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import dev.gruncan.spotify.SpotifyClient;
 import dev.gruncan.spotify.SpotifyClientBuilder;
-import dev.gruncan.spotify.webapi.requests.tracks.TrackGet;
+import dev.gruncan.spotify.api.web.requests.tracks.TrackGet;
 import dev.gruncan.spotify.util.Util;
 
 import java.awt.*;

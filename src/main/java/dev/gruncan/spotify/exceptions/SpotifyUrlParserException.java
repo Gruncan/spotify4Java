@@ -1,6 +1,6 @@
 package dev.gruncan.spotify.exceptions;
 
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestExecutor;
 
 /**
  * Thrown when a URL for a request is fail to be built.

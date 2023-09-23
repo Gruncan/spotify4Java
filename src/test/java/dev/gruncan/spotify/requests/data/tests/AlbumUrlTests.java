@@ -1,10 +1,10 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.webapi.requests.albums.AlbumGet;
-import dev.gruncan.spotify.webapi.requests.albums.AlbumReleasesGet;
-import dev.gruncan.spotify.webapi.requests.albums.AlbumSeveralGet;
-import dev.gruncan.spotify.webapi.requests.albums.AlbumTracksGet;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.web.requests.albums.AlbumGet;
+import dev.gruncan.spotify.api.web.requests.albums.AlbumReleasesGet;
+import dev.gruncan.spotify.api.web.requests.albums.AlbumSeveralGet;
+import dev.gruncan.spotify.api.web.requests.albums.AlbumTracksGet;
 import dev.gruncan.spotify.requests.data.AbstractUrlTest;
 import org.junit.jupiter.api.Test;
 

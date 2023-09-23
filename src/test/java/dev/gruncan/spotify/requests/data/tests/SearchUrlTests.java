@@ -1,9 +1,9 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.data.AbstractUrlTest;
-import dev.gruncan.spotify.webapi.requests.search.SearchGet;
-import dev.gruncan.spotify.webapi.requests.util.Type;
+import dev.gruncan.spotify.api.web.requests.search.SearchGet;
+import dev.gruncan.spotify.api.web.requests.util.Type;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

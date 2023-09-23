@@ -1,8 +1,8 @@
 package dev.gruncan.spotify;
 
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.webapi.requests.me.MyFollowPersonPut;
-import dev.gruncan.spotify.webapi.requests.me.MyProfileGet;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.web.requests.me.MyFollowPersonPut;
+import dev.gruncan.spotify.api.web.requests.me.MyProfileGet;
 
 import java.io.IOException;
 

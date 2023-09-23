@@ -1,10 +1,10 @@
 package dev.gruncan.spotify.requests.connection.tests;
 
 import dev.gruncan.spotify.SpotifyResponse;
-import dev.gruncan.spotify.webapi.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookChaptersGet;
-import dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookGet;
-import dev.gruncan.spotify.webapi.requests.audiobooks.AudiobookSeveralGet;
+import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookChaptersGet;
+import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookGet;
+import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookSeveralGet;
 import dev.gruncan.spotify.requests.connection.AbstractConnectionTest;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
