@@ -1,8 +1,8 @@
 package dev.gruncan.spotify.requests.urls.testclasses;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequest;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestField;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequest;
+import dev.gruncan.spotify.api.SpotifyRequestField;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import lombok.Setter;
 
 @SpotifyRequest("url")

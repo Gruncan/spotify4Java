@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.requests.connection.tests;
 
 import dev.gruncan.spotify.SpotifyResponse;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumGet;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumSeveralGet;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumTracksGet;

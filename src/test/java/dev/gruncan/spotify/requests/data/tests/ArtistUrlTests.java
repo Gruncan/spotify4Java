@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.requests.data.tests;
 
 import dev.gruncan.spotify.api.web.objects.wrappers.Country;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.data.AbstractUrlTest;
 import dev.gruncan.spotify.api.web.requests.artists.*;
 import org.junit.jupiter.api.Test;

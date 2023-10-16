@@ -1,6 +1,6 @@
 package dev.gruncan.spotify;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 
 public interface SpotifyClient {
 

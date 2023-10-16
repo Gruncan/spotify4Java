@@ -5,9 +5,9 @@ import dev.gruncan.http.HttpRequest;
 import dev.gruncan.http.HttpResponse;
 import dev.gruncan.http.SpotifyHttpServerProvider;
 import dev.gruncan.json.JSONObject;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequest;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestExecutor;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequest;
+import dev.gruncan.spotify.api.SpotifyRequestExecutor;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.api.web.requests.util.Scope;
 import dev.gruncan.spotify.util.Util;
 

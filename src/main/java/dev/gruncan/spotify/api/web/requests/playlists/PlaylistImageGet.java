@@ -3,9 +3,9 @@ package dev.gruncan.spotify.api.web.requests.playlists;
 import dev.gruncan.spotify.SpotifyResponse;
 import dev.gruncan.spotify.api.web.objects.SpotifySerialize;
 import dev.gruncan.spotify.api.web.objects.wrappers.SpotifyImage;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequest;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
-import dev.gruncan.spotify.api.web.requests.SpotifySubRequest;
+import dev.gruncan.spotify.api.SpotifyRequest;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifySubRequest;
 
 /**
  * Get the current image associated with a specific playlist.

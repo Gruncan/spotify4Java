@@ -3,8 +3,8 @@ package dev.gruncan.spotify.requests.urls;
 import dev.gruncan.spotify.SpotifyClient;
 import dev.gruncan.spotify.SpotifyResponse;
 import dev.gruncan.spotify.exceptions.SpotifyUrlParserException;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestExecutor;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestExecutor;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 
 public class SpotifyClientMock extends SpotifyRequestExecutor implements SpotifyClient {
 

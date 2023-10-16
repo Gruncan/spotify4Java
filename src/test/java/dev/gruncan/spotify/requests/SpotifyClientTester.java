@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.requests;
 
 import dev.gruncan.spotify.SpotifyClientBuilderTester;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestExecutor;
+import dev.gruncan.spotify.api.SpotifyRequestExecutor;
 
 public class SpotifyClientTester {
 

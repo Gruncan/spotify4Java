@@ -1,4 +1,4 @@
-package dev.gruncan.spotify.api.web.requests;
+package dev.gruncan.spotify.api;
 
 import dev.gruncan.http.HttpMethod;
 import dev.gruncan.http.HttpRequest;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public abstract class SpotifyRequestExecutor {
 
 
-    private final static String API_URL = "https://api.spotify.com";
+    private final String API_URL;
 
     private String BASE_URL;
 
@@ -34,7 +34,9 @@ public abstract class SpotifyRequestExecutor {
 
     private static boolean debug = false;
 
-    public SpotifyRequestExecutor() {
+
+    public SpotifyRequestExecutor(String apiUrl){
+        this.API_URL = apiUrl;
         this.setAPIVersion(SpotifyAPIVersion.V1);
         this.cachedBuiltUrl = null;
     }

@@ -2,7 +2,7 @@ package dev.gruncan.spotify.requests.connection.tests;
 
 import dev.gruncan.spotify.SpotifyResponse;
 import dev.gruncan.spotify.api.web.objects.wrappers.Country;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.connection.AbstractConnectionTest;
 import dev.gruncan.spotify.api.web.requests.artists.*;
 import org.junit.jupiter.api.Tag;

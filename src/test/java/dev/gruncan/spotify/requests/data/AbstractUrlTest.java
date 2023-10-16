@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.requests.data;
 
 import dev.gruncan.json.JSONObject;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.urls.SpotifyClientMock;
 
 public class AbstractUrlTest {

@@ -1,4 +1,4 @@
-package dev.gruncan.spotify.api.web.requests;
+package dev.gruncan.spotify.api;
 
 import dev.gruncan.http.HttpMethod;
 import dev.gruncan.spotify.api.web.requests.util.Scope;

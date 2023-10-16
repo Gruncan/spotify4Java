@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.api.web.requests.me.player;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestField;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestField;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import lombok.Setter;
 
 @Deprecated

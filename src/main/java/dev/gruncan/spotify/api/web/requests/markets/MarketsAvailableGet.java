@@ -3,8 +3,8 @@ package dev.gruncan.spotify.api.web.requests.markets;
 import dev.gruncan.spotify.SpotifyResponse;
 import dev.gruncan.spotify.api.web.objects.SpotifySerialize;
 import dev.gruncan.spotify.api.web.objects.markets.Markets;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequest;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequest;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 
 /**
  * Get the list of markets where Spotify is available.

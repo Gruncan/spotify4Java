@@ -1,4 +1,4 @@
-package dev.gruncan.spotify.api.web.requests;
+package dev.gruncan.spotify.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

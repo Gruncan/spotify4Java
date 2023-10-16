@@ -4,7 +4,7 @@ import dev.gruncan.json.JSONArray;
 import dev.gruncan.json.JSONObject;
 import dev.gruncan.spotify.api.web.objects.SpotifyObject;
 import dev.gruncan.spotify.api.web.objects.SpotifySerializer;
-import dev.gruncan.spotify.api.web.requests.RequestResponse;
+import dev.gruncan.spotify.api.RequestResponse;
 
 import java.lang.reflect.Array;
 

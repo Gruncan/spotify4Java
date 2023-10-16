@@ -2,8 +2,8 @@ package dev.gruncan.spotify.api.web.requests.playlists;
 
 import dev.gruncan.http.HttpMethod;
 import dev.gruncan.spotify.SpotifyResponse;
+import dev.gruncan.spotify.api.*;
 import dev.gruncan.spotify.api.web.objects.SpotifySerialize;
-import dev.gruncan.spotify.api.web.requests.*;
 import dev.gruncan.spotify.api.web.requests.util.Scope;
 import lombok.Setter;
 

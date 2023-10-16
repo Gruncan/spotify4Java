@@ -1,7 +1,7 @@
 package dev.gruncan.spotify.requests.connection.tests;
 
 import dev.gruncan.spotify.SpotifyResponse;
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.api.web.requests.categories.CategoryGet;
 import dev.gruncan.spotify.api.web.requests.categories.CategorySeveralGet;
 import dev.gruncan.spotify.requests.connection.AbstractConnectionTest;

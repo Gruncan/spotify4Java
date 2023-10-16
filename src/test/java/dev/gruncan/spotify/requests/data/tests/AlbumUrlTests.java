@@ -1,6 +1,6 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumGet;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumReleasesGet;
 import dev.gruncan.spotify.api.web.requests.albums.AlbumSeveralGet;

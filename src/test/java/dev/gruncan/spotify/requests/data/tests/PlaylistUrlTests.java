@@ -1,6 +1,6 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.requests.data.AbstractUrlTest;
 import dev.gruncan.spotify.api.web.requests.playlists.*;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package dev.gruncan.spotify.api.web.requests;
+package dev.gruncan.spotify.api;
 
 import dev.gruncan.spotify.SpotifyClient;
 import dev.gruncan.spotify.SpotifyClientBuilder;

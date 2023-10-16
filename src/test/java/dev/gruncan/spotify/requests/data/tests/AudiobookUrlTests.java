@@ -1,6 +1,6 @@
 package dev.gruncan.spotify.requests.data.tests;
 
-import dev.gruncan.spotify.api.web.requests.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.SpotifyRequestVariant;
 import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookChaptersGet;
 import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookGet;
 import dev.gruncan.spotify.api.web.requests.audiobooks.AudiobookSeveralGet;
