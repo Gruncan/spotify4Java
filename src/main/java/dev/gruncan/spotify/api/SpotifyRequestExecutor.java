@@ -121,7 +121,7 @@ public abstract class SpotifyRequestExecutor {
      * @param token The token from spotify's authentication
      * @return The response wrapped to be serialized {@link SpotifyResponse}
      */
-    protected final SpotifyResponse execute(String token, SpotifyRequestVariant request) {
+    public final SpotifyResponse execute(String token, SpotifyRequestVariant request) {
         String urlQuery;
         Class<? extends SpotifyRequestVariant> requestClass = request.getClass();
         try {

@@ -5,9 +5,12 @@ import dev.gruncan.http.HttpRequest;
 import dev.gruncan.http.HttpResponse;
 import dev.gruncan.http.SpotifyHttpServerProvider;
 import dev.gruncan.json.JSONObject;
+import dev.gruncan.spotify.api.SpotifyAPIType;
 import dev.gruncan.spotify.api.SpotifyRequest;
 import dev.gruncan.spotify.api.SpotifyRequestExecutor;
 import dev.gruncan.spotify.api.SpotifyRequestVariant;
+import dev.gruncan.spotify.api.ads.requests.SpotifyAdRequestExecutor;
+import dev.gruncan.spotify.api.web.requests.SpotifyWebRequestExecutor;
 import dev.gruncan.spotify.api.web.requests.util.Scope;
 import dev.gruncan.spotify.util.Util;
 
@@ -30,6 +33,7 @@ public class SpotifyClientBuilder {
     private String responseType;
     private String state;
     private boolean showDialog;
+    private SpotifyAPIType type;
 
     private long timeWhenRefresh;
     private String refreshToken;
@@ -42,6 +46,10 @@ public class SpotifyClientBuilder {
 
 
     public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri) {
+        this(clientID, clientSecret, redirectUri, SpotifyAPIType.WEB);
+    }
+
+    public SpotifyClientBuilder(String clientID, String clientSecret, String redirectUri, SpotifyAPIType type){
         this.clientID = clientID;
         this.clientSecret = clientSecret;
         this.redirectUriString = redirectUri;
@@ -54,6 +62,7 @@ public class SpotifyClientBuilder {
         this.builtClient = null;
         this.printAccessToken = false;
         this.enforceScopeCheck = true;
+        this.type = type;
 
         try {
             this.redirectUrl = new URL(redirectUri);
@@ -93,8 +102,21 @@ public class SpotifyClientBuilder {
         return this;
     }
 
+    public SpotifyClientBuilder setApiType(SpotifyAPIType type){
+        if(type != this.type) {
+            this.type = type;
+            // If type changes must reauthenticate
+            this.builtClient = null;
+        }
+        return this;
+    }
+
+    public static SpotifyClient buildFromToken(String token, SpotifyAPIType type) {
+        return new SpotifyClientImp(token, null, SpotifyClientBuilder.getRequestExecutor(type));
+    }
+
     public static SpotifyClient buildFromToken(String token) {
-        return new SpotifyClientImp(token, null);
+        return SpotifyClientBuilder.buildFromToken(token, SpotifyAPIType.WEB);
     }
 
 
@@ -115,6 +137,9 @@ public class SpotifyClientBuilder {
     }
 
     public SpotifyClient getBuiltClient() {
+        if (this.builtClient != null){
+            return this.builtClient;
+        }
         this.spotifyHttpServerProvider = new SpotifyHttpServerProvider(this);
         this.spotifyHttpServerProvider.runServer();
         try {
@@ -173,7 +198,6 @@ public class SpotifyClientBuilder {
     }
 
     private SpotifyClient getSpotifyClient(HttpResponse response) {
-
         JSONObject jsonObject = new JSONObject(response.getContent());
         String token = jsonObject.getString("access_token");
         if (printAccessToken)
@@ -182,11 +206,11 @@ public class SpotifyClientBuilder {
         this.timeWhenRefresh = System.currentTimeMillis() + (expiresIn * 1000L);
         this.refreshToken = jsonObject.getString("refresh_token");
 
+        SpotifyRequestExecutor requestExecutor = SpotifyClientBuilder.getRequestExecutor(this.type);
         if (this.enforceScopeCheck)
-            return new SpotifyClientImp(token, this.scopeList);
+            return new SpotifyClientImp(token, this.scopeList, requestExecutor);
         else
-            return new SpotifyClientImp(token, null);
-
+            return new SpotifyClientImp(token, null, requestExecutor);
     }
 
     private HttpResponse sendPostTokenRequest(Map<String, String> queries) {
@@ -199,15 +223,30 @@ public class SpotifyClientBuilder {
         return httpRequest.execute();
     }
 
+    private static SpotifyRequestExecutor getRequestExecutor(SpotifyAPIType type){
+        switch (type){
+            case WEB -> {
+                return new SpotifyWebRequestExecutor();
+            }
+            case ADS -> {
+                return new SpotifyAdRequestExecutor();
+            }
+            default -> {
+                return null;
+            }
+        }
+    }
 
-    private final static class SpotifyClientImp extends SpotifyRequestExecutor implements SpotifyClient {
+    private final static class SpotifyClientImp implements SpotifyClient {
 
         private final String accessToken;
         private final List<Scope> scopes;
+        private final SpotifyRequestExecutor requestExecutor;
 
-        public SpotifyClientImp(String accessToken, List<Scope> scopes) {
+        public SpotifyClientImp(String accessToken, List<Scope> scopes, SpotifyRequestExecutor requestExecutor) {
             this.accessToken = accessToken;
             this.scopes = scopes;
+            this.requestExecutor = requestExecutor;
         }
 
 
@@ -227,7 +266,7 @@ public class SpotifyClientBuilder {
                     }
                 }
             }
-            return super.execute(this.accessToken, request);
+            return this.requestExecutor.execute(this.accessToken, request);
         }
     }
 }

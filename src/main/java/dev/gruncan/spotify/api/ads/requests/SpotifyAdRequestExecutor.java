@@ -2,7 +2,7 @@ package dev.gruncan.spotify.api.ads.requests;
 
 import dev.gruncan.spotify.api.SpotifyRequestExecutor;
 
-public abstract class SpotifyAdRequestExecutor extends SpotifyRequestExecutor {
+public class SpotifyAdRequestExecutor extends SpotifyRequestExecutor {
 
 
     public SpotifyAdRequestExecutor() {
