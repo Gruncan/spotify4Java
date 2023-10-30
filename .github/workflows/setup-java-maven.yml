@@ -1,0 +1,12 @@
+# File: .github/workflows/setup-java-maven.yml
+name: Set up JDK and Maven
+
+runs-on: ubuntu-latest
+
+steps:
+  - name: Set up JDK 17
+    uses: actions/setup-java@v3
+    with:
+      java-version: '17'
+      distribution: 'temurin'
+      cache: maven
