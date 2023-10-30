@@ -21,7 +21,7 @@ public class SpotifyAnnotationTest {
     @Test
     public void spotifyRequestAnnotationTest1() {
         TestRequestExecutorClass1 trc = new TestRequestExecutorClass1();
-        trc.setField1("value1");
+        trc.setField1("value5");
         assertThrows(SpotifyUrlParserException.class, () -> client.getBuiltUrlE(trc));
 
     }
