@@ -30,7 +30,7 @@ public class AlbumUrlTests extends AbstractUrlTest {
 
     @Test
     public void albumSeveralGetTestUrl() {
-        SpotifyRequestVariant request = new AlbumSeveralGet("382ObEPsp2rxGrnsizN5TX", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
+        SpotifyRequestVariant request = new AlbumSeveralGet("382ObEPsp2rxGrnsizN5TX1", "1A2GTWGtFfWp7KSQTwWOyo", "2noRn2Aes5aoNVsU6iWThc");
         String actualUrl = super.client.getBuiltURL(request);
         assertEquals(actualUrl, super.getCorrectURL(request.getClass()));
     }
